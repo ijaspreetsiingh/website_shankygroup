@@ -1,0 +1,181 @@
+'use client';
+
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+type Lang = 'en' | 'hi';
+
+type Dict = Record<string, Record<Lang, string>>;
+
+const dict: Dict = {
+  cookie_title: { en: 'We Care About Your Privacy', hi: 'हम आपकी निजता का ध्यान रखते हैं' },
+  cookie_desc: {
+    en: 'We use cookies to give you the best experience.',
+    hi: 'हम बेहतर अनुभव के लिए कुकीज़ का उपयोग करते हैं।',
+  },
+  learn_more: { en: 'learn more', hi: 'और जानें' },
+  ok: { en: 'OK', hi: 'ठीक' },
+  who_we_are: { en: 'WHO WE ARE', hi: 'हम कौन हैं' },
+  businesses: { en: 'BUSINESS', hi: 'व्यवसाय' },
+  careers: { en: 'CAREERS', hi: 'करियर' },
+  contact_us: { en: 'CONTACT US', hi: 'संपर्क करें' },
+  change_language: { en: 'Language', hi: 'भाषा' },
+  english: { en: 'English', hi: 'अंग्रेज़ी' },
+  hindi: { en: 'Hindi', hi: 'हिन्दी' },
+  
+  // Hero Section
+  since_2011: { en: 'Since 2011', hi: '2011 से' },
+  shanky_group: { en: 'Shanky Group', hi: 'शंक्य ग्रुप' },
+  excellence_in_every_sector: { en: 'Excellence in Every Sector', hi: 'हर क्षेत्र में उत्कृष्टता' },
+  initializing: { en: 'Initializing', hi: 'प्रारंभ हो रहा है' },
+  
+  // About Section
+  about_quote: { 
+    en: 'To make B2B relationships simpler, smarter, and more successful. We started this because we believed businesses deserve partners who listen, deliver, and grow alongside them. At our core we value trust, transparency, and measurable impact. Every solution we design begins with your goals and ends with clear outcomes. We invest in technology, people, and processes so you can focus on what you do best—running your business—while we handle the complexity.',
+    hi: 'B2B रिश्तों को आसान, स्मार्ट और अधिक सफल बनाने के लिए। हमने इसे इसलिए शुरू किया क्योंकि हम मानते हैं कि व्यवसायों को ऐसे साझेदारों के योग्य हैं जो सुनते हैं, प्रदान करते हैं, और उनके साथ बढ़ते हैं। हमारे मूल में हम विश्वास, पारदर्शिता, और मापने योग्य प्रभाव को महत्व देते हैं। हर समाधान जो हम डिज़ाइन करते हैं, आपके लक्ष्यों से शुरू होता है और स्पष्ट परिणामों के साथ समाप्त होता है। हम तकनीक, लोगों और प्रक्रियाओं में निवेश करते हैं ताकि आप अपना सर्वश्रेष्ठ काम कर सकें—अपना व्यवसाय चलाने पर ध्यान केंद्रित कर सकें—जबकि हम जटिलता को संभालते हैं।'
+  },
+  vipin_kumar: { en: 'Vipin Kumar', hi: 'विपिन कुमार' },
+  managing_director: { en: 'Managing Director, Shanky Group', hi: 'प्रबंध निदेशक, शंक्य ग्रुप' },
+  view_profile: { en: 'View Profile', hi: 'प्रोफाइल देखें' },
+  
+  // Contact Section
+  you_have_questions: { en: 'You Have Questions, We Have Answers', hi: 'आपके प्रश्न हैं, हमारे पास उत्तर हैं' },
+  we_have_answers: { en: 'We Have Answers', hi: 'हमारे पास उत्तर हैं' },
+  contact_desc: { 
+    en: 'Discover experiences you won\'t find anywhere else — thoughtfully designed to immerse you in the heart of the destination. Soulful stories waiting to be lived.',
+    hi: 'अनुभवों की खोज करें जो आप कहीं और नहीं पाएंगे — विचारपूर्वक डिज़ाइन किए गए हैं जो आपको गंतव्य के दिल में डुबो दें। जीवंत कहानियाँ जीने का इंतज़ार कर रही हैं।'
+  },
+  location: { en: 'Location', hi: 'स्थान' },
+  social_media: { en: 'Social Media', hi: 'सोशल मीडिया' },
+  email: { en: 'Email', hi: 'ईमेल' },
+  contact: { en: 'Contact', hi: 'संपर्क' },
+  address: { 
+    en: 'D-Mall, A-1 Netaji Subhash Palace, Pitampura NEW DELHI North West DL 110034 India Monday–Sunday | 09:00 - 18:00 (local time)',
+    hi: 'डी-मॉल, ए-1 नेताजी सुभाष पैलेस, पितमपुरा नई दिल्ली उत्तर पश्चिम डीएल 110034 भारत सोमवार-रविवार | 09:00 - 18:00 (स्थानीय समय)'
+  },
+  tell_us_what_you_need: { en: 'Tell Us What You Need', hi: 'हमें बताएं कि आपको क्या चाहिए' },
+  team_ready: { 
+    en: 'Our team is ready to assist you with every detail, big or small.',
+    hi: 'हमारी टीम हर छोटी-बड़ी बात में आपकी सहायता के लिए तैयार है।'
+  },
+  first_name: { en: 'First Name', hi: 'पहला नाम' },
+  last_name: { en: 'Last Name', hi: 'अंतिम नाम' },
+  country: { en: 'Country', hi: 'देश' },
+  state: { en: 'State', hi: 'राज्य' },
+  phone_number: { en: 'Phone Number', hi: 'फ़ोन नंबर' },
+  email_address: { en: 'Email Address', hi: 'ईमेल पता' },
+  type_of_inquiry: { en: 'Type of Inquiry', hi: 'पूछताछ का प्रकार' },
+  message: { en: 'Message', hi: 'संदेश' },
+  general: { en: 'General', hi: 'सामान्य' },
+  vendorregistration: { en: 'Vendor Registration', hi: 'वेंडर पंजीकरण' },
+  booking: { en: 'Booking', hi: 'बुकिंग' },
+  wedding: { en: 'Wedding', hi: 'शादी' },
+  corporate: { en: 'Corporate', hi: 'कॉर्पोरेट' },
+  others: { en: 'Others', hi: 'अन्य' },
+  exclusive_offers: { 
+    en: 'I\'d like to receive exclusive offers and updates',
+    hi: 'मैं अनन्य ऑफ़र और अपडेट प्राप्त करना चाहूंगा'
+  },
+  submitting: { en: 'Submitting...', hi: 'सबमिट हो रहा है...' },
+  submit: { en: 'Submit', hi: 'सबमिट करें' },
+  thank_you: { en: 'Thank You!', hi: 'धन्यवाद!' },
+  message_sent: { 
+    en: 'Your message has been sent successfully.',
+    hi: 'आपका संदेश सफलतापूर्वक भेजा गया है।'
+  },
+  
+  // Company names for hero slider
+  shanky_financial_services: { en: 'SHANKY FINANCIAL SERVICES PVT LTD', hi: 'शंक्य फाइनेंशियल सर्विसेज प्राइवेट लिमिटेड' },
+  vms_hub: { en: 'VMS HUB PVT LTD', hi: 'वीएमएस हब प्राइवेट लिमिटेड' },
+  shanky_smart_tech: { en: 'SHANKY SMART TECH PVT LTD', hi: 'शंक्य स्मार्ट टेक प्राइवेट लिमिटेड' },
+  shanky_corporate_training: { en: 'SHANKY CORPORATE TRAINING PVT LTD', hi: 'शंक्य कॉर्पोरेट ट्रेनिंग प्राइवेट लिमिटेड' },
+  shanky_buildtech: { en: 'SHANKY BUILDTECH PVT LTD', hi: 'शंक्य बिल्डटेक प्राइवेट लिमिटेड' },
+  shanky_metals: { en: 'SHANKY METALS PVT LTD', hi: 'शंक्य मेटल्स प्राइवेट लिमिटेड' },
+  
+  // Footer Section
+  footer_description: { 
+    en: 'Shanky Group embodies vision, diversification, and operational excellence. Our portfolio spans financial services, food, electronics, solar EPC, education, construction, and metals—positioning us for India\'s growth and global opportunities. We remain committed to ethical practices, innovation, and sustainable value for all stakeholders.',
+    hi: 'शंक्य ग्रुप दृष्टि, विविधीकरण और परिचालन उत्कृष्टता का प्रतीक है। हमारे पोर्टफोलियो में वित्तीय सेवाएं, खाद्य, इलेक्ट्रॉनिक्स, सोलर EPC, शिक्षा, निर्माण और धातु शामिल हैं। हम नैतिक व्यवहार, नवाचार और सभी हितधारकों के लिए स्थायी मूल्य के प्रति प्रतिबद्ध हैं।'
+  },
+  product: { en: 'Product', hi: 'उत्पाद' },
+  features: { en: 'Features', hi: 'विशेषताएं' },
+  pricing: { en: 'Pricing', hi: 'मूल्य निर्धारण' },
+  resources: { en: 'Resources', hi: 'संसाधन' },
+  documentation: { en: 'Documentation', hi: 'दस्तावेज़ीकरण' },
+  tutorials: { en: 'Tutorials', hi: 'ट्यूटोरियल' },
+  blog: { en: 'Blog', hi: 'ब्लॉग' },
+  support: { en: 'Support', hi: 'समर्थन' },
+  company: { en: 'Company', hi: 'कंपनी' },
+  about: { en: 'About', hi: 'हमारे बारे में' },
+  privacy_policy: { en: 'Privacy Policy', hi: 'गोपनीयता नीति' },
+  terms_of_service: { en: 'Terms of Service', hi: 'सेवा की शर्तें' },
+  cookie_settings: { en: 'Cookies Settings', hi: 'कुकीज़ सेटिंग्स' },
+  all_rights_reserved: { en: 'All rights reserved.', hi: 'सर्वाधिकार सुरक्षित।' },
+  
+  // Group of Companies Section
+  group_of_companies: { en: 'Group of Companies', hi: 'कंपनियों का समूह' },
+  group_description: { 
+    en: 'Shanky Group is a fast-growing, diversified business conglomerate headquartered in Delhi, India. With operations spanning financial services, food & agribusiness, solar EPC & electronics, education & corporate training, infrastructure & construction, and metals trading, the Group brings together seven core companies under one unified vision.',
+    hi: 'शंक्य ग्रुप एक तेजी से बढ़ता हुआ, विविधीकृत व्यावसायिक समूह है जिसका मुख्यालय दिल्ली, भारत में है। वित्तीय सेवाओं, खाद्य और कृषि व्यवसाय, सौर EPC और इलेक्ट्रॉनिक्स, शिक्षा और कॉर्पोरेट प्रशिक्षण, बुनियादी ढांचा और निर्माण, और धातु व्यापार में संचालन के साथ, समूह एक एकीकृत दृष्टिकोण के तहत सात मुख्य कंपनियों को एक साथ लाता है।'
+  },
+  learn_more_capital: { en: 'Learn More', hi: 'और अधिक जानें' },
+  
+  // Force For Good Section
+  a_force: { en: 'A Force', hi: 'एक शक्ति' },
+  for_good: { en: 'For Good', hi: 'अच्छाई के लिए' },
+  click_to_read_more: { en: 'Click to Read More', hi: 'और पढ़ने के लिए क्लिक करें' },
+};
+
+type Ctx = {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  t: (key: keyof typeof dict) => string;
+};
+
+const I18nContext = createContext<Ctx>({
+  lang: 'en',
+  setLang: (l: Lang) => {
+    try {
+      localStorage.setItem('lang', l);
+    } catch {}
+  },
+  t: (key: keyof typeof dict) => dict[key]['en'],
+});
+
+export default function I18nProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLangState] = useState<Lang>('en');
+
+  useEffect(() => {
+    const saved = (localStorage.getItem('lang') as Lang) || 'en';
+    setLangState(saved);
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === 'lang' && e.newValue) {
+        setLangState(e.newValue as Lang);
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
+  }, []);
+
+  const setLang = (l: Lang) => {
+    setLangState(l);
+    localStorage.setItem('lang', l);
+  };
+
+  const t = useMemo(() => {
+    return (key: keyof typeof dict) => {
+      const translation = dict[key];
+      if (!translation) {
+        console.warn(`Translation key "${key}" not found`);
+        return key;
+      }
+      return translation[lang] || translation.en || key;
+    };
+  }, [lang]);
+
+  return <I18nContext.Provider value={{ lang, setLang, t }}>{children}</I18nContext.Provider>;
+}
+
+export function useI18n() {
+  const ctx = useContext(I18nContext);
+  return ctx;
+}

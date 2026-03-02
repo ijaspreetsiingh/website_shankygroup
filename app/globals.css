@@ -1,0 +1,343 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #212121;
+  --text-primary-rgb: 17, 24, 39;
+  --text-secondary-rgb: 107, 114, 128;
+  --accent: #4a90e2;
+  --accent-hover: #357abd;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f1115;        /* Deep charcoal black */
+    --foreground: #eaeaf0;        /* Soft luxury white */
+
+    --card-bg: #161922;           /* Premium dark surface */
+    --card-border: #262a36;       /* Subtle elegant border */
+
+    --text-primary: #f1f1f6;      /* High readability */
+    --text-secondary: #9ca0b0;    /* Muted premium gray */
+    --text-primary-rgb: 241, 241, 246;
+    --text-secondary-rgb: 156, 160, 176;
+
+    --accent: #6fa3ff;            /* Royal soft blue */
+    --accent-hover: #89b4ff;      /* Smooth hover glow */
+  }
+}
+
+:root.dark {
+  --background: #0f1115;
+  --foreground: #eaeaf0;
+
+  --card-bg: #161922;
+  --card-border: #262a36;
+
+  --text-primary: #f1f1f6;
+  --text-secondary: #9ca0b0;
+  --text-primary-rgb: 241, 241, 246;
+  --text-secondary-rgb: 156, 160, 176;
+
+  --accent: #6fa3ff;
+  --accent-hover: #89b4ff;
+}
+
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Enhanced smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Custom scrollbar for smooth experience */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* Hide scrollbar class */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Specific procedure section scrollbar hide */
+.procedure-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.procedure-scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Global selection color - orange in dark, gray in light */
+::selection {
+  background-color: var(--text-secondary);
+  color: var(--background);
+}
+
+::-moz-selection {
+  background-color: var(--text-secondary);
+  color: var(--background);
+}
+
+/* Dark mode specific selection color */
+:root.dark ::selection {
+  background-color: #e63a27;
+  color: #ffffff;
+}
+
+:root.dark ::-moz-selection {
+  background-color: #e63a27;
+  color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background-color: #e63a27;
+    color: #ffffff;
+  }
+  
+  ::-moz-selection {
+    background-color: #e63a27;
+    color: #ffffff;
+  }
+}
+
+/* Global focus styles - orange */
+:focus-visible {
+  outline: 2px solid #e63a27;
+  outline-offset: 2px;
+}
+
+@keyframes expandContent {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes imageZoom {
+  from { transform: scale(1.1); }
+  to { transform: scale(1); }
+}
+@keyframes expandLine {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes scrollLogos {
+  from { left: -100%; }
+  to { left: 0%; }
+}
+@keyframes scrollLogosReverse {
+  from { right: -100%; }
+  to { right: 0%; }
+}
+
+/* Hero Animations */
+@keyframes slideUp {
+  0% { transform: translateY(30px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes slideOutRight {
+  0% { transform: translateX(0); opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes slideInLeft {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+@keyframes lineGrowVertical {
+  0% { height: 0; opacity: 0; }
+  50% { opacity: 1; }
+  100% { height: 38px; opacity: 1; }
+}
+@keyframes blink {
+  0%, 50% { border-color: white; }
+  51%, 100% { border-color: transparent; }
+}
+@keyframes smoothTypewriter {
+  0% { width: 0; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { width: 100%; opacity: 1; }
+}
+@keyframes hideCursor {
+  0% { border-color: white; }
+  100% { border-color: transparent; }
+}
+@keyframes logoPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+@keyframes fadeInFromBottom {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Bar Loader Animations */
+@keyframes ball {
+  0% { transform: translate(0, 0); }
+  5% { transform: translate(8px, -14px); }
+  10% { transform: translate(15px, -10px); }
+  17% { transform: translate(23px, -24px); }
+  20% { transform: translate(30px, -20px); }
+  27% { transform: translate(38px, -34px); }
+  30% { transform: translate(45px, -30px); }
+  37% { transform: translate(53px, -44px); }
+  40% { transform: translate(60px, -40px); }
+  50% { transform: translate(60px, 0); }
+  57% { transform: translate(53px, -14px); }
+  60% { transform: translate(45px, -10px); }
+  67% { transform: translate(37px, -24px); }
+  70% { transform: translate(30px, -20px); }
+  77% { transform: translate(22px, -34px); }
+  80% { transform: translate(15px, -30px); }
+  87% { transform: translate(7px, -44px); }
+  90% { transform: translate(0, -40px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes barUp1 { 
+  0% { transform: scale(1, 0.2); }
+  40% { transform: scale(1, 0.2); }
+  50% { transform: scale(1, 1); }
+  90% { transform: scale(1, 1); }
+  100% { transform: scale(1, 0.2); }
+}
+@keyframes barUp2 { 
+  0% { transform: scale(1, 0.4); }
+  40% { transform: scale(1, 0.4); }
+  50% { transform: scale(1, 0.8); }
+  90% { transform: scale(1, 0.8); }
+  100% { transform: scale(1, 0.4); }
+}
+@keyframes barUp3 { 
+  0% { transform: scale(1, 0.6); }
+  100% { transform: scale(1, 0.6); }
+}
+@keyframes barUp4 { 
+  0% { transform: scale(1, 0.8); }
+  40% { transform: scale(1, 0.8); }
+  50% { transform: scale(1, 0.4); }
+  90% { transform: scale(1, 0.4); }
+  100% { transform: scale(1, 0.8); }
+}
+@keyframes barUp5 { 
+  0% { transform: scale(1, 1); }
+  40% { transform: scale(1, 1); }
+  50% { transform: scale(1, 0.2); }
+  90% { transform: scale(1, 0.2); }
+  100% { transform: scale(1, 1); }
+}
+
+/* New Sliding Loader Animation */
+@keyframes load {
+  0% { left: 0; height: 30px; width: 15px }
+  50% { height: 8px; width: 40px }
+  100% { left: 235px; height: 30px; width: 15px}
+}
+
+.loader {
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  position: relative;
+  font-family: helvetica, arial, sans-serif;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: #ce4233;
+  letter-spacing: 0.2em;
+}
+
+.loader::before, .loader::after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: #ce4233;
+  position: absolute;
+  animation: load 0.7s infinite alternate ease-in-out;
+}
+
+.loader::before {
+  top: 0;
+}
+
+.loader::after {
+  bottom: 0;
+  animation-direction: alternate-reverse;
+}
+
+/* Mission & Vision hero - stack on small screens */
+@media (max-width: 900px) {
+  .mission-vision-hero-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto auto;
+    gap: 32px !important;
+  }
+  .mission-vision-left {
+    justify-self: center !important;
+    text-align: center !important;
+  }
+  .mission-vision-right {
+    justify-self: center !important;
+    text-align: center !important;
+  }
+}

@@ -1,0 +1,127 @@
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Italic.eot');
+    src: local('Ambit Italic'), local('Ambit-Italic'),
+        url('../fonts/Ambit-Italic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-Italic.woff2') format('woff2'),
+        url('../fonts/Ambit-Italic.woff') format('woff'),
+        url('../fonts/Ambit-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Black.eot');
+    src: local('../fonts/Ambit Black'), local('Ambit-Black'),
+        url('../fonts/Ambit-Black.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-Black.woff2') format('woff2'),
+        url('../fonts/Ambit-Black.woff') format('woff'),
+        url('../fonts/Ambit-Black.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-BlackItalic.eot');
+    src: local('../fonts/Ambit Black Italic'), local('Ambit-BlackItalic'),
+        url('../fonts/Ambit-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-BlackItalic.woff2') format('woff2'),
+        url('../fonts/Ambit-BlackItalic.woff') format('woff'),
+        url('../fonts/Ambit-BlackItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Regular.eot');
+    src: local('../fonts/Ambit Regular'), local('Ambit-Regular'),
+        url('../fonts/Ambit-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-Regular.woff2') format('woff2'),
+        url('../fonts/Ambit-Regular.woff') format('woff'),
+        url('../fonts/Ambit-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-LightItalic.eot');
+    src: local('../fonts/Ambit Light Italic'), local('Ambit-LightItalic'),
+        url('../fonts/Ambit-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-LightItalic.woff2') format('woff2'),
+        url('../fonts/Ambit-LightItalic.woff') format('woff'),
+        url('../fonts/Ambit-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Medium.eot');
+    src: local('../fonts/Ambit Medium'), local('Ambit-Medium'),
+        url('../fonts/Ambit-Medium.eot?#iefix') format('embedded-opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-BoldItalic.eot');
+    src: local('../fonts/Ambit Bold Italic'), local('Ambit-BoldItalic'),
+        url('../fonts/Ambit-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-BoldItalic.woff2') format('woff2'),
+        url('../fonts/Ambit-BoldItalic.woff') format('woff'),
+        url('../fonts/Ambit-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Bold.eot');
+    src: local('../fonts/Ambit Bold'), local('Ambit-Bold'),
+        url('../fonts/Ambit-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-Bold.woff2') format('woff2'),
+        url('../fonts/Ambit-Bold.woff') format('woff'),
+        url('../fonts/Ambit-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-Light.eot');
+    src: local('../fonts/Ambit Light'), local('Ambit-Light'),
+        url('../fonts/Ambit-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-Light.woff2') format('woff2'),
+        url('../fonts/Ambit-Light.woff') format('woff'),
+        url('../fonts/Ambit-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Ambit';
+    src: url('../fonts/Ambit-MediumItalic.eot');
+    src: local('../fonts/Ambit Medium Italic'), local('Ambit-MediumItalic'),
+        url('../fonts/Ambit-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Ambit-MediumItalic.woff2') format('woff2'),
+        url('../fonts/Ambit-MediumItalic.woff') format('woff'),
+        url('../fonts/Ambit-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+

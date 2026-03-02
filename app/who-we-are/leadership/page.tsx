@@ -1,0 +1,1055 @@
+ 'use client';
+
+import { useState, useEffect, useRef } from "react";
+import WhoWeAreNav from '../WhoWeAreNav';
+
+// Shivani image from app/images/team – bundled so it always loads
+import shivani1Img from '../../images/team/shivani1.jpeg';
+
+const LeadershipPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+  const [selectedLeader, setSelectedLeader] = useState<any>(null);
+  const [activeFilter, setActiveFilter] = useState("all");
+  const [scrollY, setScrollY] = useState(0);
+  const heroRef = useRef(null);
+  const featuredRef = useRef(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  // Leadership Data
+  const leadershipData = {
+    boardOfDirectors: [
+      {
+        id: 1,
+        name: "Vipin Kumar",
+        position: "Managing Director/Chairmen",
+        description: "Mr. Vipin Kumar has been at the helm of Shanky Group since its inception. A Chartered Accountant and MBA (Finance) with over a decade of experience in diversified businesses, he has been instrumental in the Group's expansion and diversification. His strategic vision and commitment to ethical practices have established him as a trusted leader. He holds directorships in Shanky Metals Pvt Ltd, Shanky Buildtech Pvt Ltd, Shanky Financial Services Pvt Ltd, and Shanky Corporate Training Pvt Ltd.",
+        image: "/images/team/vipin_sir.jpg",
+        department: "Leadership",
+        category: "board",
+        education: "CA, MBA Finance",
+        experience: "20+ years",
+        social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com", email: "mailto:contact@shankygroup.com" }
+      },
+      {
+        id: 2,
+        name: "Manoj Kumar Mishra",
+        position: "Executive Director",
+        description: "Mr. Mishra brings over 22 years of experience in finance, accounts, and commercial operations across manufacturing and retail sectors. As a Chartered Accountant and Cost Accountant and CPA, MBA as well he has a proven track record in financial management, statutory compliance, and strategic planning. Mr. Mishra's expertise encompasses financial analysis, budgeting, audit, taxation, and regulatory affairs. His leadership ensures robust financial governance and risk management across the Group's companies.",
+        image: "/images/team/manoj_sir.jpg",
+        department: "Finance",
+        category: "board",
+        education: "CA, Cost Accountant, CPA, MBA",
+        experience: "22+ years",
+        social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
+      }
+    ],
+    seniorManagement: [
+      {
+        id: 3,
+        name: "Poonam Shah",
+        position: "Vice President, Operations",
+        description: "Ms. Shah oversees operational excellence and process optimization across the Group's diverse businesses. Her expertise in supply chain management, quality assurance, and project execution has contributed to the Group's reputation for reliability and efficiency.",
+        image: "/images/team/poonam.jpg",
+        department: "Operations",
+        category: "senior",
+        education: "MBA",
+        experience: "15+ years",
+        social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
+      },
+      {
+        id: 4,
+        name: "Priyanka Girdhar",
+        position: "Vice President, Admin",
+        description: "Ms. Girdhar is an accomplished administrative leader with a strong track record of designs, directs, and optimizes an organisation's administrative backbone so business units can operate reliably, compliantly, and at scale. The role combines strategic planning, policy and budget ownership, facilities and vendor management.",
+        image: "/images/team/priyanka.jpg",
+        department: "Administration",
+        category: "senior",
+        education: "MBA Operations",
+        experience: "12+ years",
+        social: { linkedin: "https://linkedin.com" }
+      },
+      {
+        id: 5,
+        name: "Rajeev Ranjan Jha",
+        position: "Finance Head",
+        description: "Financial operations leader responsible for accounting, financial reporting, and compliance functions.",
+        image: "/images/team/rajeev1.jpg",
+        department: "Finance",
+        category: "senior",
+        education: "CA, MBA Finance",
+        experience: "18+ years",
+        bio: "Extensive experience in corporate finance, audit, and regulatory compliance ensuring transparency and integrity.",
+        social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
+      },
+      {
+        id: 6,
+        name: "Shivani",
+        position: "Legal Advisor",
+        description: "I am a legal advisor with experience in contract review, legal documentation, and dispute resolution. I ensure agreements and procedures are legally sound and risk-free. I am committed to delivering business-focused legal solutions while maintaining standards of professional integrity and governance.",
+        image: shivani1Img.src,
+        department: "Legal",
+        category: "senior",
+        education: "Graduate",
+        experience: "8+ years",
+        social: { linkedin: "https://linkedin.com" }
+      },
+      {
+        id: 7,
+        name: "Shub",
+        position: "Senior Management",
+        description: "Key member of the leadership team driving strategy and execution across the Group.",
+        image: "/images/team/shubh.png",
+        department: "Management",
+        category: "senior",
+        education: "Graduate",
+        experience: "8+ years",
+        social: { linkedin: "https://linkedin.com" }
+      }
+    ],
+  };
+
+  // Social icon links for profile modal (optional per leader)
+  const getSocialLinks = (leader: any) => ({
+    linkedin: leader?.social?.linkedin || "#",
+    twitter: leader?.social?.twitter || "#",
+    email: leader?.social?.email || "#",
+  });
+
+  // Combine all leaders
+  const allLeaders = [
+    ...leadershipData.boardOfDirectors,
+    ...leadershipData.seniorManagement
+  ];
+
+  // Filter leaders based on active filter
+  const filteredLeaders = activeFilter === "all" 
+    ? allLeaders 
+    : allLeaders.filter(leader => leader.category === activeFilter);
+
+  // Filter options
+  const filterOptions = [
+    { id: "all", label: "All Leaders" },
+    { id: "board", label: "Board of Directors" },
+    { id: "senior", label: "Senior Management" }
+  ];
+
+  // Leadership values
+  const leadershipValues = [
+    {
+      icon: "🎯",
+      title: "Visionary Thinking",
+      description: "Anticipating future trends and positioning the organization for long-term success."
+    },
+    {
+      icon: "🤝",
+      title: "Collaborative Leadership",
+      description: "Fostering teamwork and building consensus across diverse stakeholders."
+    },
+    {
+      icon: "⚡",
+      title: "Agile Execution",
+      description: "Responding quickly to market changes and executing strategies with precision."
+    },
+    {
+      icon: "🌱",
+      title: "Sustainable Growth",
+      description: "Balancing profitability with environmental and social responsibility."
+    }
+  ];
+
+  const handleLeaderClick = (leader: any) => {
+    setSelectedLeader(leader);
+  };
+
+  const handleFilterClick = (filterId: string) => {
+    setActiveFilter(filterId);
+  };
+
+  return (
+    <>
+      {/* Hero Section */}
+      <section 
+        ref={heroRef}
+        style={{
+          position: 'relative',
+          minHeight: '85vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          backgroundColor: 'var(--background)'
+        }}>
+        {/* Content */}
+        <div style={{
+          position: 'relative',
+          zIndex: 2,
+          width: '100%',
+          maxWidth: '1900px',
+          padding: '0 40px',
+          color: 'var(--foreground)'
+        }}>
+          <div style={{
+            maxWidth: '800px'
+          }}>
+            {/* Breadcrumb Navigation */}
+            <div style={{
+              marginBottom: '40px',
+              fontSize: '16px',
+              color: 'var(--text-secondary)',
+              fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif'
+            }}>
+              <span style={{ cursor: 'pointer' }}>About Us</span>
+              <span style={{ margin: '0 8px' }}>/</span>
+              <span style={{ color: '#e63a27' }}>Leadership</span>
+            </div>
+            
+            <h1 style={{
+              fontSize: 'clamp(48px, 5vw, 72px)',
+              fontWeight: '700',
+              lineHeight: '1.1',
+              letterSpacing: '-1.5px',
+              margin: '0 0 20px 0',
+              fontFamily: '"Montserrat", "Arial", sans-serif',
+              color: 'var(--text-primary)'
+            }}>
+              OUR LEADERSHIP
+            </h1>
+            
+            <p style={{
+              fontSize: 'clamp(18px, 2vw, 24px)',
+              fontWeight: '400',
+              width:'200%',
+              lineHeight: '1.6',
+              margin: '0 0 40px 0',
+              fontFamily: '"Lato", "Arial", sans-serif',
+              opacity: 0.9,
+              color:'var(--text-secondary)'
+            }}>
+              We are a team of over 48,000 people across the globe, working for a common purpose. We are led by one of India's most visionary chairmen, supported by a talented and experienced management team.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Leader Section – reduced height, border, left/right space */}
+      <div className="w-full px-4 sm:px-6 md:px-8 py-8 md:py-10">
+        <section 
+          ref={featuredRef}
+          className="relative mx-auto max-w-[1920px] flex items-center justify-center overflow-hidden rounded-2xl border-2 border-[var(--card-border)] shadow-xl"
+          style={{
+            height: '88vh',
+            minHeight: '420px',
+            maxHeight: '690px',
+            backgroundColor: '#000000'
+          }}>
+          {/* Background Image */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'url(https://imgs.search.brave.com/1d2AY1Io4nnKg7hZFQfW5K_7eq1IaOaWZvwel_dQIlw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/MTU1NjM5Ny9waG90/by9jb2xvcmZ1bC1y/b2FkLWJ5LXRoZS1z/ZWEuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXozaGJ1WDF1/anE2NGFxR3RLVTI4/Uk5EQjhVZGNVR3NP/d3lrWHJoUEdfNTg9)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            opacity: 1,
+            zIndex: 0
+          }} />
+          
+          {/* Dark Overlay */}
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)',
+            zIndex: 1
+          }} />
+          
+          {/* Content – responsive: small top/bottom space, card more to the right */}
+          <div 
+            className="w-full max-w-[1400px] mx-auto flex justify-end items-center box-border"
+            style={{
+              position: 'relative',
+              zIndex: 2,
+              paddingTop: 'clamp(12px, 2vh, 24px)',
+              paddingRight: 0,
+              paddingBottom: 'clamp(12px, 2vh, 24px)',
+              paddingLeft: 'clamp(24px, 4vw, 48px)'
+            }}
+          >
+          {/* Text Content - Right Aligned – larger on laptop/80% screen */}
+          <div 
+            className="w-full min-w-[320px] max-w-[440px] sm:max-w-[500px] lg:max-w-[540px] xl:max-w-[580px]"
+            style={{
+              backgroundColor: 'rgba(20,20,25,0.45)',
+              borderRadius: '18px',
+              padding: 'clamp(28px, 3.5vw, 40px) clamp(28px, 3vw, 44px)',
+              boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+              backdropFilter: 'blur(9px) saturate(1.2)',
+              WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
+              textAlign: 'center',
+              marginRight: 0,
+              border: '1px solid rgba(255,255,255,0.08)'
+            }}
+          >
+            <div style={{ marginBottom: '14px' }}>
+              <span style={{
+                backgroundColor: '#e63a27',
+                color: '#ffffff',
+                fontSize: 'clamp(12px, 1.2vw, 14px)',
+                fontWeight: '600',
+                padding: '10px 20px',
+                borderRadius: '24px',
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                display: 'inline-block',
+                lineHeight: '1.2'
+              }}>
+                Managing Director
+              </span>
+            </div>
+            
+            <h2 style={{
+              fontSize: 'clamp(32px, 3.5vw, 44px)',
+              fontWeight: '700',
+              color: '#ffffff',
+              margin: '0 0 14px 0',
+              lineHeight: '1.2',
+              fontFamily: '"Montserrat", "Arial", sans-serif'
+            }}>
+              Vipin Kumar
+            </h2>
+            
+            <p style={{
+              fontSize: 'clamp(15px, 1.6vw, 18px)',
+              color: '#cccccc',
+              margin: '0 0 22px 0',
+              lineHeight: '1.4',
+              fontWeight: '500'
+            }}>
+              Managing Director, Shanky Group
+            </p>
+            
+            <div style={{
+              fontSize: 'clamp(16px, 1.75vw, 19px)',
+              color: '#cccccc',
+              lineHeight: '1.65',
+              margin: '0 0 28px 0',
+              textAlign: 'left'
+            }}>
+              <p style={{ margin: '0 0 12px 0' }}>
+                To make B2B relationships simpler, smarter, and more successful. We started this because we believed businesses deserve partners who listen, deliver, and grow alongside them.
+              </p>
+              <p style={{ margin: 0 }}>
+                At our core we value trust, transparency, and measurable impact. Every solution we design begins with your goals and ends with clear outcomes.
+              </p>
+            </div>
+            
+            <button style={{
+              backgroundColor: '#e63a27',
+              color: '#ffffff',
+              fontSize: 'clamp(13px, 1.2vw, 15px)',
+              fontWeight: '600',
+              padding: '12px 32px',
+              borderRadius: '24px',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              boxShadow: '0 4px 20px rgba(230, 58, 39, 0.3)'
+            }}>
+              View Profile
+            </button>
+          </div>
+        </div>
+        </section>
+      </div>
+
+      {/* Main Content Section - theme aware */}
+      <section 
+        ref={sectionRef}
+        style={{
+          padding: '80px 20px',
+          backgroundColor: 'var(--background)',
+          fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+          position: 'relative',
+          zIndex: 10
+        }}
+      >
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto'
+        }}>
+          {/* Section Header */}
+          <div style={{
+            textAlign: 'center',
+            marginBottom: '80px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+          }}>
+            <div style={{
+              display: 'inline-block',
+              marginBottom: '20px'
+            }}>
+              <span style={{
+                backgroundColor: '#e63a27',
+                color: 'var(--card-bg)',
+                fontSize: '14px',
+                fontWeight: '600',
+                padding: '10px 25px',
+                borderRadius: '30px',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                boxShadow: '0 4px 15px rgba(230, 58, 39, 0.3)'
+              }}>
+                Leadership Excellence
+              </span>
+            </div>
+            <h2 style={{
+              fontSize: 'clamp(42px, 4vw, 56px)',
+              fontWeight: '700',
+              color: 'var(--text-primary)',
+              margin: '0 0 24px 0',
+              lineHeight: '1.2',
+              fontFamily: '"Montserrat", "Arial", sans-serif'
+            }}>
+              Meet Our Leadership Team
+            </h2>
+            <div style={{
+              width: '80px',
+              height: '4px',
+              background: 'linear-gradient(135deg, #e63a27 0%, #ff6b6b 100%)',
+              margin: '0 auto 32px auto',
+              borderRadius: '2px'
+            }} />
+            <p style={{
+              fontSize: 'clamp(18px, 1.8vw, 22px)',
+              color: 'var(--text-primary)',
+              maxWidth: '900px',
+              margin: '0 auto',
+              lineHeight: '1.7',
+              fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+              fontWeight: '400'
+            }}>
+              The strength of Shanky Group lies in its accomplished leadership team, whose collective expertise and strategic foresight have been instrumental in shaping the Group's growth trajectory. Our leaders are committed to upholding core values, driving innovation, and ensuring robust governance across all business verticals.
+            </p>
+          </div>
+
+          {/* Filter Buttons */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '12px',
+            marginBottom: '80px',
+            flexWrap: 'wrap',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s'
+          }}>
+            {filterOptions.map((filter, index) => (
+              <button
+                key={filter.id}
+                style={{
+                  padding: '12px 28px',
+                  backgroundColor: activeFilter === filter.id 
+                    ? '#e63a27' 
+                    : 'var(--card-bg)',
+                  border: activeFilter === filter.id 
+                    ? '1px solid #e63a27' 
+                    : '1px solid var(--card-border)',
+                  borderRadius: '12px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: activeFilter === filter.id ? 'var(--card-bg)' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  fontFamily: '"Inter", sans-serif',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.8px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: activeFilter === filter.id 
+                    ? '0 8px 25px rgba(230, 58, 39, 0.25)' 
+                    : '0 2px 8px rgba(0, 0, 0, 0.06)',
+                  opacity: isLoaded ? 1 : 0,
+                  transform: isLoaded ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+                  transition: `all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${0.3 + index * 0.1}s`
+                }}
+                onClick={() => handleFilterClick(filter.id)}
+                onMouseEnter={(e: any) => {
+                  if (activeFilter !== filter.id) {
+                    e.target.style.backgroundColor = 'var(--card-bg)';
+                    e.target.style.borderColor = '#e63a27';
+                    e.target.style.color = '#e63a27';
+                    e.target.style.transform = 'translateY(-2px)';
+                    e.target.style.boxShadow = '0 8px 25px rgba(230, 58, 39, 0.15)';
+                  }
+                }}
+                onMouseLeave={(e: any) => {
+                  if (activeFilter !== filter.id) {
+                    e.target.style.backgroundColor = 'var(--card-bg)';
+                    e.target.style.borderColor = 'var(--card-border)';
+                    e.target.style.color = 'var(--text-secondary)';
+                    e.target.style.transform = 'translateY(0)';
+                    e.target.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
+                  }
+                }}
+              >
+                <span style={{
+                  position: 'relative',
+                  zIndex: 1
+                }}>
+                  {filter.label}
+                </span>
+                {activeFilter === filter.id && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '0',
+                    left: '0',
+                    right: '0',
+                    bottom: '0',
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+                    borderRadius: '12px'
+                  }} />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Leadership Grid - theme aware (light/dark) */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+            gap: '36px',
+            marginBottom: '100px',
+            position: 'relative'
+          }}>
+            {filteredLeaders.map((leader, index) => (
+              <div 
+                key={leader.id}
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  borderRadius: '28px',
+                  overflow: 'hidden',
+                  border: '1px solid var(--card-border)',
+                  boxShadow: '0 8px 40px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.04)',
+                  cursor: 'pointer',
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  position: 'relative',
+                  opacity: isLoaded ? 1 : 0,
+                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                  transition: `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`
+                }}
+                onClick={() => handleLeaderClick(leader)}
+                onMouseEnter={() => setHoveredCard(leader.id)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                {/* Image area */}
+                <div style={{
+                  padding: '0 8px',
+                  paddingTop: '8px',
+                  flexShrink: 0
+                }}>
+                  <div style={{
+                    width: '100%',
+                    aspectRatio: '1',
+                    maxHeight: '340px',
+                    overflow: 'hidden',
+                    borderRadius: '20px',
+                    backgroundColor: 'var(--card-border)',
+                    border: '1px solid var(--card-border)',
+                    boxSizing: 'border-box'
+                  }}>
+                    <img 
+                      src={leader.image} 
+                      alt={leader.name}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center top',
+                        display: 'block'
+                      }}
+                    />
+                  </div>
+                </div>
+                
+                {/* Content - theme aware */}
+                <div style={{
+                  padding: '16px 18px 20px',
+                  flexGrow: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  backgroundColor: 'var(--card-bg)',
+                  borderRadius: '0 0 28px 28px'
+                }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    marginBottom: '6px'
+                  }}>
+                    <h3 style={{
+                      fontSize: '21px',
+                      fontWeight: '700',
+                      color: 'var(--text-primary)',
+                      margin: 0,
+                      lineHeight: '1.25',
+                      fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
+                      letterSpacing: '-0.02em'
+                    }}>
+                      {leader.name}
+                    </h3>
+                    <span style={{
+                      width: '22px',
+                      height: '22px',
+                      borderRadius: '50%',
+                      backgroundColor: '#22c55e',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }} title="Verified">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    </span>
+                  </div>
+                  
+                  <p style={{
+                    fontSize: '14px',
+                    color: 'var(--text-secondary)',
+                    fontWeight: '400',
+                    lineHeight: '1.5',
+                    margin: '0 0 14px 0',
+                    fontFamily: '"Inter", sans-serif',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
+                    {leader.position}. {leader.description}
+                  </p>
+                  
+                  <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    gap: '12px',
+                    marginTop: 'auto'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '18px'
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '400', fontFamily: '"Inter", sans-serif' }}>{leader.experience}</span>
+                      </div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <span style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '400', fontFamily: '"Inter", sans-serif', maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{leader.education}</span>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); handleLeaderClick(leader); }}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '10px 14px',
+                        borderRadius: '9999px',
+                        backgroundColor: 'var(--card-border)',
+                        color: 'var(--text-primary)',
+                        fontSize: '13px',
+                        fontWeight: '500',
+                        fontFamily: '"Inter", sans-serif',
+                        border: 'none',
+                        cursor: 'pointer',
+                        flexShrink: 0,
+                        whiteSpace: 'nowrap'
+                      }}
+                    >
+                      view
+                      <span style={{ fontSize: '18px', lineHeight: 1, color: 'var(--text-primary)', fontWeight: '400' }}>+</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leader Detail Popup Modal - Profile-style with social icons */}
+      {selectedLeader && (() => {
+        const social = getSocialLinks(selectedLeader);
+        return (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.55)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '24px'
+        }}>
+          <div style={{
+            backgroundColor: 'var(--card-bg)',
+            borderRadius: '28px',
+            maxWidth: '560px',
+            width: '100%',
+            maxHeight: '90vh',
+            overflow: 'hidden',
+            position: 'relative',
+            border: '1px solid var(--card-border)',
+            boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px var(--card-border)'
+          }}>
+            {/* Close Button - theme aware */}
+            <button
+              onClick={() => setSelectedLeader(null)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                backgroundColor: 'var(--card-border)',
+                border: '1px solid var(--card-border)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '20px',
+                fontWeight: '500',
+                color: 'var(--text-secondary)',
+                transition: 'all 0.2s ease',
+                zIndex: 10
+              }}
+              onMouseEnter={(e: any) => {
+                const el = e.currentTarget;
+                el.style.backgroundColor = 'var(--text-secondary)';
+                el.style.color = 'var(--card-bg)';
+              }}
+              onMouseLeave={(e: any) => {
+                const el = e.currentTarget;
+                el.style.backgroundColor = 'var(--card-border)';
+                el.style.color = 'var(--text-secondary)';
+              }}
+            >
+              ×
+            </button>
+
+            {/* Profile header - avatar + name + role + pill + social */}
+            <div style={{
+              padding: '44px 32px 28px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              textAlign: 'center',
+              borderBottom: '1px solid var(--card-border)'
+            }}>
+              {/* Circular Profile Image - theme aware ring */}
+              <div style={{
+                width: '140px',
+                height: '140px',
+                borderRadius: '50%',
+                overflow: 'hidden',
+                flexShrink: 0,
+                marginBottom: '20px',
+                border: '4px solid var(--card-bg)',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px var(--card-border)'
+              }}>
+                <img
+                  src={selectedLeader.image}
+                  alt={selectedLeader.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'center top'
+                  }}
+                />
+              </div>
+
+              <h2 style={{
+                fontSize: '26px',
+                fontWeight: '700',
+                color: 'var(--text-primary)',
+                margin: '0 0 6px 0',
+                fontFamily: '"Montserrat", "Arial", sans-serif',
+                letterSpacing: '-0.02em'
+              }}>
+                {selectedLeader.name}
+              </h2>
+
+              <p style={{
+                fontSize: '16px',
+                fontWeight: '600',
+                color: '#e63a27',
+                margin: '0 0 12px 0',
+                fontFamily: '"Inter", sans-serif'
+              }}>
+                {selectedLeader.position}
+              </p>
+
+              <span style={{
+                display: 'inline-block',
+                backgroundColor: '#e63a27',
+                color: '#ffffff',
+                fontSize: '11px',
+                fontWeight: '600',
+                padding: '6px 16px',
+                borderRadius: '9999px',
+                marginBottom: '20px',
+                textTransform: 'uppercase',
+                letterSpacing: '1.2px'
+              }}>
+                {selectedLeader.department}
+              </span>
+
+              {/* Social media icons - theme aware */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '12px'
+              }}>
+                <a
+                  href={social.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="LinkedIn"
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--card-border)',
+                    border: '1px solid var(--card-border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#0a66c2',
+                    transition: 'all 0.2s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'rgba(10, 102, 194, 0.2)';
+                    el.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseLeave={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'var(--card-border)';
+                    el.style.transform = 'scale(1)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a
+                  href={social.twitter}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="X (Twitter)"
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--card-border)',
+                    border: '1px solid var(--card-border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-primary)',
+                    transition: 'all 0.2s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'var(--text-secondary)';
+                    el.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseLeave={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'var(--card-border)';
+                    el.style.transform = 'scale(1)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a
+                  href={social.email}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Email"
+                  style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '50%',
+                    backgroundColor: 'var(--card-border)',
+                    border: '1px solid var(--card-border)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: 'var(--text-secondary)',
+                    transition: 'all 0.2s ease',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'var(--text-secondary)';
+                    el.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseLeave={(e: any) => {
+                    const el = e.currentTarget;
+                    el.style.backgroundColor = 'var(--card-border)';
+                    el.style.transform = 'scale(1)';
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </a>
+              </div>
+            </div>
+
+            {/* About + Education/Experience - theme aware */}
+            <div style={{
+              padding: '28px 32px 36px',
+              textAlign: 'left'
+            }}>
+              <h4 style={{
+                fontSize: '14px',
+                fontWeight: '700',
+                color: 'var(--text-primary)',
+                margin: '0 0 10px 0',
+                fontFamily: '"Montserrat", "Arial", sans-serif',
+                letterSpacing: '0.02em'
+              }}>
+                About
+              </h4>
+              <p style={{
+                fontSize: '15px',
+                lineHeight: '1.72',
+                color: 'var(--text-secondary)',
+                margin: '0 0 24px 0',
+                fontFamily: '"Inter", sans-serif'
+              }}>
+                {selectedLeader.description}
+                {selectedLeader.bio ? ` ${selectedLeader.bio}` : ''}
+              </p>
+
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '20px',
+                padding: '20px',
+                backgroundColor: 'var(--card-border)',
+                borderRadius: '16px',
+                border: '1px solid var(--card-border)'
+              }}>
+                <div>
+                  <h4 style={{
+                    fontSize: '10px',
+                    fontWeight: '700',
+                    color: 'var(--text-secondary)',
+                    margin: '0 0 6px 0',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.2px',
+                    fontFamily: '"Inter", sans-serif'
+                  }}>
+                    Education
+                  </h4>
+                  <p style={{
+                    fontSize: '14px',
+                    color: 'var(--text-primary)',
+                    margin: '0',
+                    fontFamily: '"Inter", sans-serif',
+                    lineHeight: '1.5',
+                    fontWeight: '500'
+                  }}>
+                    {selectedLeader.education}
+                  </p>
+                </div>
+                <div>
+                  <h4 style={{
+                    fontSize: '10px',
+                    fontWeight: '700',
+                    color: 'var(--text-secondary)',
+                    margin: '0 0 6px 0',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1.2px',
+                    fontFamily: '"Inter", sans-serif'
+                  }}>
+                    Experience
+                  </h4>
+                  <p style={{
+                    fontSize: '14px',
+                    color: 'var(--text-primary)',
+                    margin: '0',
+                    fontFamily: '"Inter", sans-serif',
+                    lineHeight: '1.5',
+                    fontWeight: '500'
+                  }}>
+                    {selectedLeader.experience}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        );
+      })()}
+    </>
+  );
+};
+
+export default LeadershipPage;

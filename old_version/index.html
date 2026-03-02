@@ -1,0 +1,252 @@
+'use client';
+
+import { useState, useEffect, useRef } from "react";
+
+const LegacyLeadership = () => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeVideo, setActiveVideo] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  const videos = [
+    {
+      id: 1,
+      title: "Our Journey of Excellence",
+      subtitle: "25+ Years of Building Financial Empires",
+      description: "From humble beginnings to industry leadership - witness our remarkable journey",
+      thumbnail: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+      videoId: "jNQXAC9IVRw", // Real YouTube video ID
+      duration: "5:42",
+      views: "1.2M views",
+      category: "Corporate Journey"
+    },
+    {
+      id: 2,
+      title: "Visionary Leadership",
+      subtitle: "Chairman's Keynote Address 2024",
+      description: "Inspiring words from our leader on the future of financial innovation",
+      thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+      videoId: "gCz9_RlS9o4", // Real YouTube video ID
+      duration: "8:15",
+      views: "856K views", 
+      category: "Leadership Talk"
+    },
+    {
+      id: 3,
+      title: "Innovation & Technology",
+      subtitle: "Digital Transformation Success",
+      description: "How we're revolutionizing financial services with cutting-edge technology",
+      thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80",
+      videoId: "qlTA3rn7z4I", // Real YouTube video ID
+      duration: "6:30",
+      views: "2.3M views",
+      category: "Technology"
+    },
+    {
+      id: 4,
+      title: "Global Impact",
+      subtitle: "Expanding Horizons Worldwide",
+      description: "Our global expansion strategy and international success stories",
+      thumbnail: "https://images.unsplash.com/photo-1526778548025-fa2f459cd5ce?w=800&q=80",
+      videoId: "LaN7XOJ_jbM", // Real YouTube video ID
+      duration: "4:18",
+      views: "645K views",
+      category: "Global Business"
+    }
+  ];
+
+  return (
+    <section 
+      ref={sectionRef}
+      className="py-0 bg-[var(--background)] font-sans w-full overflow-hidden"
+    >
+      {/* Hero Header Section */}
+      <div 
+        className={`relative px-6 py-20 md:px-12 lg:px-20 lg:py-32 bg-gradient-to-br from-[var(--card-bg)] via-[var(--background)] to-[var(--card-bg)] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[50px]'}`}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-[#e63a27] rounded-full blur-xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-blue-500 rounded-full blur-2xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div className="relative z-10 text-center max-w-6xl mx-auto">
+          {/* Badge */}
+          <div className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#e63a27]/20 to-orange-500/20 border border-[#e63a27]/30 rounded-full mb-6 transition-all duration-800 delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+            <span className="w-2 h-2 bg-[#e63a27] rounded-full animate-pulse"></span>
+            <span className="text-[#e63a27] font-semibold text-sm tracking-wider">SINCE 1998</span>
+          </div>
+          
+          {/* Main Title */}
+          <h2 className={`text-4xl md:text-6xl lg:text-7xl font-bold text-[var(--text-primary)] mb-6 leading-tight transition-all duration-800 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+            Legacy & <span className="bg-gradient-to-r from-[#e63a27] to-orange-500 bg-clip-text text-transparent">Leadership</span>
+          </h2>
+          
+          {/* Decorative Line */}
+          <div className={`w-24 h-1 bg-gradient-to-r from-[#e63a27] to-orange-500 mx-auto mb-8 rounded-full transition-all duration-800 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0'}`}></div>
+          
+          {/* Description */}
+          <p className={`text-lg md:text-xl text-[var(--text-secondary)] font-light max-w-3xl mx-auto leading-relaxed mb-12 transition-all duration-800 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+            Building a legacy of excellence and leadership through innovation, integrity, and unwavering commitment to success
+          </p>
+          
+          {/* Stats */}
+          <div className={`grid grid-cols-2 md:grid-cols-4 gap-8 transition-all duration-800 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-[#e63a27] mb-2">25+</div>
+              <div className="text-sm text-[var(--text-secondary)]">Years of Excellence</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-blue-500 mb-2">43</div>
+              <div className="text-sm text-[var(--text-secondary)]">Countries</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-emerald-500 mb-2">$12.9M</div>
+              <div className="text-sm text-[var(--text-secondary)]">Revenue</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-purple-500 mb-2">5000+</div>
+              <div className="text-sm text-[var(--text-secondary)]">Employees</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Video Gallery Section */}
+      <div className="px-6 py-16 md:px-12 lg:px-20 lg:py-24">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h3 className={`text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-4 transition-all duration-800 delay-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+              Featured <span className="bg-gradient-to-r from-[#e63a27] to-orange-500 bg-clip-text text-transparent">Stories</span>
+            </h3>
+            <p className={`text-[var(--text-secondary)] text-lg max-w-2xl mx-auto transition-all duration-800 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}>
+              Experience our journey through these compelling visual narratives
+            </p>
+          </div>
+
+          {/* Video Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {videos.map((video, index) => (
+              <div
+                key={video.id}
+                className={`group relative overflow-hidden rounded-2xl bg-[var(--card-bg)] border border-[var(--card-border)] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer
+                  ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[50px]'}
+                  ${hoveredIndex === index ? 'scale-[1.02] shadow-2xl shadow-[#e63a27]/20' : 'shadow-lg'}
+                `}
+                style={{ transitionDelay: `${1000 + index * 150}ms` }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setActiveVideo(activeVideo === video.id ? null : video.id)}
+              >
+                {/* Video Thumbnail/Player */}
+                <div className="relative aspect-video overflow-hidden">
+                  {activeVideo === video.id ? (
+                    <iframe
+                      className="absolute top-0 left-0 w-full h-full border-none"
+                      src={`https://www.youtube.com/embed/${video.videoId}?autoplay=1&rel=0`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <>
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      
+                      {/* Dark Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                      
+                      {/* Play Button */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 bg-[#e63a27]/90 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:bg-[#e63a27] backdrop-blur-sm">
+                          <svg className="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </div>
+                      </div>
+                      
+                      {/* Video Info Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold rounded-full">
+                          {video.category}
+                        </span>
+                      </div>
+                      
+                      {/* Duration Badge */}
+                      <div className="absolute bottom-4 right-4">
+                        <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-xs font-semibold rounded">
+                          {video.duration}
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {/* Video Content */}
+                <div className="p-6">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[#e63a27] transition-colors">
+                        {video.title}
+                      </h4>
+                      <p className="text-[var(--text-secondary)] text-sm font-medium mb-2">
+                        {video.subtitle}
+                      </p>
+                      <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        {video.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Meta Info */}
+                  <div className="flex items-center justify-between pt-4 border-t border-[var(--card-border)]">
+                    <span className="text-[var(--text-secondary)] text-xs">
+                      {video.views}
+                    </span>
+                    <button className="text-[#e63a27] text-sm font-semibold hover:text-orange-500 transition-colors flex items-center gap-1">
+                      {activeVideo === video.id ? 'Close Video' : 'Watch Now'}
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LegacyLeadership;
