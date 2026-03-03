@@ -31,20 +31,20 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const { t, lang, setLang } = useI18n();
 
-  // Initialize dark mode immediately
+  // Initialize dark mode: respect explicit 'light' / 'dark'; only use system when no choice saved
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const shouldBeDark = saved === 'dark' || (!saved && systemPrefersDark);
-      
+      const shouldBeDark = saved === 'dark' || ((saved !== 'light' && saved !== 'dark') && systemPrefersDark);
+
       setIsDark(shouldBeDark);
       if (shouldBeDark) {
         document.documentElement.classList.add('dark');
       } else {
         document.documentElement.classList.remove('dark');
       }
-      
+
       // Set active path on mount
       setActivePath(window.location.pathname);
     }

@@ -15,17 +15,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Inline script: runs before React so user's theme choice (e.g. light on a dark device) applies immediately
+const themeScript = `
+(function(){
+  try {
+    var s = localStorage.getItem('theme');
+    var dark = s === 'dark' || (s !== 'light' && s !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.classList.toggle('dark', !!dark);
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   useEffect(() => {
-    // Initialize dark mode immediately
+    // Sync theme from localStorage (respect explicit 'light' / 'dark'; only fallback to system when no choice)
     const saved = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const shouldBeDark = saved === 'dark' || (!saved && systemPrefersDark);
-    
+    const systemPrefersDark = typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldBeDark = saved === 'dark' || ((saved !== 'light' && saved !== 'dark') && systemPrefersDark);
+
     if (shouldBeDark) {
       document.documentElement.classList.add('dark');
     } else {
@@ -34,10 +45,11 @@ export default function RootLayout({
   }, []);
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--background)] text-[var(--foreground)]`}
       >
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <Chatbot />
       </body>
