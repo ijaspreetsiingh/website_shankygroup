@@ -426,9 +426,9 @@ const LeadershipPage = () => {
                   className="p-3 sm:p-4 md:p-4 flex-grow flex flex-col rounded-b-2xl sm:rounded-b-[28px]"
                   style={{ backgroundColor: 'var(--card-bg)' }}
                 >
-                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                  <div className="flex items-center justify-start gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
                     <h3 
-                      className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] m-0 leading-tight tracking-tight truncate min-w-0 flex-1"
+                      className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] m-0 leading-tight tracking-tight shrink-0 max-w-[calc(100%-28px)] sm:max-w-[calc(100%-30px)] truncate"
                       style={{ fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
                     >
                       {leader.name}
