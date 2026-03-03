@@ -291,120 +291,6 @@ const BarLoader = () => {
   );
 };
 
-const CookieConsent = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [isDark, setIsDark] = useState(false);
-  const { t } = useI18n();
-
-  useEffect(() => {
-    const hasConsented = localStorage.getItem('cookie-consent');
-    let timerId: number | undefined;
-    if (!hasConsented) {
-      timerId = window.setTimeout(() => {
-        setIsVisible(true);
-      }, 2000);
-    }
-
-    const checkDarkMode = () => {
-      const saved = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const byClass = document.documentElement.classList.contains('dark');
-      const shouldBeDark = saved === 'dark' || (!saved && (byClass || systemPrefersDark));
-      setIsDark(shouldBeDark);
-    };
-    
-    checkDarkMode();
-    
-    const observer = new MutationObserver(() => checkDarkMode());
-    
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['class']
-    });
-
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === 'theme') {
-        checkDarkMode();
-      }
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    
-    const interval = setInterval(checkDarkMode, 1000);
-    
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('storage', handleStorageChange);
-      clearInterval(interval);
-      if (timerId) {
-        clearTimeout(timerId);
-      }
-    };
-  }, []);
-
-  const handleAccept = () => {
-    localStorage.setItem('cookie-consent', 'accepted');
-    setIsVisible(false);
-  };
-
-  const handleReject = () => {
-    localStorage.setItem('cookie-consent', 'rejected');
-    setIsVisible(false);
-  };
-
-  const handleCustomize = () => {
-    // Open cookie preferences modal (you can implement this later)
-    console.log('Open cookie preferences');
-  };
-
-  if (!isVisible) return null;
-
-  return (
-    <div className="fixed bottom-6 right-6 z-[9999] max-w-sm">
-      <div
-        className="flex items-center gap-3 px-4 py-3 rounded-full border transition-all duration-300 shadow-2xl bg-[var(--background)] border-[var(--card-border)] text-[var(--foreground)]"
-        style={{
-          boxShadow: isDark
-            ? '0 12px 30px rgba(0,0,0,0.8)'
-            : '0 12px 30px rgba(17,24,39,0.20)'
-        }}
-      >
-        <div className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center bg-[var(--card-border)]">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="#F5D28B">
-            <path d="M12 3a9 9 0 1 0 9 9c-2.5 0-4-1.5-4-4-2.5 0-4-1.5-4-4z" />
-            <circle cx="9" cy="12" r="1" fill="#D69E2E" />
-            <circle cx="12.5" cy="9" r="0.8" fill="#D69E2E" />
-            <circle cx="15" cy="13" r="0.9" fill="#D69E2E" />
-          </svg>
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="font-semibold text-sm text-[var(--foreground)]">
-            {t('cookie_title')}
-          </div>
-          <div className="text-xs text-[var(--text-secondary)]">
-            {t('cookie_desc')}{' '}
-            <button
-              onClick={handleCustomize}
-              className="underline underline-offset-2"
-              style={{
-                textDecorationColor: 'var(--text-secondary)'
-              }}
-            >
-              {t('learn_more')}
-            </button>
-          </div>
-        </div>
-        <button
-          onClick={handleAccept}
-          className="flex-shrink-0 w-10 h-10 rounded-full border flex items-center justify-center text-sm font-semibold transition-colors border-[var(--text-secondary)] text-[var(--foreground)] bg-transparent hover:bg-[var(--card-border)]"
-        >
-          {t('ok')}
-        </button>
-      </div>
-    </div>
-  );
-};
-
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -447,7 +333,6 @@ export default function Home() {
           <ContactUs />
         </main>
         <FooterFour />
-        <CookieConsent />
       </div>
     </I18nProvider>
   );
