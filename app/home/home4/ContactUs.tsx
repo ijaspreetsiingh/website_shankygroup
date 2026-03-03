@@ -371,7 +371,7 @@ const ContactUs = () => {
                   <div className="flex flex-wrap gap-2 sm:gap-2">
                     {[
                       { key: 'general', label: t('general') },
-                      { key: 'vendorregistration', label: t('vendorregistration') }
+                      { key: 'query', label: t('query') }
                     ].map((type) => (
                       <button
                         key={type.key}

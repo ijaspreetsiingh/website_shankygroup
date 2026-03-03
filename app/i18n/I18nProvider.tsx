@@ -66,6 +66,7 @@ const dict: Dict = {
   type_of_inquiry: { en: 'Type of Inquiry', hi: 'पूछताछ का प्रकार' },
   message: { en: 'Message', hi: 'संदेश' },
   general: { en: 'General', hi: 'सामान्य' },
+  query: { en: 'Query', hi: 'प्रश्न' },
   vendorregistration: { en: 'Vendor Registration', hi: 'वेंडर पंजीकरण' },
   booking: { en: 'Booking', hi: 'बुकिंग' },
   wedding: { en: 'Wedding', hi: 'शादी' },
