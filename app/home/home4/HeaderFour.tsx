@@ -147,16 +147,13 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         const currentScrollY = window.scrollY;
         const scrollDiff = currentScrollY - lastScrollY.current;
         
-        // Define thresholds to prevent jitter
-        const HIDE_THRESHOLD = 80; // Hide mini-header after scrolling down 80px
-        const SHOW_THRESHOLD = 50; // Show mini-header when scroll up or near top
+        // Thoda sa bhi scroll pe top header hide, main header top pe aaye
+        const HIDE_THRESHOLD = 15; // 15px scroll pe hi mini header hide
+        const SHOW_THRESHOLD = 8;  // Top pe (8px ke andar) ya scroll up pe mini header dikhe
         
-        // Logic: Hide on scroll down past threshold, show on scroll up or near top
         if (currentScrollY > HIDE_THRESHOLD && scrollDiff > 0) {
-          // Scrolling down and past threshold
           setIsMiniHeaderHidden(true);
         } else if (currentScrollY <= SHOW_THRESHOLD || scrollDiff < -5) {
-          // Near top or scrolling up significantly
           setIsMiniHeaderHidden(false);
         }
         
@@ -381,86 +378,84 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         </div>
       )}
 
-      {/* Mini Header - Top Bar - Hidden on mobile */}
+      {/* Mini Header - Top Bar - Visible on phone (compact) + desktop */}
       <div 
-        className={`hidden md:block fixed top-0 left-0 right-0 z-[1001] h-[40px] bg-[var(--background)] border-b border-[var(--card-border)] transition-transform duration-300 ease-in-out ${
+        className={`hidden md:block fixed top-0 left-0 right-0 z-[1001] min-h-[36px] md:h-[40px] bg-[var(--background)] border-b border-[var(--card-border)] transition-transform duration-300 ease-in-out ${
           isMiniHeaderHidden ? '-translate-y-full' : 'translate-y-0'
         } ${
           isScrolled ? 'shadow-sm dark:shadow-[0_2px_10px_0_rgba(255,255,255,0.06)]' : ''
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 h-full flex items-center justify-between">
-          {/* Left Side - Company Info */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-12 py-1.5 md:py-0 md:h-full flex flex-nowrap items-center justify-between gap-2 md:gap-0 min-h-[36px] md:min-h-0">
+          {/* Left: Location only on mobile; Location + Timing on desktop */}
+          <div className="flex items-center gap-2 md:gap-6 min-w-0 flex-shrink">
+            <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
+              <svg className="w-3 h-3 md:w-[13px] md:h-[13px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span className="text-[var(--text-secondary)] text-xs font-normal">
-              D Mall, NSP, Pitampura Delhi, India
+              <span className="text-[var(--text-secondary)] text-[10px] md:text-xs font-normal truncate">
+                D Mall, NSP, Pitampura Delhi, India
               </span>
             </div>
-            
-            <div className="flex items-center gap-2">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <div className="hidden md:flex items-center gap-2 shrink-0">
+              <svg className="w-[13px] h-[13px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
               </svg>
-              <span className="text-[var(--text-secondary)] text-xs font-normal">
+              <span className="text-[var(--text-secondary)] text-xs font-normal whitespace-nowrap">
                 Mon-Sat: 10AM-8PM
               </span>
             </div>
           </div>
 
-          {/* Right Side - Contact & Social */}
-          <div className="flex items-center gap-5">
-            {/* Contact Number */}
-            <div className="flex items-center gap-2 pr-5 border-r border-[var(--card-border)]">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* Right: Phone only on mobile; Phone + Social + Language on desktop */}
+          <div className="flex items-center gap-2 md:gap-5 flex-shrink-0">
+            <a href="tel:+01147586938" className="flex items-center gap-1.5 md:gap-2 md:pr-5 md:border-r md:border-[var(--card-border)]">
+              <svg className="w-3 h-3 md:w-[13px] md:h-[13px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
-              <span className="text-[var(--text-secondary)] text-[13px] font-semibold">
+              <span className="text-[var(--text-secondary)] text-[10px] md:text-[13px] font-semibold whitespace-nowrap">
                 +011-47586938
               </span>
-            </div>
+            </a>
 
-            {/* Social Icons */}
-            <div className="flex items-center gap-3">
-              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-4 h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#0077b5] hover:scale-110">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            {/* Social Icons - desktop only */}
+            <div className="hidden md:flex items-center gap-3">
+              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#0077b5] hover:scale-110" aria-label="Facebook">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
               </a>
-              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-4 h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#1DA1F2] hover:scale-110">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#1DA1F2] hover:scale-110" aria-label="X">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
                 </svg>
               </a>
-              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-4 h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#0A66C2] hover:scale-110">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#0A66C2] hover:scale-110" aria-label="LinkedIn">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                 </svg>
               </a>
-              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-4 h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#C13584] hover:scale-110">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <a href="#" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#C13584] hover:scale-110" aria-label="Instagram">
+                <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.848-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
                 </svg>
               </a>
             </div>
 
-            <div className="relative">
+            <div className="relative shrink-0 hidden md:block">
               <button
                 onClick={() => setLangOpen((v) => !v)}
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] text-xs font-semibold transition-all duration-300 hover:bg-[var(--card-border)]"
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="w-[14px] h-[14px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="10"></circle>
                   <path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"></path>
                 </svg>
                 <span>{t('change_language')}</span>
                 <span className="uppercase">{lang}</span>
-                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={`${langOpen ? 'rotate-180' : ''} transition-transform`}>
+                <svg className={`w-[10px] h-[10px] shrink-0 transition-transform ${langOpen ? 'rotate-180' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
@@ -495,8 +490,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
       {/* Main Header - Fixed positioning with smooth transition */}
       <div 
-        className={`fixed left-0 right-0 z-[1000] transition-all duration-300 ease-in-out ${
-          isMiniHeaderHidden ? 'top-0 md:top-0' : 'top-0 md:top-[40px]'
+        className={`fixed left-0 right-0 z-[1000] transition-all duration-300 ease-in-out top-0 ${
+          !isMiniHeaderHidden ? 'md:top-[40px]' : ''
         } ${
           isScrolled 
             ? 'bg-[var(--background)] shadow-xl dark:shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3),0_4px_15px_-8px_rgba(0,0,0,0.2)] backdrop-blur-lg'
@@ -856,9 +851,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         style={{ background: 'linear-gradient(180deg, var(--card-bg) 0%, var(--background) 100%)' }}
       >
         <div className="flex flex-col h-full min-h-0">
-          {/* Mobile Menu Header - Brand strip with accent */}
+          {/* Mobile Menu Header - Brand strip */}
           <div className="sticky top-0 z-10 shrink-0 bg-[var(--card-bg)]/95 backdrop-blur-md border-b border-[var(--card-border)]">
-            <div className="h-1 w-full bg-gradient-to-r from-[#e63a27] via-[#e63a27]/80 to-transparent" />
             <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3 group" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>
                 <div className="p-1.5 rounded-xl bg-[var(--background)] border border-[var(--card-border)] group-hover:border-[#e63a27]/40 transition-colors">
@@ -881,8 +875,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
             </div>
           </div>
 
-          {/* Mobile Menu Content - scrollable, no horizontal overflow */}
-          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 sm:px-6 py-6 space-y-2">
+          {/* Mobile Menu Content - scrollable, scrollbar hidden */}
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide px-4 sm:px-6 py-6 space-y-4">
             <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)] px-1 pb-2">Navigation</p>
 
             {/* WHO WE ARE - Card-style dropdown */}
@@ -976,19 +970,42 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
               </Link>
             </div>
-          </div>
 
-          {/* Theme toggle - Fixed at bottom, full width */}
-          <div className="shrink-0 mt-auto border-t border-[var(--card-border)] bg-[var(--card-bg)]/95 backdrop-blur-md px-4 sm:px-6 py-4">
-            <button onClick={toggleTheme} className="w-full flex items-center justify-between gap-4 py-4 px-4 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm hover:border-[#e63a27]/30 hover:bg-[#e63a27]/5 transition-all duration-200">
-              <span className="flex items-center gap-3">
-                <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 shrink-0 text-[var(--text-primary)]">
-                  {isDark ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>}
-                </span>
-                <span className="text-[var(--text-primary)] font-semibold text-[15px]">{isDark ? 'Switch to light mode' : 'Switch to dark mode'}</span>
-              </span>
-              <span className="text-[11px] font-medium tracking-wider uppercase text-[var(--text-secondary)] px-2.5 py-1 rounded-lg bg-[var(--card-border)]/60">{isDark ? 'Dark' : 'Light'}</span>
-            </button>
+            {/* Contact & Info - right under menu options (Blog ke niche) */}
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm p-4 space-y-3">
+              <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)]">Contact & Info</p>
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
+                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>D Mall, NSP, Pitampura Delhi, India</span>
+              </div>
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
+                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                <span>Mon-Sat: 10AM-8PM</span>
+              </div>
+              <a href="tel:+01147586938" className="flex items-center gap-2 text-[var(--text-primary)] text-sm font-semibold">
+                <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                +011-47586938
+              </a>
+              <div className="flex items-center gap-3 pt-1">
+                <a href="#" className="text-[var(--text-secondary)] hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" className="text-[var(--text-secondary)] hover:text-[#1DA1F2] transition-colors" aria-label="X">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+                <a href="#" className="text-[var(--text-secondary)] hover:text-[#0A66C2] transition-colors" aria-label="LinkedIn">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="#" className="text-[var(--text-secondary)] hover:text-[#C13584] transition-colors" aria-label="Instagram">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.848-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+                </a>
+              </div>
+              <div className="flex items-center gap-2 pt-2 border-t border-[var(--card-border)]">
+                <span className="text-[var(--text-secondary)] text-sm">Language:</span>
+                <button onClick={() => { setLang('en'); setLangOpen(false); }} className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${lang === 'en' ? 'bg-[#e63a27] text-white' : 'bg-[var(--card-border)] text-[var(--text-primary)]'}`}>EN</button>
+                <button onClick={() => { setLang('hi'); setLangOpen(false); }} className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${lang === 'hi' ? 'bg-[#e63a27] text-white' : 'bg-[var(--card-border)] text-[var(--text-primary)]'}`}>HI</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1086,7 +1103,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       )}
 
       {/* Spacer for fixed header - matches header height per breakpoint */}
-      <div className="h-[88px] sm:h-[96px] md:h-[130px] lg:h-[160px]" />
+      <div className="h-[96px] sm:h-[100px] md:h-[130px] lg:h-[160px]" />
 
       {/* Add Custom CSS for Animations */}
       <style dangerouslySetInnerHTML={{
