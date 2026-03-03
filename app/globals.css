@@ -20,24 +20,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f1115;        /* Deep charcoal black */
-    --foreground: #eaeaf0;        /* Soft luxury white */
-
-    --card-bg: #161922;           /* Premium dark surface */
-    --card-border: #262a36;       /* Subtle elegant border */
-
-    --text-primary: #f1f1f6;      /* High readability */
-    --text-secondary: #9ca0b0;    /* Muted premium gray */
-    --text-primary-rgb: 241, 241, 246;
-    --text-secondary-rgb: 156, 160, 176;
-
-    --accent: #6fa3ff;            /* Royal soft blue */
-    --accent-hover: #89b4ff;      /* Smooth hover glow */
-  }
-}
-
+/* Dark theme only when html has .dark class (set by header toggle / theme script).
+   Do NOT use prefers-color-scheme here — otherwise system dark mode keeps site dark
+   even after user switches to light in header. */
 :root.dark {
   --background: #0f1115;
   --foreground: #eaeaf0;
@@ -63,11 +48,11 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Enhanced smooth scrolling */
+/* Enhanced smooth scrolling + default site size = 80% (must persist on Vercel) */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-  zoom: 1!important;
+  zoom: 1 !important;
 }
 
 /* Custom scrollbar for smooth experience */
@@ -372,4 +357,9 @@ html {
     justify-self: center !important;
     text-align: center !important;
   }
+}
+
+/* Force default zoom 80% — must win on Vercel/production (last rule) */
+html {
+  zoom: 1 !important;
 }
