@@ -293,6 +293,37 @@ html {
   100% { left: 235px; height: 30px; width: 15px}
 }
 
+/* Theme change overlay - full height screen */
+@keyframes themeOverlayFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes themeCircleExpand {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+@keyframes themeIconPop {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes themeTaglineFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes themeGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+@keyframes themeRing {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.5; }
+  100% { opacity: 0.2; transform: scale(1.2); }
+}
+@keyframes themeFloat {
+  0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+  50% { transform: translate(6px, -8px); opacity: 0.8; }
+}
+
 .loader {
   width: 250px;
   height: 50px;

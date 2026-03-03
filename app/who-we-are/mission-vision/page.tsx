@@ -44,9 +44,9 @@ const MissionVisionPage = () => {
         className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
         style={{ ['--accent' as string]: ACCENT, ['--accent-hover' as string]: ACCENT_HOVER }}
       >
-        {/* Hero - mission vision (lightbulb / ideas) */}
-        <section className="relative w-full pt-4 md:pt-6 lg:pt-8 px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
-          <div className="relative h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
+        {/* Hero - mission vision */}
+        <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
+          <div className="relative min-h-[58vh] sm:min-h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
             <Image
               src={mission1Image}
               alt="Mission & Vision - Ideas and innovation - Shanky Group"
@@ -57,36 +57,36 @@ const MissionVisionPage = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/50 to-black/25 z-20 pointer-events-none" />
             <div className="absolute inset-0 flex flex-col z-30">
-              <div className="flex-1 flex items-center px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-10 lg:py-16 pt-14 md:pt-20 lg:pt-24">
+              <div className="flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16 pt-10 sm:pt-14 md:pt-20 lg:pt-24">
                 <div className="w-full max-w-3xl lg:max-w-4xl text-left">
-                  <span className="inline-block px-4 py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
+                  <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
                     Who We Are
                   </span>
-                  <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-4 lg:mb-5 drop-shadow-lg">
+                  <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
                     Mission & <span className="text-[#e63a27]">Vision</span>
                   </h1>
-                  <p className="text-base sm:text-lg md:text-xl max-w-2xl text-white/95 leading-relaxed mb-8 lg:mb-10">
+                  <p className="text-sm sm:text-base md:text-xl max-w-2xl text-white/95 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
                     What drives us: clarity of purpose, excellence in execution, and lasting value for everyone we touch.
                   </p>
-                  <div className="flex flex-wrap gap-6 md:gap-10">
-                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-4 max-w-sm">
-                      <h2 className="text-[#e63a27] font-bold text-lg mb-1">Our Vision</h2>
-                      <p className="text-white/95 text-sm leading-snug">A premium global conglomerate with clear focus in each business.</p>
+                  <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 md:gap-10">
+                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
+                      <h2 className="text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Vision</h2>
+                      <p className="text-white/95 text-xs sm:text-sm leading-snug">A premium global conglomerate with clear focus in each business.</p>
                     </div>
-                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-5 py-4 max-w-sm">
-                      <h2 className="text-[#e63a27] font-bold text-lg mb-1">Our Mission</h2>
-                      <p className="text-white/95 text-sm leading-snug">Superior value to customers, shareholders, employees, and society.</p>
+                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
+                      <h2 className="text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Mission</h2>
+                      <p className="text-white/95 text-xs sm:text-sm leading-snug">Superior value to customers, shareholders, employees, and society.</p>
                     </div>
                   </div>
                   {!isDark && (
-                    <div className="mt-6 lg:mt-8">
+                    <div className="mt-4 sm:mt-6 lg:mt-8">
                       <WhoWeAreNav />
                     </div>
                   )}
                 </div>
               </div>
-              <div className="shrink-0 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-4 lg:py-5">
-                <nav className="flex items-center text-xs sm:text-sm text-white/90 flex-wrap gap-x-2 gap-y-1">
+              <div className="shrink-0 px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
+                <nav className="flex items-center text-[10px] sm:text-xs md:text-sm text-white/90 flex-wrap gap-x-1.5 gap-y-1">
                   <Link href="/" className="hover:text-white transition-colors">Home</Link>
                   <span className="opacity-70">/</span>
                   <Link href="/who-we-are" className="hover:text-white transition-colors">Who We Are</Link>
@@ -175,9 +175,9 @@ const MissionVisionPage = () => {
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.5s'
             }}
           >
-            <span className="block text-center text-[var(--text-secondary)] text-xs font-semibold tracking-[0.2em] uppercase mb-2">What we stand for</span>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] text-center mb-10 md:mb-12">Our Core Values</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <span className="block text-center text-[var(--text-secondary)] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-2">What we stand for</span>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Our Core Values</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
                 { title: 'Integrity', description: 'Upholding ethical standards in all our actions', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
                 { title: 'Excellence', description: 'Striving for the highest quality in everything', icon: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z' },
@@ -186,13 +186,13 @@ const MissionVisionPage = () => {
               ].map((value, index) => (
                 <div
                   key={index}
-                  className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-6 md:p-7 text-center hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300 group"
+                  className="rounded-xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-4 sm:p-6 md:p-7 text-center hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300 group"
                 >
-                  <span className="inline-flex w-14 h-14 rounded-xl bg-[#e63a27]/15 text-[#e63a27] items-center justify-center mb-4 group-hover:bg-[#e63a27]/25 transition-colors mx-auto">
-                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={value.icon} /></svg>
+                  <span className="inline-flex w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-[#e63a27]/15 text-[#e63a27] items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#e63a27]/25 transition-colors mx-auto">
+                    <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={value.icon} /></svg>
                   </span>
-                  <h3 className="text-lg font-bold text-[#e63a27] mb-2">{value.title}</h3>
-                  <p className="text-sm text-[var(--text-secondary)] leading-snug">{value.description}</p>
+                  <h3 className="text-base sm:text-lg font-bold text-[#e63a27] mb-1.5 sm:mb-2">{value.title}</h3>
+                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-snug">{value.description}</p>
                 </div>
               ))}
             </div>
@@ -200,29 +200,29 @@ const MissionVisionPage = () => {
 
           {/* Strategic Priorities */}
           <div
-            className="mt-16 md:mt-20"
+            className="mt-10 sm:mt-16 md:mt-20"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.65s'
             }}
           >
-            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 md:p-10 lg:p-12 shadow-md">
-              <span className="block text-center text-[var(--text-secondary)] text-xs font-semibold tracking-[0.2em] uppercase mb-2">Focus areas</span>
-              <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] text-center mb-10 md:mb-12">Strategic Priorities</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+            <div className="rounded-xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-8 md:p-10 lg:p-12 shadow-md">
+              <span className="block text-center text-[var(--text-secondary)] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-2">Focus areas</span>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Strategic Priorities</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 md:gap-10">
                 {[
                   { title: 'Digital Transformation', description: 'Leveraging technology to drive efficiency and innovation across all business units.', metrics: ['50% Digital Operations', 'AI Integration', 'Cloud First Strategy'] },
                   { title: 'Sustainable Growth', description: 'Balancing economic success with environmental and social responsibility.', metrics: ['Carbon Neutral by 2030', '100% Renewable Energy', 'Zero Waste Operations'] },
                   { title: 'Market Expansion', description: 'Growing our global footprint while strengthening local market presence.', metrics: ['15 New Markets', 'Strategic Partnerships', 'Local Leadership Development'] }
                 ].map((priority, index) => (
-                  <div key={index} className="rounded-xl border border-[var(--card-border)] bg-[var(--background)] p-6 md:p-7">
-                    <div className="w-10 h-1 bg-[#e63a27] rounded-full mb-4" />
-                    <h3 className="text-xl font-bold text-[var(--text-primary)] mb-3">{priority.title}</h3>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5">{priority.description}</p>
-                    <ul className="space-y-2">
+                  <div key={index} className="rounded-lg sm:rounded-xl border border-[var(--card-border)] bg-[var(--background)] p-4 sm:p-6 md:p-7">
+                    <div className="w-8 sm:w-10 h-1 bg-[#e63a27] rounded-full mb-3 sm:mb-4" />
+                    <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-2 sm:mb-3">{priority.title}</h3>
+                    <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-3 sm:mb-5">{priority.description}</p>
+                    <ul className="space-y-1.5 sm:space-y-2">
                       {priority.metrics.map((m, i) => (
-                        <li key={i} className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+                        <li key={i} className="flex items-center gap-2 text-xs sm:text-sm text-[var(--text-secondary)]">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#e63a27] shrink-0" />
                           {m}
                         </li>
@@ -236,23 +236,23 @@ const MissionVisionPage = () => {
 
           {/* CTA strip */}
           <div
-            className="mt-20 md:mt-24 rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg"
+            className="mt-12 sm:mt-16 md:mt-20 lg:mt-24 rounded-xl sm:rounded-2xl overflow-hidden border border-[var(--card-border)] bg-[var(--card-bg)] shadow-lg"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
               transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.8s'
             }}
           >
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-6 p-8 md:p-10 lg:p-12">
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-2">Explore more</h3>
-                <p className="text-[var(--text-secondary)] text-sm md:text-base">See our companies, careers, and how we work.</p>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 p-5 sm:p-8 md:p-10 lg:p-12">
+              <div className="text-center sm:text-left">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-1 sm:mb-2">Explore more</h3>
+                <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base">See our companies, careers, and how we work.</p>
               </div>
-              <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                <Link href="/company" className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm md:text-base">
+              <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto">
+                <Link href="/company" className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 sm:px-5 sm:py-2.5 md:px-6 md:py-3 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm md:text-base touch-manipulation">
                   Our Companies
                 </Link>
-                <Link href="/careers" className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 border-2 border-[#e63a27] text-[#e63a27] hover:bg-[#e63a27] hover:text-white font-semibold rounded-xl transition-all text-sm md:text-base">
+                <Link href="/careers" className="inline-flex items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 sm:px-5 sm:py-2.5 md:px-6 md:py-3 border-2 border-[#e63a27] text-[#e63a27] hover:bg-[#e63a27] hover:text-white font-semibold rounded-xl transition-all text-sm md:text-base touch-manipulation">
                   Careers
                 </Link>
               </div>

@@ -1,18 +1,31 @@
- 'use client';
+'use client';
 
 import { useState, useEffect, useRef } from "react";
 import WhoWeAreNav from '../WhoWeAreNav';
 
+type Leader = {
+  id: number;
+  name: string;
+  position: string;
+  description: string;
+  image: string;
+  department: string;
+  category: string;
+  education: string;
+  experience: string;
+  bio: string;
+};
+
 const LeadershipPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  const [selectedLeader, setSelectedLeader] = useState(null);
+  const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
   const [activeFilter, setActiveFilter] = useState("all");
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef(null);
   const featuredRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -161,11 +174,11 @@ const LeadershipPage = () => {
     }
   ];
 
-  const handleLeaderClick = (leader) => {
+  const handleLeaderClick = (leader: Leader) => {
     setSelectedLeader(leader);
   };
 
-  const handleFilterClick = (filterId) => {
+  const handleFilterClick = (filterId: string) => {
     setActiveFilter(filterId);
   };
 
@@ -470,7 +483,6 @@ const LeadershipPage = () => {
                   fontWeight: '600',
                   color: activeFilter === filter.id ? '#ffffff' : '#6c757d',
                   cursor: 'pointer',
-                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   fontFamily: '"Inter", sans-serif',
                   textTransform: 'uppercase',
                   letterSpacing: '1px',
@@ -489,16 +501,18 @@ const LeadershipPage = () => {
                 onClick={() => handleFilterClick(filter.id)}
                 onMouseEnter={(e) => {
                   if (activeFilter !== filter.id) {
-                    e.target.style.transform = 'translateY(-3px) scale(1.05)';
-                    e.target.style.borderColor = '#4a90e2';
-                    e.target.style.color = '#4a90e2';
+                    const el = e.currentTarget;
+                    el.style.transform = 'translateY(-3px) scale(1.05)';
+                    el.style.borderColor = '#4a90e2';
+                    el.style.color = '#4a90e2';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (activeFilter !== filter.id) {
-                    e.target.style.transform = 'translateY(0) scale(1)';
-                    e.target.style.borderColor = '#e9ecef';
-                    e.target.style.color = '#6c757d';
+                    const el = e.currentTarget;
+                    el.style.transform = 'translateY(0) scale(1)';
+                    el.style.borderColor = '#e9ecef';
+                    el.style.color = '#6c757d';
                   }
                 }}
               >
@@ -523,16 +537,14 @@ const LeadershipPage = () => {
                   borderRadius: '20px',
                   overflow: 'hidden',
                   boxShadow: hoveredCard === leader.id ? '0 25px 60px rgba(0,0,0,0.15)' : '0 10px 40px rgba(0,0,0,0.1)',
-                  transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                   cursor: 'pointer',
                   height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
                   position: 'relative',
-                  transform: hoveredCard === leader.id ? 'translateY(-15px) scale(1.02)' : 'translateY(0)',
                   border: '1px solid rgba(0,0,0,0.05)',
                   opacity: isLoaded ? 1 : 0,
-                  transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
+                  transform: !isLoaded ? 'translateY(30px)' : (hoveredCard === leader.id ? 'translateY(-15px) scale(1.02)' : 'translateY(0)'),
                   transition: `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`
                 }}
                 onClick={() => handleLeaderClick(leader)}

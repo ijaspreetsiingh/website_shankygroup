@@ -60,7 +60,7 @@ const WorkWithUs = () => {
       
       {/* Moving Logos Section */}
       <div 
-        className="py-[60px] overflow-hidden relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
+        className="py-8 sm:py-10 md:py-[60px] overflow-hidden relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
         style={{ 
           background: isDarkMode 
             ? 'var(--card-bg)'
@@ -69,24 +69,24 @@ const WorkWithUs = () => {
           transform: isVisible ? 'translateY(0)' : 'translateY(80px)'
         }}
       >
-        <div className="text-center mb-10 px-4">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10 px-3 sm:px-4">
           <h2 
-            className="text-[32px] font-semibold text-white m-0 mb-4 tracking-[1px] transition-all duration-800 delay-200"
+            className="text-[20px] sm:text-[26px] md:text-[32px] font-semibold text-white m-0 mb-3 sm:mb-4 tracking-[0.5px] sm:tracking-[1px] leading-tight transition-all duration-800 delay-200"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-60px)' }}
           >
             Trusted by Leading Companies
           </h2>
           <p 
-            className="text-base text-white/80 max-w-[600px] mx-auto transition-all duration-800 delay-400"
+            className="text-[13px] sm:text-[14px] md:text-base text-white/80 max-w-[600px] mx-auto leading-snug transition-all duration-800 delay-400"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(60px)' }}
           >
             Partnering with industry leaders to drive innovation and growth
           </p>
         </div>
 
-        {/* Moving Logos Container */}
+        {/* Moving Logos Container - responsive height & card size */}
         <div 
-          className="relative w-full h-[80px] overflow-hidden transition-all duration-800 delay-600"
+          className="relative w-full h-[56px] sm:h-[64px] md:h-[80px] overflow-hidden transition-all duration-800 delay-600"
           style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
           onMouseEnter={() => setIsFirstRowPaused(true)}
           onMouseLeave={() => setIsFirstRowPaused(false)}
@@ -109,7 +109,7 @@ const WorkWithUs = () => {
               { name: 'Netflix', color: '#E50914' },
               { name: 'Spotify', color: '#1DB954' }
             ].map((company, index) => (
-              <div key={index} className="flex-[0_0_200px] h-[80px] flex items-center justify-center mx-[30px] text-2xl font-bold bg-[var(--background)] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-5 transition-transform duration-300"
+              <div key={index} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5 transition-transform duration-300"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
@@ -125,7 +125,7 @@ const WorkWithUs = () => {
               { name: 'Netflix', color: '#E50914' },
               { name: 'Spotify', color: '#1DB954' }
             ].map((company, index) => (
-              <div key={`duplicate-${index}`} className="flex-[0_0_200px] h-[80px] flex items-center justify-center mx-[30px] text-2xl font-bold bg-[var(--background)] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-5"
+              <div key={`duplicate-${index}`} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
@@ -135,7 +135,7 @@ const WorkWithUs = () => {
 
         {/* Second Row - Opposite Direction */}
         <div 
-          className="relative w-full h-[80px] overflow-hidden mt-5 transition-all duration-800 delay-800"
+          className="relative w-full h-[56px] sm:h-[64px] md:h-[80px] overflow-hidden mt-3 sm:mt-4 md:mt-5 transition-all duration-800 delay-800"
           style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
           onMouseEnter={() => setIsSecondRowPaused(true)}
           onMouseLeave={() => setIsSecondRowPaused(false)}
@@ -157,7 +157,7 @@ const WorkWithUs = () => {
               { name: 'Intel', color: '#0071C5' },
               { name: 'HP', color: '#0096D6' }
             ].map((company, index) => (
-              <div key={index} className="flex-[0_0_200px] h-[80px] flex items-center justify-center mx-[30px] text-2xl font-bold bg-[var(--background)] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-5"
+              <div key={index} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
@@ -173,7 +173,7 @@ const WorkWithUs = () => {
               { name: 'Intel', color: '#0071C5' },
               { name: 'HP', color: '#0096D6' }
             ].map((company, index) => (
-              <div key={`duplicate-reverse-${index}`} className="flex-[0_0_200px] h-[80px] flex items-center justify-center mx-[30px] text-2xl font-bold bg-[var(--background)] rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-5"
+              <div key={`duplicate-reverse-${index}`} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
                    style={{ color: company.color }}>
                 {company.name}
               </div>

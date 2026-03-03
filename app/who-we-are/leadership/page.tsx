@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useState, useEffect, useRef } from "react";
 import WhoWeAreNav from '../WhoWeAreNav';
@@ -206,314 +206,151 @@ const LeadershipPage = () => {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Section - responsive */}
       <section 
         ref={heroRef}
-        style={{
-          position: 'relative',
-          minHeight: '85vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          overflow: 'hidden',
-          backgroundColor: 'var(--background)'
-        }}>
-        {/* Content */}
-        <div style={{
-          position: 'relative',
-          zIndex: 2,
-          width: '100%',
-          maxWidth: '1900px',
-          padding: '0 40px',
-          color: 'var(--foreground)'
-        }}>
-          <div style={{
-            maxWidth: '800px'
-          }}>
-            {/* Breadcrumb Navigation */}
-            <div style={{
-              marginBottom: '40px',
-              fontSize: '16px',
-              color: 'var(--text-secondary)',
-              fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif'
-            }}>
+        className="relative flex items-center justify-center overflow-hidden min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]"
+        style={{ backgroundColor: 'var(--background)' }}
+      >
+        <div className="relative z-[2] w-full max-w-[1900px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-[40px] py-8 sm:py-10 md:py-12" style={{ color: 'var(--foreground)' }}>
+          <div className="max-w-[800px] lg:max-w-[1100px] xl:max-w-[1200px]">
+            {/* Breadcrumb */}
+            <div 
+              className="mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base"
+              style={{ color: 'var(--text-secondary)', fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
+            >
               <span style={{ cursor: 'pointer' }}>About Us</span>
-              <span style={{ margin: '0 8px' }}>/</span>
+              <span className="mx-1.5 sm:mx-2">/</span>
               <span style={{ color: '#e63a27' }}>Leadership</span>
             </div>
-            
-            <h1 style={{
-              fontSize: 'clamp(48px, 5vw, 72px)',
-              fontWeight: '700',
-              lineHeight: '1.1',
-              letterSpacing: '-1.5px',
-              margin: '0 0 20px 0',
-              fontFamily: '"Montserrat", "Arial", sans-serif',
-              color: 'var(--text-primary)'
-            }}>
+            <h1 
+              className="text-3xl min-[400px]:text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] font-bold leading-tight tracking-tight mb-4 sm:mb-5"
+              style={{ fontFamily: '"Montserrat", "Arial", sans-serif', color: 'var(--text-primary)' }}
+            >
               OUR LEADERSHIP
             </h1>
-            
-            <p style={{
-              fontSize: 'clamp(18px, 2vw, 24px)',
-              fontWeight: '400',
-              width:'200%',
-              lineHeight: '1.6',
-              margin: '0 0 40px 0',
-              fontFamily: '"Lato", "Arial", sans-serif',
-              opacity: 0.9,
-              color:'var(--text-secondary)'
-            }}>
-              We are a team of over 48,000 people across the globe, working for a common purpose. We are led by one of India's most visionary chairmen, supported by a talented and experienced management team.
+            <p 
+              className="text-sm sm:text-base md:text-lg lg:text-2xl font-normal leading-relaxed lg:leading-[1.6] mb-6 sm:mb-8 md:mb-10 lg:mb-10 max-w-full w-full"
+              style={{ fontFamily: '"Lato", "Arial", sans-serif', opacity: 0.9, color: 'var(--text-secondary)' }}
+            >
+              We are a team of over 48,000 people across the globe, working for a common purpose. We are led by one of India&apos;s most visionary chairmen, supported by a talented and experienced management team.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Featured Leader Section – reduced height, border, left/right space */}
-      <div className="w-full px-4 sm:px-6 md:px-8 py-8 md:py-10">
+      {/* Featured Leader Section – responsive height & card */}
+      <div className="w-full px-3 sm:px-6 md:px-8 py-5 sm:py-8 md:py-10">
         <section 
           ref={featuredRef}
-          className="relative mx-auto max-w-[1920px] flex items-center justify-center overflow-hidden rounded-2xl border-2 border-[var(--card-border)] shadow-xl"
-          style={{
-            height: '88vh',
-            minHeight: '420px',
-            maxHeight: '690px',
-            backgroundColor: '#000000'
-          }}>
+          className="relative mx-auto max-w-[1920px] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl border-2 border-[var(--card-border)] shadow-xl h-[75vh] min-h-[380px] sm:min-h-[420px] sm:h-[80vh] md:h-[85vh] md:min-h-[480px] lg:h-[88vh] lg:max-h-[690px]"
+          style={{ backgroundColor: '#000000' }}
+        >
           {/* Background Image */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'url(https://imgs.search.brave.com/1d2AY1Io4nnKg7hZFQfW5K_7eq1IaOaWZvwel_dQIlw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/MTU1NjM5Ny9waG90/by9jb2xvcmZ1bC1y/b2FkLWJ5LXRoZS1z/ZWEuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXozaGJ1WDF1/anE2NGFxR3RLVTI4/Uk5EQjhVZGNVR3NP/d3lrWHJoUEdfNTg9)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            opacity: 1,
-            zIndex: 0
+          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100 z-0" style={{
+            backgroundImage: 'url(https://imgs.search.brave.com/1d2AY1Io4nnKg7hZFQfW5K_7eq1IaOaWZvwel_dQIlw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/MTU1NjM5Ny9waG90/by9jb2xvcmZ1bC1y/b2FkLWJ5LXRoZS1z/ZWEuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXozaGJ1WDF1/anE2NGFxR3RLVTI4/Uk5EQjhVZGNVR3NP/d3lrWHJoUEdfNTg9)'
           }} />
-          
-          {/* Dark Overlay */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)',
-            zIndex: 1
-          }} />
-          
-          {/* Content – responsive: small top/bottom space, card more to the right */}
-          <div 
-            className="w-full max-w-[1400px] mx-auto flex justify-end items-center box-border"
-            style={{
-              position: 'relative',
-              zIndex: 2,
-              paddingTop: 'clamp(12px, 2vh, 24px)',
-              paddingRight: 0,
-              paddingBottom: 'clamp(12px, 2vh, 24px)',
-              paddingLeft: 'clamp(24px, 4vw, 48px)'
-            }}
-          >
-          {/* Text Content - Right Aligned – larger on laptop/80% screen */}
-          <div 
-            className="w-full min-w-[320px] max-w-[440px] sm:max-w-[500px] lg:max-w-[540px] xl:max-w-[580px]"
-            style={{
-              backgroundColor: 'rgba(20,20,25,0.45)',
-              borderRadius: '18px',
-              padding: 'clamp(28px, 3.5vw, 40px) clamp(28px, 3vw, 44px)',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
-              backdropFilter: 'blur(9px) saturate(1.2)',
-              WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
-              textAlign: 'center',
-              marginRight: 0,
-              border: '1px solid rgba(255,255,255,0.08)'
-            }}
-          >
-            <div style={{ marginBottom: '14px' }}>
-              <span style={{
-                backgroundColor: '#e63a27',
-                color: '#ffffff',
-                fontSize: 'clamp(12px, 1.2vw, 14px)',
-                fontWeight: '600',
-                padding: '10px 20px',
-                borderRadius: '24px',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                display: 'inline-block',
-                lineHeight: '1.2'
-              }}>
-                Managing Director
-              </span>
-            </div>
-            
-            <h2 style={{
-              fontSize: 'clamp(32px, 3.5vw, 44px)',
-              fontWeight: '700',
-              color: '#ffffff',
-              margin: '0 0 14px 0',
-              lineHeight: '1.2',
-              fontFamily: '"Montserrat", "Arial", sans-serif'
-            }}>
-              Vipin Kumar
-            </h2>
-            
-            <p style={{
-              fontSize: 'clamp(15px, 1.6vw, 18px)',
-              color: '#cccccc',
-              margin: '0 0 22px 0',
-              lineHeight: '1.4',
-              fontWeight: '500'
-            }}>
-              Managing Director, Shanky Group
-            </p>
-            
-            <div style={{
-              fontSize: 'clamp(16px, 1.75vw, 19px)',
-              color: '#cccccc',
-              lineHeight: '1.65',
-              margin: '0 0 28px 0',
-              textAlign: 'left'
-            }}>
-              <p style={{ margin: '0 0 12px 0' }}>
-                To make B2B relationships simpler, smarter, and more successful. We started this because we believed businesses deserve partners who listen, deliver, and grow alongside them.
+          <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
+          <div className="relative z-[2] w-full max-w-[1400px] mx-auto flex justify-center lg:justify-end items-center box-border px-3 sm:px-4 md:px-6 lg:pl-12 py-4 sm:py-6">
+            <div 
+              className="w-full max-w-full min-w-0 sm:min-w-[300px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[540px] xl:max-w-[580px] text-center mx-auto lg:mx-0 lg:mr-0 rounded-xl sm:rounded-[18px] p-4 sm:p-5 md:p-6 lg:py-8 lg:px-10"
+              style={{
+                backgroundColor: 'rgba(20,20,25,0.45)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+                backdropFilter: 'blur(9px) saturate(1.2)',
+                WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
+                border: '1px solid rgba(255,255,255,0.08)'
+              }}
+            >
+              <div className="mb-3 sm:mb-3.5">
+                <span className="inline-block bg-[#e63a27] text-white text-[10px] sm:text-xs md:text-sm font-semibold py-2 px-3 sm:py-2.5 sm:px-5 rounded-full uppercase tracking-wide leading-tight">
+                  Managing Director
+                </span>
+              </div>
+              <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[44px] font-bold text-white mb-2 sm:mb-3.5 leading-tight" style={{ fontFamily: '"Montserrat", "Arial", sans-serif' }}>
+                Vipin Kumar
+              </h2>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#cccccc] mb-3 sm:mb-4 lg:mb-5 leading-snug font-medium">
+                Managing Director, Shanky Group
               </p>
-              <p style={{ margin: 0 }}>
-                At our core we value trust, transparency, and measurable impact. Every solution we design begins with your goals and ends with clear outcomes.
-              </p>
+              <div className="text-xs sm:text-sm md:text-base lg:text-lg text-[#cccccc] leading-relaxed mb-4 sm:mb-6 lg:mb-7 text-left space-y-2 sm:space-y-3">
+                <p className="m-0">
+                  To make B2B relationships simpler, smarter, and more successful. We started this because we believed businesses deserve partners who listen, deliver, and grow alongside them.
+                </p>
+                <p className="m-0">
+                  At our core we value trust, transparency, and measurable impact. Every solution we design begins with your goals and ends with clear outcomes.
+                </p>
+              </div>
+              <button 
+                className="w-full sm:w-auto bg-[#e63a27] text-white text-xs sm:text-sm font-semibold py-2.5 px-5 sm:py-3 sm:px-8 rounded-full border-0 cursor-pointer transition-all duration-300 uppercase tracking-wide shadow-[0_4px_20px_rgba(230,58,39,0.3)] hover:opacity-95"
+              >
+                View Profile
+              </button>
             </div>
-            
-            <button style={{
-              backgroundColor: '#e63a27',
-              color: '#ffffff',
-              fontSize: 'clamp(13px, 1.2vw, 15px)',
-              fontWeight: '600',
-              padding: '12px 32px',
-              borderRadius: '24px',
-              border: 'none',
-              cursor: 'pointer',
-              transition: 'all 0.3s ease',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              boxShadow: '0 4px 20px rgba(230, 58, 39, 0.3)'
-            }}>
-              View Profile
-            </button>
           </div>
-        </div>
         </section>
       </div>
 
-      {/* Main Content Section - theme aware */}
+      {/* Main Content Section - responsive */}
       <section 
         ref={sectionRef}
-        style={{
-          padding: '80px 20px',
-          backgroundColor: 'var(--background)',
-          fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
-          position: 'relative',
-          zIndex: 10
-        }}
+        className="relative z-10 pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-24 px-4 sm:px-6 md:px-8"
+        style={{ backgroundColor: 'var(--background)', fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
       >
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto'
-        }}>
+        <div className="max-w-[1200px] mx-auto">
           {/* Section Header */}
-          <div style={{
-            textAlign: 'center',
-            marginBottom: '80px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-          }}>
-            <div style={{
-              display: 'inline-block',
-              marginBottom: '20px'
-            }}>
-              <span style={{
-                backgroundColor: '#e63a27',
-                color: 'var(--card-bg)',
-                fontSize: '14px',
-                fontWeight: '600',
-                padding: '10px 25px',
-                borderRadius: '30px',
-                textTransform: 'uppercase',
-                letterSpacing: '2px',
-                boxShadow: '0 4px 15px rgba(230, 58, 39, 0.3)'
-              }}>
+          <div 
+            className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+              transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+            }}
+          >
+            <div className="inline-block mb-4 sm:mb-5">
+              <span 
+                className="inline-block bg-[#e63a27] text-[var(--card-bg)] text-[10px] sm:text-xs md:text-sm font-semibold py-2 px-3 sm:py-2.5 sm:px-5 md:px-6 rounded-full uppercase tracking-wider shadow-[0_4px_15px_rgba(230,58,39,0.3)]"
+              >
                 Leadership Excellence
               </span>
             </div>
-            <h2 style={{
-              fontSize: 'clamp(42px, 4vw, 56px)',
-              fontWeight: '700',
-              color: 'var(--text-primary)',
-              margin: '0 0 24px 0',
-              lineHeight: '1.2',
-              fontFamily: '"Montserrat", "Arial", sans-serif'
-            }}>
+            <h2 
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-[var(--text-primary)] mb-4 sm:mb-6 leading-tight"
+              style={{ fontFamily: '"Montserrat", "Arial", sans-serif' }}
+            >
               Meet Our Leadership Team
             </h2>
-            <div style={{
-              width: '80px',
-              height: '4px',
-              background: 'linear-gradient(135deg, #e63a27 0%, #ff6b6b 100%)',
-              margin: '0 auto 32px auto',
-              borderRadius: '2px'
-            }} />
-            <p style={{
-              fontSize: 'clamp(18px, 1.8vw, 22px)',
-              color: 'var(--text-primary)',
-              maxWidth: '900px',
-              margin: '0 auto',
-              lineHeight: '1.7',
-              fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
-              fontWeight: '400'
-            }}>
-              The strength of Shanky Group lies in its accomplished leadership team, whose collective expertise and strategic foresight have been instrumental in shaping the Group's growth trajectory. Our leaders are committed to upholding core values, driving innovation, and ensuring robust governance across all business verticals.
+            <div 
+              className="w-12 sm:w-16 md:w-20 h-0.5 sm:h-1 mx-auto mb-5 sm:mb-8 rounded-full"
+              style={{ background: 'linear-gradient(135deg, #e63a27 0%, #ff6b6b 100%)' }}
+            />
+            <p 
+              className="text-sm sm:text-base md:text-lg lg:text-xl max-w-[900px] mx-auto leading-relaxed font-normal px-1"
+              style={{ color: 'var(--text-primary)', fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
+            >
+              The strength of Shanky Group lies in its accomplished leadership team, whose collective expertise and strategic foresight have been instrumental in shaping the Group&apos;s growth trajectory. Our leaders are committed to upholding core values, driving innovation, and ensuring robust governance across all business verticals.
             </p>
           </div>
 
-          {/* Filter Buttons */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '12px',
-            marginBottom: '80px',
-            flexWrap: 'wrap',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s'
-          }}>
+          {/* Filter Buttons - responsive */}
+          <div 
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 md:mb-16 lg:mb-20"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s'
+            }}
+          >
             {filterOptions.map((filter, index) => (
               <button
                 key={filter.id}
+                className="relative overflow-hidden rounded-lg sm:rounded-xl py-2.5 px-4 sm:py-3 sm:px-5 md:px-7 text-xs sm:text-sm font-semibold uppercase tracking-wide cursor-pointer transition-all duration-300 border"
                 style={{
-                  padding: '12px 28px',
-                  backgroundColor: activeFilter === filter.id 
-                    ? '#e63a27' 
-                    : 'var(--card-bg)',
-                  border: activeFilter === filter.id 
-                    ? '1px solid #e63a27' 
-                    : '1px solid var(--card-border)',
-                  borderRadius: '12px',
-                  fontSize: '14px',
-                  fontWeight: '600',
+                  backgroundColor: activeFilter === filter.id ? '#e63a27' : 'var(--card-bg)',
+                  borderColor: activeFilter === filter.id ? '#e63a27' : 'var(--card-border)',
                   color: activeFilter === filter.id ? 'var(--card-bg)' : 'var(--text-secondary)',
-                  cursor: 'pointer',
                   fontFamily: '"Inter", sans-serif',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.8px',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  boxShadow: activeFilter === filter.id 
-                    ? '0 8px 25px rgba(230, 58, 39, 0.25)' 
-                    : '0 2px 8px rgba(0, 0, 0, 0.06)',
+                  boxShadow: activeFilter === filter.id ? '0 8px 25px rgba(230, 58, 39, 0.25)' : '0 2px 8px rgba(0, 0, 0, 0.06)',
                   opacity: isLoaded ? 1 : 0,
                   transform: isLoaded ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
                   transition: `all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${0.3 + index * 0.1}s`
@@ -538,49 +375,30 @@ const LeadershipPage = () => {
                   }
                 }}
               >
-                <span style={{
-                  position: 'relative',
-                  zIndex: 1
-                }}>
-                  {filter.label}
-                </span>
+                <span className="relative z-[1]">{filter.label}</span>
                 {activeFilter === filter.id && (
-                  <div style={{
-                    position: 'absolute',
-                    top: '0',
-                    left: '0',
-                    right: '0',
-                    bottom: '0',
-                    background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-                    borderRadius: '12px'
-                  }} />
+                  <div 
+                    className="absolute inset-0 rounded-lg sm:rounded-xl"
+                    style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)' }}
+                  />
                 )}
               </button>
             ))}
           </div>
 
-          {/* Leadership Grid - theme aware (light/dark) */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '36px',
-            marginBottom: '100px',
-            position: 'relative'
-          }}>
+          {/* Leadership Grid - responsive */}
+          <div 
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-9 mb-12 sm:mb-16 md:mb-20 lg:mb-24"
+            style={{ position: 'relative' }}
+          >
             {filteredLeaders.map((leader, index) => (
               <div 
                 key={leader.id}
+                className="rounded-xl sm:rounded-2xl md:rounded-[28px] overflow-hidden h-full flex flex-col relative cursor-pointer"
                 style={{
                   backgroundColor: 'var(--card-bg)',
-                  borderRadius: '28px',
-                  overflow: 'hidden',
                   border: '1px solid var(--card-border)',
                   boxShadow: '0 8px 40px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.04)',
-                  cursor: 'pointer',
-                  height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  position: 'relative',
                   opacity: isLoaded ? 1 : 0,
                   transform: isLoaded ? 'translateY(0)' : 'translateY(30px)',
                   transition: `all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`
@@ -589,134 +407,63 @@ const LeadershipPage = () => {
                 onMouseEnter={() => setHoveredCard(leader.id)}
                 onMouseLeave={() => setHoveredCard(null)}
               >
-                {/* Image area */}
-                <div style={{
-                  padding: '0 8px',
-                  paddingTop: '8px',
-                  flexShrink: 0
-                }}>
-                  <div style={{
-                    width: '100%',
-                    aspectRatio: '1',
-                    maxHeight: '340px',
-                    overflow: 'hidden',
-                    borderRadius: '20px',
-                    backgroundColor: 'var(--card-border)',
-                    border: '1px solid var(--card-border)',
-                    boxSizing: 'border-box'
-                  }}>
+                {/* Image area - phone: fixed height + full width so face shows perfect; desktop: square */}
+                <div className="px-1 sm:px-2 pt-1 sm:pt-2 flex-shrink-0 relative isolate">
+                  <div 
+                    className="relative w-full h-[280px] sm:h-auto sm:aspect-square sm:max-h-[260px] md:max-h-[300px] lg:max-h-[340px] overflow-hidden rounded-xl sm:rounded-2xl border border-[var(--card-border)] box-border bg-[var(--card-border)]"
+                  >
                     <img 
                       src={leader.image} 
                       alt={leader.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        objectPosition: 'center top',
-                        display: 'block'
-                      }}
+                      className="absolute inset-0 w-full h-full object-cover object-[center_18%] block size-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
-                
-                {/* Content - theme aware */}
-                <div style={{
-                  padding: '16px 18px 20px',
-                  flexGrow: 1,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'var(--card-bg)',
-                  borderRadius: '0 0 28px 28px'
-                }}>
-                  <div style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    marginBottom: '6px'
-                  }}>
-                    <h3 style={{
-                      fontSize: '21px',
-                      fontWeight: '700',
-                      color: 'var(--text-primary)',
-                      margin: 0,
-                      lineHeight: '1.25',
-                      fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif',
-                      letterSpacing: '-0.02em'
-                    }}>
+                {/* Content - responsive */}
+                <div 
+                  className="p-3 sm:p-4 md:p-4 flex-grow flex flex-col rounded-b-2xl sm:rounded-b-[28px]"
+                  style={{ backgroundColor: 'var(--card-bg)' }}
+                >
+                  <div className="flex items-center gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                    <h3 
+                      className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] m-0 leading-tight tracking-tight truncate min-w-0 flex-1"
+                      style={{ fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
+                    >
                       {leader.name}
                     </h3>
-                    <span style={{
-                      width: '22px',
-                      height: '22px',
-                      borderRadius: '50%',
-                      backgroundColor: '#22c55e',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }} title="Verified">
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                    <span 
+                      className="w-5 h-5 sm:w-[22px] sm:h-[22px] rounded-full bg-[#22c55e] inline-flex items-center justify-center flex-shrink-0" 
+                      title="Verified"
+                    >
+                      <svg className="w-3 h-3 sm:w-[13px] sm:h-[13px]" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
                     </span>
                   </div>
-                  
-                  <p style={{
-                    fontSize: '14px',
-                    color: 'var(--text-secondary)',
-                    fontWeight: '400',
-                    lineHeight: '1.5',
-                    margin: '0 0 14px 0',
-                    fontFamily: '"Inter", sans-serif',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}>
+                  <p 
+                    className="text-xs sm:text-sm text-[var(--text-secondary)] font-normal leading-snug m-0 mb-2 sm:mb-3 line-clamp-2"
+                    style={{ fontFamily: '"Inter", sans-serif' }}
+                  >
                     {leader.position}. {leader.description}
                   </p>
-                  
-                  <div style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    gap: '12px',
-                    marginTop: 'auto'
-                  }}>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '18px'
-                    }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        <span style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '400', fontFamily: '"Inter", sans-serif' }}>{leader.experience}</span>
+                  <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-3 mt-auto">
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0">
+                      <div className="flex items-center gap-1.5 sm:gap-2">
+                        <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                        <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate" style={{ fontFamily: '"Inter", sans-serif' }}>{leader.experience}</span>
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        <span style={{ fontSize: '14px', color: 'var(--text-primary)', fontWeight: '400', fontFamily: '"Inter", sans-serif', maxWidth: '110px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{leader.education}</span>
+                      <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                        <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate max-w-[80px] sm:max-w-[110px]" style={{ fontFamily: '"Inter", sans-serif' }}>{leader.education}</span>
                       </div>
                     </div>
                     <button
                       type="button"
                       onClick={(e) => { e.stopPropagation(); handleLeaderClick(leader); }}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        padding: '10px 14px',
-                        borderRadius: '9999px',
-                        backgroundColor: 'var(--card-border)',
-                        color: 'var(--text-primary)',
-                        fontSize: '13px',
-                        fontWeight: '500',
-                        fontFamily: '"Inter", sans-serif',
-                        border: 'none',
-                        cursor: 'pointer',
-                        flexShrink: 0,
-                        whiteSpace: 'nowrap'
-                      }}
+                      className="inline-flex items-center gap-1 sm:gap-1.5 py-2 px-2.5 sm:py-2.5 sm:px-3.5 rounded-full border-0 cursor-pointer flex-shrink-0 whitespace-nowrap text-[10px] sm:text-xs md:text-[13px] font-medium"
+                      style={{ backgroundColor: 'var(--card-border)', color: 'var(--text-primary)', fontFamily: '"Inter", sans-serif' }}
                     >
-                      view
-                      <span style={{ fontSize: '18px', lineHeight: 1, color: 'var(--text-primary)', fontWeight: '400' }}>+</span>
+                      view<span className="text-sm sm:text-base md:text-lg leading-none font-normal ml-0.5" style={{ color: 'var(--text-primary)' }}>+</span>
                     </button>
                   </div>
                 </div>
@@ -730,51 +477,26 @@ const LeadershipPage = () => {
       {selectedLeader && (() => {
         const social = getSocialLinks(selectedLeader);
         return (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.55)',
-          zIndex: 1000,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '24px'
-        }}>
-          <div style={{
-            backgroundColor: 'var(--card-bg)',
-            borderRadius: '28px',
-            maxWidth: '560px',
-            width: '100%',
-            maxHeight: '90vh',
-            overflow: 'hidden',
-            position: 'relative',
-            border: '1px solid var(--card-border)',
-            boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px var(--card-border)'
-          }}>
-            {/* Close Button - theme aware */}
+        <div 
+          className="fixed inset-0 z-[1000] flex items-center justify-center p-3 sm:p-4 md:p-6"
+          style={{ backgroundColor: 'rgba(0, 0, 0, 0.55)' }}
+        >
+          <div 
+            className="w-full max-w-[560px] max-h-[90vh] overflow-hidden relative rounded-xl sm:rounded-2xl md:rounded-[28px] border overflow-y-auto"
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+              boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px var(--card-border)'
+            }}
+          >
+            {/* Close Button - responsive */}
             <button
               onClick={() => setSelectedLeader(null)}
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-lg sm:text-xl font-medium cursor-pointer transition-all z-10 border"
               style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
                 backgroundColor: 'var(--card-border)',
-                border: '1px solid var(--card-border)',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '20px',
-                fontWeight: '500',
-                color: 'var(--text-secondary)',
-                transition: 'all 0.2s ease',
-                zIndex: 10
+                borderColor: 'var(--card-border)',
+                color: 'var(--text-secondary)'
               }}
               onMouseEnter={(e: any) => {
                 const el = e.currentTarget;
@@ -790,98 +512,48 @@ const LeadershipPage = () => {
               ×
             </button>
 
-            {/* Profile header - avatar + name + role + pill + social */}
-            <div style={{
-              padding: '44px 32px 28px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center',
-              borderBottom: '1px solid var(--card-border)'
-            }}>
-              {/* Circular Profile Image - theme aware ring */}
-              <div style={{
-                width: '140px',
-                height: '140px',
-                borderRadius: '50%',
-                overflow: 'hidden',
-                flexShrink: 0,
-                marginBottom: '20px',
-                border: '4px solid var(--card-bg)',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px var(--card-border)'
-              }}>
+            {/* Profile header - responsive */}
+            <div 
+              className="flex flex-col items-center text-center pt-8 pb-6 px-4 sm:pt-10 sm:pb-7 sm:px-6 md:pt-11 md:pb-7 md:px-8 border-b border-[var(--card-border)]"
+            >
+              <div 
+                className="w-24 h-24 sm:w-28 sm:h-28 md:w-[120px] md:h-[120px] lg:w-[140px] lg:h-[140px] rounded-full overflow-hidden flex-shrink-0 mb-4 sm:mb-5 border-4 border-[var(--card-bg)]"
+                style={{ boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 0 0 1px var(--card-border)' }}
+              >
                 <img
                   src={selectedLeader.image}
                   alt={selectedLeader.name}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center top'
-                  }}
+                  className="w-full h-full object-cover object-[center_top]"
                 />
               </div>
-
-              <h2 style={{
-                fontSize: '26px',
-                fontWeight: '700',
-                color: 'var(--text-primary)',
-                margin: '0 0 6px 0',
-                fontFamily: '"Montserrat", "Arial", sans-serif',
-                letterSpacing: '-0.02em'
-              }}>
+              <h2 
+                className="text-xl sm:text-2xl md:text-[26px] font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2"
+                style={{ fontFamily: '"Montserrat", "Arial", sans-serif', letterSpacing: '-0.02em' }}
+              >
                 {selectedLeader.name}
               </h2>
-
-              <p style={{
-                fontSize: '16px',
-                fontWeight: '600',
-                color: '#e63a27',
-                margin: '0 0 12px 0',
-                fontFamily: '"Inter", sans-serif'
-              }}>
+              <p 
+                className="text-sm sm:text-base font-semibold text-[#e63a27] mb-2 sm:mb-3"
+                style={{ fontFamily: '"Inter", sans-serif' }}
+              >
                 {selectedLeader.position}
               </p>
-
-              <span style={{
-                display: 'inline-block',
-                backgroundColor: '#e63a27',
-                color: '#ffffff',
-                fontSize: '11px',
-                fontWeight: '600',
-                padding: '6px 16px',
-                borderRadius: '9999px',
-                marginBottom: '20px',
-                textTransform: 'uppercase',
-                letterSpacing: '1.2px'
-              }}>
+              <span 
+                className="inline-block bg-[#e63a27] text-white text-[9px] sm:text-[10px] md:text-[11px] font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-full mb-4 sm:mb-5 uppercase tracking-wide"
+              >
                 {selectedLeader.department}
               </span>
-
-              {/* Social media icons - theme aware */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '12px'
-              }}>
+              <div className="flex items-center justify-center gap-2 sm:gap-3">
                 <a
                   href={social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   title="LinkedIn"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-200 no-underline flex-shrink-0"
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
                     backgroundColor: 'var(--card-border)',
-                    border: '1px solid var(--card-border)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#0a66c2',
-                    transition: 'all 0.2s ease',
-                    textDecoration: 'none'
+                    borderColor: 'var(--card-border)',
+                    color: '#0a66c2'
                   }}
                   onMouseEnter={(e: any) => {
                     const el = e.currentTarget;
@@ -901,18 +573,11 @@ const LeadershipPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="X (Twitter)"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-200 no-underline flex-shrink-0"
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
                     backgroundColor: 'var(--card-border)',
-                    border: '1px solid var(--card-border)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--text-primary)',
-                    transition: 'all 0.2s ease',
-                    textDecoration: 'none'
+                    borderColor: 'var(--card-border)',
+                    color: 'var(--text-primary)'
                   }}
                   onMouseEnter={(e: any) => {
                     const el = e.currentTarget;
@@ -932,18 +597,11 @@ const LeadershipPage = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   title="Email"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border transition-all duration-200 no-underline flex-shrink-0"
                   style={{
-                    width: '40px',
-                    height: '40px',
-                    borderRadius: '50%',
                     backgroundColor: 'var(--card-border)',
-                    border: '1px solid var(--card-border)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: 'var(--text-secondary)',
-                    transition: 'all 0.2s ease',
-                    textDecoration: 'none'
+                    borderColor: 'var(--card-border)',
+                    color: 'var(--text-secondary)'
                   }}
                   onMouseEnter={(e: any) => {
                     const el = e.currentTarget;
@@ -961,84 +619,50 @@ const LeadershipPage = () => {
               </div>
             </div>
 
-            {/* About + Education/Experience - theme aware */}
-            <div style={{
-              padding: '28px 32px 36px',
-              textAlign: 'left'
-            }}>
-              <h4 style={{
-                fontSize: '14px',
-                fontWeight: '700',
-                color: 'var(--text-primary)',
-                margin: '0 0 10px 0',
-                fontFamily: '"Montserrat", "Arial", sans-serif',
-                letterSpacing: '0.02em'
-              }}>
+            {/* About + Education/Experience - responsive */}
+            <div className="p-4 sm:p-5 md:p-6 lg:p-7 lg:px-8 text-left">
+              <h4 
+                className="text-xs sm:text-sm font-bold text-[var(--text-primary)] mb-2 sm:mb-2.5"
+                style={{ fontFamily: '"Montserrat", "Arial", sans-serif', letterSpacing: '0.02em' }}
+              >
                 About
               </h4>
-              <p style={{
-                fontSize: '15px',
-                lineHeight: '1.72',
-                color: 'var(--text-secondary)',
-                margin: '0 0 24px 0',
-                fontFamily: '"Inter", sans-serif'
-              }}>
+              <p 
+                className="text-xs sm:text-sm md:text-[15px] leading-relaxed text-[var(--text-secondary)] mb-4 sm:mb-5 md:mb-6"
+                style={{ fontFamily: '"Inter", sans-serif' }}
+              >
                 {selectedLeader.description}
                 {selectedLeader.bio ? ` ${selectedLeader.bio}` : ''}
               </p>
-
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '20px',
-                padding: '20px',
-                backgroundColor: 'var(--card-border)',
-                borderRadius: '16px',
-                border: '1px solid var(--card-border)'
-              }}>
+              <div 
+                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-5 rounded-xl md:rounded-2xl border"
+                style={{ backgroundColor: 'var(--card-border)', borderColor: 'var(--card-border)' }}
+              >
                 <div>
-                  <h4 style={{
-                    fontSize: '10px',
-                    fontWeight: '700',
-                    color: 'var(--text-secondary)',
-                    margin: '0 0 6px 0',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1.2px',
-                    fontFamily: '"Inter", sans-serif'
-                  }}>
+                  <h4 
+                    className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
+                    style={{ fontFamily: '"Inter", sans-serif' }}
+                  >
                     Education
                   </h4>
-                  <p style={{
-                    fontSize: '14px',
-                    color: 'var(--text-primary)',
-                    margin: '0',
-                    fontFamily: '"Inter", sans-serif',
-                    lineHeight: '1.5',
-                    fontWeight: '500'
-                  }}>
+                  <p 
+                    className="text-xs sm:text-sm text-[var(--text-primary)] m-0 leading-snug font-medium"
+                    style={{ fontFamily: '"Inter", sans-serif' }}
+                  >
                     {selectedLeader.education}
                   </p>
                 </div>
                 <div>
-                  <h4 style={{
-                    fontSize: '10px',
-                    fontWeight: '700',
-                    color: 'var(--text-secondary)',
-                    margin: '0 0 6px 0',
-                    textTransform: 'uppercase',
-                    letterSpacing: '1.2px',
-                    fontFamily: '"Inter", sans-serif'
-                  }}>
+                  <h4 
+                    className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
+                    style={{ fontFamily: '"Inter", sans-serif' }}
+                  >
                     Experience
                   </h4>
-                  <p style={{
-                    fontSize: '14px',
-                    color: 'var(--text-primary)',
-                    margin: '0',
-                    fontFamily: '"Inter", sans-serif',
-                    lineHeight: '1.5',
-                    fontWeight: '500'
-                  }}>
+                  <p 
+                    className="text-xs sm:text-sm text-[var(--text-primary)] m-0 leading-snug font-medium"
+                    style={{ fontFamily: '"Inter", sans-serif' }}
+                  >
                     {selectedLeader.experience}
                   </p>
                 </div>

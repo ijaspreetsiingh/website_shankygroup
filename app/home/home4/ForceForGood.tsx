@@ -34,7 +34,7 @@ const ForceForGood = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="w-full h-screen min-h-[450px] md:min-h-[600px] relative overflow-hidden bg-[var(--background)]">
+    <section ref={sectionRef} className="w-full h-[50vh] min-h-[320px] md:h-screen md:min-h-[600px] relative overflow-hidden bg-[var(--background)]">
       {/* Background Image - Futuristic City Skyline */}
       <div 
         className={`absolute top-0 left-0 w-full h-full bg-cover bg-center bg-no-repeat transition-all duration-[3000ms] ease-[cubic-bezier(0.23,1,0.32,1)] brightness-75 contrast-105 ${isHovered ? 'scale-105' : 'scale-100'}`}

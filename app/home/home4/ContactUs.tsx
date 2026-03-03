@@ -174,13 +174,13 @@ const ContactUs = () => {
 
   return (
     <>
-      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-8 py-6 sm:py-8 lg:py-8 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
         isDark ? 'bg-black' : 'bg-white'
       }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(80px)' }}>
       
       {/* Main Dark Rounded Container */}
       <div 
-        className="relative w-full max-w-[1800px] rounded-[16px sm:rounded-[24px] lg:rounded-[32px] overflow-hidden shadow-2xl bg-cover bg-center transition-all duration-1200 ease-[cubic-bezier(0.23,1,0.32,1)] delay-200"
+        className="relative w-full max-w-[1800px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl bg-cover bg-center transition-all duration-1200 ease-[cubic-bezier(0.23,1,0.32,1)] delay-200"
         style={{ 
           backgroundImage: 'url(https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1920&q=80)',
           opacity: isVisible ? 1 : 0,
@@ -191,20 +191,20 @@ const ContactUs = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/60"></div>
         
         {/* Content Container */}
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-2 sm:gap-3 lg:gap-4 px-4 sm:px-8 md:px-16 lg:px-20 xl:px-24 py-6 sm:py-8 lg:py-12 xl:py-14">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-4 sm:gap-6 lg:gap-4 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-24 py-6 sm:py-8 lg:py-12 xl:py-14">
           
           {/* Left Section - Information */}
           <div className="text-white pr-2 sm:pr-4 lg:pr-6 xl:pr-8 flex flex-col justify-between transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-400" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-80px)' }}>
             <div>
               <h1 
-                className="text-[1.5rem] sm:text-[1.8rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-[1.15] font-bold mb-2 sm:mb-3 lg:mb-4 tracking-tight transition-all duration-800 delay-600"
+                className="text-[1.6rem] sm:text-[1.8rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-[1.15] font-bold mb-3 sm:mb-4 lg:mb-4 tracking-tight transition-all duration-800 delay-600"
                 style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(60px)' }}
               >
                 {t('you_have_questions')},<br />
                 {t('we_have_answers')}
               </h1>
               <p 
-                className="text-[0.75rem] sm:text-[0.8rem] md:text-[0.875rem] lg:text-[0.875rem] leading-[1.6] mb-6 sm:mb-8 lg:mb-12 opacity-85 font-light max-w-[280px] sm:max-w-[350px] md:max-w-[420px] transition-all duration-800 delay-800"
+                className="text-[0.8rem] sm:text-[0.8rem] md:text-[0.875rem] lg:text-[0.875rem] leading-[1.6] mb-6 sm:mb-8 lg:mb-12 opacity-85 font-light max-w-full sm:max-w-[350px] md:max-w-[420px] transition-all duration-800 delay-800"
                 style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
               >
                 {t('contact_desc')}
@@ -212,7 +212,7 @@ const ContactUs = () => {
             </div>
 
             {/* Contact Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20 gap-y-4 sm:gap-y-6 lg:gap-y-8 mt-2 sm:mt-4 transition-all duration-800 delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 sm:gap-y-6 lg:gap-y-8 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20 mt-4 sm:mt-4 transition-all duration-800 delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)' }}>
               {/* Location */}
               <div className="transition-all duration-600 delay-1200" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
                 <h3 className="text-[0.875rem] sm:text-[0.9rem] md:text-[1rem] font-semibold mb-1.5 sm:mb-2 lg:mb-2.5">{t('location')}</h3>
@@ -268,7 +268,7 @@ const ContactUs = () => {
 
           {/* Right Section - Form Card */}
           <div 
-            className="bg-white/10 backdrop-blur-md rounded-[12px] sm:rounded-[16px] lg:rounded-[20px] xl:rounded-[24px] p-4 sm:p-6 lg:p-8 shadow-md border border-white/20 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-600 hover:shadow-xl hover:scale-[1.02]"
+            className="bg-white/10 backdrop-blur-md rounded-2xl sm:rounded-[18px] lg:rounded-[20px] xl:rounded-[24px] p-5 sm:p-6 lg:p-8 shadow-md border border-white/20 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-600 hover:shadow-xl lg:hover:scale-[1.02]"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(80px)' }}
           >
             <h2 
@@ -312,7 +312,7 @@ const ContactUs = () => {
                     value={formData.firstName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[44px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors touch-manipulation"
                     placeholder={t('first_name')}
                   />
                   <input
@@ -321,7 +321,7 @@ const ContactUs = () => {
                     value={formData.lastName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[44px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors touch-manipulation"
                     placeholder={t('last_name')}
                   />
                 </div>
@@ -334,7 +334,7 @@ const ContactUs = () => {
                     value={formData.state}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[44px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors touch-manipulation"
                     placeholder={t('state')}
                   />
                   <input
@@ -343,7 +343,7 @@ const ContactUs = () => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[44px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors touch-manipulation"
                     placeholder={t('phone_number')}
                   />
                 </div>
@@ -356,7 +356,7 @@ const ContactUs = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[44px] bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors touch-manipulation"
                     placeholder={t('email_address')}
                   />
                 </div>
@@ -368,7 +368,7 @@ const ContactUs = () => {
                   }`}>
                     {t('type_of_inquiry')}
                   </label>
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-2 sm:gap-2">
                     {[
                       { key: 'general', label: t('general') },
                       { key: 'vendorregistration', label: t('vendorregistration') }
@@ -377,7 +377,7 @@ const ContactUs = () => {
                         key={type.key}
                         type="button"
                         onClick={() => handleInquiryTypeClick(type.key)}
-                        className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[0.7rem] sm:text-[0.75rem] font-normal border transition-all ${
+                        className={`px-4 py-2.5 sm:px-4 sm:py-1.5 min-h-[44px] sm:min-h-0 rounded-full text-[0.8rem] sm:text-[0.75rem] font-normal border transition-all touch-manipulation ${
                           formData.inquiryType === type.key
                             ? 'bg-orange-500 text-white border-orange-500 shadow-lg'
                             : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400 hover:bg-gray-50'
@@ -402,7 +402,7 @@ const ContactUs = () => {
                     onChange={handleInputChange}
                     required
                     rows={4}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors resize-none"
+                    className="w-full px-4 py-3 sm:py-2.5 min-h-[100px] sm:min-h-0 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors resize-none touch-manipulation"
                     placeholder=""
                   />
                 </div>
@@ -429,7 +429,7 @@ const ContactUs = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-2.5 sm:py-3 bg-gradient-to-r from-white to-gray-50 text-gray-800 border border-gray-300 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.75rem] sm:text-[0.8rem] md:text-[0.85rem] font-semibold cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white hover:shadow-xl hover:scale-[1.02] hover:border-gray-400 active:scale-[0.98] relative overflow-hidden ${
+                    className={`w-full py-3 sm:py-3 min-h-[48px] bg-gradient-to-r from-white to-gray-50 text-gray-800 border border-gray-300 rounded-xl sm:rounded-[10px] lg:rounded-[12px] text-[0.8rem] sm:text-[0.8rem] md:text-[0.85rem] font-semibold cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white hover:shadow-xl hover:scale-[1.02] hover:border-gray-400 active:scale-[0.98] relative overflow-hidden touch-manipulation ${
                       isSubmitting ? 'opacity-80 cursor-not-allowed animate-pulse' : ''
                     }`}
                   >
@@ -451,7 +451,7 @@ const ContactUs = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
                     
                     {/* Glow effect on hover */}
-                    <div className="absolute inset-0 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 rounded-xl sm:rounded-[10px] lg:rounded-[12px] bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
               </form>

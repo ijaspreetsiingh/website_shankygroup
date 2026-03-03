@@ -16,6 +16,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const [isThemeChanging, setIsThemeChanging] = useState(false);
   const [whoWeAreDropdown, setWhoWeAreDropdown] = useState(false);
   const [businessDropdown, setBusinessDropdown] = useState(false);
+  const [whoWeAreMobileOpen, setWhoWeAreMobileOpen] = useState(false);
+  const [businessMobileOpen, setBusinessMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [activePath, setActivePath] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -59,17 +61,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
     // Listen for browser navigation
     window.addEventListener('popstate', handleRouteChange);
     
-    // Listen for Next.js router events
-    const handleRouteChangeComplete = () => {
-      console.log('Next.js route change complete');
-      handleRouteChange();
-    };
-
-    // Subscribe to Next.js router events if available
-    if (router.events) {
-      router.events.on('routeChangeComplete', handleRouteChangeComplete);
-      router.events.on('hashChangeComplete', handleRouteChangeComplete);
-    }
+    // Next.js App Router does not expose router.events; route changes are tracked via
+    // popstate, history overrides, link clicks, and the interval below.
     
     // Also listen for pushstate/replacestate as fallback
     const originalPushState = window.history.pushState;
@@ -119,14 +112,10 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       window.removeEventListener('popstate', handleRouteChange);
       document.removeEventListener('click', handleLinkClick);
       clearInterval(intervalCheck);
-      if (router.events) {
-        router.events.off('routeChangeComplete', handleRouteChangeComplete);
-        router.events.off('hashChangeComplete', handleRouteChangeComplete);
-      }
       window.history.pushState = originalPushState;
       window.history.replaceState = originalReplaceState;
     };
-  }, [router]);
+  }, []);
 
   // Zoom-based UI scaling while preserving positions
   useEffect(() => {
@@ -297,34 +286,98 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
   return (
     <React.Fragment>
-      {/* Theme Change Animation Overlay */}
+      {/* Theme Change Animation Overlay - full height, smooth animation */}
       {isThemeChanging && (
-        <div className="fixed inset-0 z-[9999] pointer-events-none">
-          {/* Circular Wipe Animation */}
+        <div 
+          className="fixed inset-0 w-full min-h-[100vh] min-h-[100dvh] z-[9999] pointer-events-none flex items-center justify-center"
+          style={{
+            animation: 'themeOverlayFadeIn 0.25s ease-out forwards',
+          }}
+        >
+          {/* Full cover background - ensures no black gaps */}
           <div 
-            className={`absolute inset-0 rounded-full transition-all duration-800 ease-in-out ${
-              isDark ? 'bg-[#0a0a0a]' : 'bg-white'
+            className={`absolute inset-0 w-full min-h-[100vh] min-h-[100dvh] transition-opacity duration-300 ${
+              isDark ? 'bg-[#0f1115]' : 'bg-white'
+            }`}
+            style={{ opacity: 1 }}
+          />
+          
+          {/* Circular Wipe - expands to cover entire viewport */}
+          <div 
+            className={`absolute rounded-full ${
+              isDark ? 'bg-[#0f1115]' : 'bg-white'
             }`}
             style={{
-              transform: isThemeChanging ? 'scale(3)' : 'scale(0)',
+              width: '200vmax',
+              height: '200vmax',
+              top: '-50vmax',
+              right: '-50vmax',
               transformOrigin: 'top right',
+              animation: 'themeCircleExpand 0.7s ease-out forwards',
             }}
           />
           
-          {/* Icon Animation in Center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="animate-spin-slow">
-              {isDark ? (
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#e63a27" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"></path>
-                </svg>
-              ) : (
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#e63a27" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="5"></circle>
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                </svg>
-              )}
+          {/* Icon in center - flexbox centering so perfect on phone */}
+          <div 
+            className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none"
+          >
+            <div className="flex flex-col items-center justify-center gap-5">
+              {/* Soft glow ring around icon */}
+              <div 
+                className={`relative flex items-center justify-center ${isDark ? 'text-[#0f1115]' : 'text-white'}`}
+                style={{ animation: 'themeIconPop 0.6s ease-out 0.15s both' }}
+              >
+                <span 
+                  className="absolute rounded-full"
+                  style={{
+                    width: 120,
+                    height: 120,
+                    background: isDark 
+                      ? 'radial-gradient(circle, rgba(230,58,39,0.25) 0%, transparent 70%)' 
+                      : 'radial-gradient(circle, rgba(230,58,39,0.15) 0%, transparent 70%)',
+                    animation: 'themeGlow 1.5s ease-in-out infinite',
+                  }}
+                />
+                <span 
+                  className="absolute rounded-full border-2 border-[#e63a27]/30"
+                  style={{ width: 100, height: 100, animation: 'themeRing 0.8s ease-out forwards' }}
+                />
+                {isDark ? (
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#e63a27" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg shrink-0 relative z-10">
+                    <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"></path>
+                  </svg>
+                ) : (
+                  <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#e63a27" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="drop-shadow-lg shrink-0 relative z-10">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+                  </svg>
+                )}
+              </div>
+              {/* Friendly tagline */}
+              <p 
+                className={`text-sm font-medium tracking-widest uppercase opacity-0 ${isDark ? 'text-white/80' : 'text-black/70'}`}
+                style={{ animation: 'themeTaglineFade 0.5s ease-out 0.4s forwards' }}
+              >
+                {isDark ? 'Hello, night' : 'Hello, sunshine'}
+              </p>
             </div>
+          </div>
+          
+          {/* Subtle floating dots - depth */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <span
+                key={i}
+                className={`absolute rounded-full ${isDark ? 'bg-[#e63a27]/10' : 'bg-[#e63a27]/5'}`}
+                style={{
+                  width: 4 + i * 2,
+                  height: 4 + i * 2,
+                  left: `${15 + i * 18}%`,
+                  top: `${20 + (i % 3) * 25}%`,
+                  animation: `themeFloat 2.5s ease-in-out ${i * 0.2}s infinite`,
+                }}
+              />
+            ))}
           </div>
         </div>
       )}
@@ -446,19 +499,22 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         className={`fixed left-0 right-0 z-[1000] transition-all duration-300 ease-in-out ${
           isMiniHeaderHidden ? 'top-0 md:top-0' : 'top-0 md:top-[40px]'
         } ${
-          isScrolled ? 'bg-[var(--card-bg)] shadow-lg dark:shadow-[0_8px_30px_-5px_rgba(255,255,255,0.1),0_4px_15px_-8px_rgba(255,255,255,0.08)] backdrop-blur-sm' : 'bg-[var(--background)]'
+          isScrolled ? 'bg-[var(--card-bg)]/98 shadow-xl dark:shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3),0_4px_15px_-8px_rgba(0,0,0,0.2)] backdrop-blur-lg border-b border-[var(--card-border)]' : 'bg-[var(--card-bg)]/95 shadow-md dark:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.15)] backdrop-blur-md border-b border-[var(--card-border)]'
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
-          <div className="flex items-center justify-between h-[90px] lg:h-[120px]">
-            {/* Logo - Left Side */}
-            <div className="flex items-center flex-shrink-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
-              <Link href="/" className="flex items-center group">
-                <img 
-                  src="/images/new_logo_finalM.png" 
-                  alt="Shanky Group Logo"
-                  className="h-[60px] sm:h-[80px] md:h-[90px] lg:h-[100px] w-auto object-contain transition-all duration-500 group-hover:scale-105"
-                />
+          <div className="flex items-center justify-between h-[80px] sm:h-[96px] lg:h-[120px]">
+            {/* Logo - Left Side - larger size */}
+            <div className="flex items-center flex-shrink-0 min-w-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
+              <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
+                <div className="p-1.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40">
+                  <img 
+                    src="/images/new_logo_finalM.png" 
+                    alt="Shanky Group Logo"
+                    className="h-14 sm:h-[72px] md:h-[88px] lg:h-[108px] w-auto object-contain transition-all duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <span className="hidden sm:block lg:hidden text-[var(--text-primary)] font-bold text-xs sm:text-sm tracking-[0.12em] uppercase truncate">Shanky Group</span>
               </Link>
             </div>
 
@@ -707,12 +763,12 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 </Link>
               </nav>
 
-              {/* Right Side Controls */}
-              <div className="flex items-center gap-3">
-                {/* Search Button - Desktop Only */}
+              {/* Right Side Controls - Search on all screens, Theme + Menu by breakpoint */}
+              <div className="flex items-center gap-2 sm:gap-3">
+                {/* Search Button - Mobile + Desktop (same as laptop) */}
                 <button 
                   onClick={() => setIsSearchOpen(true)}
-                  className="hidden lg:flex items-center justify-center w-10 h-10 rounded-lg bg-transparent border-none cursor-pointer text-[var(--text-secondary)] transition-all duration-300 hover:text-[#e63a27] hover:bg-[var(--card-border)] hover:scale-110"
+                  className="flex items-center justify-center w-10 h-10 sm:w-10 sm:h-10 rounded-xl bg-[var(--card-bg)]/80 lg:bg-transparent border border-[var(--card-border)] lg:border-transparent cursor-pointer text-[var(--text-secondary)] transition-all duration-300 hover:text-[#e63a27] hover:bg-[var(--card-border)] hover:border-[#e63a27]/30 active:scale-95"
                   aria-label="Search"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -721,16 +777,13 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                   </svg>
                 </button>
 
-                {/* Theme Toggle Button with Animation */}
+                {/* Theme Toggle - Desktop only */}
                 <button 
                   onClick={toggleTheme}
                   className="hidden lg:flex items-center justify-center w-10 h-10 rounded-lg bg-transparent border-none cursor-pointer text-[var(--text-secondary)] transition-all duration-300 hover:text-[#e63a27] hover:bg-[var(--card-border)] hover:scale-110 relative overflow-hidden group"
                   aria-label="Toggle theme"
                 >
-                  {/* Background Animation on Hover */}
                   <span className="absolute inset-0 bg-gradient-to-r from-[#e63a27]/10 to-transparent scale-0 group-hover:scale-100 transition-transform duration-500 rounded-lg"></span>
-                  
-                  {/* Icon with Rotation Animation */}
                   <span className="relative z-10 transition-transform duration-500 group-hover:rotate-180">
                     {isDark ? (
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="animate-fade-in">
@@ -747,8 +800,14 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
                 {/* Mobile Menu Button */}
                 <button 
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="lg:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] transition-all duration-300 hover:bg-[var(--card-border)] hover:scale-105"
+                  onClick={() => {
+                    setIsMobileMenuOpen(!isMobileMenuOpen);
+                    if (isMobileMenuOpen) {
+                      setWhoWeAreMobileOpen(false);
+                      setBusinessMobileOpen(false);
+                    }
+                  }}
+                  className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] transition-all duration-300 hover:bg-[#e63a27]/10 hover:border-[#e63a27]/40 hover:scale-105 active:scale-95"
                   aria-label="Toggle menu"
                 >
                   {isMobileMenuOpen ? (
@@ -770,182 +829,147 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         </div>
       </div>
 
-      {/* Mobile Menu - Moved outside header container */}
+      {/* Mobile Menu - Full width, full height, professional design */}
       <div 
-        className={`lg:hidden fixed top-0 left-0 h-full w-[80%] sm:w-[70%] max-w-[320px] bg-[var(--card-bg)] shadow-2xl transform transition-all duration-300 ease-in-out z-[1001] ${
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`lg:hidden fixed inset-0 w-full h-screen min-h-[100dvh] shadow-2xl transform transition-all duration-300 ease-in-out z-[1001] flex flex-col ${
+          isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
         }`}
+        style={{ background: 'linear-gradient(180deg, var(--card-bg) 0%, var(--background) 100%)' }}
       >
-        <div className="h-full overflow-y-auto">
-          {/* Mobile Menu Header */}
-          <div className="sticky top-0 bg-[var(--card-bg)] border-b border-[var(--card-border)] p-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img 
-                src="/images/new_logo_finalM.png" 
-                alt="Shanky Group Logo"
-                className="h-10 w-auto object-contain"
-              />
-              <span className="text-[var(--text-primary)] font-bold text-sm">Menu</span>
-            </div>
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="p-2 rounded-lg bg-[var(--card-border)] text-[var(--text-primary)] hover:bg-[var(--card-border)] transition-all duration-300"
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Menu Content */}
-          <div className="px-5 py-5 space-y-5">
-            {/* WHO WE ARE Section */}
-            <div className="space-y-2 animate-slide-down">
-              <div className="font-bold text-[var(--text-primary)] text-sm pb-2 border-b-2 border-[var(--card-border)]">
-                WHO WE ARE
-              </div>
-              <div className="space-y-0 pl-3">
-                <Link 
-                  href="/who-we-are/about-us" 
-                  className={`block py-3 text-sm transition-all duration-300 border-b border-[var(--card-border)] hover:pl-2 ${
-                    activePath === '/who-we-are/about-us'
-                      ? 'text-[#e63a27] font-black' 
-                      : 'text-[var(--text-secondary)] hover:text-[#e63a27]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  About Us
-                </Link>
-                <Link 
-                  href="/who-we-are/leadership" 
-                  className={`block py-3 text-sm transition-all duration-300 border-b border-[var(--card-border)] hover:pl-2 ${
-                    activePath === '/who-we-are/leadership'
-                      ? 'text-[#e63a27] font-black' 
-                      : 'text-[var(--text-secondary)] hover:text-[#e63a27]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Leadership
-                </Link>
-                <Link 
-                  href="/who-we-are/mission-vision" 
-                  className={`block py-3 text-sm transition-all duration-300 border-b border-[var(--card-border)] hover:pl-2 ${
-                    activePath === '/who-we-are/mission-vision'
-                      ? 'text-[#e63a27] font-black' 
-                      : 'text-[var(--text-secondary)] hover:text-[#e63a27]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Mission & Vision
-                </Link>
-                <Link 
-                  href="/who-we-are/compliance" 
-                  className={`block py-3 text-sm transition-all duration-300 hover:pl-2 ${
-                    activePath === '/who-we-are/compliance'
-                      ? 'text-[#e63a27] font-black' 
-                      : 'text-[var(--text-secondary)] hover:text-[#e63a27]'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Compliance
-                </Link>
-              </div>
-            </div>
-            
-            {/* BUSINESS Section - Professional mobile list */}
-            <div className="animate-slide-down" style={{ animationDelay: '0.1s' }}>
-              <div className="flex items-center gap-2 pb-3 mb-2 border-b-2 border-[var(--card-border)]">
-                <span className="w-1 h-5 rounded-full bg-[#e63a27] shrink-0"/>
-                <span className="font-bold text-[var(--text-primary)] text-base tracking-wide uppercase">Businesses</span>
-              </div>
-              <div className="space-y-1">
-                {companies.map((company, index) => (
-                  <Link 
-                    key={index} 
-                    href={company.link} 
-                    className={`flex items-center gap-3 p-3 rounded-lg transition-all duration-300 border border-transparent ${
-                      activePath === company.link
-                        ? 'bg-[#e63a27]/10 border-[#e63a27]/20 text-[#e63a27]' 
-                        : 'hover:bg-[var(--card-border)]/50 text-[var(--text-primary)]'
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    <div className="w-10 h-10 rounded-lg overflow-hidden shrink-0 border border-[var(--card-border)]">
-                      <img src={company.image} alt={company.name} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <span className={`block text-base font-semibold truncate ${activePath === company.link ? 'text-[#e63a27]' : ''}`}>
-                        {company.name}
-                      </span>
-                      <span className="block text-[13px] text-[var(--text-secondary)] truncate">
-                        {company.description}
-                      </span>
-                    </div>
-                    <svg className="w-4 h-4 text-[var(--text-secondary)] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-                  </Link>
-                ))}
-              </div>
-              <Link 
-                href="/company" 
-                className="mt-3 flex items-center justify-center gap-2 py-2.5 rounded-lg border border-[var(--card-border)] text-[#e63a27] text-base font-semibold hover:bg-[#e63a27]/5 transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                View all companies
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+        <div className="flex flex-col h-full min-h-0">
+          {/* Mobile Menu Header - Brand strip with accent */}
+          <div className="sticky top-0 z-10 shrink-0 bg-[var(--card-bg)]/95 backdrop-blur-md border-b border-[var(--card-border)]">
+            <div className="h-1 w-full bg-gradient-to-r from-[#e63a27] via-[#e63a27]/80 to-transparent" />
+            <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
+              <Link href="/" className="flex items-center gap-3 group" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>
+                <div className="p-1.5 rounded-xl bg-[var(--background)] border border-[var(--card-border)] group-hover:border-[#e63a27]/40 transition-colors">
+                  <img src="/images/new_logo_finalM.png" alt="Shanky Group" className="h-9 w-auto object-contain" />
+                </div>
+                <div>
+                  <span className="block text-[var(--text-primary)] font-bold text-sm tracking-[0.15em] uppercase">Shanky</span>
+                  <span className="block text-[var(--text-secondary)] text-[11px] font-medium tracking-widest uppercase">Group</span>
+                </div>
               </Link>
-            </div>
-            
-            {/* Simple Links */}
-            <div className="space-y-2 pt-2 animate-slide-down" style={{ animationDelay: '0.2s' }}>
-              <Link 
-                href="/careers" 
-                className={`block text-sm py-3 transition-all duration-300 border-b border-[var(--card-border)] ${
-                  activePath === '/careers' 
-                    ? 'text-[#e63a27] font-black' 
-                    : 'text-[var(--text-primary)] font-bold hover:text-[#e63a27]'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+              <button
+                onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}
+                className="p-2.5 rounded-xl border border-[var(--card-border)] text-[var(--text-secondary)] hover:text-[#e63a27] hover:border-[#e63a27]/40 hover:bg-[#e63a27]/5 transition-all duration-200"
+                aria-label="Close menu"
               >
-                CAREERS
-              </Link>
-              <Link 
-                href="/contact" 
-                className={`block text-sm py-3 transition-all duration-300 ${
-                  activePath === '/contact' 
-                    ? 'text-[#e63a27] font-black' 
-                    : 'text-[var(--text-primary)] font-bold hover:text-[#e63a27]'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                CONTACT US
-              </Link>
-            </div>
-
-            {/* Mobile Theme Toggle with Animation */}
-            <div className="pt-3 border-t border-[var(--card-border)] animate-slide-down" style={{ animationDelay: '0.3s' }}>
-              <button 
-                onClick={toggleTheme}
-                className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gradient-to-r from-[var(--card-border)] to-transparent text-[var(--text-primary)] font-semibold text-sm transition-all duration-300 hover:from-[#e63a27]/10 hover:to-transparent group"
-              >
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#e63a27] animate-pulse"></span>
-                  Toggle Theme
-                </span>
-                <span className="transition-transform duration-500 group-hover:rotate-180">
-                  {isDark ? (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="5"></circle>
-                      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
-                    </svg>
-                  ) : (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"></path>
-                    </svg>
-                  )}
-                </span>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
               </button>
             </div>
+          </div>
+
+          {/* Mobile Menu Content - scrollable, no horizontal overflow */}
+          <div className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 sm:px-6 py-6 space-y-2">
+            <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)] px-1 pb-2">Navigation</p>
+
+            {/* WHO WE ARE - Card-style dropdown */}
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm">
+              <button
+                onClick={() => setWhoWeAreMobileOpen(!whoWeAreMobileOpen)}
+                className="w-full flex items-center gap-4 py-4 px-4 text-left active:bg-[var(--card-border)]/30 transition-colors"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#e63a27]/10 text-[#e63a27] shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <span className="flex-1 text-[var(--text-primary)] font-semibold text-[15px] tracking-wide">{t('who_we_are')}</span>
+                <svg className={`w-5 h-5 text-[var(--text-secondary)] transition-transform duration-200 ${whoWeAreMobileOpen ? 'rotate-180 text-[#e63a27]' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div className={`grid transition-all duration-200 ease-out overflow-hidden ${whoWeAreMobileOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className="min-h-0">
+                  <div className="px-4 pb-4 pt-0 space-y-0.5 bg-[var(--background)]/50 border-t border-[var(--card-border)]">
+                    <Link href="/who-we-are/about-us" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
+                      activePath === '/who-we-are/about-us' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>About Us</Link>
+                    <Link href="/who-we-are/leadership" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
+                      activePath === '/who-we-are/leadership' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Leadership</Link>
+                    <Link href="/who-we-are/mission-vision" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
+                      activePath === '/who-we-are/mission-vision' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Mission & Vision</Link>
+                    <Link href="/who-we-are/compliance" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
+                      activePath === '/who-we-are/compliance' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Compliance</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* BUSINESSES - Card-style dropdown */}
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm min-w-0">
+              <button
+                onClick={() => setBusinessMobileOpen(!businessMobileOpen)}
+                className="w-full flex items-center gap-4 py-4 px-4 text-left active:bg-[var(--card-border)]/30 transition-colors"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#e63a27]/10 text-[#e63a27] shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                  </svg>
+                </div>
+                <span className="flex-1 text-[var(--text-primary)] font-semibold text-[15px] tracking-wide">{t('businesses')}</span>
+                <svg className={`w-5 h-5 text-[var(--text-secondary)] transition-transform duration-200 ${businessMobileOpen ? 'rotate-180 text-[#e63a27]' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div className={`grid transition-all duration-200 ease-out overflow-hidden ${businessMobileOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className="min-h-0 min-w-0 overflow-hidden">
+                  <div className="px-3 sm:px-4 pb-4 pt-2 space-y-2 bg-[var(--background)]/50 border-t border-[var(--card-border)] min-w-0">
+                    {companies.map((company, index) => (
+                      <Link key={index} href={company.link} className={`flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 rounded-xl border transition-all min-w-0 ${
+                        activePath === company.link ? 'bg-[#e63a27]/10 border-[#e63a27]/30' : 'border-[var(--card-border)] hover:border-[#e63a27]/20 hover:bg-[var(--card-border)]/40'
+                      }`} onClick={() => { setIsMobileMenuOpen(false); setBusinessMobileOpen(false); }}>
+                        <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-lg overflow-hidden shrink-0 border border-[var(--card-border)] bg-[var(--card-bg)]">
+                          <img src={company.image} alt={company.name} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="flex-1 min-w-0 overflow-hidden">
+                          <span className={`block text-[13px] sm:text-[14px] font-semibold truncate ${activePath === company.link ? 'text-[#e63a27]' : 'text-[var(--text-primary)]'}`}>{company.name}</span>
+                          <span className="block text-[11px] sm:text-[12px] text-[var(--text-secondary)] truncate">{company.description}</span>
+                        </div>
+                        <svg className="w-4 h-4 text-[var(--text-secondary)] shrink-0 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+                      </Link>
+                    ))}
+                    <Link href="/company" className="flex items-center justify-center gap-2 w-full min-w-0 py-3 px-3 sm:px-4 rounded-xl bg-[#e63a27]/10 text-[#e63a27] text-[13px] sm:text-[14px] font-semibold hover:bg-[#e63a27]/20 transition-colors overflow-hidden border border-[#e63a27]/30 box-border" onClick={() => { setIsMobileMenuOpen(false); setBusinessMobileOpen(false); }}>
+                      View all companies <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick links - Card style with icons */}
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm divide-y divide-[var(--card-border)]">
+              <Link href="/careers" className={`flex items-center gap-4 py-4 px-4 transition-colors ${activePath === '/careers' ? 'bg-[#e63a27]/10 text-[#e63a27]' : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]/30'}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 text-[var(--text-primary)] shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6M9 18h6"/></svg></div>
+                <span className="flex-1 font-semibold text-[15px] tracking-wide">{t('careers')}</span>
+                <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </Link>
+              <Link href="/contact" className={`flex items-center gap-4 py-4 px-4 transition-colors ${activePath === '/contact' ? 'bg-[#e63a27]/10 text-[#e63a27]' : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]/30'}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 text-[var(--text-primary)] shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+                <span className="flex-1 font-semibold text-[15px] tracking-wide">{t('contact_us')}</span>
+                <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </Link>
+              <Link href="/blog" className={`flex items-center gap-4 py-4 px-4 transition-colors ${activePath === '/blog' ? 'bg-[#e63a27]/10 text-[#e63a27]' : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]/30'}`} onClick={() => setIsMobileMenuOpen(false)}>
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 text-[var(--text-primary)] shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+                <span className="flex-1 font-semibold text-[15px] tracking-wide">{t('blog')}</span>
+                <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </Link>
+            </div>
+          </div>
+
+          {/* Theme toggle - Fixed at bottom, full width */}
+          <div className="shrink-0 mt-auto border-t border-[var(--card-border)] bg-[var(--card-bg)]/95 backdrop-blur-md px-4 sm:px-6 py-4">
+            <button onClick={toggleTheme} className="w-full flex items-center justify-between gap-4 py-4 px-4 rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-sm hover:border-[#e63a27]/30 hover:bg-[#e63a27]/5 transition-all duration-200">
+              <span className="flex items-center gap-3">
+                <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 shrink-0 text-[var(--text-primary)]">
+                  {isDark ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg> : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"/></svg>}
+                </span>
+                <span className="text-[var(--text-primary)] font-semibold text-[15px]">{isDark ? 'Switch to light mode' : 'Switch to dark mode'}</span>
+              </span>
+              <span className="text-[11px] font-medium tracking-wider uppercase text-[var(--text-secondary)] px-2.5 py-1 rounded-lg bg-[var(--card-border)]/60">{isDark ? 'Dark' : 'Light'}</span>
+            </button>
           </div>
         </div>
       </div>
@@ -954,7 +978,11 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       {isMobileMenuOpen && (
         <div 
           className="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[1000] transition-opacity duration-300"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => {
+            setIsMobileMenuOpen(false);
+            setWhoWeAreMobileOpen(false);
+            setBusinessMobileOpen(false);
+          }}
         />
       )}
 
@@ -1038,8 +1066,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         </div>
       )}
 
-      {/* Spacer for fixed header - FIXED: Static height to prevent content jumping */}
-      <div className="h-[90px] md:h-[130px] lg:h-[160px]" />
+      {/* Spacer for fixed header - matches header height per breakpoint */}
+      <div className="h-[80px] sm:h-[96px] md:h-[130px] lg:h-[160px]" />
 
       {/* Add Custom CSS for Animations */}
       <style dangerouslySetInnerHTML={{

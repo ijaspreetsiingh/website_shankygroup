@@ -16,100 +16,30 @@ const ContactPage = () => {
     <div className="w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
       <HeaderFour isScrolled={isScrolled} />
       <main className="flex-grow">
-        {/* Hero Section - Same as Careers Page */}
-        <section 
-          style={{
-            position: 'relative',
-            minHeight: '85vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden',
-            backgroundColor: 'var(--background)'
-          }}>
-          {/* Content */}
-          <div style={{
-            position: 'relative',
-            zIndex: 2,
-            width: '100%',
-            maxWidth: '1900px',
-            padding: '0 40px',
-            color: 'var(--foreground)'
-          }}>
-            <div style={{
-              maxWidth: '800px'
-            }}>
-              {/* Breadcrumb Navigation */}
-              <div style={{
-                marginBottom: '40px',
-                fontSize: '16px',
-                color: 'var(--text-secondary)',
-                fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif'
-              }}>
-                <span style={{ cursor: 'pointer' }}>Home</span>
-                <span style={{ margin: '0 8px' }}>/</span>
-                <span style={{ color: 'var(--accent)' }}>Contact Us</span>
+        {/* Hero Section - Mobile-first responsive */}
+        <section className="relative min-h-[70vh] sm:min-h-[75vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden bg-[var(--background)]">
+          <div className="relative z-[2] w-full max-w-[1900px] px-4 sm:px-6 md:px-8 lg:px-10 py-8 sm:py-12 text-[var(--foreground)]">
+            <div className="max-w-[800px]">
+              {/* Breadcrumb */}
+              <div className="mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base text-[var(--text-secondary)] font-[family-name:var(--font-inter)]">
+                <span className="cursor-pointer">Home</span>
+                <span className="mx-2">/</span>
+                <span className="text-[var(--accent)]">Contact Us</span>
               </div>
-              
-              <h1 style={{
-                fontSize: 'clamp(48px, 5vw, 72px)',
-                fontWeight: '700',
-                lineHeight: '1.1',
-                letterSpacing: '-1.5px',
-                margin: '0 0 20px 0',
-                fontFamily: '"Montserrat", "Arial", sans-serif',
-                color: 'var(--text-primary)'
-              }}>
+
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-bold leading-tight tracking-tight mt-0 mb-4 sm:mb-5 font-[family-name:var(--font-montserrat)] text-[var(--text-primary)]">
                 GET IN TOUCH
               </h1>
-              
-              <p style={{
-                fontSize: 'clamp(18px, 2vw, 24px)',
-                fontWeight: '400',
-                width:'200%',
-                lineHeight: '1.6',
-                margin: '0 0 40px 0',
-                fontFamily: '"Lato", "Arial", sans-serif',
-                opacity: 0.9,
-                color:'var(--text-secondary)'
-              }}>
+
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal w-full max-w-full leading-relaxed mb-6 sm:mb-8 md:mb-10 font-[family-name:var(--font-lato)] opacity-90 text-[var(--text-secondary)]">
                 We're here to discuss your goals and find the right solution. Connect with our team to explore how we can help your business grow.
               </p>
-              
-              <div style={{
-                display: 'flex',
-                gap: '20px',
-                flexWrap: 'wrap'
-              }}>
-                <button style={{
-                  backgroundColor: '#e63a27',
-                  color: '#ffffff',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  padding: '16px 40px',
-                  borderRadius: '30px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px',
-                  boxShadow: '0 4px 20px rgba(230, 58, 39, 0.3)'
-                }}>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap">
+                <button className="w-full sm:w-auto bg-[#e63a27] text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-0 cursor-pointer transition-all duration-300 uppercase tracking-wider shadow-[0_4px_20px_rgba(230,58,39,0.3)] min-h-[48px] touch-manipulation">
                   Start Conversation
                 </button>
-                <button style={{
-                  backgroundColor: 'transparent',
-                  color: 'var(--text-primary)',
-                  fontSize: '16px',
-                  fontWeight: '600',
-                  padding: '16px 40px',
-                  borderRadius: '30px',
-                  border: '2px solid var(--card-border)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px'
-                }}>
+                <button className="w-full sm:w-auto bg-transparent text-[var(--text-primary)] text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-2 border-[var(--card-border)] cursor-pointer transition-all duration-300 uppercase tracking-wider min-h-[48px] touch-manipulation">
                   View Locations
                 </button>
               </div>
@@ -117,145 +47,50 @@ const ContactPage = () => {
           </div>
         </section>
 
-        {/* Featured Section - Contact Information */}
-        <section 
-          style={{
-            position: 'relative',
-            width: '100%',
-            height: '100vh',
-            backgroundColor: '#000000',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            overflow: 'hidden'
-          }}>
+        {/* Featured Section - Contact Information - Mobile perfect */}
+        <section className="relative w-full min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:h-[100vh] bg-black flex items-center justify-center overflow-hidden py-12 sm:py-16 md:py-20">
           {/* Background Image */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundImage: 'url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&h=1080&fit=crop)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            opacity: 1,
-            filter: 'blur(8px)',
-            zIndex: 0
-          }} />
-          
-          {/* Dark Overlay */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)',
-            zIndex: 1
-          }} />
-          
-          {/* Content */}
-          <div style={{
-            position: 'relative',
-            zIndex: 2,
-            width: '100%',
-            maxWidth: '1400px',
-            margin: '0 auto',
-            padding: '0 40px',
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center'
-          }}>
-            {/* Text Content - Right Aligned */}
-            <div style={{
-              backgroundColor: 'rgba(30,30,30,0.85)',
-              borderRadius: '20px',
-              padding: '60px',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-              backdropFilter: 'blur(10px)',
-              textAlign: 'center',
-              maxWidth: '600px',
-              marginRight: '-20px'
-            }}>
-              <div style={{
-                marginBottom: '20px'
-              }}>
-                <span style={{
-                  backgroundColor: '#e63a27',
-                  color: '#ffffff',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  padding: '8px 20px',
-                  borderRadius: '25px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px'
-                }}>
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100 blur-[8px] z-0"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1920&h=1080&fit=crop)',
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-black/50 z-[1]" />
+
+          {/* Content - centered on mobile, right on desktop */}
+          <div className="relative z-[2] w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-10 flex justify-center lg:justify-end items-center">
+            <div className="w-full max-w-[600px] lg:mr-0 bg-[rgba(30,30,30,0.85)] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-14 shadow-[0_20px_60px_rgba(0,0,0,0.3)] backdrop-blur-[10px] text-center">
+              <div className="mb-4 sm:mb-5">
+                <span className="inline-block bg-[#e63a27] text-white text-xs sm:text-sm font-semibold py-2 sm:py-2.5 px-4 sm:px-5 rounded-[25px] uppercase tracking-wider">
                   Connect With Us
                 </span>
               </div>
-              
-              <h2 style={{
-                fontSize: 'clamp(42px, 4vw, 56px)',
-                fontWeight: '700',
-                color: '#ffffff',
-                margin: '0 0 24px 0',
-                lineHeight: '1.2',
-                fontFamily: '"Montserrat", "Arial", sans-serif'
-              }}>
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-white m-0 mb-4 sm:mb-6 leading-tight font-[family-name:var(--font-montserrat)]">
                 Let's Talk
               </h2>
-              
-              <p style={{
-                fontSize: 'clamp(20px, 2vw, 24px)',
-                color: '#cccccc',
-                margin: '0 0 32px 0',
-                lineHeight: '1.4',
-                fontWeight: '500'
-              }}>
+
+              <p className="text-lg sm:text-xl md:text-2xl text-[#cccccc] m-0 mb-6 sm:mb-8 font-medium leading-snug">
                 Your Success Starts Here
               </p>
-              
-              <div style={{
-                fontSize: '18px',
-                color: '#cccccc',
-                lineHeight: '1.7',
-                margin: '0 0 40px 0',
-                textAlign: 'left'
-              }}>
-                <p style={{
-                  margin: '0 0 20px 0'
-                }}>
+
+              <div className="text-sm sm:text-base md:text-lg text-[#cccccc] leading-relaxed mb-6 sm:mb-8 md:mb-10 text-left space-y-4">
+                <p className="m-0">
                   Whether you're looking for partnership opportunities, need support, or want to learn more about our services, our team is ready to help you achieve your goals.
                 </p>
-                <p style={{
-                  margin: '0 0 20px 0'
-                }}>
+                <p className="m-0">
                   We believe in building lasting relationships through exceptional service, innovative solutions, and a commitment to your success.
                 </p>
               </div>
-              
-              <button style={{
-                backgroundColor: '#e63a27',
-                color: '#ffffff',
-                fontSize: '16px',
-                fontWeight: '600',
-                padding: '16px 40px',
-                borderRadius: '30px',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                boxShadow: '0 4px 20px rgba(230, 58, 39, 0.3)'
-              }}>
+
+              <button className="w-full sm:w-auto bg-[#e63a27] text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-0 cursor-pointer transition-all duration-300 uppercase tracking-wider shadow-[0_4px_20px_rgba(230,58,39,0.3)] min-h-[48px] touch-manipulation">
                 Contact Us Now
               </button>
             </div>
           </div>
         </section>
-        
+
         <ContactUs />
       </main>
       <FooterFour />

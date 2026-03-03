@@ -57,25 +57,25 @@ const LegacyLeadership = () => {
     >
       {/* Simple Heading Section */}
       <div 
-        className={`text-center px-[20px] py-[40px] md:px-[40px] md:py-[80px_40px_60px] bg-[var(--background)] transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}
+        className={`text-center px-4 py-8 sm:px-6 sm:py-10 md:px-[40px] md:py-[80px] bg-[var(--background)] transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}
       >
-        <h2 className="text-[24px] md:text-[42px] font-semibold text-[var(--text-primary)] m-0 mb-[16px] tracking-[1px] leading-[1.2]">
+        <h2 className="text-[22px] sm:text-[24px] md:text-[42px] font-semibold text-[var(--text-primary)] m-0 mb-3 md:mb-[16px] tracking-[0.5px] md:tracking-[1px] leading-[1.2]">
           Legacy & Leadership
         </h2>
-        <div className="w-[80px] h-[4px] bg-[#e63a27] mx-auto mb-[24px] rounded-[2px]" />
-        <p className="text-[16px] md:text-[18px] text-[var(--text-secondary)] font-normal tracking-[0.5px] max-w-[600px] mx-auto">
+        <div className="w-[60px] sm:w-[80px] h-[3px] sm:h-[4px] bg-[#e63a27] mx-auto mb-4 md:mb-[24px] rounded-[2px]" />
+        <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[var(--text-secondary)] font-normal tracking-[0.5px] max-w-[600px] mx-auto px-1">
           Building a legacy of excellence and leadership for generations
         </p>
       </div>
 
       
-      {/* Full Width Two Video Cards Grid with Staggered Animation */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 w-full m-0">
+      {/* Full Width Two Video Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-0 px-4 sm:px-6 md:px-0 pb-6 md:pb-0 w-full m-0">
         {/* Video Card 1 - Historical Journey */}
         <div
-          className={`relative h-[350px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-400
+          className={`relative h-[300px] sm:h-[340px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] rounded-xl md:rounded-none transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-400
             ${isVisible ? 'opacity-100' : 'opacity-0'}
-            ${hoveredIndex === 0 ? 'scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
+            ${hoveredIndex === 0 ? 'md:scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
           `}
           onMouseEnter={() => setHoveredIndex(0)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -102,7 +102,7 @@ const LegacyLeadership = () => {
                 {/* Ultra Attractive Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div 
-                    className="group relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 hover:rotate-12"
+                    className="group relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 active:scale-110 md:hover:rotate-12"
                     onClick={() => setPlayingVideo('dQw4w9WgXcQ')}
                   >
                     {/* Multiple glow layers - black/white */}
@@ -118,7 +118,7 @@ const LegacyLeadership = () => {
                     <div className="absolute inset-2 bg-transparent rounded-full border-2 border-white shadow-inner"></div>
                     
                     {/* Play icon - black/white */}
-                    <svg className="w-12 h-12 text-white relative z-10 ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white relative z-10 ml-1 sm:ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                     
@@ -134,28 +134,26 @@ const LegacyLeadership = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-black/30 to-black/10 pointer-events-none" />
 
           {/* Text Content */}
-          <div className="absolute bottom-[30px] md:bottom-[50px] left-[30px] md:left-[50px] right-[30px] md:right-[50px] text-white z-[2]">
-            <h3 className="text-[18px] md:text-[24px] font-normal m-0 mb-[20px] leading-[1.4] tracking-[0.5px]">
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 md:bottom-[50px] md:left-[50px] md:right-[50px] text-white z-[2]">
+            <h3 className="text-[15px] sm:text-[17px] md:text-[24px] font-normal m-0 mb-3 sm:mb-4 md:mb-[20px] leading-[1.35] sm:leading-[1.4] tracking-[0.3px] md:tracking-[0.5px] line-clamp-2 sm:line-clamp-none">
               Establishing a foundation of success
             </h3>
             
             <a 
               href="#"
-              className="group inline-flex items-center gap-[8px] hover:gap-[12px] text-[14px] text-white no-underline font-normal tracking-[0.3px] transition-all duration-300"
+              className="group inline-flex items-center gap-2 hover:gap-3 text-[13px] sm:text-[14px] text-white no-underline font-medium tracking-[0.3px] transition-all duration-300 py-2 pr-3 rounded-lg active:opacity-90 min-h-[44px] items-center"
             >
               Watch Full Story
-              <span className="text-[16px] inline-block">
-                ▶
-              </span>
+              <span className="text-[14px] sm:text-[16px] inline-block">▶</span>
             </a>
           </div>
         </div>
 
         {/* Video Card 2 - Chairman's Speech */}
         <div
-          className={`relative h-[350px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-600
+          className={`relative h-[300px] sm:h-[340px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] rounded-xl md:rounded-none transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-600
             ${isVisible ? 'opacity-100' : 'opacity-0'}
-            ${hoveredIndex === 1 ? 'scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
+            ${hoveredIndex === 1 ? 'md:scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
           `}
           onMouseEnter={() => setHoveredIndex(1)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -182,7 +180,7 @@ const LegacyLeadership = () => {
                 {/* Ultra Attractive Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div 
-                    className="group relative w-24 h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 hover:rotate-12"
+                    className="group relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 active:scale-110 md:hover:rotate-12"
                     onClick={() => setPlayingVideo('9bZkp7q19f0')}
                   >
                     {/* Multiple glow layers - black/white */}
@@ -198,7 +196,7 @@ const LegacyLeadership = () => {
                     <div className="absolute inset-2 bg-transparent rounded-full border-2 border-white shadow-inner"></div>
                     
                     {/* Play icon - black/white */}
-                    <svg className="w-12 h-12 text-white relative z-10 ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white relative z-10 ml-1 sm:ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                     
@@ -214,19 +212,17 @@ const LegacyLeadership = () => {
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-black/30 to-black/10 pointer-events-none" />
 
           {/* Text Content */}
-          <div className="absolute bottom-[30px] md:bottom-[50px] left-[30px] md:left-[50px] right-[30px] md:right-[50px] text-white z-[2]">
-            <h3 className="text-[18px] md:text-[19px] font-normal m-0 mb-[20px] leading-[1.5] tracking-[0.3px]">
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 md:bottom-[50px] md:left-[50px] md:right-[50px] text-white z-[2]">
+            <h3 className="text-[14px] sm:text-[16px] md:text-[19px] font-normal m-0 mb-3 sm:mb-4 md:mb-[20px] leading-[1.4] sm:leading-[1.5] tracking-[0.2px] md:tracking-[0.3px] line-clamp-3 sm:line-clamp-none">
               Chairman, Mr. Kumar Mangalam Birla's speech at 78th AGM of Grasim Industries Limited
             </h3>
             
             <a 
               href="#"
-              className="group inline-flex items-center gap-[8px] hover:gap-[12px] text-[14px] text-white no-underline font-normal tracking-[0.3px] transition-all duration-300"
+              className="group inline-flex items-center gap-2 hover:gap-3 text-[13px] sm:text-[14px] text-white no-underline font-medium tracking-[0.3px] transition-all duration-300 py-2 pr-3 rounded-lg active:opacity-90 min-h-[44px] items-center"
             >
               Watch Full Speech
-              <span className="text-[16px] inline-block">
-                ▶
-              </span>
+              <span className="text-[14px] sm:text-[16px] inline-block">▶</span>
             </a>
           </div>
         </div>

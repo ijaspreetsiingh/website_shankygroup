@@ -202,8 +202,8 @@ const WhatWeDo = () => {
           }
         }}
         className={`relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden cursor-pointer group
-          w-full md:flex-1 md:mx-0.5 md:my-0.5
-          ${isExpanded ? 'h-[600px] md:h-[550px] md:w-full md:flex-none md:basis-full z-50 scale-[1.03]' : 'h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 hover:scale-[1.02]'}
+          w-full min-w-0 max-w-full md:flex-1 md:mx-0.5 md:my-0.5
+          ${isExpanded ? 'h-[82vh] min-h-[420px] sm:min-h-[480px] md:min-h-0 md:h-[550px] md:w-full md:flex-none md:basis-full z-50 md:scale-[1.03]' : 'h-[300px] sm:h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 md:hover:scale-[1.02]'}
           ${shouldHide ? 'md:w-0 md:basis-0 md:opacity-0 md:pointer-events-none md:scale-90' : 'opacity-100'}
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[80px] opacity-0'}
         `}
@@ -213,7 +213,7 @@ const WhatWeDo = () => {
       >
         {/* Glass Card Body */}
         <div 
-          className="relative h-full rounded-[24px] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rounded-[18px]"
+          className="relative h-full w-full min-w-0 rounded-2xl sm:rounded-[24px] overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:rounded-[18px]"
           style={{
             background: `linear-gradient(135deg, ${company.categoryColor}08 0%, ${company.categoryColor}03 100%)`,
             boxShadow: `0 8px 32px ${company.categoryColor}15`,
@@ -248,10 +248,10 @@ const WhatWeDo = () => {
               }}
             />
 
-            {/* Floating Category Badge */}
-            <div className="absolute top-6 right-6 z-20">
+            {/* Floating Category Badge - full text visible on mobile */}
+            <div className="absolute top-3 right-3 sm:top-6 sm:right-6 z-20">
               <div 
-                className="px-4 py-2 rounded-full text-white text-xs font-bold tracking-[1.5px] uppercase shadow-lg backdrop-blur-sm transition-all duration-400 group-hover:scale-105 group-hover:shadow-xl group-hover:rotate-3"
+                className="inline-block px-2.5 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-full text-white text-[9px] sm:text-xs font-bold tracking-[0.5px] sm:tracking-[1.5px] uppercase shadow-lg backdrop-blur-sm text-right sm:text-center leading-tight sm:leading-normal whitespace-normal sm:whitespace-nowrap max-w-[120px] sm:max-w-none"
                 style={{
                   background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
                   boxShadow: `0 8px 32px ${company.categoryColor}40, inset 0 0 20px rgba(255,255,255,0.3)`,
@@ -262,10 +262,10 @@ const WhatWeDo = () => {
             </div>
 
             {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-8 z-10">
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 z-10">
               {/* Company Number */}
               <div 
-                className="text-6xl md:text-7xl font-black mb-4 opacity-30 transition-all duration-700 group-hover:opacity-40 group-hover:translate-x-2"
+                className="text-4xl sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 opacity-30 transition-all duration-700 group-hover:opacity-40 md:group-hover:translate-x-2"
                 style={{ 
                   color: company.categoryColor,
                   fontFamily: 'serif',
@@ -276,21 +276,21 @@ const WhatWeDo = () => {
               </div>
               
               {/* Company Name */}
-              <h3 className="text-2xl md:text-3xl font-black text-white mb-3 leading-[1.1] tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] group-hover:scale-102">
+              <h3 className="text-lg sm:text-xl md:text-3xl font-black text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-2 sm:line-clamp-none">
                 {company.shortName}
               </h3>
               
               {/* Accent Line */}
               <div 
-                className="w-16 h-1.5 rounded-full mb-4 transition-all duration-600 group-hover:w-28 group-hover:h-2"
+                className="w-12 h-1 sm:w-16 sm:h-1.5 rounded-full mb-2 sm:mb-4 transition-all duration-600 group-hover:w-28 group-hover:h-2"
                 style={{
                   background: `linear-gradient(90deg, ${company.categoryColor} 0%, ${company.categoryColor}cc 100%)`,
                   boxShadow: `0 0 20px ${company.categoryColor}80`,
                 }}
               />
 
-              {/* Legal Structure */}
-              <div className="text-white/90 text-sm font-semibold tracking-[0.5px] uppercase opacity-0 transition-all duration-300 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
+              {/* Legal Structure - desktop hover only */}
+              <div className="hidden md:block text-white/90 text-sm font-semibold tracking-[0.5px] uppercase opacity-0 transition-all duration-300 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
                 {company.legalStructure}
               </div>
             </div>
@@ -298,9 +298,9 @@ const WhatWeDo = () => {
 
           {/* Expanded State - Premium Layout */}
           {isExpanded && (
-            <div className="flex flex-col md:flex-row h-full animate-[fadeIn_0.8s_ease-out_forwards]">
-              {/* Left Side - Premium Image */}
-              <div className="relative h-[280px] md:h-full md:flex-[0_0_45%] overflow-hidden">
+            <div className="flex flex-col md:flex-row h-full w-full min-w-0 overflow-hidden">
+              {/* Left Side - Premium Image - slightly shorter on mobile so content + button get more space */}
+              <div className="relative h-[160px] sm:h-[200px] md:h-full md:flex-[0_0_45%] overflow-hidden flex-shrink-0">
                 <div 
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-[2000ms] ease-[cubic-bezier(0.23,1,0.32,1)]"
                   style={{ 
@@ -319,9 +319,9 @@ const WhatWeDo = () => {
                 </div>
 
                 {/* Company Number Overlay */}
-                <div className="absolute top-6 left-6">
+                <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
                   <div 
-                    className="text-8xl font-black opacity-10"
+                    className="text-5xl sm:text-6xl md:text-8xl font-black opacity-10"
                     style={{ 
                       color: company.categoryColor,
                       fontFamily: 'serif',
@@ -332,10 +332,10 @@ const WhatWeDo = () => {
                   </div>
                 </div>
 
-                {/* Floating Category Badge */}
-                <div className="absolute top-6 right-6">
+                {/* Floating Category Badge - full text on mobile */}
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
                   <div 
-                    className="px-5 py-3 rounded-full text-white text-sm font-bold tracking-[1.5px] uppercase shadow-xl backdrop-blur-sm"
+                    className="inline-block px-3 py-2 sm:px-5 sm:py-3 rounded-lg sm:rounded-full text-white text-[10px] sm:text-sm font-bold tracking-[0.5px] sm:tracking-[1.5px] uppercase shadow-xl backdrop-blur-sm text-right sm:text-center leading-tight sm:leading-normal whitespace-normal sm:whitespace-nowrap max-w-[140px] sm:max-w-none"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
                       boxShadow: `0 12px 40px ${company.categoryColor}50, inset 0 0 30px rgba(255,255,255,0.3)`,
@@ -346,26 +346,32 @@ const WhatWeDo = () => {
                 </div>
               </div>
 
-              {/* Right Side - Premium Content */}
-              <div className="flex-1 p-8 md:p-12 overflow-y-auto scrollbar-hide" style={{ 
-                background: `linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 95%, ${company.categoryColor}05 100%)`,
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none'
-              }}>
-                <style jsx>{`
-                  .scrollbar-hide::-webkit-scrollbar {
-                    display: none;
-                  }
-                `}</style>
+              {/* Right Side - On mobile: scrollable content + sticky Learn More button at bottom */}
+              <div 
+                className="flex-1 min-w-0 min-h-0 flex flex-col overflow-hidden"
+                style={{ 
+                  background: `linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 95%, ${company.categoryColor}05 100%)`,
+                }}
+              >
+                {/* Scrollable content - only this part scrolls on mobile */}
+                <div 
+                  className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-4 sm:p-6 md:p-12 pb-4 sm:pb-6 md:pb-8 scrollbar-hide" 
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  <style jsx>{`
+                    .scrollbar-hide::-webkit-scrollbar {
+                      display: none;
+                    }
+                  `}</style>
                 {/* Company Header */}
-                <div className="mb-8">
-                  <h3 className="text-3xl md:text-4xl font-black text-[var(--text-primary)] mb-4 leading-[1.1] tracking-[1px] uppercase">
+                <div className="mb-4 sm:mb-8">
+                  <h3 className="text-xl sm:text-2xl md:text-4xl font-black text-[var(--text-primary)] mb-3 sm:mb-4 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase break-words">
                     {company.name}
                   </h3>
                   
                   {/* Premium Accent Line */}
                   <div 
-                    className="w-32 h-1.5 rounded-full mb-6"
+                    className="w-20 h-1 sm:w-32 sm:h-1.5 rounded-full mb-4 sm:mb-6"
                     style={{
                       background: `linear-gradient(90deg, ${company.categoryColor} 0%, ${company.categoryColor}cc 100%)`,
                       boxShadow: `0 0 30px ${company.categoryColor}60, 0 0 15px ${company.categoryColor}40`,
@@ -374,47 +380,47 @@ const WhatWeDo = () => {
                 </div>
 
                 {/* Info Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-8">
                   <div 
-                    className="group p-6 rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
+                    className="group p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor}08 0%, ${company.categoryColor}03 100%)`,
                       borderColor: `${company.categoryColor}20`,
                       boxShadow: `0 8px 32px ${company.categoryColor}10`,
                     }}
                   >
-                    <div className="flex items-center mb-3">
+                    <div className="flex items-center mb-2 sm:mb-3">
                       <div 
-                        className="w-3 h-3 rounded-full mr-3"
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
                         style={{ backgroundColor: company.categoryColor }}
                       />
-                      <div className="text-xs font-bold tracking-[2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
+                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
                         Legal Structure
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-[var(--text-primary)] leading-[1.3]">
+                    <div className="text-sm sm:text-lg font-semibold text-[var(--text-primary)] leading-[1.35] break-words">
                       {company.legalStructure}
                     </div>
                   </div>
 
                   <div 
-                    className="group p-6 rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
+                    className="group p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor}08 0%, ${company.categoryColor}03 100%)`,
                       borderColor: `${company.categoryColor}20`,
                       boxShadow: `0 8px 32px ${company.categoryColor}10`,
                     }}
                   >
-                    <div className="flex items-center mb-3">
+                    <div className="flex items-center mb-2 sm:mb-3">
                       <div 
-                        className="w-3 h-3 rounded-full mr-3"
+                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
                         style={{ backgroundColor: company.categoryColor }}
                       />
-                      <div className="text-xs font-bold tracking-[2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
+                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
                         Key Leadership
                       </div>
                     </div>
-                    <div className="text-lg font-semibold text-[var(--text-primary)] leading-[1.3]">
+                    <div className="text-sm sm:text-lg font-semibold text-[var(--text-primary)] leading-[1.35] break-words">
                       {company.keyPeople.split(':')[1]}
                     </div>
                   </div>
@@ -422,31 +428,49 @@ const WhatWeDo = () => {
 
                 {/* Description Card */}
                 <div 
-                  className="p-8 rounded-2xl transition-all duration-300 hover:shadow-xl"
+                  className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl"
                   style={{
                     background: `linear-gradient(135deg, var(--card-bg) 0%, ${company.categoryColor}05 100%)`,
                     border: `1px solid var(--card-border)`,
                     boxShadow: `0 8px 32px rgba(0,0,0,0.08)`,
                   }}
                 >
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-3 sm:mb-4">
                     <div 
-                      className="w-3 h-3 rounded-full mr-3"
+                      className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
                       style={{ backgroundColor: company.categoryColor }}
                     />
-                    <div className="text-xs font-bold tracking-[2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
+                    <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
                       Company Overview
                     </div>
                   </div>
-                  <p className="text-[var(--text-secondary)] leading-[1.8] font-normal tracking-[0.2px] text-justify">
+                  <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-[1.7] sm:leading-[1.8] font-normal tracking-[0.2px] text-justify break-words">
                     {company.description}
                   </p>
                 </div>
 
-                {/* Action Button */}
-                <div className="mt-8 text-center">
+                {/* Desktop only: button at end of scroll */}
+                <div className="mt-6 sm:mt-8 text-center hidden md:block">
                   <button
-                    className="px-8 py-4 rounded-full text-white font-bold tracking-[1px] uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl"
+                    className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl"
+                    style={{
+                      background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
+                      boxShadow: `0 8px 32px ${company.categoryColor}40, inset 0 0 20px rgba(255,255,255,0.3)`,
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(`/company/${company.id.toString().toLowerCase().replace(/\s+/g, '-')}`, '_blank');
+                    }}
+                  >
+                    Learn More
+                  </button>
+                </div>
+                </div>
+
+                {/* Mobile/tablet: sticky Learn More button - always visible at bottom */}
+                <div className="flex-shrink-0 p-4 pt-3 pb-5 sm:p-6 sm:pt-4 sm:pb-6 text-center border-t border-[var(--card-border)]/30 md:hidden">
+                  <button
+                    className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
                       boxShadow: `0 8px 32px ${company.categoryColor}40, inset 0 0 20px rgba(255,255,255,0.3)`,
@@ -470,33 +494,33 @@ const WhatWeDo = () => {
   return (
     <section 
       ref={sectionRef}
-      className="p-0 bg-[var(--background)] font-sans m-0 overflow-visible relative"
+      className="p-0 bg-[var(--background)] font-sans m-0 overflow-x-hidden overflow-y-visible relative"
     >
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle_at_50%_50%,var(--text-primary)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></div>
       
       {/* Header Section */}
-      <div className="max-w-[1600px] mx-auto p-[50px_20px] md:p-[100px_60px_80px]">
+      <div className="max-w-[1600px] mx-auto px-4 py-8 sm:px-6 sm:py-12 md:p-[100px_60px_80px]">
         <div 
-          className="text-center mb-[40px] md:mb-[60px] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200"
+          className="text-center mb-6 sm:mb-8 md:mb-[60px] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0) translateX(0)' : 'translateY(50px) translateX(-30px)',
           }}
         >
-          <h2 className="text-[36px] md:text-[56px] font-normal text-[var(--text-primary)] m-0 mb-[30px] tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase">
+          <h2 className="text-[28px] sm:text-[32px] md:text-[56px] font-normal text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[3px] sm:tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase px-1">
             {t('group_of_companies')}
           </h2>
-          <p className="text-[18px] md:text-[28px] leading-[1.7] text-[var(--text-primary)] max-w-[1500px] mx-auto mb-[40px] font-normal tracking-[0.3px]">
+          <p className="text-[15px] sm:text-[16px] md:text-[28px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[1500px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
            {renderProgressiveBoldText(t('group_description'))}
           </p>
           
-          <div className="text-center mt-[40px]">
+          <div className="text-center mt-6 sm:mt-[40px]">
             <button
-              className="inline-flex items-center gap-[15px] px-[40px] py-[18px] text-[15px] font-semibold tracking-[1.2px] uppercase text-white bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a] dark:from-[#2a2a2a] dark:to-[#3a3a3a] border-none rounded-[35px] cursor-pointer transition-all duration-400 shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_12px_35px_rgba(0,0,0,0.25)] hover:from-[#2a2a2a] hover:to-[#3a3a3a] dark:hover:from-[#3a3a3a] dark:hover:to-[#4a4a4a]"
+              className="inline-flex items-center gap-2 sm:gap-[15px] px-6 py-3 sm:px-[40px] sm:py-[18px] text-[13px] sm:text-[15px] font-semibold tracking-[1px] sm:tracking-[1.2px] uppercase text-white bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a] dark:from-[#2a2a2a] dark:to-[#3a3a3a] border-none rounded-[28px] sm:rounded-[35px] cursor-pointer transition-all duration-400 shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_12px_35px_rgba(0,0,0,0.25)] hover:from-[#2a2a2a] hover:to-[#3a3a3a] dark:hover:from-[#3a3a3a] dark:hover:to-[#4a4a4a]"
             >
               {t('learn_more_capital')}
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="14" height="14" className="sm:w-4 sm:h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
@@ -505,16 +529,16 @@ const WhatWeDo = () => {
       </div>
 
       {/* Cards Container */}
-      <div className="max-w-[1800px] mx-auto p-[0_20px_80px] md:p-[0_60px_120px]">
-        {/* Top Row - Mobile: Vertical Flex, Desktop: Horizontal Flex */}
-        <div className={`flex flex-col md:flex-row gap-[20px] md:gap-0 mb-[20px] md:mb-0 transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] justify-start ${
+      <div className="max-w-[1800px] mx-auto px-4 pb-8 sm:px-6 sm:pb-16 md:px-[60px] md:pb-[120px]">
+        {/* Top Row - Mobile: single column, clear gap so each card fully visible */}
+        <div className={`flex flex-col md:flex-row gap-6 sm:gap-6 md:gap-0 mb-6 sm:mb-5 md:mb-0 transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] justify-start ${
           selectedCard !== null && selectedCard < 3 ? 'md:mb-[80px]' : ''
         }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-50px)' }}>
           {topRow.map((company, index) => renderCard(company, index, 0))}
         </div>
 
-        {/* Bottom Row - Mobile: Vertical Flex, Desktop: Horizontal Flex */}
-        <div className="flex flex-col md:flex-row gap-[20px] md:gap-0 transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] justify-start" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(50px)' }}>
+        {/* Bottom Row */}
+        <div className="flex flex-col md:flex-row gap-6 sm:gap-6 md:gap-0 transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] justify-start" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(50px)' }}>
           {bottomRow.map((company, index) => renderCard(company, index + 3, 3))}
         </div>
       </div>

@@ -168,7 +168,7 @@ export default function Chatbot() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-[9998] w-32 h-32 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#e63a27]/30 overflow-visible bg-transparent group animate-bounce hover:animate-pulse"
+          className="fixed bottom-4 right-4 z-[9998] w-20 h-20 sm:w-32 sm:h-32 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#e63a27]/30 overflow-visible bg-transparent group animate-bounce hover:animate-pulse"
           aria-label="Open chat"
         >
           <span className="block w-full h-full rounded-full overflow-hidden relative">
@@ -177,7 +177,7 @@ export default function Chatbot() {
               alt="Chat with us"
               fill
               className="object-cover rounded-full"
-              sizes="128px"
+              sizes="(max-width: 640px) 80px, 128px"
               unoptimized={true}
             />
           </span>
@@ -185,7 +185,7 @@ export default function Chatbot() {
           {hiVisible && (
             <span
               key={hiBubbleKey}
-              className="hi-bubble absolute left-1/2 -top-11 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-white px-3.5 py-2 text-sm font-bold shadow-lg border border-[#e63a27]/20"
+              className="hi-bubble absolute left-1/2 -top-8 sm:-top-11 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-white px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold shadow-lg border border-[#e63a27]/20"
               style={{ color: ACCENT }}
             >
               Hi!
@@ -195,8 +195,8 @@ export default function Chatbot() {
               />
             </span>
           )}
-          <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-500 rounded-full flex items-center justify-center animate-ping">
-            <div className="w-3 h-3 bg-white rounded-full"></div>
+          <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 rounded-full flex items-center justify-center animate-ping">
+            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
           </div>
         </button>
       )}
@@ -221,7 +221,7 @@ export default function Chatbot() {
 
         {/* Panel - slide up + fade */}
         <div
-          className={`absolute bottom-0 right-0 left-0 sm:left-auto sm:right-6 sm:bottom-6 w-full sm:max-w-md sm:h-[min(80vh,560px)] h-[85vh] rounded-t-2xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out ${
+          className={`absolute bottom-0 right-0 left-0 sm:left-auto sm:right-4 sm:bottom-4 w-full sm:max-w-md sm:h-[min(80vh,560px)] h-[75vh] sm:h-[85vh] rounded-t-2xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out ${
             isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
           }`}
           role="dialog"
@@ -230,17 +230,17 @@ export default function Chatbot() {
         >
           {/* Header */}
           <div
-            className="flex items-center gap-3 px-4 py-3.5 border-b border-white/10"
+            className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 sm:py-3.5 border-b border-white/10"
             style={{ backgroundColor: ACCENT }}
           >
-            <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-sm truncate">Shanky Group</p>
-              <p className="text-white/80 text-xs truncate">We typically reply within 24 hours</p>
+              <p className="text-white font-semibold text-xs sm:text-sm truncate">Shanky Group</p>
+              <p className="text-white/80 text-xs truncate hidden sm:block">We typically reply within 24 hours</p>
             </div>
             <button
               type="button"
@@ -248,26 +248,26 @@ export default function Chatbot() {
                 (document.activeElement as HTMLElement)?.blur();
                 setIsOpen(false);
               }}
-              className="p-2 rounded-xl text-white/90 hover:bg-white/20 transition-colors flex-shrink-0"
+              className="p-1.5 sm:p-2 rounded-xl text-white/90 hover:bg-white/20 transition-colors flex-shrink-0"
               aria-label="Close"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 bg-[var(--background)]/30">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 min-h-0 bg-[var(--background)]/30">
             {messages.map((msg, i) => {
               return (
                 <div
                   key={i}
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in duration-200`}
                 >
-                  <div className="max-w-[88%]">
+                  <div className="max-w-[85%] sm:max-w-[88%]">
                     <div
-                      className={`rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${
+                      className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm leading-relaxed ${
                         msg.role === 'user'
                           ? 'text-white rounded-br-md shadow-md'
                           : 'bg-[var(--card-bg)] text-[var(--text-primary)] border border-[var(--card-border)] rounded-bl-md shadow-sm'
@@ -277,14 +277,14 @@ export default function Chatbot() {
                       {msg.text}
                     </div>
                     {msg.role === 'bot' && (
-                      <span className="text-[10px] text-[var(--text-secondary)] mt-1 block px-1">
-                        {msg.provider === 'gemini' && '🟢 Reply from: Chatbot 1'}
-                        {msg.provider === 'openrouter' && '🟡 Reply from: Chatbot 2'}
-                        {msg.provider === 'groq' && '🔵 Reply from: Chatbot 3'}
+                      <span className="text-[9px] sm:text-[10px] text-[var(--text-secondary)] mt-1 block px-1">
+                        {msg.provider === 'gemini' && '🟢 Chatbot 1'}
+                        {msg.provider === 'openrouter' && '🟡 Chatbot 2'}
+                        {msg.provider === 'groq' && '🔵 Chatbot 3'}
                         {msg.provider === 'fallback' && (
-                          <>⚪ Reply from: Fallback {msg.fallbackReason && <span className="text-[#e63a27]">— {msg.fallbackReason}</span>}</>
+                          <>⚪ Fallback {msg.fallbackReason && <span className="text-[#e63a27]">— {msg.fallbackReason}</span>}</>
                         )}
-                        {msg.fromApi === false && !msg.provider && 'Offline reply'}
+                        {msg.fromApi === false && !msg.provider && 'Offline'}
                         {msg.apiError && <span className="block mt-0.5 text-[#e63a27]">{msg.apiError}</span>}
                       </span>
                     )}
@@ -296,10 +296,10 @@ export default function Chatbot() {
             {/* Streaming typing effect — AI reply appears character by character */}
             {streamingMessage && (
               <div className="flex justify-start animate-in fade-in duration-200">
-                <div className="max-w-[88%]">
-                  <div className="rounded-2xl px-4 py-2.5 text-sm leading-relaxed whitespace-pre-wrap bg-[var(--card-bg)] text-[var(--text-primary)] border border-[var(--card-border)] rounded-bl-md shadow-sm">
+                <div className="max-w-[85%] sm:max-w-[88%]">
+                  <div className="rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap bg-[var(--card-bg)] text-[var(--text-primary)] border border-[var(--card-border)] rounded-bl-md shadow-sm">
                     {streamingMessage.fullText.slice(0, streamingMessage.displayed)}
-                    <span className="inline-block w-0.5 h-4 align-middle bg-[var(--text-primary)] animate-pulse ml-0.5" aria-hidden />
+                    <span className="inline-block w-0.5 h-3 sm:h-4 align-middle bg-[var(--text-primary)] animate-pulse ml-0.5" aria-hidden />
                   </div>
                 </div>
               </div>
@@ -308,11 +308,11 @@ export default function Chatbot() {
             {/* Typing indicator */}
             {isTyping && (
               <div className="flex justify-start animate-in fade-in duration-200">
-                <div className="rounded-2xl rounded-bl-md px-4 py-3 bg-[var(--card-bg)] border border-[var(--card-border)] shadow-sm">
-                  <div className="flex gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-2 h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '300ms' }} />
+                <div className="rounded-2xl rounded-bl-md px-3 py-2.5 sm:px-4 sm:py-3 bg-[var(--card-bg)] border border-[var(--card-border)] shadow-sm">
+                  <div className="flex gap-1 sm:gap-1.5">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '0ms' }} />
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '150ms' }} />
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '300ms' }} />
                   </div>
                 </div>
               </div>
@@ -320,13 +320,13 @@ export default function Chatbot() {
 
             {/* Quick reply chips - only when no user messages yet */}
             {showQuickReplies && messages.length <= 1 && (
-              <div className="flex flex-wrap gap-2 pt-1">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
                 {QUICK_REPLIES.map((qr) => (
                   <button
                     key={qr.label}
                     type="button"
                     onClick={() => handleQuickReply(qr.text)}
-                    className="rounded-full px-3.5 py-1.5 text-xs font-medium border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] hover:border-[#e63a27]/50 hover:bg-[#e63a27]/10 transition-colors"
+                    className="rounded-full px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-xs font-medium border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] hover:border-[#e63a27]/50 hover:bg-[#e63a27]/10 transition-colors"
                   >
                     {qr.label}
                   </button>
@@ -338,7 +338,7 @@ export default function Chatbot() {
           </div>
 
           {/* Input area */}
-          <div className="p-3 border-t border-[var(--card-border)] bg-[var(--card-bg)]">
+          <div className="p-2.5 sm:p-3 border-t border-[var(--card-border)] bg-[var(--card-bg)]">
             <div className="flex gap-2">
               <input
                 type="text"
@@ -346,21 +346,21 @@ export default function Chatbot() {
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type your message..."
-                className="flex-1 rounded-xl border border-[var(--card-border)] bg-[var(--background)] px-4 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:border-transparent transition-shadow"
+                className="flex-1 rounded-xl border border-[var(--card-border)] bg-[var(--background)] px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:border-transparent transition-shadow"
               />
               <button
                 type="button"
                 onClick={handleSend}
                 disabled={!inputValue.trim()}
-                className="rounded-xl px-4 py-3 text-white text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:ring-offset-2 focus:ring-offset-[var(--card-bg)]"
+                className="rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-white text-xs sm:text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:ring-offset-2 focus:ring-offset-[var(--card-bg)]"
                 style={{ backgroundColor: ACCENT }}
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
             </div>
-            <p className="text-[10px] text-[var(--text-secondary)] mt-2 text-center">
+            <p className="text-[9px] sm:text-[10px] text-[var(--text-secondary)] mt-1.5 sm:mt-2 text-center">
               Or <Link href="/contact" className="text-[#e63a27] hover:underline font-medium" onClick={() => setIsOpen(false)}>visit Contact page</Link>
             </p>
           </div>

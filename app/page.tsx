@@ -20,7 +20,15 @@ const VisitorTracker = () => {
       try {
         console.log('Starting visitor tracking...');
         
-        let locationData = {
+        let locationData: {
+          ip: string;
+          country: string;
+          city: string;
+          region: string;
+          latitude: number | null;
+          longitude: number | null;
+          timezone: string;
+        } = {
           ip: 'unknown',
           country: 'unknown',
           city: 'unknown',

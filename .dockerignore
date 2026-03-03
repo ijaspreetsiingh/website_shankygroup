@@ -1,0 +1,35 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build output (we copy .next/standalone in Dockerfile)
+.next
+out
+
+# Development
+.git
+.gitignore
+.env*.local
+*.md
+.DS_Store
+*.log
+npm-debug.log*
+.pnpm-debug.log*
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Testing
+coverage
+.nyc_output
+*.test.*
+*.spec.*
+
+# Misc
+README.md
+Dockerfile
+.dockerignore

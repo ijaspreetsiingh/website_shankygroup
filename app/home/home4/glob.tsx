@@ -388,15 +388,15 @@ export function GlobeDemo() {
         />
         
         {/* Content */}
-        <div className="text-center px-[20px] py-[60px] md:px-[60px] md:py-[100px_60px_80px] relative z-[2]">
+        <div className="text-center px-4 py-10 sm:px-6 sm:py-14 md:px-[60px] md:py-[100px_60px_80px] relative z-[2]">
           <h2 
-            className="text-[32px] md:text-[48px] font-normal text-white m-0 mb-[20px] tracking-[4px] md:tracking-[8px] leading-[1.2] uppercase transition-all duration-800 delay-200"
+            className="text-[22px] min-[400px]:text-[26px] sm:text-[32px] md:text-[48px] font-normal text-white m-0 mb-4 sm:mb-5 md:mb-[20px] tracking-[2px] sm:tracking-[4px] md:tracking-[8px] leading-[1.2] uppercase transition-all duration-800 delay-200"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-60px)' }}
           >
             Global Presence
           </h2>
           <p 
-            className="text-[18px] md:text-[26px] leading-[1.6] text-white/90 max-w-[1500px] mx-auto mb-[30px] font-normal tracking-[0.2px] transition-all duration-800 delay-400"
+            className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[26px] leading-[1.5] sm:leading-[1.6] text-white/90 max-w-[1500px] mx-auto mb-5 sm:mb-6 md:mb-[30px] font-normal tracking-[0.2px] px-1 transition-all duration-800 delay-400"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(60px)' }}
           >
             Connecting businesses across continents with our worldwide network
@@ -404,12 +404,12 @@ export function GlobeDemo() {
         </div>
       </div>
 
-      <div className="max-w-[1600px] mx-auto w-full relative overflow-hidden flex flex-col lg:flex-row gap-[40px] lg:gap-[60px] pb-[80px] px-[20px] md:px-[40px] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-600" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(60px)' }}>
+      <div className="max-w-[1600px] mx-auto w-full relative overflow-hidden flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-[40px] lg:gap-[60px] pb-10 sm:pb-14 md:pb-[80px] px-4 sm:px-5 md:px-[40px] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-600" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(60px)' }}>
         
-        {/* Left Side - Globe */}
-        <div className="flex-[1.3] flex flex-col items-center lg:items-start justify-center w-full transition-all duration-800 delay-800" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-80px)' }}>
+        {/* Left Side - Globe - on phone: bigger, centered */}
+        <div className="flex-[1.3] flex flex-col items-center justify-center lg:items-start w-full transition-all duration-800 delay-800" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-80px)' }}>
        
-          <div className="relative w-full h-[500px] md:h-[800px] lg:h-[1000px] flex items-center justify-center lg:justify-start">
+          <div className="relative w-full max-w-[min(100%,400px)] min-[400px]:max-w-[min(100%,440px)] sm:max-w-[min(100%,520px)] md:max-w-none h-[500px] min-[400px]:h-[540px] sm:h-[600px] md:h-[700px] lg:h-[850px] xl:h-[1000px] flex items-center justify-center mx-auto lg:mx-0 lg:justify-start">
             <div 
               ref={mountRef} 
               className="w-full h-full"
@@ -421,20 +421,20 @@ export function GlobeDemo() {
             <div className="hidden md:block floating-particle absolute bottom-[30%] left-[15%] w-[10px] h-[10px] bg-amber-500 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.8)] [animation-delay:1s]" />
             <div className="hidden md:block floating-particle absolute top-[40%] right-[20%] w-[4px] h-[4px] bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.8)] [animation-delay:3s]" />
 
-            {/* Data Points */}
-            <div className="fading-label absolute top-[15%] left-[60%] text-[12px] text-white bg-blue-500/90 px-[8px] py-[4px] rounded-[4px] font-semibold">
+            {/* Data Points - hidden on very small screens to avoid clutter */}
+            <div className="fading-label absolute top-[12%] left-[55%] min-[400px]:left-[60%] text-[10px] sm:text-[12px] text-white bg-blue-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold hidden min-[400px]:block">
               North America
             </div>
-            <div className="fading-label absolute top-[45%] right-[15%] text-[12px] text-white bg-emerald-500/90 px-[8px] py-[4px] rounded-[4px] font-semibold [animation-delay:2s]">
+            <div className="fading-label absolute top-[42%] right-[10%] min-[400px]:right-[15%] text-[10px] sm:text-[12px] text-white bg-emerald-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold [animation-delay:2s] hidden min-[400px]:block">
               Europe
             </div>
-            <div className="fading-label absolute bottom-[20%] left-[40%] text-[12px] text-white bg-amber-500/90 px-[8px] py-[4px] rounded-[4px] font-semibold [animation-delay:1s]">
+            <div className="fading-label absolute bottom-[18%] left-[35%] min-[400px]:left-[40%] text-[10px] sm:text-[12px] text-white bg-amber-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold [animation-delay:1s] hidden min-[400px]:block">
               Asia Pacific
             </div>
 
             {/* Gradient Overlay */}
             <div 
-              className="absolute bottom-0 left-0 right-0 h-[160px] pointer-events-none z-40"
+              className="absolute bottom-0 left-0 right-0 h-20 sm:h-28 md:h-[160px] pointer-events-none z-40"
               style={{ 
                 background: isDarkMode 
                   ? 'var(--background)'
@@ -446,106 +446,106 @@ export function GlobeDemo() {
 
         {/* Right Side - Professional Data Table */}
         <div className="flex-1 flex flex-col justify-center items-center lg:items-start w-full transition-all duration-800 delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(80px)' }}>
-          <div className="bg-[var(--card-bg)] rounded-[16px] p-[24px] md:p-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[var(--card-border)] w-full max-w-[600px] transition-all duration-500 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:scale-[1.02]">
-            <div className="flex items-center justify-between mb-[24px]">
-              <h3 className="text-[24px] md:text-[28px] font-bold text-[var(--text-primary)]">
+          <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-[16px] p-4 sm:p-5 md:p-[24px] lg:p-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[var(--card-border)] w-full max-w-[600px] transition-all duration-500 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:scale-[1.02]">
+            <div className="flex flex-col min-[400px]:flex-row items-start min-[400px]:items-center justify-between gap-2 mb-4 sm:mb-5 md:mb-[24px]">
+              <h3 className="text-[18px] sm:text-[22px] md:text-[28px] font-bold text-[var(--text-primary)]">
                 Global Distribution
               </h3>
-              <div className="px-[12px] py-[6px] bg-gradient-to-r from-amber-500 to-orange-600 rounded-full">
-                <span className="text-white text-[12px] font-bold">2024</span>
+              <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-[12px] md:py-[6px] bg-gradient-to-r from-amber-500 to-orange-600 rounded-full shrink-0">
+                <span className="text-white text-[10px] sm:text-[12px] font-bold">2024</span>
               </div>
             </div>
             
-            {/* Key Metrics */}
-            <div className="grid grid-cols-3 gap-[16px] mb-[24px]">
-              <div className="text-center p-[12px] bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-[12px] border border-blue-500/20">
-                <div className="text-[20px] font-bold text-blue-500">43</div>
-                <div className="text-[11px] text-[var(--text-secondary)]">Countries</div>
+            {/* Key Metrics - stack on very small, 3 cols on larger */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-[16px] mb-4 sm:mb-5 md:mb-[24px]">
+              <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg sm:rounded-[12px] border border-blue-500/20">
+                <div className="text-[14px] sm:text-[16px] md:text-[20px] font-bold text-blue-500">43</div>
+                <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">Countries</div>
               </div>
-              <div className="text-center p-[12px] bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-[12px] border border-emerald-500/20">
-                <div className="text-[20px] font-bold text-emerald-500">$12.9M</div>
-                <div className="text-[11px] text-[var(--text-secondary)]">Total Sales</div>
+              <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-lg sm:rounded-[12px] border border-emerald-500/20">
+                <div className="text-[12px] sm:text-[14px] md:text-[20px] font-bold text-emerald-500">$12.9M</div>
+                <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">Total Sales</div>
               </div>
-              <div className="text-center p-[12px] bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-[12px] border border-amber-500/20">
-                <div className="text-[20px] font-bold text-amber-500">+28%</div>
-                <div className="text-[11px] text-[var(--text-secondary)]">Growth</div>
+              <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg sm:rounded-[12px] border border-amber-500/20">
+                <div className="text-[14px] sm:text-[16px] md:text-[20px] font-bold text-amber-500">+28%</div>
+                <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">Growth</div>
               </div>
             </div>
 
-            <div className="overflow-x-auto w-full">
-              <table className="w-full border-collapse bg-[var(--card-bg)] rounded-[12px] overflow-hidden min-w-[350px]">
+            <div className="overflow-x-auto -mx-1 w-full">
+              <table className="w-full border-collapse bg-[var(--card-bg)] rounded-lg sm:rounded-[12px] overflow-hidden min-w-[280px]">
                 <thead>
                   <tr className="bg-gradient-to-r from-blue-600 to-blue-700">
-                    <th className="p-[16px] text-left text-white font-bold text-[13px] uppercase tracking-[0.5px]">Region</th>
-                    <th className="p-[16px] text-center text-white font-bold text-[13px] uppercase tracking-[0.5px]">Countries</th>
-                    <th className="p-[16px] text-center text-white font-bold text-[13px] uppercase tracking-[0.5px]">Sales</th>
-                    <th className="p-[16px] text-right text-white font-bold text-[13px] uppercase tracking-[0.5px]">Growth</th>
+                    <th className="p-2 sm:p-3 md:p-[16px] text-left text-white font-bold text-[10px] sm:text-[11px] md:text-[13px] uppercase tracking-[0.5px]">Region</th>
+                    <th className="p-2 sm:p-3 md:p-[16px] text-center text-white font-bold text-[10px] sm:text-[11px] md:text-[13px] uppercase tracking-[0.5px]">Countries</th>
+                    <th className="p-2 sm:p-3 md:p-[16px] text-center text-white font-bold text-[10px] sm:text-[11px] md:text-[13px] uppercase tracking-[0.5px]">Sales</th>
+                    <th className="p-2 sm:p-3 md:p-[16px] text-right text-white font-bold text-[10px] sm:text-[11px] md:text-[13px] uppercase tracking-[0.5px]">Growth</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-b border-[var(--card-border)] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-blue-600/5 transition-all duration-200">
-                    <td className="p-[16px]">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="w-[8px] h-[8px] bg-blue-500 rounded-full"></div>
-                        <span className="text-[var(--text-primary)] font-semibold text-[14px]">North America</span>
+                    <td className="p-2 sm:p-3 md:p-[16px]">
+                      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-[8px]">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-[8px] md:h-[8px] bg-blue-500 rounded-full shrink-0"></div>
+                        <span className="text-[var(--text-primary)] font-semibold text-[11px] sm:text-[12px] md:text-[14px]">North America</span>
                       </div>
                     </td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px]">3</td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px] font-bold">$2.5M</td>
-                    <td className="p-[16px] text-right">
-                      <span className="px-[8px] py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[12px] font-bold">+15%</span>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px]">3</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px] font-bold">$2.5M</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-right">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-[8px] md:py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[9px] sm:text-[10px] md:text-[12px] font-bold">+15%</span>
                     </td>
                   </tr>
                   <tr className="border-b border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-blue-600/5 transition-all duration-200">
-                    <td className="p-[16px]">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="w-[8px] h-[8px] bg-emerald-500 rounded-full"></div>
-                        <span className="text-[var(--text-primary)] font-semibold text-[14px]">Europe</span>
+                    <td className="p-2 sm:p-3 md:p-[16px]">
+                      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-[8px]">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-[8px] md:h-[8px] bg-emerald-500 rounded-full shrink-0"></div>
+                        <span className="text-[var(--text-primary)] font-semibold text-[11px] sm:text-[12px] md:text-[14px]">Europe</span>
                       </div>
                     </td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px]">15</td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px] font-bold">$4.2M</td>
-                    <td className="p-[16px] text-right">
-                      <span className="px-[8px] py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[12px] font-bold">+22%</span>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px]">15</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px] font-bold">$4.2M</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-right">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-[8px] md:py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[9px] sm:text-[10px] md:text-[12px] font-bold">+22%</span>
                     </td>
                   </tr>
                   <tr className="border-b border-[var(--card-border)] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-blue-600/5 transition-all duration-200">
-                    <td className="p-[16px]">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="w-[8px] h-[8px] bg-amber-500 rounded-full"></div>
-                        <span className="text-[var(--text-primary)] font-semibold text-[14px]">Asia Pacific</span>
+                    <td className="p-2 sm:p-3 md:p-[16px]">
+                      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-[8px]">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-[8px] md:h-[8px] bg-amber-500 rounded-full shrink-0"></div>
+                        <span className="text-[var(--text-primary)] font-semibold text-[11px] sm:text-[12px] md:text-[14px]">Asia Pacific</span>
                       </div>
                     </td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px]">12</td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px] font-bold">$3.8M</td>
-                    <td className="p-[16px] text-right">
-                      <span className="px-[8px] py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[12px] font-bold">+35%</span>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px]">12</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px] font-bold">$3.8M</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-right">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-[8px] md:py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[9px] sm:text-[10px] md:text-[12px] font-bold">+35%</span>
                     </td>
                   </tr>
                   <tr className="border-b border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-blue-600/5 transition-all duration-200">
-                    <td className="p-[16px]">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="w-[8px] h-[8px] bg-purple-500 rounded-full"></div>
-                        <span className="text-[var(--text-primary)] font-semibold text-[14px]">Middle East</span>
+                    <td className="p-2 sm:p-3 md:p-[16px]">
+                      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-[8px]">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-[8px] md:h-[8px] bg-purple-500 rounded-full shrink-0"></div>
+                        <span className="text-[var(--text-primary)] font-semibold text-[11px] sm:text-[12px] md:text-[14px]">Middle East</span>
                       </div>
                     </td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px]">8</td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px] font-bold">$1.5M</td>
-                    <td className="p-[16px] text-right">
-                      <span className="px-[8px] py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[12px] font-bold">+18%</span>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px]">8</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px] font-bold">$1.5M</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-right">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-[8px] md:py-[4px] bg-emerald-500/20 text-emerald-500 rounded-full text-[9px] sm:text-[10px] md:text-[12px] font-bold">+18%</span>
                     </td>
                   </tr>
                    <tr className="border-b border-[var(--card-border)] hover:bg-gradient-to-r hover:from-blue-500/5 hover:to-blue-600/5 transition-all duration-200">
-                    <td className="p-[16px]">
-                      <div className="flex items-center gap-[8px]">
-                        <div className="w-[8px] h-[8px] bg-red-500 rounded-full"></div>
-                        <span className="text-[var(--text-primary)] font-semibold text-[14px]">Africa</span>
+                    <td className="p-2 sm:p-3 md:p-[16px]">
+                      <div className="flex items-center gap-1.5 sm:gap-2 md:gap-[8px]">
+                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-[8px] md:h-[8px] bg-red-500 rounded-full shrink-0"></div>
+                        <span className="text-[var(--text-primary)] font-semibold text-[11px] sm:text-[12px] md:text-[14px]">Africa</span>
                       </div>
                     </td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px]">5</td>
-                    <td className="p-[16px] text-center text-[var(--text-secondary)] text-[14px] font-bold">$0.9M</td>
-                    <td className="p-[16px] text-right">
-                      <span className="px-[8px] py-[4px] bg-amber-500/20 text-amber-500 rounded-full text-[12px] font-bold">+8%</span>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px]">5</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-center text-[var(--text-secondary)] text-[11px] sm:text-[12px] md:text-[14px] font-bold">$0.9M</td>
+                    <td className="p-2 sm:p-3 md:p-[16px] text-right">
+                      <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 md:px-[8px] md:py-[4px] bg-amber-500/20 text-amber-500 rounded-full text-[9px] sm:text-[10px] md:text-[12px] font-bold">+8%</span>
                     </td>
                   </tr>
                 </tbody>
@@ -553,12 +553,12 @@ export function GlobeDemo() {
             </div>
             
             {/* Additional Info */}
-            <div className="mt-[20px] pt-[20px] border-t border-[var(--card-border)]">
-              <div className="flex items-center justify-between">
-                <div className="text-[12px] text-[var(--text-secondary)]">
+            <div className="mt-4 sm:mt-5 md:mt-[20px] pt-4 sm:pt-5 md:pt-[20px] border-t border-[var(--card-border)]">
+              <div className="flex flex-col min-[400px]:flex-row items-start min-[400px]:items-center justify-between gap-1 sm:gap-2">
+                <div className="text-[10px] sm:text-[11px] md:text-[12px] text-[var(--text-secondary)]">
                   <span className="font-semibold text-[var(--text-primary)]">Top Market:</span> United States ($1.8M)
                 </div>
-                <div className="text-[12px] text-[var(--text-secondary)]">
+                <div className="text-[10px] sm:text-[11px] md:text-[12px] text-[var(--text-secondary)]">
                   <span className="font-semibold text-[var(--text-primary)]">Q4 2024:</span> +32% YoY
                 </div>
               </div>
