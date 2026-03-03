@@ -54,13 +54,11 @@ const ContactUs = () => {
     };
   }, []);
 
-  // Initialize dark mode
+  // Initialize dark mode (match app: default dark)
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const shouldBeDark = saved === 'dark' || (!saved && systemPrefersDark);
-      
+      const shouldBeDark = saved === 'dark' || (saved !== 'light' && saved !== 'dark');
       setIsDark(shouldBeDark);
     }
   }, []);
@@ -178,349 +176,174 @@ const ContactUs = () => {
 
   return (
     <>
-      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] ${
-        isDark ? 'bg-black' : 'bg-white'
-      }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(80px)' }}>
-      {/* Main Dark Rounded Container */}
+      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 transition-all duration-500 ease-out ${
+        isDark ? 'bg-[#0a0a0a]' : 'bg-gradient-to-b from-[#0f0f12] to-[#1a1a20]'
+      }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}>
+      {/* Main container - form-first on mobile for engagement */}
       <div 
-        className="relative w-full max-w-[1800px] rounded-[16px sm:rounded-[24px] lg:rounded-[32px] overflow-hidden shadow-2xl bg-cover bg-center transition-all duration-1200 ease-[cubic-bezier(0.23,1,0.32,1)] delay-200"
+        className="relative w-full max-w-[1800px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500"
         style={{ 
           backgroundImage: 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'scale(1)' : 'scale(0.95)'
+          transform: isVisible ? 'scale(1)' : 'scale(0.98)'
         }}
       >
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/70 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/75 to-black/65" />
         
-        {/* Content Container */}
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[55%_45%] gap-2 sm:gap-3 lg:gap-4 px-4 sm:px-8 md:px-16 lg:px-20 xl:px-24 py-6 sm:py-8 lg:py-12 xl:py-14">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[48%_52%] gap-0 lg:gap-6 px-3 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-6 sm:py-8 lg:py-12 xl:py-14">
           
-          {/* Left Section - Information */}
-          <div className="text-white pr-2 sm:pr-4 lg:pr-6 xl:pr-8 flex flex-col justify-between transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-400" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-80px)' }}>
-            <div>
-              <h1 
-                className="text-[1.5rem] sm:text-[1.8rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-[1.15] font-bold mb-2 sm:mb-3 lg:mb-4 tracking-tight transition-all duration-800 delay-600"
-                style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(60px)' }}
-              >
-                {t('you_have_questions')},<br />
-                {t('we_have_answers')}
-              </h1>
-              <p 
-                className="text-[0.75rem] sm:text-[0.8rem] md:text-[0.875rem] lg:text-[0.875rem] leading-[1.6] mb-6 sm:mb-8 lg:mb-12 opacity-85 font-light max-w-[280px] sm:max-w-[350px] md:max-w-[420px] transition-all duration-800 delay-800"
-                style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
-              >
-                {t('contact_desc')}
-              </p>
-            </div>
-
-            {/* Contact Info Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20 gap-y-4 sm:gap-y-6 lg:gap-y-8 mt-2 sm:mt-4 transition-all duration-800 delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)' }}>
-              {/* Location */}
-              <div className="transition-all duration-600 delay-1200" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-                <h3 className="text-[0.875rem] sm:text-[0.9rem] md:text-[1rem] font-semibold mb-1.5 sm:mb-2 lg:mb-2.5">{t('location')}</h3>
-                <p className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] leading-[1.65] opacity-80 font-light">
-                  {t('address')}
-                </p>
-              </div>
-
-              {/* Social Media */}
-              <div className="transition-all duration-600 delay-1400" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-                <h3 className="text-[0.875rem] sm:text-[0.9rem] md:text-[1rem] font-semibold mb-1.5 sm:mb-2 lg:mb-2.5">{t('social_media')}</h3>
-                <div className="flex gap-3">
-                  <a href="#" className="text-white opacity-80 flex items-center justify-center w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300 hover:opacity-100 hover:text-[#C13584] hover:scale-110">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.848-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="text-white opacity-80 flex items-center justify-center w-5 h-5 transition-all duration-300 hover:opacity-100 hover:text-[#0A66C2] hover:scale-110">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="text-white opacity-80 flex items-center justify-center w-5 h-5 transition-all duration-300 hover:opacity-100 hover:text-[#0077b5] hover:scale-110">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                  </a>
-                  <a href="#" className="text-white opacity-80 flex items-center justify-center w-5 h-5 transition-all duration-300 hover:opacity-100 hover:text-[#1DA1F2] hover:scale-110">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              {/* Email */}
-              <div className="transition-all duration-600 delay-1600" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-                <h3 className="text-[0.875rem] sm:text-[0.9rem] md:text-[1rem] font-semibold mb-1.5 sm:mb-2 lg:mb-2.5">{t('email')}</h3>
-                <p className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] leading-[1.65] opacity-80 font-light">
-                  info@shankygroup.com
-                </p>
-              </div>
-
-              {/* Contact */}
-              <div className="transition-all duration-600 delay-1800" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-                <h3 className="text-[0.875rem] sm:text-[0.9rem] md:text-[1rem] font-semibold mb-1.5 sm:mb-2 lg:mb-2.5">{t('contact')}</h3>
-                <p className="text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] leading-[1.65] opacity-80 font-light">
-                  +66 77 123 456
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Section - Form Card */}
+          {/* Right Section - Form Card (show first on mobile) - blur/glass background */}
           <div 
-            className="bg-white/10 backdrop-blur-md rounded-[10px] sm:rounded-[14px] lg:rounded-[18px] xl:rounded-[20px] p-3 sm:p-4 lg:p-6 shadow-md border border-white/20 transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-600 hover:shadow-xl hover:scale-[1.02]"
-            style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(80px)' }}
+            className="order-1 lg:order-2 bg-white/10 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xl border border-white/20 min-h-0"
+            style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(20px)' }}
           >
-            <h2 
-              className={`text-[1.25rem] sm:text-[1.5rem] md:text-[1.65rem] lg:text-[1.75rem] xl:text-[1.9rem] font-bold mb-0.5 sm:mb-1 ${
-                isDark ? 'text-[#d8d4d4]' : 'text-white'
-              } transition-all duration-800 delay-800`}
-              style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(30px)' }}
-            >
-              {t('tell_us_what_you_need')}
-            </h2>
-            <p 
-              className={`text-[0.65rem] sm:text-[0.7rem] mb-2.5 sm:mb-3 lg:mb-4 font-normal ${
-                isDark ? 'text-[#d8d4d4]/80' : 'text-white/80'
-              } transition-all duration-800 delay-1000`}
-              style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}
-            >
-              {t('team_ready')}
-            </p>
+            <div className="flex items-center gap-3 mb-4 sm:mb-5">
+              <span className="flex h-10 w-10 sm:h-12 sm:w-12 rounded-xl bg-[#e63a27] items-center justify-center">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0021 18.586V19a2 2 0 01-2 2z" /></svg>
+              </span>
+              <div>
+                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                  {t('tell_us_what_you_need')}
+                </h2>
+                <p className="text-xs sm:text-sm text-white/80">
+                  {t('team_ready')}
+                </p>
+              </div>
+            </div>
 
             {isSubmitted ? (
-              <div className="text-center py-6 sm:py-8 lg:py-12 px-3 sm:px-4 bg-green-50 rounded-lg sm:rounded-xl">
-                <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-full bg-green-500 flex items-center justify-center mb-2 sm:mb-3">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                    <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+              <div className="text-center py-8 sm:py-10 px-4 bg-white/15 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/30">
+                <div className="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500 flex items-center justify-center mb-4">
+                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <h4 className="text-lg sm:text-xl font-bold text-green-700 mb-1">
-                  {t('thank_you')}
-                </h4>
-                <p className="text-xs sm:text-sm text-green-600">
-                  {t('message_sent')}
-                </p>
+                <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">{t('thank_you')}</h4>
+                <p className="text-sm sm:text-base text-white/85">{t('message_sent')}</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
-                {/* Company Information Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-3.5">
-                  <input
-                    type="text"
-                    name="companyName"
-                    value={formData.companyName}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Company Name *"
-                  />
-                  <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white outline-none focus:border-white/50 transition-colors"
-                  >
-                    <option value="" className="text-gray-800">Select Status *</option>
-                    <option value="active" className="text-gray-800">Active</option>
-                    <option value="inactive" className="text-gray-800">Inactive</option>
-                    <option value="prospective" className="text-gray-800">Prospective</option>
-                  </select>
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+                {/* Company block */}
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#e63a27]">Company</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input
+                      type="text"
+                      name="companyName"
+                      value={formData.companyName}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]"
+                      placeholder="Company Name *"
+                    />
+                    <select
+                      name="status"
+                      value={formData.status}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px] [&_option]:text-gray-800"
+                    >
+                      <option value="" className="text-gray-500">Status *</option>
+                      <option value="active" className="text-gray-800">Active</option>
+                      <option value="inactive" className="text-gray-800">Inactive</option>
+                      <option value="prospective" className="text-gray-800">Prospective</option>
+                    </select>
+                  </div>
+                  <input type="text" name="address" value={formData.address} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Address *" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" name="country" value={formData.country} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Country *" />
+                    <input type="text" name="gstNo" value={formData.gstNo} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="GST No. *" />
+                  </div>
                 </div>
 
-                {/* Address & Country */}
-                <div className="mb-3 sm:mb-3.5">
-                  <input
-                    type="text"
-                    name="address"
-                    value={formData.address}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors mb-2 sm:mb-3"
-                    placeholder="Address *"
-                  />
-                  <input
-                    type="text"
-                    name="country"
-                    value={formData.country}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Country *"
-                  />
+                {/* Your details */}
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#e63a27]">Your details</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required autoComplete="given-name" className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="First Name *" />
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required autoComplete="family-name" className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Last Name *" />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" name="contactPerson" value={formData.contactPerson} onChange={handleInputChange} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Contact Person" />
+                    <input type="text" name="designation" value={formData.designation} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Designation *" />
+                  </div>
                 </div>
 
-                {/* GST No */}
-                <div className="mb-3 sm:mb-3.5">
-                  <input
-                    type="text"
-                    name="gstNo"
-                    value={formData.gstNo}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="GST No. *"
-                  />
+                {/* Contact */}
+                <div className="space-y-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#e63a27]">Contact</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="tel" name="landline" value={formData.landline} onChange={handleInputChange} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Landline" />
+                    <input type="tel" name="mobile" value={formData.mobile} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Mobile *" />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Email *" />
+                    <input type="url" name="website" value={formData.website} onChange={handleInputChange} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Website" />
+                  </div>
                 </div>
 
-                {/* First Name & Last Name - proper names for backend */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-3.5">
-                  <input
-                    type="text"
-                    name="firstName"
-                    value={formData.firstName}
-                    onChange={handleInputChange}
-                    required
-                    autoComplete="given-name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="First Name *"
-                  />
-                  <input
-                    type="text"
-                    name="lastName"
-                    value={formData.lastName}
-                    onChange={handleInputChange}
-                    required
-                    autoComplete="family-name"
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Last Name *"
-                  />
+                <div>
+                  <label className="block text-sm font-medium text-white/80 mb-2">{t('message')}</label>
+                  <textarea name="message" value={formData.message} onChange={handleInputChange} required rows={4} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all resize-none min-h-[100px]" placeholder="Tell us about your business..." />
                 </div>
 
-                {/* Contact Person (full name) & Designation */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-3.5">
-                  <input
-                    type="text"
-                    name="contactPerson"
-                    value={formData.contactPerson}
-                    onChange={handleInputChange}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Contact Person (optional)"
-                  />
-                  <input
-                    type="text"
-                    name="designation"
-                    value={formData.designation}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Designation *"
-                  />
+                <div className="flex items-start gap-3">
+                  <input type="checkbox" name="exclusiveOffers" checked={formData.exclusiveOffers} onChange={handleInputChange} className="mt-1.5 w-4 h-4 accent-[#e63a27] cursor-pointer rounded" id="offers" />
+                  <label htmlFor="offers" className="text-sm text-white/80 leading-snug cursor-pointer">{t('exclusive_offers')}</label>
                 </div>
 
-                {/* Contact Numbers Row */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-3.5">
-                  <input
-                    type="tel"
-                    name="landline"
-                    value={formData.landline}
-                    onChange={handleInputChange}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Landline Number"
-                  />
-                  <input
-                    type="tel"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Mobile Number *"
-                  />
-                </div>
-
-                {/* Email & Website */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 mb-3 sm:mb-3.5">
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Email ID *"
-                  />
-                  <input
-                    type="url"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleInputChange}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors"
-                    placeholder="Website"
-                  />
-                </div>
-
-                {/* Message */}
-                <div className="mb-4">
-                  <label className={`block text-[0.75rem] mb-2.5 font-normal ${
-                    isDark ? 'text-[#d8d4d4]/80' : 'text-white/80'
-                  }`}>
-                    {t('message')}
-                  </label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={4}
-                    className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.7rem] sm:text-[0.75rem] md:text-[0.8rem] text-white placeholder-white/60 outline-none focus:border-white/50 transition-colors resize-none"
-                    placeholder=""
-                  />
-                </div>
-
-                {/* Checkbox */}
-                <div className="mb-3 sm:mb-4 lg:mb-5 flex items-start gap-2">
-                  <input
-                    type="checkbox"
-                    name="exclusiveOffers"
-                    checked={formData.exclusiveOffers}
-                    onChange={handleInputChange}
-                    className="mt-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 accent-gray-700 cursor-pointer"
-                    id="offers"
-                  />
-                  <label htmlFor="offers" className={`text-[0.65rem] sm:text-[0.7rem] leading-[1.4] cursor-pointer ${
-                    isDark ? 'text-[#d8d4d4]/80' : 'text-white/80'
-                  }`}>
-                    {t('exclusive_offers')}
-                  </label>
-                </div>
-
-                {/* Submit Button */}
-                <div className="group">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-2.5 sm:py-3 bg-gradient-to-r from-white to-gray-50 text-gray-800 border border-gray-300 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] text-[0.75rem] sm:text-[0.8rem] md:text-[0.85rem] font-semibold cursor-pointer transition-all duration-300 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white hover:shadow-xl hover:scale-[1.02] hover:border-gray-400 active:scale-[0.98] relative overflow-hidden ${
-                      isSubmitting ? 'opacity-80 cursor-not-allowed animate-pulse' : ''
-                    }`}
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center gap-2">
-                        <div className="w-4 h-4 border-2 border-gray-400 border-t-transparent rounded-full animate-spin"></div>
-                        <span className="animate-pulse">{t('submitting')}</span>
-                      </div>
-                    ) : (
-                      <span className="flex items-center justify-center gap-2">
-                        {t('submit')}
-                        <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </span>
-                    )}
-                    
-                    {/* Shimmer effect overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out"></div>
-                    
-                    {/* Glow effect on hover */}
-                    <div className="absolute inset-0 rounded-[8px] sm:rounded-[10px] lg:rounded-[12px] bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 sm:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl text-base shadow-lg hover:shadow-xl active:scale-[0.98] transition-all min-h-[52px] flex items-center justify-center gap-2 touch-manipulation disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                      <span>{t('submitting')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span>{t('submit')}</span>
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </>
+                  )}
+                </button>
               </form>
             )}
+          </div>
+
+          {/* Left Section - Info (after form on mobile) */}
+          <div className="order-2 lg:order-1 text-white flex flex-col justify-center py-4 sm:py-6 lg:py-0" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
+            <h1 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
+              {t('you_have_questions')},<br />
+              {t('we_have_answers')}
+            </h1>
+            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
+              {t('contact_desc')}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm">
+              <div>
+                <h3 className="font-semibold mb-1 text-white/90">{t('location')}</h3>
+                <p className="text-white/75 text-xs sm:text-sm leading-relaxed">{t('address')}</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1 text-white/90">{t('email')}</h3>
+                <p className="text-white/75 text-xs sm:text-sm">info@shankygroup.com</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1 text-white/90">{t('contact')}</h3>
+                <p className="text-white/75 text-xs sm:text-sm">+66 77 123 456</p>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-2 text-white/90">{t('social_media')}</h3>
+                <div className="flex gap-2">
+                  <a href="#" className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center text-white/80 hover:bg-[#e63a27] hover:text-white transition-all" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg></a>
+                  <a href="#" className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center text-white/80 hover:bg-[#0A66C2] hover:text-white transition-all" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                  <a href="#" className="w-9 h-9 rounded-lg bg-white/15 flex items-center justify-center text-white/80 hover:bg-[#1877F2] transition-all" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

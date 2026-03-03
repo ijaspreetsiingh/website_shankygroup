@@ -21,12 +21,12 @@ export const viewport: Viewport = {
   userScalable: true,
 };
 
-// Inline script: runs before React so user's theme choice applies immediately
+// Inline script: default = dark; only light when user has chosen 'light'
 const themeScript = `
 (function(){
   try {
     var s = localStorage.getItem('theme');
-    var dark = s === 'dark' || (s !== 'light' && s !== 'dark' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    var dark = s === 'dark' || (s !== 'light' && s !== 'dark');
     document.documentElement.classList.toggle('dark', !!dark);
   } catch (e) {}
 })();

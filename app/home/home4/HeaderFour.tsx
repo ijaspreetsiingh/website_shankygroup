@@ -35,8 +35,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const shouldBeDark = saved === 'dark' || ((saved !== 'light' && saved !== 'dark') && systemPrefersDark);
+      const shouldBeDark = saved === 'dark' || (saved !== 'light' && saved !== 'dark');
 
       setIsDark(shouldBeDark);
       if (shouldBeDark) {
