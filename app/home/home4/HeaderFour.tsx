@@ -499,19 +499,21 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         className={`fixed left-0 right-0 z-[1000] transition-all duration-300 ease-in-out ${
           isMiniHeaderHidden ? 'top-0 md:top-0' : 'top-0 md:top-[40px]'
         } ${
-          isScrolled ? 'bg-[var(--card-bg)]/98 shadow-xl dark:shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3),0_4px_15px_-8px_rgba(0,0,0,0.2)] backdrop-blur-lg border-b border-[var(--card-border)]' : 'bg-[var(--card-bg)]/95 shadow-md dark:shadow-[0_4px_20px_-5px_rgba(0,0,0,0.15)] backdrop-blur-md border-b border-[var(--card-border)]'
+          isScrolled 
+            ? 'bg-[var(--background)] shadow-xl dark:shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3),0_4px_15px_-8px_rgba(0,0,0,0.2)] backdrop-blur-lg'
+            : 'bg-[var(--background)] backdrop-blur-md'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 pt-2 sm:pt-0">
           <div className="flex items-center justify-between h-[80px] sm:h-[96px] lg:h-[120px]">
             {/* Logo - Left Side - larger size */}
             <div className="flex items-center flex-shrink-0 min-w-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
               <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-1.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40">
+                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40 flex items-center justify-center h-[72px] sm:h-auto">
                   <img 
                     src="/images/new_logo_finalM.png" 
                     alt="Shanky Group Logo"
-                    className="h-14 sm:h-[72px] md:h-[88px] lg:h-[108px] w-auto object-contain transition-all duration-500 group-hover:scale-105"
+                    className="h-[68px] sm:h-[72px] md:h-[88px] lg:h-[108px] w-auto object-contain object-center transition-all duration-500 group-hover:scale-105"
                   />
                 </div>
                 <span className="hidden sm:block lg:hidden text-[var(--text-primary)] font-bold text-xs sm:text-sm tracking-[0.12em] uppercase truncate">Shanky Group</span>
@@ -843,7 +845,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
             <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3 group" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>
                 <div className="p-1.5 rounded-xl bg-[var(--background)] border border-[var(--card-border)] group-hover:border-[#e63a27]/40 transition-colors">
-                  <img src="/images/new_logo_finalM.png" alt="Shanky Group" className="h-9 w-auto object-contain" />
+                  <img src="/images/new_logo_finalM.png" alt="Shanky Group" className="h-12 w-auto object-contain" />
                 </div>
                 <div>
                   <span className="block text-[var(--text-primary)] font-bold text-sm tracking-[0.15em] uppercase">Shanky</span>
@@ -1067,7 +1069,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       )}
 
       {/* Spacer for fixed header - matches header height per breakpoint */}
-      <div className="h-[80px] sm:h-[96px] md:h-[130px] lg:h-[160px]" />
+      <div className="h-[88px] sm:h-[96px] md:h-[130px] lg:h-[160px]" />
 
       {/* Add Custom CSS for Animations */}
       <style dangerouslySetInnerHTML={{
