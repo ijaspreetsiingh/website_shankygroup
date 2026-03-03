@@ -173,7 +173,7 @@ const ContactUs = () => {
   return (
     <>
       <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-3 sm:px-6 md:px-8 lg:px-8 py-6 sm:py-8 lg:py-12 transition-all duration-500 ${
-        isDark ? 'bg-[#0a0a0a]' : 'bg-gradient-to-b from-[#0f0f12] to-[#1a1a20]'
+        isDark ? 'bg-[#0a0a0a]' : 'bg-white'
       }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}>
       
       <div 

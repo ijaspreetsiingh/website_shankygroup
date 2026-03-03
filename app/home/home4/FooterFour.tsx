@@ -229,41 +229,39 @@ const GraphyFooter = () => {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Watermark: phone pe visible size, desktop pe bada */}
-        <div ref={watermarkRef} className="relative mt-4 sm:mt-8 flex justify-center items-center overflow-hidden py-5 sm:py-8 min-h-[60px] sm:min-h-[120px]">
-          <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-            <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-[8px]" style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }} />
-            <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-[10px]" style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }} />
-          </div>
-          <div className="relative z-10 w-full flex justify-center px-2 max-w-[100vw]">
+      {/* Watermark: full bleed edge-to-edge */}
+      <div ref={watermarkRef} className="relative flex justify-center items-center overflow-hidden py-5 sm:py-8 min-h-[60px] sm:min-h-[120px] w-screen max-w-none -ml-4 sm:-ml-6 lg:-ml-8" style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}>
+        <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-[8px]" style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }} />
+          <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-[10px]" style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }} />
+        </div>
+        <div className="relative z-10 w-full flex justify-center min-w-0">
+          <span
+            className={`font-bold select-none text-center ${
+              isDark ? 'text-gray-700/30' : 'text-[#e8e8ed]/50'
+            }`}
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transition: 'opacity 0.5s ease',
+              transitionDelay: '300ms',
+            }}
+          >
+            <span className="block text-2xl sm:hidden tracking-[0.2em] sm:tracking-widest">{t('shanky_group').toUpperCase()}</span>
             <span
-              className={`font-bold select-none text-center ${
-                isDark ? 'text-gray-700/30' : 'text-[#e8e8ed]/50'
-              }`}
+              className="hidden sm:block leading-tight"
               style={{
-                opacity: isVisible ? 1 : 0,
-                transition: 'opacity 0.5s ease',
-                transitionDelay: '300ms',
+                fontSize: 'clamp(3rem, 7vw, 18rem)',
+                wordBreak: 'break-word',
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+                maxWidth: '100%',
               }}
             >
-              {/* Mobile: clearly visible, single line */}
-              <span className="block text-2xl sm:hidden tracking-[0.2em] sm:tracking-widest">{t('shanky_group').toUpperCase()}</span>
-              {/* Tablet/Desktop: bada watermark */}
-              <span
-                className="hidden sm:block leading-tight"
-                style={{
-                  fontSize: 'clamp(3rem, 7vw, 18rem)',
-                  wordBreak: 'break-word',
-                  lineHeight: 1,
-                  letterSpacing: '-0.02em',
-                  maxWidth: '100%',
-                }}
-              >
-                {t('shanky_group').toUpperCase()}
-              </span>
+              {t('shanky_group').toUpperCase()}
             </span>
-          </div>
+          </span>
         </div>
       </div>
     </footer>
