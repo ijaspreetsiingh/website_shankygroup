@@ -67,6 +67,7 @@ body {
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  zoom: 1;
 }
 
 /* Custom scrollbar for smooth experience */
