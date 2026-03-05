@@ -46,11 +46,11 @@ const LegacyLeadership = () => {
             }}
           >
             <div className="mb-4">
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0">
                 A Legacy of Excellence
               </h3>
             </div>
-            <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
               Founded with a vision to create impact across diverse industries, Shanky Group has built a reputation for trust, innovation, and resilience. Over the years, the Group has expanded into electronics, metals, financial services, Agri Products, Infrastructure and corporate training—consistently delivering value to clients and partners.
             </p>
           </div>
@@ -65,11 +65,11 @@ const LegacyLeadership = () => {
             }}
           >
             <div className="mb-4">
-              <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0">
                 Leadership that Inspires
               </h3>
             </div>
-            <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
               At the helm, Shanky Group&apos;s leadership combines strategic foresight with hands-on execution. The Group&apos;s senior executive and owner has steered growth through bold investments, operational discipline, and a commitment to transparency—emphasizing collaboration, compliance, and investor confidence for sustainable success.
             </p>
           </div>
@@ -85,13 +85,13 @@ const LegacyLeadership = () => {
           }}
         >
           <div className="mb-5">
-            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0">
               Guiding Principles
             </h3>
           </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 list-none p-0 m-0">
             {PRINCIPLES.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm sm:text-[15px] text-[var(--text-secondary)]">
+              <li key={i} className="section-subheading flex items-start gap-3 text-sm sm:text-[15px] text-[var(--text-secondary)]">
                 <span className="text-[#e63a27] mt-0.5 shrink-0" aria-hidden>•</span>
                 <span className="leading-[1.6]">{item}</span>
               </li>
@@ -109,11 +109,11 @@ const LegacyLeadership = () => {
           }}
         >
           <div className="mb-4">
-            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+            <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0">
               Future-Oriented Vision
             </h3>
           </div>
-          <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+          <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
             Shanky Group&apos;s leadership is not only about preserving its legacy but also about shaping the future. By embracing new technologies, strengthening investor relations, and expanding into emerging markets, the Group continues to set benchmarks for excellence in diversified business operations.
           </p>
         </div>

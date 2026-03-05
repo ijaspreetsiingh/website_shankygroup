@@ -235,10 +235,7 @@ const LeadershipPage = () => {
               <span className="mx-1.5 sm:mx-2">/</span>
               <span style={{ color: '#e63a27' }}>Leadership</span>
             </div>
-            <h1 
-              className="text-3xl min-[400px]:text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] font-bold leading-tight tracking-tight mb-4 sm:mb-5"
-              style={{ fontFamily: '"Montserrat", "Arial", sans-serif', color: 'var(--text-primary)' }}
-            >
+            <h1 className="section-heading text-3xl min-[400px]:text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] font-bold leading-tight tracking-tight mb-4 sm:mb-5 text-[var(--text-primary)]">
               OUR LEADERSHIP
             </h1>
             <p 
@@ -274,10 +271,7 @@ const LeadershipPage = () => {
                 Leadership Excellence
               </span>
             </div>
-            <h2 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-[var(--text-primary)] mb-4 sm:mb-6 leading-tight"
-              style={{ fontFamily: '"Montserrat", "Arial", sans-serif' }}
-            >
+            <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-[var(--text-primary)] mb-4 sm:mb-6 leading-tight">
               Meet Our Leadership Team
             </h2>
             <div 
@@ -387,10 +381,7 @@ const LeadershipPage = () => {
                   style={{ backgroundColor: 'var(--card-bg)' }}
                 >
                   <div className="flex items-center justify-start gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
-                    <h3 
-                      className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] m-0 leading-tight tracking-tight shrink-0 max-w-[calc(100%-28px)] sm:max-w-[calc(100%-30px)] truncate"
-                      style={{ fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
-                    >
+                    <h3 className="section-heading text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] m-0 leading-tight tracking-tight shrink-0 max-w-[calc(100%-28px)] sm:max-w-[calc(100%-30px)] truncate">
                       {leader.name}
                     </h3>
                     <span 
@@ -488,10 +479,7 @@ const LeadershipPage = () => {
                   className="w-full h-full object-cover object-[center_top]"
                 />
               </div>
-              <h2 
-                className="text-xl sm:text-2xl md:text-[26px] font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2"
-                style={{ fontFamily: '"Montserrat", "Arial", sans-serif', letterSpacing: '-0.02em' }}
-              >
+              <h2 className="section-heading text-xl sm:text-2xl md:text-[26px] font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2">
                 {selectedLeader.name}
               </h2>
               <p 
@@ -583,10 +571,7 @@ const LeadershipPage = () => {
 
             {/* About + Education/Experience - responsive */}
             <div className="p-4 sm:p-5 md:p-6 lg:p-7 lg:px-8 text-left">
-              <h4 
-                className="text-xs sm:text-sm font-bold text-[var(--text-primary)] mb-2 sm:mb-2.5"
-                style={{ fontFamily: '"Montserrat", "Arial", sans-serif', letterSpacing: '0.02em' }}
-              >
+              <h4 className="section-heading text-xs sm:text-sm font-bold text-[var(--text-primary)] mb-2 sm:mb-2.5">
                 About
               </h4>
               <p 
@@ -602,10 +587,7 @@ const LeadershipPage = () => {
               >
                 {(selectedLeader as any).tenure && (
                   <div>
-                    <h4 
-                      className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
-                      style={{ fontFamily: '"Inter", sans-serif' }}
-                    >
+                    <h4 className="section-heading text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider">
                       Tenure
                     </h4>
                     <p 
@@ -617,10 +599,7 @@ const LeadershipPage = () => {
                   </div>
                 )}
                 <div>
-                  <h4 
-                    className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
-                    style={{ fontFamily: '"Inter", sans-serif' }}
-                  >
+                  <h4 className="section-heading text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider">
                     Education
                   </h4>
                   <p 
@@ -631,10 +610,7 @@ const LeadershipPage = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 
-                    className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
-                    style={{ fontFamily: '"Inter", sans-serif' }}
-                  >
+                  <h4 className="section-heading text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider">
                     Experience (with company)
                   </h4>
                   <p 

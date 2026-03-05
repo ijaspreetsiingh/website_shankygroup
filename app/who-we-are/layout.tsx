@@ -16,7 +16,7 @@
    }, []);
  
   return (
-    <div className="w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
+    <div className="who-we-are-root w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
        <HeaderFour isScrolled={isScrolled} />
        <main className="flex-grow">{children}</main>
        <FooterFour />

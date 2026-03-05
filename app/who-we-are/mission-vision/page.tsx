@@ -62,7 +62,7 @@ const MissionVisionPage = () => {
                   <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
                     Who We Are
                   </span>
-                  <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
+                  <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
                     Mission & <span className="text-[#e63a27]">Vision</span>
                   </h1>
                   <p className="text-sm sm:text-base md:text-xl max-w-2xl text-white/95 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
@@ -70,11 +70,11 @@ const MissionVisionPage = () => {
                   </p>
                   <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 md:gap-10">
                     <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
-                      <h2 className="text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Vision</h2>
+                      <h2 className="section-heading text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Vision</h2>
                       <p className="text-white/95 text-xs sm:text-sm leading-snug">A premium global conglomerate with clear focus in each business.</p>
                     </div>
                     <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
-                      <h2 className="text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Mission</h2>
+                      <h2 className="section-heading text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Mission</h2>
                       <p className="text-white/95 text-xs sm:text-sm leading-snug">Superior value to customers, shareholders, employees, and society.</p>
                     </div>
                   </div>
@@ -114,7 +114,7 @@ const MissionVisionPage = () => {
             }}
           >
             <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">Guiding principles</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] mt-2 mb-4 tracking-tight">
+            <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--text-primary)] mt-2 mb-4 tracking-tight">
               What We Stand For
             </h2>
             <div className="w-14 h-1 bg-[#e63a27] mx-auto mb-6 rounded-full" />
@@ -137,7 +137,7 @@ const MissionVisionPage = () => {
               <div className="h-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden">
                 <div>
                   <span className="text-[#e63a27] text-xs font-semibold tracking-widest uppercase">Purpose & Values</span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mt-2 mb-5">Our Mission</h3>
+                  <h3 className="section-heading text-2xl md:text-3xl font-bold text-[var(--text-primary)] mt-2 mb-5">Our Mission</h3>
                   <p className="text-[var(--text-secondary)] text-base leading-relaxed">
                     Deliver superior value to customers, partners, employees, and society through innovative solutions, operational excellence, and ethical business practices. Drive sustainable growth by leveraging sectoral synergies, investing in talent and technology, and embracing responsible business practices. Foster a culture of integrity, collaboration, and continuous improvement, empowering teams to achieve their fullest potential and contribute to the Group&apos;s long-term success. Champion sustainability and social responsibility by integrating environmental, social, and governance (ESG) principles into all aspects of business operations.
                   </p>
@@ -157,7 +157,7 @@ const MissionVisionPage = () => {
               <div className="h-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow relative overflow-hidden">
                 <div>
                   <span className="text-[#c93222] text-xs font-semibold tracking-widest uppercase">Future & Aspirations</span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] mt-2 mb-5">Our Vision</h3>
+                  <h3 className="section-heading text-2xl md:text-3xl font-bold text-[var(--text-primary)] mt-2 mb-5">Our Vision</h3>
                   <p className="text-[var(--text-secondary)] text-base leading-relaxed">
                     To be a leading diversified conglomerate, recognized for operational excellence, innovation, and sustainable value creation across all sectors of operation. Shanky Group aspires to set benchmarks in each industry it serves, fostering growth, trust, and prosperity for all stakeholders.
                   </p>
@@ -176,7 +176,7 @@ const MissionVisionPage = () => {
             }}
           >
             <span className="block text-center text-[var(--text-secondary)] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-2">What we stand for</span>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Our Core Values</h2>
+            <h2 className="section-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Our Core Values</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
                 { title: 'Integrity', description: 'Upholding ethical standards in all our actions', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
@@ -191,7 +191,7 @@ const MissionVisionPage = () => {
                   <span className="inline-flex w-12 h-12 sm:w-14 sm:h-14 rounded-lg sm:rounded-xl bg-[#e63a27]/15 text-[#e63a27] items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#e63a27]/25 transition-colors mx-auto">
                     <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={value.icon} /></svg>
                   </span>
-                  <h3 className="text-base sm:text-lg font-bold text-[#e63a27] mb-1.5 sm:mb-2">{value.title}</h3>
+                  <h3 className="section-heading text-base sm:text-lg font-bold text-[#e63a27] mb-1.5 sm:mb-2">{value.title}</h3>
                   <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-snug">{value.description}</p>
                 </div>
               ))}
@@ -209,7 +209,7 @@ const MissionVisionPage = () => {
           >
             <div className="rounded-xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] p-5 sm:p-8 md:p-10 lg:p-12 shadow-md">
               <span className="block text-center text-[var(--text-secondary)] text-[10px] sm:text-xs font-semibold tracking-[0.2em] uppercase mb-2">Focus areas</span>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Strategic Priorities</h2>
+              <h2 className="section-heading text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] text-center mb-6 sm:mb-10 md:mb-12">Strategic Priorities</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8 md:gap-10">
                 {[
                   { title: 'Digital Transformation', description: 'Leveraging technology to drive efficiency and innovation across all business units.', metrics: ['50% Digital Operations', 'AI Integration', 'Cloud First Strategy'] },
@@ -218,7 +218,7 @@ const MissionVisionPage = () => {
                 ].map((priority, index) => (
                   <div key={index} className="rounded-lg sm:rounded-xl border border-[var(--card-border)] bg-[var(--background)] p-4 sm:p-6 md:p-7">
                     <div className="w-8 sm:w-10 h-1 bg-[#e63a27] rounded-full mb-3 sm:mb-4" />
-                    <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-2 sm:mb-3">{priority.title}</h3>
+                    <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-2 sm:mb-3">{priority.title}</h3>
                     <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-3 sm:mb-5">{priority.description}</p>
                     <ul className="space-y-1.5 sm:space-y-2">
                       {priority.metrics.map((m, i) => (
@@ -245,7 +245,7 @@ const MissionVisionPage = () => {
           >
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 p-5 sm:p-8 md:p-10 lg:p-12">
               <div className="text-center sm:text-left">
-                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-1 sm:mb-2">Explore more</h3>
+                <h3 className="section-heading text-lg sm:text-xl md:text-2xl font-bold text-[var(--text-primary)] mb-1 sm:mb-2">Explore more</h3>
                 <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base">See our companies, careers, and how we work.</p>
               </div>
               <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-2 sm:gap-3 md:gap-4 w-full sm:w-auto">

@@ -175,7 +175,7 @@ export default function BlogPage() {
                 <span className="inline-block px-4 py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-4 lg:mb-5">
                   Insights & Updates
                 </span>
-                <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4 lg:mb-5">
+                <h1 className="section-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4 lg:mb-5">
                   Our <span className="text-[#e63a27]">Blog</span>
                   <br />
                   <span className="text-white/95">Ideas That Matter</span>
@@ -291,7 +291,7 @@ export default function BlogPage() {
           {filteredBlogs.length === 0 ? (
             <div className="text-center py-20 px-4 rounded-2xl border-2 border-dashed border-[var(--card-border)] bg-[var(--card-bg)]/50">
               <FileText className="w-16 h-16 mx-auto text-[var(--text-secondary)]/50 mb-4" />
-              <h3 className="text-xl font-semibold text-[var(--text-primary)] mb-2">No posts found</h3>
+              <h3 className="section-heading text-xl font-semibold text-[var(--text-primary)] mb-2">No posts found</h3>
               <p className="text-[var(--text-secondary)] max-w-md mx-auto mb-6">
                 No blog posts match your filters. Try clearing filters or a different search.
               </p>
@@ -352,7 +352,7 @@ export default function BlogPage() {
                       </div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-2 line-clamp-2 group-hover:text-[#e63a27] transition-colors leading-snug">
+                    <h3 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-2 line-clamp-2 group-hover:text-[#e63a27] transition-colors leading-snug">
                       {blog.title}
                     </h3>
 
@@ -408,7 +408,7 @@ export default function BlogPage() {
           >
             <div className="sticky top-0 bg-[var(--card-bg)] border-b border-[var(--card-border)] p-6 z-10">
               <div className="flex items-center justify-between gap-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)] pr-8">
+                <h2 className="section-heading text-xl sm:text-2xl font-bold text-[var(--text-primary)] pr-8">
                   {selectedBlog.title}
                 </h2>
                 <button

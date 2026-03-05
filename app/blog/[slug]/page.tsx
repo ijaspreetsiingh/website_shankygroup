@@ -255,7 +255,7 @@ export default function BlogDetailPage() {
     return (
       <div className="min-h-screen bg-[var(--background)] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">Blog Not Found</h1>
+          <h1 className="section-heading text-2xl font-bold text-[var(--text-primary)] mb-4">Blog Not Found</h1>
           <p className="text-[var(--text-secondary)] mb-6">The blog post you're looking for doesn't exist.</p>
           <button
             onClick={() => router.push('/blog')}
@@ -318,7 +318,7 @@ export default function BlogDetailPage() {
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-6 leading-tight">
+            <h1 className="section-heading text-3xl sm:text-4xl font-bold text-[var(--text-primary)] mb-6 leading-tight">
               {blog.title}
             </h1>
 
@@ -430,7 +430,7 @@ export default function BlogDetailPage() {
                   <User className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[var(--text-primary)] mb-1">
+                  <h3 className="section-heading font-semibold text-[var(--text-primary)] mb-1">
                     {blog.author_name || 'Admin'}
                   </h3>
                   <p className="text-sm text-[var(--text-secondary)]">
@@ -446,7 +446,7 @@ export default function BlogDetailPage() {
         <section className="mt-12">
           <div className="bg-[var(--card-bg)] rounded-xl shadow-lg p-6 sm:p-8">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[var(--text-primary)]">
+              <h2 className="section-heading text-2xl font-bold text-[var(--text-primary)]">
                 Comments ({comments.length})
               </h2>
               <button
@@ -522,7 +522,7 @@ export default function BlogDetailPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="font-semibold text-[var(--text-primary)]">
+                          <h4 className="section-heading font-semibold text-[var(--text-primary)]">
                             {comment.name}
                           </h4>
                           <span className="text-sm text-[var(--text-secondary)]">
@@ -544,7 +544,7 @@ export default function BlogDetailPage() {
         {/* Related Blogs */}
         {relatedBlogs.length > 0 && (
           <section className="mt-12">
-            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Related Posts</h2>
+            <h2 className="section-heading text-2xl font-bold text-[var(--text-primary)] mb-6">Related Posts</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {relatedBlogs.map((relatedBlog) => (
                 <article
@@ -565,7 +565,7 @@ export default function BlogDetailPage() {
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getCategoryColor(relatedBlog.category)}`}>
                       {relatedBlog.category}
                     </span>
-                    <h3 className="font-semibold text-[var(--text-primary)] mt-2 mb-2 line-clamp-2">
+                    <h3 className="section-heading font-semibold text-[var(--text-primary)] mt-2 mb-2 line-clamp-2">
                       {relatedBlog.title}
                     </h3>
                     <p className="text-sm text-[var(--text-secondary)] mb-3 line-clamp-2">

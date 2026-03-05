@@ -74,7 +74,7 @@ export default function CompliancePage() {
                 <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6">
                   Compliance & Governance
                 </span>
-                <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-3 sm:mb-4 lg:mb-5">
+                <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-3 sm:mb-4 lg:mb-5">
                   <span className="text-[#e63a27]">COMPLIANCE</span>
                   <br />
                   <span className="text-white/95">That Builds Trust</span>
@@ -125,7 +125,7 @@ export default function CompliancePage() {
                   <span className="w-8 sm:w-10 h-0.5 bg-[#e63a27]" />
                   Our Commitment
                 </span>
-                <h2 className="text-xl sm:text-2xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] font-bold leading-[1.15] text-[var(--text-primary)] tracking-tight mb-3 sm:mb-5">
+                <h2 className="section-heading text-xl sm:text-2xl md:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] font-bold leading-[1.15] text-[var(--text-primary)] tracking-tight mb-3 sm:mb-5">
                   Integrity at <span className="text-[#e63a27]">Every Level</span>
                 </h2>
                 <p className="text-[var(--text-secondary)] text-sm sm:text-base md:text-lg leading-[1.7] max-w-lg mb-5 sm:mb-8">
@@ -179,7 +179,7 @@ export default function CompliancePage() {
                 <span className="w-6 sm:w-8 h-0.5 bg-[#e63a27]" />
                 Corporate Governance
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight">
+              <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight">
                 Governance & <span className="text-[#e63a27]">Compliance</span>
               </h2>
             </div>
@@ -204,7 +204,7 @@ export default function CompliancePage() {
             </div>
           </div>
 
-          <h3 className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Governance Framework</h3>
+          <h3 className="section-heading text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Governance Framework</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 lg:gap-6">
             {[
               { num: '01', title: 'Board Oversight', desc: 'Each company has a board of directors responsible for strategic direction, oversight, and governance.', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 8h1m-1 4h1m4-4h1m-1 4h1m-5-10v-2a2 2 0 012-2h2a2 2 0 012 2v2m-4 0h.01' },
@@ -220,7 +220,7 @@ export default function CompliancePage() {
                 <span className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#e63a27]/15 group-hover:bg-[#e63a27]/25 flex items-center justify-center mb-3 sm:mb-4 transition-colors flex-shrink-0">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} /></svg>
                 </span>
-                <h4 className="relative text-[var(--text-primary)] font-bold text-base sm:text-lg mb-1.5 sm:mb-2 group-hover:text-[#e63a27] transition-colors">{item.title}</h4>
+                <h4 className="section-heading relative text-[var(--text-primary)] font-bold text-base sm:text-lg mb-1.5 sm:mb-2 group-hover:text-[#e63a27] transition-colors">{item.title}</h4>
                 <p className="relative text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed flex-1">{item.desc}</p>
               </div>
             ))}
@@ -235,7 +235,7 @@ export default function CompliancePage() {
           <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase mb-2">
             Policy Framework
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-5 sm:mb-8">
+          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-5 sm:mb-8">
             Our Compliance <span className="text-[#e63a27]">Policies</span>
           </h2>
           <div className="relative rounded-xl sm:rounded-2xl overflow-hidden h-40 sm:h-48 md:h-56 lg:h-64 mb-8 sm:mb-12 border border-[var(--card-border)] shadow-lg">
@@ -249,7 +249,7 @@ export default function CompliancePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent flex items-center">
               <div className="px-4 sm:px-6 md:px-12 lg:px-16 text-white max-w-xl">
                 <p className="text-white/90 text-xs sm:text-sm md:text-base mb-1 sm:mb-2">Clear. Documented. Enforced.</p>
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug">Policies that protect our people and our reputation.</h3>
+                <h3 className="section-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-snug">Policies that protect our people and our reputation.</h3>
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@ export default function CompliancePage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl bg-[#e63a27]/15 group-hover:bg-[#e63a27]/25 flex items-center justify-center mb-3 sm:mb-4 transition-colors">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
                 </div>
-                <h3 className="text-base sm:text-lg font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 group-hover:text-[#e63a27] transition-colors">{item.title}</h3>
+                <h3 className="section-heading text-base sm:text-lg font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 group-hover:text-[#e63a27] transition-colors">{item.title}</h3>
                 <p className="text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -286,7 +286,7 @@ export default function CompliancePage() {
               <span className="w-6 sm:w-8 h-0.5 bg-[#e63a27]" />
               Key Areas
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight">
+            <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight">
               Regulatory & <span className="text-[#e63a27]">Governance</span>
             </h2>
           </div>
@@ -303,7 +303,7 @@ export default function CompliancePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 lg:bg-gradient-to-r lg:from-[#e63a27]/95 lg:via-[#e63a27]/90 lg:to-[#c93222]/95" />
                 <div className="absolute inset-0 flex flex-col justify-end lg:justify-center p-4 sm:p-6 lg:p-10 xl:p-12 text-white">
-                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3">Regulatory Compliance</h3>
+                  <h3 className="section-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3">Regulatory Compliance</h3>
                   <p className="text-white/95 text-xs sm:text-sm md:text-base leading-relaxed mb-4 sm:mb-6 max-w-lg">
                     We comply with RBI, SEBI, and other sector-specific regulations. Timely filings, audits, and corrective actions are ensured by our compliance team.
                   </p>
@@ -322,7 +322,7 @@ export default function CompliancePage() {
                 </div>
               </div>
               <div className="p-4 sm:p-6 lg:p-10 xl:p-12 flex flex-col justify-center">
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4">
+                <h3 className="section-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4">
                   Governance & Board
                 </h3>
                 <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-relaxed mb-5 sm:mb-8">
@@ -356,7 +356,7 @@ export default function CompliancePage() {
           <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase mb-2">
             Financial Overview
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight mb-4 sm:mb-6">
+          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight mb-4 sm:mb-6">
             Financial Performance & <span className="text-[#e63a27]">Key Metrics</span>
           </h2>
           <div className="grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 mb-6 sm:mb-10">
@@ -375,7 +375,7 @@ export default function CompliancePage() {
               </div>
             </div>
             <div className="lg:col-span-8">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Financial Highlights</h3>
+              <h3 className="section-heading text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Financial Highlights</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 {[
                   { name: 'Shanky Metals Pvt Ltd', revenue: '₹7.16 crore', revenueLabel: 'Revenue (FY 2023-24)', auth: '₹75 lakh', paid: '₹70 lakh', note: 'Consistent growth in revenue and assets over the past three years.' },
@@ -385,7 +385,7 @@ export default function CompliancePage() {
                 ].map((co) => (
                   <div key={co.name} className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] overflow-hidden hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300">
                     <div className="bg-gradient-to-br from-[#e63a27]/10 to-[#e63a27]/5 px-4 sm:px-6 py-3 sm:py-4 border-b border-[var(--card-border)]">
-                      <h4 className="text-[var(--text-primary)] font-bold text-xs sm:text-sm lg:text-base leading-tight">{co.name}</h4>
+                      <h4 className="section-heading text-[var(--text-primary)] font-bold text-xs sm:text-sm lg:text-base leading-tight">{co.name}</h4>
                     </div>
                     <div className="p-3 sm:p-5 space-y-2 sm:space-y-3">
                       {co.revenue != null && co.revenueLabel != null && (
@@ -434,7 +434,7 @@ export default function CompliancePage() {
               <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-white/20 text-white text-[10px] sm:text-xs font-semibold tracking-wider rounded-full uppercase mb-3 sm:mb-4 backdrop-blur-sm">
                 Questions or Reports
               </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+              <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
                 Compliance <span className="text-white/95">Contact</span>
               </h2>
               <p className="text-white/90 text-sm sm:text-base mb-6 sm:mb-8">

@@ -159,18 +159,26 @@ const CareersPage = () => {
                 <span className="mx-2">/</span>
                 <span className="text-[var(--accent)]">Careers</span>
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-bold leading-tight tracking-tight mt-0 mb-4 sm:mb-5 font-[family-name:var(--font-montserrat)] text-[var(--text-primary)]">
+              <h1 className="section-heading text-3xl sm:text-4xl md:text-5xl lg:text-[72px] font-bold leading-tight tracking-tight mt-0 mb-4 sm:mb-5 text-[var(--text-primary)]">
                 BUILD YOUR FUTURE
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal w-full max-w-full leading-relaxed mb-6 sm:mb-8 md:mb-10 font-[family-name:var(--font-lato)] opacity-90 text-[var(--text-secondary)]">
                 Join a team of over 500 talented professionals across India. We believe in nurturing talent, fostering innovation, and creating opportunities for growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap">
-                <button className="w-full sm:w-auto bg-[#e63a27] text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-0 cursor-pointer transition-all duration-300 uppercase tracking-wider shadow-[0_4px_20px_rgba(230,58,39,0.3)] min-h-[48px] touch-manipulation">
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('open-roles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  className="w-full sm:w-auto bg-[#e63a27] text-white text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-0 cursor-pointer transition-all duration-300 uppercase tracking-wider shadow-[0_4px_20px_rgba(230,58,39,0.3)] min-h-[48px] touch-manipulation"
+                >
                   Explore Opportunities
                 </button>
-                <button className="w-full sm:w-auto bg-transparent text-[var(--text-primary)] text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-2 border-[var(--card-border)] cursor-pointer transition-all duration-300 uppercase tracking-wider min-h-[48px] touch-manipulation">
-                  Learn More
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('apply-now')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  className="w-full sm:w-auto bg-transparent text-[var(--text-primary)] text-sm sm:text-base font-semibold py-3 sm:py-4 px-6 sm:px-10 rounded-[30px] border-2 border-[var(--card-border)] cursor-pointer transition-all duration-300 uppercase tracking-wider min-h-[48px] touch-manipulation"
+                >
+                  Upload Resume
                 </button>
               </div>
             </div>
@@ -191,7 +199,7 @@ const CareersPage = () => {
                   Our Culture
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-white m-0 mb-4 sm:mb-6 leading-tight font-[family-name:var(--font-montserrat)]">
+              <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-white m-0 mb-4 sm:mb-6 leading-tight">
                 Innovation & Growth
               </h2>
               <p className="text-lg sm:text-xl md:text-2xl text-[#cccccc] m-0 mb-6 sm:mb-8 font-medium leading-snug">
@@ -215,12 +223,12 @@ const CareersPage = () => {
         <section className="px-4 sm:px-6 lg:px-12 pb-12 pt-10 sm:pt-14 lg:pt-16">
           <div className="max-w-[1600px] mx-auto">
             <div className="mb-6 sm:mb-8">
-              <div className="text-xl sm:text-2xl lg:text-[clamp(1.5rem,2.8vw,2rem)] font-bold text-[var(--text-primary)] mb-4 text-center">About Shanky Group</div>
+              <div className="section-heading text-xl sm:text-2xl lg:text-[clamp(1.5rem,2.8vw,2rem)] font-bold text-[var(--text-primary)] mb-4 text-center">About Shanky Group</div>
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 sm:gap-10 lg:gap-10 items-center mb-14 sm:mb-20">
               <div className="transition-all duration-800 ease-out delay-400 order-2 lg:order-1">
-                <h2 className="text-2xl sm:text-3xl font-[600] text-[var(--text-primary)] mb-4 sm:mb-5 font-['Montserrat','Arial','sans-serif']">
+                <h2 className="section-heading text-2xl sm:text-3xl font-bold text-[var(--text-primary)] mb-4 sm:mb-5">
                   Join Our Legacy
                 </h2>
                 
@@ -265,7 +273,7 @@ const CareersPage = () => {
                     <div className="text-xs sm:text-[14px] font-[600] tracking-[2px] uppercase mb-2 sm:mb-4 opacity-90">
                       {String(currentSlide + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
                     </div>
-                    <h3 className="text-lg sm:text-xl md:text-[28px] font-[700] mb-2 sm:mb-4 font-['Montserrat','Arial','sans-serif'] leading-[1.2] drop-shadow-md">
+                    <h3 className="section-heading text-lg sm:text-xl md:text-[28px] font-bold mb-2 sm:mb-4 leading-[1.2] drop-shadow-md">
                       {slides[currentSlide].title}
                     </h3>
                     <p className="text-sm sm:text-[16px] leading-[1.6] opacity-90 mb-4 sm:mb-6 font-['Lato','Arial','sans-serif'] line-clamp-2 sm:line-clamp-none">
@@ -343,11 +351,11 @@ const CareersPage = () => {
         </section>
 
         {/* Open Roles */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-18 bg-[var(--background)]">
+        <section id="open-roles" className="px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-18 bg-[var(--background)] scroll-mt-20">
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <p className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-2">Careers</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
+              <h2 className="section-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
                 Open <span className="text-[#e63a27]">Roles</span>
               </h2>
               <div className="w-16 h-0.5 bg-[#e63a27] mx-auto mb-4" />
@@ -371,7 +379,7 @@ const CareersPage = () => {
                     className="group bg-[var(--card-bg)] rounded-2xl p-6 border border-[var(--card-border)] hover:border-[#e63a27]/30 hover:shadow-xl hover:shadow-[#e63a27]/5 transition-all duration-300 flex flex-col"
                   >
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-[var(--text-primary)] font-bold text-base sm:text-lg mb-2 group-hover:text-[#e63a27] transition-colors">
+                      <h3 className="section-heading text-[var(--text-primary)] font-bold text-base sm:text-lg mb-2 group-hover:text-[#e63a27] transition-colors">
                         {job.title}
                       </h3>
                       {(job.location || job.job_type || job.department) && (
@@ -430,7 +438,7 @@ const CareersPage = () => {
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-8 sm:mb-12">
               <p className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-2">Why Join Us</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
+              <h2 className="section-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
                 Benefits
               </h2>
               <div className="w-16 h-0.5 bg-[#e63a27] mx-auto mb-4" />
@@ -454,7 +462,7 @@ const CareersPage = () => {
                         {i === 3 && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
                       </svg>
                     </div>
-                    <h3 className="text-[var(--text-primary)] font-bold text-base mb-2">{b.t}</h3>
+                    <h3 className="section-heading text-[var(--text-primary)] font-bold text-base mb-2">{b.t}</h3>
                     <p className="text-[var(--text-secondary)] text-sm leading-relaxed">{b.d}</p>
                   </div>
                 </div>
@@ -464,11 +472,11 @@ const CareersPage = () => {
         </section>
 
         {/* Apply Now */}
-        <section className="px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-18 pb-12 sm:pb-16 bg-[var(--background)]">
+        <section id="apply-now" className="px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-18 pb-12 sm:pb-16 bg-[var(--background)] scroll-mt-20">
           <div className="max-w-[1200px] mx-auto">
             <div className="text-center mb-8 sm:mb-10">
               <p className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-2">Get Started</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
+              <h2 className="section-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text-primary)] mb-3 tracking-tight">
                 Apply <span className="text-[#e63a27]">Now</span>
               </h2>
               <div className="w-16 h-0.5 bg-[#e63a27] mx-auto mb-4" />

@@ -145,17 +145,17 @@ const AboutUsPage = () => {
         {/* Main Hero Content */}
         <div className="absolute z-[2] bottom-[60px] left-[40px] right-[40px] flex flex-col items-start justify-end text-left text-white">
           {/* Main Heading */}
-          <h1 className="text-[clamp(40px,4vw,56px)] font-[700] leading-[1.1] tracking-[-1px] uppercase text-white opacity-95 mb-4 font-['Montserrat','Arial','sans-serif']">
+          <h1 className="section-heading text-[clamp(40px,4vw,56px)] font-[700] leading-[1.1] tracking-[-1px] uppercase text-white opacity-95 mb-4">
             Shanky Group
           </h1>
 
           {/* First Tagline */}
-          <h2 className="text-[20px] font-[400] leading-[1.3] mb-2 font-['Lato','Arial','sans-serif'] opacity-90">
+          <h2 className="section-subheading text-[20px] font-[400] leading-[1.3] mb-2 opacity-90">
             Powering India's ambitions.
           </h2>
 
           {/* Second Tagline */}
-          <h3 className="text-[20px] font-[400] leading-[1.4] mb-8 font-['Lato','Arial','sans-serif'] opacity-85">
+          <h3 className="section-subheading text-[20px] font-[400] leading-[1.4] mb-8 opacity-85">
             Catering to a billion aspirations.
           </h3>
 
@@ -181,7 +181,7 @@ const AboutUsPage = () => {
             <div className="w-[30px] h-[2px] bg-[var(--card-bg)] opacity-70" />
             
             {/* About Us Text */}
-            <div className="text-[clamp(16px,1.6vw,20px)] font-[400] uppercase tracking-[1.5px] font-['Lato','Arial','sans-serif'] opacity-90 cursor-pointer transition-all duration-300 py-1">
+            <div className="section-subheading text-[clamp(16px,1.6vw,20px)] font-[400] uppercase tracking-[1.5px] opacity-90 cursor-pointer transition-all duration-300 py-1">
               About Us
             </div>
           </div>
@@ -191,18 +191,18 @@ const AboutUsPage = () => {
       {/* Main Content Section */}
       <section 
         ref={sectionRef}
-        className="py-[90px] px-[10px] bg-[var(--card-bg)] font-['Lato','Helvetica_Neue','Arial','sans-serif'] relative overflow-hidden"
+        className="py-[90px] px-[10px] bg-[var(--card-bg)] relative overflow-hidden"
       >
         <div>
           {/* Header Section */}
           <div className={`text-center mb-[100px] px-[80px] transition-all duration-800 ease-out delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'
           }`}>
-            <h1 className="text-[56px] font-[700] text-[var(--text-primary)] mb-6 tracking-[-1px] leading-[1.1] font-['Montserrat','Arial','sans-serif']">
+            <h1 className="section-heading text-[56px] font-[700] text-[var(--text-primary)] mb-6 tracking-[-1px] leading-[1.1]">
               Welcome to Shanky Group
             </h1>
             <div className="w-[100px] h-[4px] bg-gradient-to-r from-[#1e293b] to-[#3b82f6] mx-auto mb-10 rounded-[2px]" />
-            <p className="text-[20px] text-[var(--text-secondary)] max-w-[800px] mx-auto leading-[1.6] font-[400]">
+            <p className="section-subheading text-[20px] text-[var(--text-secondary)] max-w-[800px] mx-auto leading-[1.6] font-[400]">
               Discover our journey of excellence and innovation across multiple industries
             </p>
           </div>
@@ -214,12 +214,12 @@ const AboutUsPage = () => {
               <div className={`transition-all duration-800 ease-out delay-400 ${
                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-[30px]'
               }`}>
-                <h2 className="text-[32px] font-[600] text-[var(--text-primary)] mb-5 font-['Montserrat','Arial','sans-serif']">
+                <h2 className="section-heading text-[32px] font-[600] text-[var(--text-primary)] mb-5">
                   Our Vision
                 </h2>
                 
                 <div className="flex flex-col gap-5">
-                  <p className="text-[22px] text-[var(--text-secondary)] leading-[1.7] font-[400]">
+                  <p className="section-subheading text-[22px] text-[var(--text-secondary)] leading-[1.7] font-[400]">
                     At Shanky Group, we envision a future where innovation meets sustainability, creating lasting value for our stakeholders and communities. Our vision drives us to push boundaries and explore new possibilities across all our business sectors.
                   </p>
                   
@@ -252,12 +252,12 @@ const AboutUsPage = () => {
                     </div>
                     
                     {/* Image Title */}
-                    <h3 className="text-[28px] font-[700] mb-4 font-['Montserrat','Arial','sans-serif'] leading-[1.2] drop-shadow-md">
+                    <h3 className="section-heading text-[28px] font-[700] mb-4 leading-[1.2] drop-shadow-md">
                       {secondImages[secondImageIndex].title}
                     </h3>
                     
                     {/* Image Description */}
-                    <p className="text-[16px] leading-[1.6] opacity-90 mb-6 font-['Lato','Arial','sans-serif']">
+                    <p className="section-subheading text-[16px] leading-[1.6] opacity-90 mb-6">
                       {secondImages[secondImageIndex].description}
                     </p>
                     
@@ -320,7 +320,7 @@ const AboutUsPage = () => {
                 
                 {/* Image Description Footer */}
                 <div className="flex justify-between items-center mt-5 px-[10px]">
-                  <div className="text-[14px] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
+                  <div className="section-subheading text-[14px] text-[var(--text-secondary)]">
                     Our commitment to excellence and innovation
                   </div>
                   <div className="flex gap-1 items-center">
@@ -361,12 +361,12 @@ const AboutUsPage = () => {
                   </div>
                   
                   {/* Image Title */}
-                  <h3 className="text-[28px] font-[700] mb-4 font-['Montserrat','Arial','sans-serif'] leading-[1.2] drop-shadow-md">
+                  <h3 className="section-heading text-[28px] font-[700] mb-4 leading-[1.2] drop-shadow-md">
                     {images[currentImageIndex].title}
                   </h3>
                   
                   {/* Image Description */}
-                  <p className="text-[16px] leading-[1.6] opacity-90 mb-6 font-['Lato','Arial','sans-serif']">
+                  <p className="section-subheading text-[16px] leading-[1.6] opacity-90 mb-6">
                     {images[currentImageIndex].description}
                   </p>
                   
@@ -444,7 +444,7 @@ const AboutUsPage = () => {
             <div className={`transition-all duration-800 ease-out delay-400 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-[30px]'
             }`}>
-              <h2 className="text-[32px] font-[600] text-[var(--text-primary)] mb-5 font-['Montserrat','Arial','sans-serif']">
+              <h2 className="section-heading text-[32px] font-[600] text-[var(--text-primary)] mb-5">
                 Our Journey
               </h2>
               
@@ -465,7 +465,7 @@ const AboutUsPage = () => {
             <div className={`transition-all duration-800 ease-out delay-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'
             }`}>
-              <h2 className="text-[36px] font-[700] text-[var(--text-primary)] mb-15 text-center font-['Montserrat','Arial','sans-serif']">
+              <h2 className="section-heading text-[36px] font-[700] text-[var(--text-primary)] mb-15 text-center">
                 Our Achievements
               </h2>
               
@@ -473,10 +473,10 @@ const AboutUsPage = () => {
                 {/* Years of Excellence */}
                 <div className="text-center p-10 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-br from-[#3b82f6] to-[#10b981]" />
-                  <div className="text-[48px] font-[800] text-[#3b82f6] mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
+                  <div className="section-heading text-[48px] font-[800] text-[#3b82f6] mb-3 leading-none">
                     {yearsCount}+
                   </div>
-                  <div className="text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
+                  <div className="section-subheading text-[16px] font-[600] text-[var(--text-secondary)]">
                     Years of Excellence
                   </div>
                 </div>
@@ -484,10 +484,10 @@ const AboutUsPage = () => {
                 {/* Business Sectors */}
                 <div className="text-center p-10 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-br from-[#10b981] to-[#06b6d4]" />
-                  <div className="text-[48px] font-[800] text-[#10b981] mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
+                  <div className="section-heading text-[48px] font-[800] text-[#10b981] mb-3 leading-none">
                     {sectorsCount}+
                   </div>
-                  <div className="text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
+                  <div className="section-subheading text-[16px] font-[600] text-[var(--text-secondary)]">
                     Business Sectors
                   </div>
                 </div>
@@ -495,10 +495,10 @@ const AboutUsPage = () => {
                 {/* Employees */}
                 <div className="text-center p-10 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-br from-[#06b6d4] to-[#8b5cf6]" />
-                  <div className="text-[48px] font-[800] text-[#06b6d4] mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
+                  <div className="section-heading text-[48px] font-[800] text-[#06b6d4] mb-3 leading-none">
                     {employeesCount}+
                   </div>
-                  <div className="text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
+                  <div className="section-subheading text-[16px] font-[600] text-[var(--text-secondary)]">
                     Employees
                   </div>
                 </div>
@@ -506,10 +506,10 @@ const AboutUsPage = () => {
                 {/* Projects Completed */}
                 <div className="text-center p-10 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-[4px] h-full bg-gradient-to-br from-[#8b5cf6] to-[#ec4899]" />
-                  <div className="text-[48px] font-[800] text-[#8b5cf6] mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
+                  <div className="section-heading text-[48px] font-[800] text-[#8b5cf6] mb-3 leading-none">
                     {projectsCount}+
                   </div>
-                  <div className="text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
+                  <div className="section-subheading text-[16px] font-[600] text-[var(--text-secondary)]">
                     Projects Completed
                   </div>
                 </div>

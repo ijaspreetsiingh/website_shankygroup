@@ -204,10 +204,10 @@ const ContactUs = () => {
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414A1 1 0 0021 18.586V19a2 2 0 01-2 2z" /></svg>
               </span>
               <div>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                <h2 className="section-heading text-lg sm:text-xl md:text-2xl font-bold text-white">
                   {t('tell_us_what_you_need')}
                 </h2>
-                <p className="text-xs sm:text-sm text-white/80">
+                <p className="section-subheading text-xs sm:text-sm text-white/80">
                   {t('team_ready')}
                 </p>
               </div>
@@ -315,11 +315,11 @@ const ContactUs = () => {
 
           {/* Left Section - Info (after form on mobile) */}
           <div className="order-2 lg:order-1 text-white flex flex-col justify-center py-4 sm:py-6 lg:py-0" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
-            <h1 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
+            <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
               {t('you_have_questions')},<br />
               {t('we_have_answers')}
             </h1>
-            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
+            <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
               {t('contact_desc')}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm">

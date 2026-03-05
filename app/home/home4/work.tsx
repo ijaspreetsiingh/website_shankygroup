@@ -71,13 +71,13 @@ const WorkWithUs = () => {
       >
         <div className="text-center mb-6 sm:mb-8 md:mb-10 px-3 sm:px-4">
           <h2 
-            className="text-[20px] sm:text-[26px] md:text-[32px] font-semibold text-white m-0 mb-3 sm:mb-4 tracking-[0.5px] sm:tracking-[1px] leading-tight transition-all duration-800 delay-200"
+            className="section-heading text-[20px] sm:text-[26px] md:text-[32px] font-bold text-white m-0 mb-3 sm:mb-4 tracking-[0.5px] sm:tracking-[1px] leading-tight transition-all duration-800 delay-200"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-60px)' }}
           >
             Trusted by Leading Companies
           </h2>
           <p 
-            className="text-[13px] sm:text-[14px] md:text-base text-white/80 max-w-[600px] mx-auto leading-snug transition-all duration-800 delay-400"
+            className="section-subheading text-[13px] sm:text-[14px] md:text-base text-white/80 max-w-[600px] mx-auto leading-snug transition-all duration-800 delay-400"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(60px)' }}
           >
             Partnering with industry leaders to drive innovation and growth
@@ -182,28 +182,38 @@ const WorkWithUs = () => {
         </div>
       </div>
 
-      {/* WORK WITH US - Full width, top margin, clean design */}
+      {/* WORK WITH US - Full width, top margin, image visible */}
       <div 
         className="relative w-full mt-16 sm:mt-20 md:mt-24 py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-1000"
         style={{ 
           opacity: isVisible ? 1 : 0, 
           transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
-          backgroundColor: 'var(--background)',
         }}
       >
-        {/* Subtle background - soft gradient + very light image */}
+        {/* Background image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] dark:opacity-[0.05]"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80)',
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--background)]/30" />
+        {/* Light overlay - image clearly visible */}
+        <div 
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: isDarkMode
+              ? 'linear-gradient(to bottom right, rgba(0,0,0,0.35), rgba(0,0,0,0.3), rgba(0,0,0,0.35))'
+              : 'linear-gradient(to bottom, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.28) 100%)',
+          }}
+        />
+        {isDarkMode && (
+          <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-transparent to-black/20" />
+        )}
 
         <div className="relative z-10 w-full max-w-[640px] mx-auto text-center">
-          {/* Main Title */}
-          <h1 
-            className="text-[28px] sm:text-[34px] md:text-[42px] font-bold text-[var(--text-primary)] m-0 mb-3 tracking-[4px] md:tracking-[6px] uppercase transition-all duration-800 delay-1200"
+          {/* Main Title - dark text in light mode, white in dark mode */}
+          <h1
+            className={`section-heading text-[28px] sm:text-[34px] md:text-[42px] font-bold m-0 mb-3 tracking-[4px] md:tracking-[6px] uppercase transition-all duration-800 delay-1200 ${isDarkMode ? 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]' : 'text-[#1a1a1a] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]'}`}
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
           >
             WORK WITH US
@@ -213,22 +223,19 @@ const WorkWithUs = () => {
             style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.6s 0.2s' }}
           />
 
-          {/* Card - JOIN OUR TEAM */}
+          {/* Card - JOIN OUR TEAM - glass blur */}
           <div 
-            className="rounded-2xl p-8 sm:p-10 md:p-12 text-center transition-all duration-500 border"
+            className="rounded-2xl p-8 sm:p-10 md:p-12 text-center transition-all duration-500 border border-white/20 backdrop-blur-md bg-white/15 dark:bg-black/25 dark:border-white/10 shadow-[0_10px_40px_rgba(0,0,0,0.08)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
             style={{ 
               opacity: isVisible ? 1 : 0, 
               transform: isVisible ? 'translateY(0)' : 'translateY(24px)', 
               transitionDelay: '0.15s',
-              backgroundColor: 'var(--card-bg)',
-              borderColor: 'var(--card-border)',
-              boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
             }}
           >
-            <h2 className="text-[22px] sm:text-[26px] md:text-[28px] font-bold text-[var(--text-primary)] m-0 mb-3 tracking-[2px] uppercase">
+            <h2 className="section-heading text-[22px] sm:text-[26px] md:text-[28px] font-bold text-[var(--text-primary)] m-0 mb-3 tracking-[2px] uppercase">
               JOIN OUR TEAM
             </h2>
-            <p className="text-[15px] sm:text-base text-[var(--text-secondary)] leading-[1.65] m-0 mb-8 max-w-[420px] mx-auto">
+            <p className="section-subheading text-[15px] sm:text-base text-[var(--text-secondary)] leading-[1.65] m-0 mb-8 max-w-[420px] mx-auto">
               See current job openings and find your place with us.
             </p>
             <Link 

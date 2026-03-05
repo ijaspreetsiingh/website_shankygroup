@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -11,6 +12,14 @@
   --text-secondary-rgb: 107, 114, 128;
   --accent: #4a90e2;
   --accent-hover: #357abd;
+  /* Heading font: Syne – professional bold (700), clean and sharp */
+  --heading-font: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif;
+  --heading-weight: 700;
+  /* Section typography */
+  --section-heading-font: var(--heading-font);
+  --section-heading-weight: var(--heading-weight);
+  --section-subheading-font: var(--font-dm-sans), 'Inter', Arial, sans-serif;
+  --section-subheading-weight: 400;
 }
 
 @theme inline {
@@ -48,6 +57,15 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+/* All headings site-wide – same as "GROUP OF COMPANIES" (Syne bold, same tracking) */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font);
+  font-weight: var(--heading-weight);
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -80,6 +98,82 @@ html {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Safari and Chrome */
+}
+
+/* All main headings – same style as "GROUP OF COMPANIES" (Image 1): Syne bold, same tracking */
+.section-heading {
+  font-family: var(--section-heading-font);
+  font-weight: var(--section-heading-weight);
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hero "Legacy & Leadership" – same as Group of Companies font */
+.hero-legacy-heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Group of Companies + any uppercase heading – same font, slightly wider for all-caps */
+.heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Section subheading: single font + weight for all section subtitles/descriptions */
+.section-subheading {
+  font-family: var(--section-subheading-font);
+  font-weight: var(--section-subheading-weight);
+}
+
+/* app/home/home4: same Syne font, professional look – bold (700) + open tracking */
+.home4-root h1,
+.home4-root h2,
+.home4-root h3,
+.home4-root h4,
+.home4-root h5,
+.home4-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.home4-root .section-heading,
+.home4-root .hero-legacy-heading,
+.home4-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Who We Are – saari pages ke saari headings = same font (Syne professional) */
+.who-we-are-root h1,
+.who-we-are-root h2,
+.who-we-are-root h3,
+.who-we-are-root h4,
+.who-we-are-root h5,
+.who-we-are-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.who-we-are-root .section-heading,
+.who-we-are-root .hero-legacy-heading,
+.who-we-are-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
 }
 
 /* Specific procedure section scrollbar hide */

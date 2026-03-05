@@ -61,7 +61,7 @@ const ForceForGood = () => {
       >
         {/* Title: Legacy (red) & Leadership (white) */}
         <h1 
-          className="text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] font-bold m-0 mb-4 md:mb-5 leading-[1.2] tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
+          className="hero-legacy-heading text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] m-0 mb-4 md:mb-5 leading-[1.2] tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)]"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
@@ -73,7 +73,7 @@ const ForceForGood = () => {
 
         {/* Subtitle */}
         <p 
-          className="text-base sm:text-lg md:text-xl text-white/95 max-w-[560px] mx-auto leading-relaxed m-0 transition-all duration-800 delay-200 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
+          className="section-subheading text-base sm:text-lg md:text-xl text-white/95 max-w-[560px] mx-auto leading-relaxed m-0 transition-all duration-800 delay-200 drop-shadow-[0_1px_4px_rgba(0,0,0,0.2)]"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)',

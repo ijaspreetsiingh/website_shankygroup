@@ -122,7 +122,7 @@ const HeroHomeFour = () => {
           <div className="flex flex-col md:flex-row items-center gap-[8px] md:gap-[25px] flex-nowrap max-w-[1200px] lg:max-w-[1400px] z-[10] justify-center text-center md:text-left">
             {/* Left Side - Fixed Text */}
             <div className="text-white flex-shrink-0">
-              <h1 className="text-[clamp(24px,2vw,36px)] md:text-[clamp(27px,2.2vw,38px)] font-[800] leading-none tracking-[-0.5px] text-white font-['SF_Pro_Display','Helvetica_Neue',Arial,sans-serif] m-0 whitespace-nowrap uppercase opacity-95">
+              <h1 className="section-heading text-[clamp(24px,2vw,36px)] md:text-[clamp(27px,2.2vw,38px)] font-[800] leading-none tracking-[-0.5px] text-white m-0 whitespace-nowrap uppercase opacity-95">
                 {t('shanky_group')}
               </h1>
             </div>

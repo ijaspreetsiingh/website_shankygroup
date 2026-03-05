@@ -652,7 +652,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                       <div className="px-6 py-5 border-b border-[var(--card-border)] bg-gradient-to-b from-[var(--background)] to-[var(--card-bg)] flex items-center justify-between">
                         <div>
                           <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[#e63a27]">Portfolio</span>
-                          <h3 className="text-[var(--text-primary)] font-bold text-lg tracking-tight mt-0.5">Our Companies</h3>
+                          <h3 className="section-heading text-[var(--text-primary)] font-bold text-lg tracking-tight mt-0.5">Our Companies</h3>
                           <p className="text-[var(--text-secondary)] text-sm mt-1 opacity-90">Explore our portfolio across sectors</p>
                         </div>
                         <Link
@@ -1016,7 +1016,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
           <div className="w-full max-w-2xl mx-4 bg-[var(--card-bg)] rounded-2xl shadow-2xl border border-[var(--card-border)] overflow-hidden animate-slide-down">
             {/* Search Header */}
             <div className="flex items-center justify-between p-6 border-b border-[var(--card-border)]">
-              <h2 className="text-xl font-bold text-[var(--text-primary)]">Search</h2>
+              <h2 className="section-heading text-xl font-bold text-[var(--text-primary)]">Search</h2>
               <button
                 onClick={() => {
                   setIsSearchOpen(false);

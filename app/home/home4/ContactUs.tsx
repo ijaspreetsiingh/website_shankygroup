@@ -188,10 +188,10 @@ const ContactUs = () => {
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               </span>
               <div>
-                <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
+                <h2 className="section-heading text-lg sm:text-xl md:text-2xl font-bold text-white">
                   {t('tell_us_what_you_need')}
                 </h2>
-                <p className="text-xs sm:text-sm text-white/80">
+                <p className="section-subheading text-xs sm:text-sm text-white/80">
                   {t('team_ready')}
                 </p>
               </div>
@@ -247,11 +247,11 @@ const ContactUs = () => {
 
           {/* Left Section - Information (after form on mobile) */}
           <div className="order-2 lg:order-1 text-white pr-0 sm:pr-4 lg:pr-6 xl:pr-8 flex flex-col justify-center py-4 sm:py-6 lg:py-0" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
-            <h1 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
+            <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
               {t('you_have_questions')},<br />
               {t('we_have_answers')}
             </h1>
-            <p className="text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
+            <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
               {t('contact_desc')}
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 sm:gap-y-6 lg:gap-y-8 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>

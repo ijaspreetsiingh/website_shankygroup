@@ -27,7 +27,7 @@ const ContactPage = () => {
                 <span className="text-[var(--accent)]">Contact Us</span>
               </div>
 
-              <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-[72px] font-bold leading-[1.2] sm:leading-tight tracking-tight mt-0 mb-3 sm:mb-5 font-[family-name:var(--font-montserrat)] text-[var(--text-primary)]">
+              <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-[72px] font-bold leading-[1.2] sm:leading-tight tracking-tight mt-0 mb-3 sm:mb-5 text-[var(--text-primary)]">
                 GET IN TOUCH
               </h1>
 
@@ -67,7 +67,7 @@ const ContactPage = () => {
                 </span>
               </div>
 
-              <h2 className="text-xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-white m-0 mb-3 sm:mb-6 leading-tight font-[family-name:var(--font-montserrat)]">
+              <h2 className="section-heading text-xl sm:text-3xl md:text-4xl lg:text-[56px] font-bold text-white m-0 mb-3 sm:mb-6 leading-tight">
                 Let's Talk
               </h2>
 

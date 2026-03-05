@@ -44,7 +44,7 @@ export default function VendorPage() {
                       <span className="inline-block px-4 py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
                         Partner With Us
                       </span>
-                      <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-4 lg:mb-5 drop-shadow-lg">
+                      <h1 className="section-heading text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-4 lg:mb-5 drop-shadow-lg">
                         Register as a <span className="text-[#e63a27]">Vendor</span>
                       </h1>
                       <p className="text-base sm:text-lg md:text-xl max-w-xl text-white/95 leading-relaxed mb-6 lg:mb-8">
@@ -74,7 +74,7 @@ export default function VendorPage() {
             <section className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-14 md:py-20 max-w-[90rem]">
               <div className="text-center mb-10 md:mb-14">
                 <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">Benefits</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight mt-2 mb-4">
+                <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight mt-2 mb-4">
                   Why <span className="text-[#e63a27]">Partner</span> With Us
                 </h2>
                 <div className="w-16 h-1 bg-[#e63a27] mx-auto mb-6" />
@@ -96,7 +96,7 @@ export default function VendorPage() {
                     <span className="inline-flex w-12 h-12 rounded-xl bg-[#e63a27]/15 text-[#e63a27] items-center justify-center mb-4 group-hover:bg-[#e63a27]/25 transition-colors">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} /></svg>
                     </span>
-                    <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">{item.title}</h3>
+                    <h3 className="section-heading text-lg font-bold text-[var(--text-primary)] mb-2">{item.title}</h3>
                     <p className="text-sm text-[var(--text-secondary)] leading-snug">{item.desc}</p>
                   </div>
                 ))}
@@ -107,7 +107,7 @@ export default function VendorPage() {
             <div id="vendor-form" className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 max-w-[90rem] scroll-mt-24">
               <div className="text-center mb-8 md:mb-10">
                 <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">Get started</span>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+                <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
                   Vendor <span className="text-[#e63a27]">Registration</span> Form
                 </h2>
                 <p className="text-[var(--text-secondary)] text-sm md:text-base mt-2 max-w-xl mx-auto">

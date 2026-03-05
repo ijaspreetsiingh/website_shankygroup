@@ -252,18 +252,19 @@ const BarLoader = () => {
           />
         </div>
         
-        {/* Company Label */}
-        <div className="text-[12px] font-medium text-[var(--text-secondary)] tracking-[3px] uppercase mb-[15px] opacity-0 animate-[slideUp_1s_ease-out_0.2s_forwards,fadeIn_1s_ease-out_0.2s_forwards]">
+        {/* Company Label - same font style as rest of site */}
+        <div className="section-subheading text-[12px] font-medium text-[var(--text-secondary)] tracking-[3px] uppercase mb-[15px] opacity-0 animate-[slideUp_1s_ease-out_0.2s_forwards,fadeIn_1s_ease-out_0.2s_forwards]">
           Since 2011
         </div>
         
-        {/* Shanky Group Text */}
-        <h1 className="text-[clamp(48px,6vw,96px)] font-[200] text-[var(--text-primary)] m-0 mb-[25px] tracking-[12px] leading-[1.1] uppercase font-serif opacity-0 animate-[slideUp_1.2s_ease-out_0.4s_forwards,fadeIn_1.2s_ease-out_0.4s_forwards]">
-          Shanky Group
+        {/* Shanky Group – same font as Legacy & Leadership / Group of Companies (Syne professional) */}
+        <h1 className="section-heading hero-legacy-heading text-[clamp(48px,6vw,96px)] font-bold text-[var(--text-primary)] m-0 mb-[25px] tracking-[0.04em] leading-[1.1] uppercase opacity-0 animate-[slideUp_1.2s_ease-out_0.4s_forwards,fadeIn_1.2s_ease-out_0.4s_forwards]">
+          <span>Shanky</span>
+          <span style={{ color: '#e63a27' }}> Group</span>
         </h1>
         
-        {/* Tagline */}
-        <div className="text-[16px] font-[300] text-[var(--text-secondary)] tracking-[1px] italic mb-[40px] opacity-0 animate-[slideUp_1s_ease-out_0.6s_forwards,fadeIn_1s_ease-out_0.6s_forwards]">
+        {/* Tagline - section subheading font */}
+        <div className="section-subheading text-[16px] font-[400] text-[var(--text-secondary)] tracking-[1px] italic mb-[40px] opacity-0 animate-[slideUp_1s_ease-out_0.6s_forwards,fadeIn_1s_ease-out_0.6s_forwards]">
           Excellence in Every Sector
         </div>
         
@@ -281,8 +282,7 @@ const BarLoader = () => {
         
         {/* Loading Indicator */}
         <div className="mt-[50px] flex flex-col items-center gap-[15px] opacity-0 animate-[fadeIn_1s_ease-out_1s_forwards]">
-          {/* New Sliding Loader */}
-          <div className="loader w-[250px] h-[50px] leading-[50px] text-center font-helvetica font-arial font-sans text-[#ce4233] text-[14px] font-black uppercase tracking-[0.2em] relative">
+          <div className="section-subheading loader w-[250px] h-[50px] leading-[50px] text-center text-[#ce4233] text-[14px] font-bold uppercase tracking-[0.2em] relative">
             Loading...
           </div>
         </div>
@@ -320,7 +320,7 @@ export default function Home() {
     <I18nProvider>
       <VisitorTracker />
       {isLoading && <BarLoader />}
-      <div className="w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
+      <div className="home4-root w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <HeaderFour isScrolled={isScrolled} />
         <main className="flex-grow">
           <HeroHomeFour />

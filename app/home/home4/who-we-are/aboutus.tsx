@@ -276,8 +276,8 @@ const WhatWeDo = () => {
                 {String(index + 1).padStart(2, '0')}
               </div>
               
-              {/* Company Name */}
-              <h3 className="text-lg sm:text-xl md:text-3xl font-black text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-2 sm:line-clamp-none">
+              {/* Company Name – same font as site headings (Syne professional) */}
+              <h3 className="section-heading text-lg sm:text-xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-2 sm:line-clamp-none">
                 {company.shortName}
               </h3>
               
@@ -364,9 +364,9 @@ const WhatWeDo = () => {
                       display: none;
                     }
                   `}</style>
-                {/* Company Header */}
+                {/* Company Header – same font as site headings (Syne professional) */}
                 <div className="mb-4 sm:mb-8">
-                  <h3 className="text-xl sm:text-2xl md:text-4xl font-black text-[var(--text-primary)] mb-3 sm:mb-4 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase break-words">
+                  <h3 className="section-heading text-xl sm:text-2xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase break-words">
                     {company.name}
                   </h3>
                   
@@ -509,7 +509,7 @@ const WhatWeDo = () => {
             transform: isVisible ? 'translateY(0) translateX(0)' : 'translateY(50px) translateX(-30px)',
           }}
         >
-          <h2 className="text-[28px] sm:text-[32px] md:text-[56px] font-normal text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[3px] sm:tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase px-1">
+          <h2 className="section-heading hero-legacy-heading text-[28px] sm:text-[32px] md:text-[56px] font-bold text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[3px] sm:tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase px-1">
             {(() => {
               const full = t('group_of_companies');
               const words = full.split(/\s+/);
@@ -523,7 +523,7 @@ const WhatWeDo = () => {
               );
             })()}
           </h2>
-          <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[900px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
+          <p className="section-subheading text-[19px] sm:text-[20px] md:text-[22px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[1100px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
            {renderProgressiveBoldText(t('group_description'))}
           </p>
           
@@ -543,11 +543,11 @@ const WhatWeDo = () => {
           {/* Read more expanded content - same card layout as Legacy & Leadership */}
           {showReadMoreContent && (
             <div className="mt-8 sm:mt-10 max-w-[1100px] mx-auto text-left px-2 sm:px-4">
-              <h3 className="text-[20px] sm:text-[22px] md:text-[24px] font-bold text-[var(--text-primary)] mb-2 tracking-tight">
+              <h3 className="section-heading text-[20px] sm:text-[22px] md:text-[24px] font-bold text-[var(--text-primary)] mb-2 tracking-tight">
                 Diversified Portfolio – Shanky Group
               </h3>
               <div className="w-12 h-0.5 bg-[#e63a27] rounded-full mb-5" />
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-[1.7] mb-6 sm:mb-8 max-w-[900px]">
+              <p className="section-subheading text-[14px] sm:text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-[1.7] mb-6 sm:mb-8 max-w-[900px]">
                 Shanky Group&apos;s diversified portfolio comprises six core companies, each operating as a distinct legal entity with specialized expertise and a strong market presence. This structure reflects the Group&apos;s philosophy of combining operational independence with strategic cohesion.
               </p>
               {/* Row 1: two cards */}
@@ -565,10 +565,10 @@ const WhatWeDo = () => {
                       boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
                     }}
                   >
-                    <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                    <h4 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0">
                       {item.title}
                     </h4>
-                    <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                    <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
                       {item.text}
                     </p>
                   </div>
@@ -589,10 +589,10 @@ const WhatWeDo = () => {
                       boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
                     }}
                   >
-                    <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                    <h4 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0">
                       {item.title}
                     </h4>
-                    <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                    <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
                       {item.text}
                     </p>
                   </div>
@@ -607,10 +607,10 @@ const WhatWeDo = () => {
                   boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
                 }}
               >
-                <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                <h4 className="section-heading text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0">
                   Market Leadership
                 </h4>
-                <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                <p className="section-subheading text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0">
                   By leveraging its diversified presence across electronics, metals, financial services, technology, corporate training, and renewable energy, Shanky Group continues to strengthen its reputation as a trusted partner for clients and investors alike.
                 </p>
               </div>

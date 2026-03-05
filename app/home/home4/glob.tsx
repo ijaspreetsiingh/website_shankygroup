@@ -390,13 +390,13 @@ export function GlobeDemo() {
         {/* Content */}
         <div className="text-center px-4 py-10 sm:px-6 sm:py-14 md:px-[60px] md:py-[100px_60px_80px] relative z-[2]">
           <h2 
-            className="text-[22px] min-[400px]:text-[26px] sm:text-[32px] md:text-[48px] font-normal text-white m-0 mb-4 sm:mb-5 md:mb-[20px] tracking-[2px] sm:tracking-[4px] md:tracking-[8px] leading-[1.2] uppercase transition-all duration-800 delay-200"
+            className="section-heading text-[22px] min-[400px]:text-[26px] sm:text-[32px] md:text-[48px] font-bold text-white m-0 mb-4 sm:mb-5 md:mb-[20px] tracking-[2px] sm:tracking-[4px] md:tracking-[8px] leading-[1.2] uppercase transition-all duration-800 delay-200"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-60px)' }}
           >
-            Global Presence
+            Global <span style={{ color: '#e63a27' }}>Presence</span>
           </h2>
           <p 
-            className="text-[14px] sm:text-[16px] md:text-[18px] lg:text-[26px] leading-[1.5] sm:leading-[1.6] text-white/90 max-w-[1500px] mx-auto mb-5 sm:mb-6 md:mb-[30px] font-normal tracking-[0.2px] px-1 transition-all duration-800 delay-400"
+            className="section-subheading text-[14px] sm:text-[16px] md:text-[18px] lg:text-[26px] leading-[1.5] sm:leading-[1.6] text-white/90 max-w-[1500px] mx-auto mb-5 sm:mb-6 md:mb-[30px] font-normal tracking-[0.2px] px-1 transition-all duration-800 delay-400"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(60px)' }}
           >
             Connecting businesses across continents with our worldwide network
@@ -448,7 +448,7 @@ export function GlobeDemo() {
         <div className="flex-1 flex flex-col justify-center items-center lg:items-start w-full transition-all duration-800 delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(80px)' }}>
           <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-[16px] p-4 sm:p-5 md:p-[24px] lg:p-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[var(--card-border)] w-full max-w-[600px] transition-all duration-500 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:scale-[1.02]">
             <div className="flex flex-col min-[400px]:flex-row items-start min-[400px]:items-center justify-between gap-2 mb-4 sm:mb-5 md:mb-[24px]">
-              <h3 className="text-[18px] sm:text-[22px] md:text-[28px] font-bold text-[var(--text-primary)]">
+              <h3 className="section-heading text-[18px] sm:text-[22px] md:text-[28px] font-bold text-[var(--text-primary)]">
                 Global Distribution
               </h3>
               <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-[12px] md:py-[6px] bg-gradient-to-r from-amber-500 to-orange-600 rounded-full shrink-0">

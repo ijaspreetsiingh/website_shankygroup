@@ -102,7 +102,7 @@ const GraphyFooter = () => {
 
           <div className="relative z-10">
             <h2
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold text-white mb-3 sm:mb-4 tracking-tight"
+              className="section-heading text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.5rem] font-bold text-white mb-3 sm:mb-4 tracking-tight"
               style={{
                 opacity: ctaVisible ? 1 : 0,
                 transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -176,7 +176,7 @@ const GraphyFooter = () => {
             {/* Link columns — consistent min-height and heading style */}
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:contents gap-6 lg:gap-0 order-2 lg:order-none">
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('product')}</h3>
+                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('product')}</h3>
                 <ul className="space-y-2.5 mt-1">
                   <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('features')}</Link></li>
                   <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('pricing')}</Link></li>
@@ -184,7 +184,7 @@ const GraphyFooter = () => {
                 </ul>
               </div>
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('resources')}</h3>
+                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('resources')}</h3>
                 <ul className="space-y-2.5 mt-1">
                   <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('documentation')}</Link></li>
                   <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('tutorials')}</Link></li>
@@ -193,7 +193,7 @@ const GraphyFooter = () => {
                 </ul>
               </div>
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('company')}</h3>
+                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('company')}</h3>
                 <ul className="space-y-2.5 mt-1">
                   <li><Link href="/who-we-are/about-us" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('about')}</Link></li>
                   <li><Link href="/careers" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('careers')}</Link></li>
@@ -201,7 +201,7 @@ const GraphyFooter = () => {
                 </ul>
               </div>
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('quick_links')}</h3>
+                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('quick_links')}</h3>
                 <ul className="space-y-2.5 mt-1">
                   <li><Link href="/vendor" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('vendorregistration')}</Link></li>
                   <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('faq')}</Link></li>
