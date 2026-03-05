@@ -333,7 +333,7 @@ const ContactUs = () => {
               </div>
               <div>
                 <h3 className="font-semibold mb-1 text-white/90">{t('contact')}</h3>
-                <p className="text-white/75 text-xs sm:text-sm">+66 77 123 456</p>
+                <p className="text-white/75 text-xs sm:text-sm">+011-47586938</p>
               </div>
               <div>
                 <h3 className="font-semibold mb-2 text-white/90">{t('social_media')}</h3>

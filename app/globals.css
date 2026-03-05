@@ -48,11 +48,10 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* Enhanced smooth scrolling + default site size = 80% (must persist on Vercel) */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-  zoom: 1 !important;
+  scroll-padding-top: 96px;
 }
 
 /* Custom scrollbar for smooth experience */

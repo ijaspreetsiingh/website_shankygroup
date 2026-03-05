@@ -81,12 +81,12 @@ const GraphyFooter = () => {
   }, []);
 
   return (
-    <footer className="py-6 sm:py-12 px-4 sm:px-6 lg:px-8 bg-[var(--background)] overflow-x-hidden">
+    <footer className="py-5 sm:py-10 px-4 sm:px-6 lg:px-8 bg-[var(--background)] overflow-x-hidden">
       <div className="max-w-[1800px] mx-auto">
         {/* CTA Block - Above Footer */}
         <div
           ref={ctaRef}
-          className="relative rounded-2xl sm:rounded-[24px] overflow-hidden mb-6 sm:mb-8 md:mb-10 px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-20 text-center border border-white/10"
+          className="relative rounded-2xl sm:rounded-[24px] overflow-hidden mb-5 sm:mb-6 md:mb-8 px-4 sm:px-6 md:px-8 lg:px-12 py-10 sm:py-14 lg:py-20 text-center border border-white/10"
           style={{
             background: 'linear-gradient(165deg, #1a1a2e 0%, #16213e 35%, #0f0f23 70%, #000000 100%)',
             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
@@ -232,7 +232,7 @@ const GraphyFooter = () => {
       </div>
 
       {/* Watermark: full bleed edge-to-edge */}
-      <div ref={watermarkRef} className="relative flex justify-center items-center overflow-hidden py-5 sm:py-8 min-h-[60px] sm:min-h-[120px] w-screen max-w-none -ml-4 sm:-ml-6 lg:-ml-8" style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}>
+      <div ref={watermarkRef} className="relative flex justify-center items-center overflow-hidden py-4 sm:py-6 min-h-[50px] sm:min-h-[80px] w-screen max-w-none -ml-4 sm:-ml-6 lg:-ml-8" style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}>
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-[8px]" style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }} />
           <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-[10px]" style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }} />

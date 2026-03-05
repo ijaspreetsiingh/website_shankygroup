@@ -228,40 +228,28 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
   const companies = [
     {
-      name: 'Shanky Financial Services',
-      description: 'Comprehensive financial solutions and investment services',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=60&h=60&fit=crop&crop=center',
-      link: '/company/shanky-financial-services'
-    },
-    {
       name: 'Shanky Financial Service Pvt Ltd',
       description: 'Specialized financial intermediation and trading',
       image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-financial-pvt-ltd'
     },
     {
-      name: 'VMS Hub',
+      name: 'VMS Hub Pvt Ltd',
       description: 'Agricultural innovation and supply chain management',
       image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=60&h=60&fit=crop&crop=center',
       link: '/company/vms-hub'
     },
     {
-      name: 'Shanky Corporate Training',
+      name: 'Shanky Corporate Training Pvt Ltd',
       description: 'Professional development and corporate training programs',
       image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-corporate-training'
     },
     {
-      name: 'Shanky Smart Tech',
+      name: 'Shanky Smart Tech Pvt Ltd',
       description: 'Renewable energy and sustainable technology solutions',
       image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-smart-tech'
-    },
-    {
-      name: 'Shanky Electronics Hub',
-      description: 'Electronics trading and distribution services',
-      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=60&h=60&fit=crop&crop=center',
-      link: '/company/shanky-electronics-hub'
     },
     {
       name: 'Shanky Buildtech Pvt Ltd',
@@ -277,8 +265,8 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
     }
   ];
 
-  const businessGroup1 = companies.slice(0, 4);
-  const businessGroup2 = companies.slice(4, 8);
+  const businessGroup1 = companies.slice(0, 3);
+  const businessGroup2 = companies.slice(3, 6);
 
   return (
     <React.Fragment>
@@ -378,15 +366,15 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         </div>
       )}
 
-      {/* Mini Header - Top Bar - Visible on phone (compact) + desktop */}
+      {/* Mini Header - Top Bar - Visible on desktop only */}
       <div 
-        className={`hidden md:block fixed top-0 left-0 right-0 z-[1001] min-h-[36px] md:h-[40px] bg-[var(--background)] border-b border-[var(--card-border)] transition-transform duration-300 ease-in-out ${
+        className={`hidden md:block fixed top-0 left-0 right-0 z-[1001] min-h-[34px] md:h-[38px] bg-[var(--background)] border-b border-[var(--card-border)] transition-transform duration-300 ease-in-out ${
           isMiniHeaderHidden ? '-translate-y-full' : 'translate-y-0'
         } ${
           isScrolled ? 'shadow-sm dark:shadow-[0_2px_10px_0_rgba(255,255,255,0.06)]' : ''
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-12 py-1.5 md:py-0 md:h-full flex flex-nowrap items-center justify-between gap-2 md:gap-0 min-h-[36px] md:min-h-0">
+        <div className="max-w-[1600px] mx-auto px-3 sm:px-6 lg:px-12 py-1.5 md:py-0 md:h-full flex flex-nowrap items-center justify-between gap-2 md:gap-0 min-h-[34px] md:min-h-0">
           {/* Left: Location only on mobile; Location + Timing on desktop */}
           <div className="flex items-center gap-2 md:gap-6 min-w-0 flex-shrink">
             <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
@@ -395,7 +383,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
               <span className="text-[var(--text-secondary)] text-[10px] md:text-xs font-normal truncate">
-                D Mall, NSP, Pitampura Delhi, India
+                Unit no. 03 and 04, Ground floor, D-Mall, NSP
               </span>
             </div>
             <div className="hidden md:flex items-center gap-2 shrink-0">
@@ -404,7 +392,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
               </svg>
               <span className="text-[var(--text-secondary)] text-xs font-normal whitespace-nowrap">
-                Mon-Sat: 10AM-8PM
+                Mon-Sat: 10AM-6PM
               </span>
             </div>
           </div>
@@ -491,7 +479,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       {/* Main Header - Fixed positioning with smooth transition */}
       <div 
         className={`fixed left-0 right-0 z-[1000] transition-all duration-300 ease-in-out top-0 ${
-          !isMiniHeaderHidden ? 'md:top-[40px]' : ''
+          !isMiniHeaderHidden ? 'md:top-[38px]' : ''
         } ${
           isScrolled 
             ? 'bg-[var(--background)] shadow-xl dark:shadow-[0_8px_30px_-5px_rgba(0,0,0,0.3),0_4px_15px_-8px_rgba(0,0,0,0.2)] backdrop-blur-lg'
@@ -499,15 +487,15 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 pt-2 sm:pt-0">
-          <div className="flex items-center justify-between h-[80px] sm:h-[96px] lg:h-[120px]">
+          <div className="flex items-center justify-between h-[76px] sm:h-[88px] lg:h-[104px]">
             {/* Logo - Left Side - larger size */}
             <div className="flex items-center flex-shrink-0 min-w-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
               <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40 flex items-center justify-center h-[72px] sm:h-auto">
+                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40 flex items-center justify-center h-[68px] sm:h-auto">
                   <img 
                     src="/images/new_logo_finalM.png" 
                     alt="Shanky Group Logo"
-                    className="h-[68px] sm:h-[72px] md:h-[88px] lg:h-[108px] w-auto object-contain object-center transition-all duration-500 group-hover:scale-105"
+                    className="h-[64px] sm:h-[68px] md:h-[80px] lg:h-[96px] w-auto object-contain object-center transition-all duration-500 group-hover:scale-105"
                   />
                 </div>
                 <span className="hidden sm:block lg:hidden text-[var(--text-primary)] font-bold text-xs sm:text-sm tracking-[0.12em] uppercase truncate">Shanky Group</span>
@@ -676,7 +664,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
                         </Link>
                       </div>
-                      <div className="grid grid-cols-4 gap-[1px] bg-[var(--card-border)] p-[1px]">
+                      <div className="grid grid-cols-3 gap-[1px] bg-[var(--card-border)] p-[1px]">
                         {companies.map((company, index) => (
                           <Link
                             key={index}
@@ -976,11 +964,11 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
               <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-[var(--text-secondary)]">Contact & Info</p>
               <div className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>D Mall, NSP, Pitampura Delhi, India</span>
+                <span>Unit no. 03 and 04, Ground floor, D-Mall, NSP</span>
               </div>
               <div className="flex items-center gap-2 text-[var(--text-secondary)] text-sm">
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                <span>Mon-Sat: 10AM-8PM</span>
+                <span>Mon-Sat: 10AM-6PM</span>
               </div>
               <a href="tel:+01147586938" className="flex items-center gap-2 text-[var(--text-primary)] text-sm font-semibold">
                 <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -1103,7 +1091,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       )}
 
       {/* Spacer for fixed header - matches header height per breakpoint */}
-      <div className="h-[96px] sm:h-[100px] md:h-[130px] lg:h-[160px]" />
+      <div className="h-[76px] sm:h-[88px] md:h-[142px] lg:h-[142px] mb-3 sm:mb-4" />
 
       {/* Add Custom CSS for Animations */}
       <style dangerouslySetInnerHTML={{

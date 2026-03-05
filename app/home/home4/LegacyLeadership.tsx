@@ -2,230 +2,122 @@
 
 import { useState, useEffect, useRef } from "react";
 
-const LegacyLeadership = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
+const PRINCIPLES = [
+  'Integrity in every transaction',
+  'Innovation across sectors',
+  'Risk mitigation through robust structures',
+  'Empowerment of teams and executives',
+  'Long-term partnerships built on trust',
+];
 
-  // Add custom styles for animation delays
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes ping-slow {
-        0% { transform: scale(1); opacity: 1; }
-        75%, 100% { transform: scale(1.5); opacity: 0; }
-      }
-      .animation-delay-200 { animation-delay: 0.2s; }
-      .animation-delay-400 { animation-delay: 0.4s; }
-      .animate-ping-slow { animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
+const LegacyLeadership = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
+        if (entry.isIntersecting) setIsVisible(true);
       },
-      {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-      }
+      { threshold: 0.08, rootMargin: '0px 0px -80px 0px' }
     );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
+      if (sectionRef.current) observer.unobserve(sectionRef.current);
     };
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="p-0 bg-[var(--background)] font-sans w-full"
+      className="relative w-full overflow-hidden"
+      style={{ backgroundColor: 'var(--background)' }}
     >
-      {/* Simple Heading Section */}
-      <div 
-        className={`text-center px-4 py-8 sm:px-6 sm:py-10 md:px-[40px] md:py-[80px] bg-[var(--background)] transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'}`}
-      >
-        <h2 className="text-[22px] sm:text-[24px] md:text-[42px] font-semibold text-[var(--text-primary)] m-0 mb-3 md:mb-[16px] tracking-[0.5px] md:tracking-[1px] leading-[1.2]">
-          Legacy & Leadership
-        </h2>
-        <div className="w-[60px] sm:w-[80px] h-[3px] sm:h-[4px] bg-[#e63a27] mx-auto mb-4 md:mb-[24px] rounded-[2px]" />
-        <p className="text-[14px] sm:text-[16px] md:text-[18px] text-[var(--text-secondary)] font-normal tracking-[0.5px] max-w-[600px] mx-auto px-1">
-          Building a legacy of excellence and leadership for generations
-        </p>
-      </div>
-
-      
-      {/* Full Width Two Video Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 md:gap-0 px-4 sm:px-6 md:px-0 pb-6 md:pb-0 w-full m-0">
-        {/* Video Card 1 - Historical Journey */}
-        <div
-          className={`relative h-[300px] sm:h-[340px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] rounded-xl md:rounded-none transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-400
-            ${isVisible ? 'opacity-100' : 'opacity-0'}
-            ${hoveredIndex === 0 ? 'md:scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
-          `}
-          onMouseEnter={() => setHoveredIndex(0)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          onClick={() => playingVideo === 'dQw4w9WgXcQ' ? setPlayingVideo(null) : null}
-        >
-          {/* Video Container - Inline YouTube */}
-          <div className="relative w-full h-full">
-            {playingVideo === 'dQw4w9WgXcQ' ? (
-              <iframe
-                className="absolute inset-0 w-full h-full border-none"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                title="Historical Journey Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <>
-                <img
-                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
-                  alt="Historical Journey Banner"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                
-                {/* Ultra Attractive Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div 
-                    className="group relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 active:scale-110 md:hover:rotate-12"
-                    onClick={() => setPlayingVideo('dQw4w9WgXcQ')}
-                  >
-                    {/* Multiple glow layers - black/white */}
-                    <div className="absolute inset-0 bg-black/20 rounded-full blur-2xl opacity-60 group-hover:opacity-80 scale-110 transition-all duration-700"></div>
-                    <div className="absolute inset-0 bg-white/10 rounded-full blur-xl opacity-40 group-hover:opacity-60 scale-105 transition-all duration-700"></div>
-                    
-                    {/* Pulsing rings with custom animation - black/white */}
-                    <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-ping-slow"></div>
-                    <div className="absolute inset-2 rounded-full border-2 border-white/25 animate-ping-slow animation-delay-200"></div>
-                    <div className="absolute inset-4 rounded-full border border-white/20 animate-ping-slow animation-delay-400"></div>
-                    
-                    {/* Inner circle - transparent with border */}
-                    <div className="absolute inset-2 bg-transparent rounded-full border-2 border-white shadow-inner"></div>
-                    
-                    {/* Play icon - black/white */}
-                    <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white relative z-10 ml-1 sm:ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    
-                    {/* Hover shine effect - white */}
-                    <div className="absolute top-2 left-2 w-4 h-4 bg-white/40 rounded-full blur-sm group-hover:bg-white/60 transition-all duration-700"></div>
-                  </div>
-                </div>
-              </>
-            )}
+      {/* Content grid - no duplicate heading */}
+      <div className="max-w-[1100px] mx-auto px-4 sm:px-6 md:px-8 pt-10 sm:pt-12 md:pt-14 pb-16 sm:pb-20 md:pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          {/* Card: A Legacy of Excellence */}
+          <div
+            className={`rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 transition-all duration-500 delay-75 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+            }}
+          >
+            <div className="mb-4">
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                A Legacy of Excellence
+              </h3>
+            </div>
+            <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              Founded with a vision to create impact across diverse industries, Shanky Group has built a reputation for trust, innovation, and resilience. Over the years, the Group has expanded into electronics, metals, financial services, Agri Products, Infrastructure and corporate training—consistently delivering value to clients and partners.
+            </p>
           </div>
-          
-          {/* Dark Overlay */}
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-black/30 to-black/10 pointer-events-none" />
 
-          {/* Text Content */}
-          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 md:bottom-[50px] md:left-[50px] md:right-[50px] text-white z-[2]">
-            <h3 className="text-[15px] sm:text-[17px] md:text-[24px] font-normal m-0 mb-3 sm:mb-4 md:mb-[20px] leading-[1.35] sm:leading-[1.4] tracking-[0.3px] md:tracking-[0.5px] line-clamp-2 sm:line-clamp-none">
-              Establishing a foundation of success
-            </h3>
-            
-            <a 
-              href="#"
-              className="group inline-flex items-center gap-2 hover:gap-3 text-[13px] sm:text-[14px] text-white no-underline font-medium tracking-[0.3px] transition-all duration-300 py-2 pr-3 rounded-lg active:opacity-90 min-h-[44px] items-center"
-            >
-              Watch Full Story
-              <span className="text-[14px] sm:text-[16px] inline-block">▶</span>
-            </a>
+          {/* Card: Leadership that Inspires */}
+          <div
+            className={`rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 transition-all duration-500 delay-150 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+            style={{
+              backgroundColor: 'var(--card-bg)',
+              border: '1px solid var(--card-border)',
+              boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+            }}
+          >
+            <div className="mb-4">
+              <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                Leadership that Inspires
+              </h3>
+            </div>
+            <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              At the helm, Shanky Group&apos;s leadership combines strategic foresight with hands-on execution. The Group&apos;s senior executive and owner has steered growth through bold investments, operational discipline, and a commitment to transparency—emphasizing collaboration, compliance, and investor confidence for sustainable success.
+            </p>
           </div>
         </div>
 
-        {/* Video Card 2 - Chairman's Speech */}
+        {/* Guiding Principles - full width card */}
         <div
-          className={`relative h-[300px] sm:h-[340px] md:h-[500px] overflow-hidden cursor-pointer bg-[var(--card-bg)] rounded-xl md:rounded-none transition-all duration-600 ease-[cubic-bezier(0.4,0,0.2,1)] delay-600
-            ${isVisible ? 'opacity-100' : 'opacity-0'}
-            ${hoveredIndex === 1 ? 'md:scale-[1.01]' : isVisible ? 'scale-100 translate-y-0' : 'scale-95 translate-y-[20px]'}
-          `}
-          onMouseEnter={() => setHoveredIndex(1)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          onClick={() => playingVideo === '9bZkp7q19f0' ? setPlayingVideo(null) : null}
+          className={`mt-6 md:mt-8 rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 transition-all duration-500 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+          }}
         >
-          {/* Video Container - Inline YouTube */}
-          <div className="relative w-full h-full">
-            {playingVideo === '9bZkp7q19f0' ? (
-              <iframe
-                className="absolute inset-0 w-full h-full border-none"
-                src="https://www.youtube.com/embed/9bZkp7q19f0?autoplay=1"
-                title="Chairman's Speech Video"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            ) : (
-              <>
-                <img
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80"
-                  alt="Chairman's Speech Banner"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-                
-                {/* Ultra Attractive Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div 
-                    className="group relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-transparent rounded-full flex items-center justify-center transition-all duration-700 cursor-pointer transform hover:scale-125 active:scale-110 md:hover:rotate-12"
-                    onClick={() => setPlayingVideo('9bZkp7q19f0')}
-                  >
-                    {/* Multiple glow layers - black/white */}
-                    <div className="absolute inset-0 bg-black/20 rounded-full blur-2xl opacity-60 group-hover:opacity-80 scale-110 transition-all duration-700"></div>
-                    <div className="absolute inset-0 bg-white/10 rounded-full blur-xl opacity-40 group-hover:opacity-60 scale-105 transition-all duration-700"></div>
-                    
-                    {/* Pulsing rings with custom animation - black/white */}
-                    <div className="absolute inset-0 rounded-full border-4 border-white/30 animate-ping-slow"></div>
-                    <div className="absolute inset-2 rounded-full border-2 border-white/25 animate-ping-slow animation-delay-200"></div>
-                    <div className="absolute inset-4 rounded-full border border-white/20 animate-ping-slow animation-delay-400"></div>
-                    
-                    {/* Inner circle - transparent with border */}
-                    <div className="absolute inset-2 bg-transparent rounded-full border-2 border-white shadow-inner"></div>
-                    
-                    {/* Play icon - black/white */}
-                    <svg className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white relative z-10 ml-1 sm:ml-2 drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                    
-                    {/* Hover shine effect - white */}
-                    <div className="absolute top-2 left-2 w-4 h-4 bg-white/40 rounded-full blur-sm group-hover:bg-white/60 transition-all duration-700"></div>
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          
-          {/* Dark Overlay */}
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/70 via-black/30 to-black/10 pointer-events-none" />
-
-          {/* Text Content */}
-          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 md:bottom-[50px] md:left-[50px] md:right-[50px] text-white z-[2]">
-            <h3 className="text-[14px] sm:text-[16px] md:text-[19px] font-normal m-0 mb-3 sm:mb-4 md:mb-[20px] leading-[1.4] sm:leading-[1.5] tracking-[0.2px] md:tracking-[0.3px] line-clamp-3 sm:line-clamp-none">
-              Chairman, Mr. Kumar Mangalam Birla's speech at 78th AGM of Grasim Industries Limited
+          <div className="mb-5">
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              Guiding Principles
             </h3>
-            
-            <a 
-              href="#"
-              className="group inline-flex items-center gap-2 hover:gap-3 text-[13px] sm:text-[14px] text-white no-underline font-medium tracking-[0.3px] transition-all duration-300 py-2 pr-3 rounded-lg active:opacity-90 min-h-[44px] items-center"
-            >
-              Watch Full Speech
-              <span className="text-[14px] sm:text-[16px] inline-block">▶</span>
-            </a>
           </div>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3 list-none p-0 m-0">
+            {PRINCIPLES.map((item, i) => (
+              <li key={i} className="flex items-start gap-3 text-sm sm:text-[15px] text-[var(--text-secondary)]">
+                <span className="text-[#e63a27] mt-0.5 shrink-0" aria-hidden>•</span>
+                <span className="leading-[1.6]">{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
+
+        {/* Future-Oriented Vision */}
+        <div
+          className={`mt-6 md:mt-8 rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 transition-all duration-500 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+          style={{
+            backgroundColor: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+          }}
+        >
+          <div className="mb-4">
+            <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+              Future-Oriented Vision
+            </h3>
+          </div>
+          <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+            Shanky Group&apos;s leadership is not only about preserving its legacy but also about shaping the future. By embracing new technologies, strengthening investor relations, and expanding into emerging markets, the Group continues to set benchmarks for excellence in diversified business operations.
+          </p>
+        </div>
+
       </div>
     </section>
   );

@@ -8,6 +8,7 @@ const WhatWeDo = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [showReadMoreContent, setShowReadMoreContent] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const { t } = useI18n();
 
@@ -98,68 +99,68 @@ const WhatWeDo = () => {
     {
       id: 1,
       name: "SHANKY FINANCIAL SERVICES PVT LTD",
-      shortName: "Financial Services through B2B",
+      shortName: "SHANKY FINANCIAL SERVICES PVT LTD",
       category: "Financial Services",
       categoryColor: "#6B9F3E",
       legalStructure: "Private Limited Company",
-      keyPeople: "Proprietor: Vipin Kumar",
-      description: "Shanky Financial Services is the Group's flagship entity in the financial services sector. The company offers a comprehensive suite of financial intermediation services, including investment advisory, securities dealing, and fund distribution.",
-      image: "https://happay.com/blog/wp-content/uploads/sites/12/2023/07/financial-assets-scaled.webp"
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Operating alongside its namesake, Shanky Financial Services Pvt Ltd focuses on specialized financial intermediation activities, including investment in securities and proprietary trading. The company's operations are aligned with the Group's broader financial services strategy, enabling cross-selling opportunities and operational efficiencies. Its compliance with the Ministry of Corporate Affairs' regulatory requirements underscores its commitment to governance and transparency.",
+      image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=500&fit=crop&q=80"
     },
     {
       id: 2,
-      name: "SHANKY FINANCIAL SERVICES PVT LTD",
-      shortName: "Financial Advisory",
-      category: "Financial Services",
-      categoryColor: "#6B9F3E",
+      name: "VMS HUB PVT LTD",
+      shortName: "VMS HUB PVT LTD",
+      category: "Agro Products",
+      categoryColor: "#9B59B6",
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
-      description: "Operating alongside its namesake, Shanky Financial Services Pvt Ltd focuses on specialized financial intermediation activities, including investment in securities and proprietary trading.",
-      image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&h=800&fit=crop"
+      description: "VMS Hub Pvt Ltd is the Group's newest venture, established to capitalize on the growing demand for food and agricultural products in India. The company is engaged in the wholesale distribution of agricultural raw materials and food products, leveraging advanced supply chain management and quality assurance systems. With an authorized share capital of ₹16.5 crore, VMS Hub is well-positioned to scale its operations and expand its market reach. VMS Hub's strategic focus includes sourcing high-quality products, building robust distribution networks, and fostering partnerships with farmers and suppliers. The company's operations are designed to ensure food safety, traceability, and customer satisfaction, aligning with the Group's commitment to excellence and sustainability.",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=500&fit=crop&q=80"
     },
     {
       id: 3,
-      name: "VMS HUB PVT LTD",
-      shortName: "Food Distribution",
-      category: "Food & Agribusiness",
+      name: "SHANKY SMART TECH PVT LTD",
+      shortName: "SHANKY SMART TECH PVT LTD",
+      category: "Solar EPC and Electronics",
       categoryColor: "#9B59B6",
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
-      description: "VMS Hub Pvt Ltd is the Group's newest venture, established to capitalize on the growing demand for food and agricultural products in India.",
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=800&fit=crop"
+      description: "Shanky Smart Tech Pvt Ltd operates at the intersection of renewable energy and electronics, offering end-to-end solutions in solar engineering, procurement, and construction (EPC), as well as trading and servicing of electronic products. The company's offerings include solar panel installation, energy management systems, and smart technology integration for industrial and commercial clients. With an authorized share capital of ₹5 lakh, the company is poised for rapid growth in the burgeoning solar and electronics markets. Shanky Smart Tech leverages cutting-edge technologies such as IoT, AI, and digital twins to enhance project efficiency, sustainability, and cost-effectiveness. The company's focus on green building certifications, renewable energy integration, and smart construction practices positions it as a leader in sustainable EPC solutions.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=500&fit=crop&q=80"
     },
     {
       id: 4,
-      name: "SHANKY SMART TECH PVT LTD",
-      shortName: "Solar & Electronics",
-      category: "Solar & Electronics",
-      categoryColor: "#9B59B6",
+      name: "SHANKY CORPORATE TRAINING PVT LTD",
+      shortName: "SHANKY CORPORATE TRAINING PVT LTD",
+      category: "Corporate Trainings",
+      categoryColor: "#E67E22",
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
-      description: "Shanky Smart Tech Pvt Ltd operates at the intersection of renewable energy and electronics.",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=800&fit=crop"
+      description: "Shanky Corporate Training Pvt Ltd is the Group's dedicated arm for educational and corporate training services. The company offers a comprehensive suite of training programs, including leadership development, soft skills, technical training, and organizational development. Its clientele includes corporates, educational institutions, and government agencies seeking to enhance workforce capabilities and drive organizational excellence. The company's training solutions are designed to address evolving industry needs, leveraging experienced trainers, customized curricula, and digital learning platforms. Shanky Corporate Training's commitment to quality and innovation has positioned it as a preferred partner for talent development and capacity building.",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop&q=80"
     },
     {
       id: 5,
-      name: "SHANKY ELECTRONICS HUB LLP",
-      shortName: "Electronics Trading",
-      category: "Electronics Trading",
-      categoryColor: "#E67E22",
-      legalStructure: "Limited Liability Partnership",
-      keyPeople: "Designated Partners: Manoj Kumar Mishra, Vipin Kumar",
-      description: "Shanky Electronics Hub LLP specializes in the trading and distribution of electronic products.",
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=800&fit=crop"
+      name: "SHANKY BUILDTECH PVT LTD",
+      shortName: "SHANKY BUILDTECH PVT LTD",
+      category: "Infrastructure and Construction",
+      categoryColor: "#3498DB",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Shanky Build Tech Pvt Ltd is the Group's infrastructure and construction arm, specializing in the development and completion of residential, commercial, and industrial projects. The company's expertise spans building completion, repairs, and finishing works, with a focus on quality, safety, and sustainability. Its operations are supported by a team of experienced engineers, project managers, and skilled workers, ensuring timely and cost-effective project delivery. Shanky Build Tech adopts smart construction practices, leveraging digital project management tools, modular construction techniques, and green building certifications to enhance project outcomes. The company's commitment to sustainability and resource optimization aligns with global best practices in the EPC sector.",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80"
     },
     {
       id: 6,
-      name: "SHANKY CORPORATE TRAINING PVT LTD",
-      shortName: "Corporate Training",
-      category: "Education & Training",
-      categoryColor: "#E67E22",
+      name: "SHANKY METALS PVT LTD",
+      shortName: "SHANKY METALS PVT LTD",
+      category: "Metal Trade Services",
+      categoryColor: "#7F8C8D",
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
-      description: "Shanky Corporate Training Pvt Ltd is the Group's dedicated arm for educational services.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop"
+      description: "Shanky Metals Pvt Ltd is a leading player in the metals trading and manufacturing sector. The company specializes in the procurement, processing, and trading of a wide range of metals, including aluminium, copper, brass, iron, and steel. Its operations encompass sourcing raw materials from domestic and international suppliers, processing them into finished products, and exporting to global markets, particularly Hong Kong and other Asian countries. With an authorized share capital of ₹75 lakh and a paid-up capital of ₹70 lakh, Shanky Metals has demonstrated robust financial performance, generating a revenue of ₹7.16 crore for the financial year ending March 31, 2024. The company's focus on quality, timely delivery, and customer satisfaction has enabled it to build long-term relationships with clients and partners.",
+      image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=500&fit=crop&q=80"
     },
   ];
 
@@ -509,22 +510,112 @@ const WhatWeDo = () => {
           }}
         >
           <h2 className="text-[28px] sm:text-[32px] md:text-[56px] font-normal text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[3px] sm:tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase px-1">
-            {t('group_of_companies')}
+            {(() => {
+              const full = t('group_of_companies');
+              const words = full.split(/\s+/);
+              const firstWord = words[0] || '';
+              const rest = words.slice(1).join(' ');
+              return (
+                <>
+                  <span style={{ color: '#e63a27' }}>{firstWord}</span>
+                  {rest ? ` ${rest}` : ''}
+                </>
+              );
+            })()}
           </h2>
-          <p className="text-[15px] sm:text-[16px] md:text-[28px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[1500px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
+          <p className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[900px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
            {renderProgressiveBoldText(t('group_description'))}
           </p>
           
           <div className="text-center mt-6 sm:mt-[40px]">
             <button
+              type="button"
+              onClick={() => setShowReadMoreContent(prev => !prev)}
               className="inline-flex items-center gap-2 sm:gap-[15px] px-6 py-3 sm:px-[40px] sm:py-[18px] text-[13px] sm:text-[15px] font-semibold tracking-[1px] sm:tracking-[1.2px] uppercase text-white bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a] dark:from-[#2a2a2a] dark:to-[#3a3a3a] border-none rounded-[28px] sm:rounded-[35px] cursor-pointer transition-all duration-400 shadow-[0_6px_20px_rgba(0,0,0,0.15)] hover:-translate-y-[3px] hover:shadow-[0_12px_35px_rgba(0,0,0,0.25)] hover:from-[#2a2a2a] hover:to-[#3a3a3a] dark:hover:from-[#3a3a3a] dark:hover:to-[#4a4a4a]"
             >
-              {t('learn_more_capital')}
-              <svg width="14" height="14" className="sm:w-4 sm:h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              {showReadMoreContent ? t('read_less_capital') : t('read_more_capital')}
+              <svg width="14" height="14" className={`sm:w-4 sm:h-4 flex-shrink-0 transition-transform duration-300 ${showReadMoreContent ? 'rotate-90' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
           </div>
+
+          {/* Read more expanded content - same card layout as Legacy & Leadership */}
+          {showReadMoreContent && (
+            <div className="mt-8 sm:mt-10 max-w-[1100px] mx-auto text-left px-2 sm:px-4">
+              <h3 className="text-[20px] sm:text-[22px] md:text-[24px] font-bold text-[var(--text-primary)] mb-2 tracking-tight">
+                Diversified Portfolio – Shanky Group
+              </h3>
+              <div className="w-12 h-0.5 bg-[#e63a27] rounded-full mb-5" />
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] text-[var(--text-secondary)] leading-[1.7] mb-6 sm:mb-8 max-w-[900px]">
+                Shanky Group&apos;s diversified portfolio comprises six core companies, each operating as a distinct legal entity with specialized expertise and a strong market presence. This structure reflects the Group&apos;s philosophy of combining operational independence with strategic cohesion.
+              </p>
+              {/* Row 1: two cards */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+                {[
+                  { title: 'Operational Autonomy', text: 'Each company within the Group is empowered to pursue its own growth trajectory, guided by sector-specific strategies and leadership. This autonomy ensures agility, innovation, and responsiveness to market dynamics.' },
+                  { title: 'Intercompany Synergies', text: 'While independent, the companies are strategically interconnected. Shared resources, cross-sector collaboration, and integrated financial frameworks enable the Group to maximize efficiency and unlock new opportunities.' },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 h-full flex flex-col"
+                    style={{
+                      backgroundColor: 'var(--card-bg)',
+                      border: '1px solid var(--card-border)',
+                      boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+                    }}
+                  >
+                    <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {/* Row 2: two cards */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
+                {[
+                  { title: 'Resource Optimization', text: 'Centralized oversight of capital, talent, and technology allows Shanky Group to allocate resources effectively across its subsidiaries. This ensures risk mitigation, cost efficiency, and sustainable expansion.' },
+                  { title: 'Strategic Balance', text: "The Group's structure balances entrepreneurial freedom with corporate governance. This dual approach fosters accountability while encouraging innovation, positioning Shanky Group as a resilient and future-ready conglomerate." },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 h-full flex flex-col"
+                    style={{
+                      backgroundColor: 'var(--card-bg)',
+                      border: '1px solid var(--card-border)',
+                      boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+                    }}
+                  >
+                    <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                      {item.title}
+                    </h4>
+                    <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              {/* Row 3: one full-width card */}
+              <div
+                className="mt-6 md:mt-8 rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8"
+                style={{
+                  backgroundColor: 'var(--card-bg)',
+                  border: '1px solid var(--card-border)',
+                  boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+                }}
+              >
+                <h4 className="text-lg sm:text-xl font-bold text-[var(--text-primary)] mb-4 m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                  Market Leadership
+                </h4>
+                <p className="text-sm sm:text-[15px] text-[var(--text-secondary)] leading-[1.7] m-0" style={{ fontFamily: '"Inter", sans-serif' }}>
+                  By leveraging its diversified presence across electronics, metals, financial services, technology, corporate training, and renewable energy, Shanky Group continues to strengthen its reputation as a trusted partner for clients and investors alike.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

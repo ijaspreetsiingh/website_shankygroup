@@ -10,7 +10,7 @@ const ContactUs = () => {
     state: '',
     phone: '',
     email: '',
-    inquiryType: '',
+    inquiryType: 'general',
     message: '',
     exclusiveOffers: false
   });
@@ -79,20 +79,8 @@ const ContactUs = () => {
     setFormData(prev => ({ ...prev, [target.name]: value }));
   };
 
-  const handleInquiryTypeClick = (type: string) => {
-    console.log('Selected inquiry type:', type);
-    setFormData(prev => ({ ...prev, inquiryType: type }));
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate inquiry type is selected
-    if (!formData.inquiryType) {
-      console.error('Inquiry type is required');
-      alert('Please select an inquiry type');
-      return;
-    }
     
     setIsSubmitting(true);
     
@@ -163,7 +151,7 @@ const ContactUs = () => {
         state: '',
         phone: '',
         email: '',
-        inquiryType: '',
+        inquiryType: 'general',
         message: '',
         exclusiveOffers: false
       });
@@ -228,28 +216,6 @@ const ContactUs = () => {
                   <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('phone_number')} />
                 </div>
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('email_address')} />
-                <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">{t('type_of_inquiry')}</label>
-                  <div className="flex flex-wrap gap-2 sm:gap-2">
-                    {[
-                      { key: 'general', label: t('general') },
-                      { key: 'query', label: t('query') }
-                    ].map((type) => (
-                      <button
-                        key={type.key}
-                        type="button"
-                        onClick={() => handleInquiryTypeClick(type.key)}
-                        className={`flex-1 sm:flex-none min-h-[48px] sm:min-h-0 px-4 py-3 sm:py-2 rounded-xl text-sm font-medium border-2 transition-all touch-manipulation active:scale-[0.98] ${
-                          formData.inquiryType === type.key
-                            ? 'bg-[#e63a27] text-white border-[#e63a27]'
-                            : 'bg-white/10 text-white border-white/30 hover:border-white/50 hover:bg-white/15'
-                        }`}
-                      >
-                        {type.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">{t('message')}</label>
                   <textarea name="message" value={formData.message} onChange={handleInputChange} required rows={4} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all resize-none min-h-[100px]" placeholder="Your message..." />
@@ -323,7 +289,7 @@ const ContactUs = () => {
 
               <div>
                 <h3 className="text-xs sm:text-sm font-semibold mb-1">{t('contact')}</h3>
-                <p className="text-xs sm:text-sm text-white/80">+66 77 123 456</p>
+                <p className="text-xs sm:text-sm text-white/80">+011-47586938</p>
               </div>
             </div>
           </div>

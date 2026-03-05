@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import WhoWeAreNav from '../WhoWeAreNav';
 
 // Shivani image from app/images/team – bundled so it always loads
@@ -13,7 +14,6 @@ const LeadershipPage = () => {
   const [activeFilter, setActiveFilter] = useState("all");
   const [scrollY, setScrollY] = useState(0);
   const heroRef = useRef(null);
-  const featuredRef = useRef(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
@@ -65,8 +65,8 @@ const LeadershipPage = () => {
         image: "/images/team/vipin_sir.jpg",
         department: "Leadership",
         category: "board",
-        education: "CA, MBA Finance",
-        experience: "20+ years",
+        education: "Master's Degree in Business Administrator",
+        tenure: "From 2014-Present",
         social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com", email: "mailto:contact@shankygroup.com" }
       },
       {
@@ -77,8 +77,8 @@ const LeadershipPage = () => {
         image: "/images/team/manoj_sir.jpg",
         department: "Finance",
         category: "board",
-        education: "CA, Cost Accountant, CPA, MBA",
-        experience: "22+ years",
+        education: "Chartered Accountant / CPA / MBA",
+        tenure: "From 2019-Present",
         social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
       }
     ],
@@ -91,8 +91,8 @@ const LeadershipPage = () => {
         image: "/images/team/poonam.jpg",
         department: "Operations",
         category: "senior",
-        education: "MBA",
-        experience: "15+ years",
+        education: "Master's Degree in Finance",
+        tenure: "From 2015-Present",
         social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
       },
       {
@@ -103,8 +103,8 @@ const LeadershipPage = () => {
         image: "/images/team/priyanka.jpg",
         department: "Administration",
         category: "senior",
-        education: "MBA Operations",
-        experience: "12+ years",
+        education: "Master's Degree in Finance",
+        tenure: "From 2015-Present",
         social: { linkedin: "https://linkedin.com" }
       },
       {
@@ -115,33 +115,33 @@ const LeadershipPage = () => {
         image: "/images/team/rajeev1.jpg",
         department: "Finance",
         category: "senior",
-        education: "CA, MBA Finance",
-        experience: "18+ years",
+        education: "Master's Degree in Finance and Chartered Accountant (Intermediate)",
+        tenure: "From 2020-Present",
         bio: "Extensive experience in corporate finance, audit, and regulatory compliance ensuring transparency and integrity.",
         social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
       },
       {
         id: 6,
-        name: "Shivani",
+        name: "Shivani Bansal",
         position: "Legal Advisor",
         description: "I am a legal advisor with experience in contract review, legal documentation, and dispute resolution. I ensure agreements and procedures are legally sound and risk-free. I am committed to delivering business-focused legal solutions while maintaining standards of professional integrity and governance.",
         image: shivani1Img.src,
         department: "Legal",
         category: "senior",
-        education: "Graduate",
-        experience: "8+ years",
+        education: "B.A.LL.B",
+        tenure: "From 2022-Present",
         social: { linkedin: "https://linkedin.com" }
       },
       {
         id: 7,
-        name: "Shub",
-        position: "Senior Management",
-        description: "Key member of the leadership team driving strategy and execution across the Group.",
+        name: "Shubh Gupta",
+        position: "Purchase Manager",
+        description: "Key member of the leadership team driving procurement, vendor management, and supply chain execution across the Group.",
         image: "/images/team/shubh.png",
-        department: "Management",
+        department: "Purchase",
         category: "senior",
-        education: "Graduate",
-        experience: "8+ years",
+        education: "Bachelor Degree in Business Administration",
+        tenure: "From 2021-Present",
         social: { linkedin: "https://linkedin.com" }
       }
     ],
@@ -204,6 +204,18 @@ const LeadershipPage = () => {
     setActiveFilter(filterId);
   };
 
+  // Calculate company experience from tenure (e.g. "From 2014-Present" → "12 years")
+  const getExperienceFromTenure = (tenure: string | undefined): string => {
+    if (!tenure || typeof tenure !== 'string') return '—';
+    const match = tenure.match(/From\s+(\d{4})\s*-/i);
+    if (!match) return '—';
+    const startYear = parseInt(match[1], 10);
+    const currentYear = new Date().getFullYear();
+    const years = Math.max(0, currentYear - startYear);
+    if (years === 0) return 'Less than 1 year';
+    return years === 1 ? '1 year' : `${years} years`;
+  };
+
   return (
     <>
       {/* Hero Section - responsive */}
@@ -238,58 +250,6 @@ const LeadershipPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Featured Leader Section – responsive height & card */}
-      <div className="w-full px-3 sm:px-6 md:px-8 py-5 sm:py-8 md:py-10">
-        <section 
-          ref={featuredRef}
-          className="relative mx-auto max-w-[1920px] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl border-2 border-[var(--card-border)] shadow-xl h-[75vh] min-h-[380px] sm:min-h-[420px] sm:h-[80vh] md:h-[85vh] md:min-h-[480px] lg:h-[88vh] lg:max-h-[690px]"
-          style={{ backgroundColor: '#000000' }}
-        >
-          {/* Background Image */}
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-100 z-0" style={{
-            backgroundImage: 'url(https://imgs.search.brave.com/1d2AY1Io4nnKg7hZFQfW5K_7eq1IaOaWZvwel_dQIlw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQ2/MTU1NjM5Ny9waG90/by9jb2xvcmZ1bC1y/b2FkLWJ5LXRoZS1z/ZWEuanBnP3M9NjEy/eDYxMiZ3PTAmaz0y/MCZjPXozaGJ1WDF1/anE2NGFxR3RLVTI4/Uk5EQjhVZGNVR3NP/d3lrWHJoUEdfNTg9)'
-          }} />
-          <div className="absolute inset-0 z-[1]" style={{ background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 100%)' }} />
-          <div className="relative z-[2] w-full max-w-[1400px] mx-auto flex justify-center lg:justify-end items-center box-border px-3 sm:px-4 md:px-6 lg:pl-12 py-4 sm:py-6">
-            <div 
-              className="w-full max-w-full min-w-0 sm:min-w-[300px] sm:max-w-[440px] md:max-w-[500px] lg:max-w-[540px] xl:max-w-[580px] text-center mx-auto lg:mx-0 lg:mr-0 rounded-xl sm:rounded-[18px] p-4 sm:p-5 md:p-6 lg:py-8 lg:px-10"
-              style={{
-                backgroundColor: 'rgba(20,20,25,0.45)',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
-                backdropFilter: 'blur(9px) saturate(1.2)',
-                WebkitBackdropFilter: 'blur(16px) saturate(1.2)',
-                border: '1px solid rgba(255,255,255,0.08)'
-              }}
-            >
-              <div className="mb-3 sm:mb-3.5">
-                <span className="inline-block bg-[#e63a27] text-white text-[10px] sm:text-xs md:text-sm font-semibold py-2 px-3 sm:py-2.5 sm:px-5 rounded-full uppercase tracking-wide leading-tight">
-                  Managing Director
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-[36px] lg:text-[44px] font-bold text-white mb-2 sm:mb-3.5 leading-tight" style={{ fontFamily: '"Montserrat", "Arial", sans-serif' }}>
-                Vipin Kumar
-              </h2>
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-[#cccccc] mb-3 sm:mb-4 lg:mb-5 leading-snug font-medium">
-                Managing Director, Shanky Group
-              </p>
-              <div className="text-xs sm:text-sm md:text-base lg:text-lg text-[#cccccc] leading-relaxed mb-4 sm:mb-6 lg:mb-7 text-left space-y-2 sm:space-y-3">
-                <p className="m-0">
-                  To make B2B relationships simpler, smarter, and more successful. We started this because we believed businesses deserve partners who listen, deliver, and grow alongside them.
-                </p>
-                <p className="m-0">
-                  At our core we value trust, transparency, and measurable impact. Every solution we design begins with your goals and ends with clear outcomes.
-                </p>
-              </div>
-              <button 
-                className="w-full sm:w-auto bg-[#e63a27] text-white text-xs sm:text-sm font-semibold py-2.5 px-5 sm:py-3 sm:px-8 rounded-full border-0 cursor-pointer transition-all duration-300 uppercase tracking-wide shadow-[0_4px_20px_rgba(230,58,39,0.3)] hover:opacity-95"
-              >
-                View Profile
-              </button>
-            </div>
-          </div>
-        </section>
-      </div>
 
       {/* Main Content Section - responsive */}
       <section 
@@ -332,9 +292,9 @@ const LeadershipPage = () => {
             </p>
           </div>
 
-          {/* Filter Buttons - responsive */}
+          {/* Filter Buttons - hidden per request */}
           <div 
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 md:mb-16 lg:mb-20"
+            className="hidden flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-12 md:mb-16 lg:mb-20"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -448,13 +408,15 @@ const LeadershipPage = () => {
                   </p>
                   <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-3 mt-auto">
                     <div className="flex items-center gap-2 sm:gap-3 md:gap-4 min-w-0">
-                      <div className="flex items-center gap-1.5 sm:gap-2">
-                        <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                        <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate" style={{ fontFamily: '"Inter", sans-serif' }}>{leader.experience}</span>
-                      </div>
+                      {(leader as any).tenure && (
+                        <div className="flex items-center gap-1.5 sm:gap-2">
+                          <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                          <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate" style={{ fontFamily: '"Inter", sans-serif' }}>{(leader as any).tenure}</span>
+                        </div>
+                      )}
                       <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
                         <svg className="w-4 h-4 sm:w-[18px] sm:h-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                        <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate max-w-[80px] sm:max-w-[110px]" style={{ fontFamily: '"Inter", sans-serif' }}>{leader.education}</span>
+                        <span className="text-[10px] sm:text-xs md:text-sm text-[var(--text-primary)] font-normal truncate max-w-[80px] sm:max-w-[140px]" style={{ fontFamily: '"Inter", sans-serif' }}>{leader.education}</span>
                       </div>
                     </div>
                     <button
@@ -635,9 +597,25 @@ const LeadershipPage = () => {
                 {selectedLeader.bio ? ` ${selectedLeader.bio}` : ''}
               </p>
               <div 
-                className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-5 rounded-xl md:rounded-2xl border"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 p-3 sm:p-4 md:p-5 rounded-xl md:rounded-2xl border"
                 style={{ backgroundColor: 'var(--card-border)', borderColor: 'var(--card-border)' }}
               >
+                {(selectedLeader as any).tenure && (
+                  <div>
+                    <h4 
+                      className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
+                      style={{ fontFamily: '"Inter", sans-serif' }}
+                    >
+                      Tenure
+                    </h4>
+                    <p 
+                      className="text-xs sm:text-sm text-[var(--text-primary)] m-0 leading-snug font-medium"
+                      style={{ fontFamily: '"Inter", sans-serif' }}
+                    >
+                      {(selectedLeader as any).tenure}
+                    </p>
+                  </div>
+                )}
                 <div>
                   <h4 
                     className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
@@ -657,13 +635,13 @@ const LeadershipPage = () => {
                     className="text-[9px] sm:text-[10px] font-bold text-[var(--text-secondary)] mb-1.5 uppercase tracking-wider"
                     style={{ fontFamily: '"Inter", sans-serif' }}
                   >
-                    Experience
+                    Experience (with company)
                   </h4>
                   <p 
                     className="text-xs sm:text-sm text-[var(--text-primary)] m-0 leading-snug font-medium"
                     style={{ fontFamily: '"Inter", sans-serif' }}
                   >
-                    {selectedLeader.experience}
+                    {getExperienceFromTenure((selectedLeader as any).tenure)}
                   </p>
                 </div>
               </div>

@@ -182,110 +182,64 @@ const WorkWithUs = () => {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="py-[60px] px-5 md:py-[80px] md:px-[40px] transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-1000" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(60px)' }}>
-        <div className="max-w-[1200px] mx-auto">
+      {/* WORK WITH US - Full width, top margin, clean design */}
+      <div 
+        className="relative w-full mt-16 sm:mt-20 md:mt-24 py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 flex flex-col items-center justify-center overflow-hidden transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] delay-1000"
+        style={{ 
+          opacity: isVisible ? 1 : 0, 
+          transform: isVisible ? 'translateY(0)' : 'translateY(60px)',
+          backgroundColor: 'var(--background)',
+        }}
+      >
+        {/* Subtle background - soft gradient + very light image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.08] dark:opacity-[0.05]"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80)',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--background)]/30" />
+
+        <div className="relative z-10 w-full max-w-[640px] mx-auto text-center">
           {/* Main Title */}
           <h1 
-            className="text-[36px] md:text-[48px] font-normal text-[var(--text-primary)] m-0 mb-[40px] md:mb-[60px] text-center tracking-[6px] md:tracking-[8px] uppercase font-['Helvetica_Neue',_Arial,_sans-serif] transition-all duration-800 delay-1200"
+            className="text-[28px] sm:text-[34px] md:text-[42px] font-bold text-[var(--text-primary)] m-0 mb-3 tracking-[4px] md:tracking-[6px] uppercase transition-all duration-800 delay-1200"
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
           >
             WORK WITH US
           </h1>
+          <div 
+            className="w-14 h-1 rounded-full bg-[#e63a27] mx-auto mb-10 sm:mb-12"
+            style={{ opacity: isVisible ? 1 : 0, transition: 'opacity 0.6s 0.2s' }}
+          />
 
-          {/* Cards Container */}
-          <div className="flex flex-col gap-[30px] transition-all duration-800 delay-1400" style={{ opacity: isVisible ? 1 : 0 }}>
-            {/* Bottom Two Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
-              {/* Card 2 - JOIN OUR TEAM */}
-              <div 
-                className="bg-[var(--background)] rounded-lg p-[35px] md:p-[45px] md:px-[40px] border border-[var(--card-border)] h-auto md:h-[300px] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] hover:scale-[1.02] hover:-translate-y-2"
-                style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-60px)' }}
-              >
-                <div>
-                  <h2 
-                    className="text-[26px] md:text-[32px] font-normal text-[var(--text-primary)] m-0 mb-[15px] tracking-[3px] uppercase font-['Helvetica_Neue',_Arial,_sans-serif] leading-[1.2] transition-all duration-600"
-                    style={{ 
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                      transitionDelay: '0.1s'
-                    }}
-                  >
-                    JOIN OUR TEAM
-                  </h2>
-                  
-                  <p 
-                    className="text-base text-[var(--text-secondary)] leading-[1.6] m-0 font-normal tracking-[0.2px] transition-all duration-600"
-                    style={{ 
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                      transitionDelay: '0.15s'
-                    }}
-                  >
-                    See current job openings.
-                  </p>
-                </div>
-                
-                <Link 
-                  href="/careers"
-                  className="w-full py-3 bg-white text-gray-800 border border-gray-300 rounded-[12px] text-[0.85rem] font-semibold cursor-pointer transition-all hover:bg-gray-50 self-start uppercase mt-6 md:mt-0 transform hover:scale-105 hover:shadow-lg text-center inline-block"
-                  style={{ 
-                    width: '200px',
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
-                    transition: 'all 0.5s cubic-bezier(0.23,1,0.32,1) 0.2s'
-                  }}
-                  onMouseEnter={() => setHoveredButton('team')}
-                  onMouseLeave={() => setHoveredButton(null)}
-                >
-                  Learn more
-                </Link>
-              </div>
-
-              {/* Card 3 - MAHINDRA AI */}
-              <div 
-                className="bg-[var(--background)] rounded-lg p-[35px] md:p-[45px] md:px-[40px] border border-[var(--card-border)] h-auto md:h-[300px] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] hover:scale-[1.02] hover:-translate-y-2"
-                style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(60px)' }}
-              >
-                <div>
-                  <h2 
-                    className="text-[26px] md:text-[32px] font-normal text-[var(--text-primary)] m-0 mb-[15px] tracking-[3px] uppercase font-['Helvetica_Neue',_Arial,_sans-serif] leading-[1.2] transition-all duration-600"
-                    style={{ 
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                      transitionDelay: '0.3s'
-                    }}
-                  >
-                    SHANKY GROUP
-                  </h2>
-                  
-                  <p 
-                    className="text-base text-[var(--text-secondary)] leading-[1.6] m-0 font-normal tracking-[0.2px] transition-all duration-600"
-                    style={{ 
-                      opacity: isVisible ? 1 : 0,
-                      transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                      transitionDelay: '0.35s'
-                    }}
-                  >
-                    Leading innovation and excellence across diverse industries.
-                  </p>
-                </div>
-                
-                <button 
-                  className="w-full py-3 bg-white text-gray-800 border border-gray-300 rounded-[12px] text-[0.85rem] font-semibold cursor-pointer transition-all hover:bg-gray-50 self-start uppercase mt-6 md:mt-0 transform hover:scale-105 hover:shadow-lg"
-                  style={{ 
-                    width: '200px',
-                    opacity: isVisible ? 1 : 0,
-                    transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
-                    transition: 'all 0.5s cubic-bezier(0.23,1,0.32,1) 0.4s'
-                  }}
-                  onMouseEnter={() => setHoveredButton('ai')}
-                  onMouseLeave={() => setHoveredButton(null)}
-                >
-                  Learn more
-                </button>
-              </div>
-            </div>
+          {/* Card - JOIN OUR TEAM */}
+          <div 
+            className="rounded-2xl p-8 sm:p-10 md:p-12 text-center transition-all duration-500 border"
+            style={{ 
+              opacity: isVisible ? 1 : 0, 
+              transform: isVisible ? 'translateY(0)' : 'translateY(24px)', 
+              transitionDelay: '0.15s',
+              backgroundColor: 'var(--card-bg)',
+              borderColor: 'var(--card-border)',
+              boxShadow: '0 10px 40px rgba(0,0,0,0.08)',
+            }}
+          >
+            <h2 className="text-[22px] sm:text-[26px] md:text-[28px] font-bold text-[var(--text-primary)] m-0 mb-3 tracking-[2px] uppercase">
+              JOIN OUR TEAM
+            </h2>
+            <p className="text-[15px] sm:text-base text-[var(--text-secondary)] leading-[1.65] m-0 mb-8 max-w-[420px] mx-auto">
+              See current job openings and find your place with us.
+            </p>
+            <Link 
+              href="/careers"
+              className="inline-flex items-center justify-center gap-2 py-3.5 px-8 bg-[#e63a27] text-white rounded-xl text-sm font-semibold uppercase tracking-wide transition-all hover:bg-[#c93222] hover:shadow-lg hover:shadow-[#e63a27]/25"
+              onMouseEnter={() => setHoveredButton('team')}
+              onMouseLeave={() => setHoveredButton(null)}
+            >
+              View openings
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+            </Link>
           </div>
         </div>
       </div>

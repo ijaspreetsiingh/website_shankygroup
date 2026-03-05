@@ -49,8 +49,8 @@ const dict: Dict = {
   email: { en: 'Email', hi: 'ईमेल' },
   contact: { en: 'Contact', hi: 'संपर्क' },
   address: { 
-    en: 'D-Mall, A-1 Netaji Subhash Palace, Pitampura NEW DELHI North West DL 110034 India Monday–Sunday | 09:00 - 18:00 (local time)',
-    hi: 'डी-मॉल, ए-1 नेताजी सुभाष पैलेस, पितमपुरा नई दिल्ली उत्तर पश्चिम डीएल 110034 भारत सोमवार-रविवार | 09:00 - 18:00 (स्थानीय समय)'
+    en: 'Unit no. 03 and 04, Ground floor, D-Mall, NSP New Delhi 110034',
+    hi: 'यूनिट नं. 03 और 04, ग्राउंड फ्लोर, डी-मॉल, एनएसपी'
   },
   tell_us_what_you_need: { en: 'Tell Us What You Need', hi: 'हमें बताएं कि आपको क्या चाहिए' },
   team_ready: { 
@@ -119,10 +119,12 @@ const dict: Dict = {
   // Group of Companies Section
   group_of_companies: { en: 'Group of Companies', hi: 'कंपनियों का समूह' },
   group_description: { 
-    en: 'Shanky Group is a fast-growing, diversified business conglomerate headquartered in Delhi, India. With operations spanning financial services, food & agribusiness, solar EPC & electronics, education & corporate training, infrastructure & construction, and metals trading, the Group brings together seven core companies under one unified vision.',
-    hi: 'शंक्य ग्रुप एक तेजी से बढ़ता हुआ, विविधीकृत व्यावसायिक समूह है जिसका मुख्यालय दिल्ली, भारत में है। वित्तीय सेवाओं, खाद्य और कृषि व्यवसाय, सौर EPC और इलेक्ट्रॉनिक्स, शिक्षा और कॉर्पोरेट प्रशिक्षण, बुनियादी ढांचा और निर्माण, और धातु व्यापार में संचालन के साथ, समूह एक एकीकृत दृष्टिकोण के तहत सात मुख्य कंपनियों को एक साथ लाता है।'
+    en: "Shanky Group's diversified portfolio comprises six core companies, each operating as a distinct legal entity with specialized expertise and market presence. The Group's structure enables operational autonomy while fostering intercompany synergies and resource optimization.",
+    hi: "शंक्य ग्रुप का विविध पोर्टफोलियो छह मुख्य कंपनियों से बना है, जिनमें से प्रत्येक विशेषज्ञता और बाजार उपस्थिति के साथ एक अलग कानूनी इकाई के रूप में काम करता है। समूह की संरचना परिचालन स्वायत्तता को सक्षम बनाती है साथ ही इंटरकंपनी सिनर्जी और संसाधन अनुकूलन को बढ़ावा देती है।"
   },
   learn_more_capital: { en: 'Learn More', hi: 'और अधिक जानें' },
+  read_more_capital: { en: 'Read More', hi: 'और पढ़ें' },
+  read_less_capital: { en: 'Read Less', hi: 'कम पढ़ें' },
   
   // Force For Good Section
   a_force: { en: 'A Force', hi: 'एक शक्ति' },
