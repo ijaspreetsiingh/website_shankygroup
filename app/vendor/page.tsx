@@ -19,7 +19,7 @@ export default function VendorPage() {
 
   return (
     <I18nProvider>
-      <div className="w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
+      <div className="vendor-root w-full overflow-x-hidden min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]">
         <HeaderFour isScrolled={isScrolled} />
         <main className="flex-grow">
           <div
@@ -44,10 +44,10 @@ export default function VendorPage() {
                       <span className="inline-block px-4 py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
                         Partner With Us
                       </span>
-                      <h1 className="section-heading text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-4 lg:mb-5 drop-shadow-lg">
+                      <h1 className="section-heading text-4xl sm:text-5xl md:text-[56px] font-[700] tracking-[-1px] leading-[1.1] text-white mb-4 lg:mb-5 drop-shadow-lg">
                         Register as a <span className="text-[#e63a27]">Vendor</span>
                       </h1>
-                      <p className="text-base sm:text-lg md:text-xl max-w-xl text-white/95 leading-relaxed mb-6 lg:mb-8">
+                      <p className="section-subheading text-base sm:text-lg md:text-[20px] max-w-xl text-white/95 leading-[1.6] font-[400] mb-6 lg:mb-8">
                         Grow your business with Shanky Group. Join our network of trusted vendors and get access to opportunities across finance, construction, metals, electronics, and more.
                       </p>
                       <a
@@ -74,11 +74,11 @@ export default function VendorPage() {
             <section className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-14 md:py-20 max-w-[90rem]">
               <div className="text-center mb-10 md:mb-14">
                 <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">Benefits</span>
-                <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight mt-2 mb-4">
+                <h2 className="section-heading text-[32px] font-[600] text-[var(--text-primary)] mt-2 mb-5">
                   Why <span className="text-[#e63a27]">Partner</span> With Us
                 </h2>
-                <div className="w-16 h-1 bg-[#e63a27] mx-auto mb-6" />
-                <p className="text-[var(--text-secondary)] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                <div className="w-[100px] h-[4px] bg-gradient-to-r from-[#1e293b] to-[#3b82f6] mx-auto mb-6 rounded-[2px]" />
+                <p className="section-subheading text-[20px] text-[var(--text-secondary)] max-w-[800px] mx-auto leading-[1.6] font-[400]">
                   Shanky Group works with vendors across sectors. Register once and get visibility with our procurement and business teams.
                 </p>
               </div>
@@ -96,7 +96,7 @@ export default function VendorPage() {
                     <span className="inline-flex w-12 h-12 rounded-xl bg-[#e63a27]/15 text-[#e63a27] items-center justify-center mb-4 group-hover:bg-[#e63a27]/25 transition-colors">
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} /></svg>
                     </span>
-                    <h3 className="section-heading text-lg font-bold text-[var(--text-primary)] mb-2">{item.title}</h3>
+                    <h3 className="section-heading text-[20px] font-[600] text-[var(--text-primary)] mb-2">{item.title}</h3>
                     <p className="text-sm text-[var(--text-secondary)] leading-snug">{item.desc}</p>
                   </div>
                 ))}
@@ -107,10 +107,11 @@ export default function VendorPage() {
             <div id="vendor-form" className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-4 max-w-[90rem] scroll-mt-24">
               <div className="text-center mb-8 md:mb-10">
                 <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase">Get started</span>
-                <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
+                <h2 className="section-heading text-[32px] font-[600] text-[var(--text-primary)] mt-1 mb-5">
                   Vendor <span className="text-[#e63a27]">Registration</span> Form
                 </h2>
-                <p className="text-[var(--text-secondary)] text-sm md:text-base mt-2 max-w-xl mx-auto">
+                <div className="w-[100px] h-[4px] bg-gradient-to-r from-[#1e293b] to-[#3b82f6] mx-auto mb-6 rounded-[2px]" />
+                <p className="section-subheading text-[20px] text-[var(--text-secondary)] max-w-[800px] mx-auto leading-[1.6] font-[400] mt-2">
                   Fill in your details below. Our team will review and get in touch.
                 </p>
               </div>

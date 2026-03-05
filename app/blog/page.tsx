@@ -149,7 +149,7 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]" style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}>
+    <div className="blog-root min-h-screen bg-[var(--background)]" style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}>
       <HeaderFour isScrolled={isScrolled} />
 
       {/* Hero Section – reference: leadership + compliance style */}

@@ -269,7 +269,7 @@ export default function BlogDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--background)]">
+    <div className="blog-root min-h-screen bg-[var(--background)]">
       <HeaderFour isScrolled={false} />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

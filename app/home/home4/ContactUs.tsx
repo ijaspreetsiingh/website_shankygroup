@@ -247,17 +247,17 @@ const ContactUs = () => {
 
           {/* Left Section - Information (after form on mobile) */}
           <div className="order-2 lg:order-1 text-white pr-0 sm:pr-4 lg:pr-6 xl:pr-8 flex flex-col justify-center py-4 sm:py-6 lg:py-0" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
-            <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
+            <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold tracking-tight mb-6 sm:mb-8 md:mb-10">
               {t('you_have_questions')},<br />
               {t('we_have_answers')}
             </h1>
-            <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
+            <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed max-w-md mb-8 sm:mb-10 md:mb-14">
               {t('contact_desc')}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 sm:gap-y-6 lg:gap-y-8 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-8 sm:gap-y-10 lg:gap-y-12 gap-x-4 sm:gap-x-8 lg:gap-x-16 xl:gap-x-20" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
               {/* Location */}
               <div className="transition-all duration-600 delay-1200" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-                <h3 className="text-xs sm:text-sm font-semibold mb-1">{t('location')}</h3>
+                <h3 className="text-xs sm:text-sm font-semibold mb-2">{t('location')}</h3>
                 <p className="text-xs sm:text-sm text-white/80 leading-relaxed">{t('address')}</p>
               </div>
 

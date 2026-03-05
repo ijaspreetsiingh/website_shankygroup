@@ -176,6 +176,90 @@ html {
   letter-spacing: 0.04em !important;
 }
 
+/* Vendor page – same heading font as /who-we-are/about-us (Syne) */
+.vendor-root h1,
+.vendor-root h2,
+.vendor-root h3,
+.vendor-root h4,
+.vendor-root h5,
+.vendor-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.vendor-root .section-heading,
+.vendor-root .hero-legacy-heading,
+.vendor-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Careers page – same heading font as /who-we-are/about-us (Syne) */
+.careers-root h1,
+.careers-root h2,
+.careers-root h3,
+.careers-root h4,
+.careers-root h5,
+.careers-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.careers-root .section-heading,
+.careers-root .hero-legacy-heading,
+.careers-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Contact page – same heading font as /who-we-are/about-us (Syne) */
+.contact-root h1,
+.contact-root h2,
+.contact-root h3,
+.contact-root h4,
+.contact-root h5,
+.contact-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.contact-root .section-heading,
+.contact-root .hero-legacy-heading,
+.contact-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Blog page – same heading font as /who-we-are/about-us (Syne) */
+.blog-root h1,
+.blog-root h2,
+.blog-root h3,
+.blog-root h4,
+.blog-root h5,
+.blog-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.blog-root .section-heading,
+.blog-root .hero-legacy-heading,
+.blog-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
 /* Specific procedure section scrollbar hide */
 .procedure-scrollbar-hide::-webkit-scrollbar {
   display: none;
