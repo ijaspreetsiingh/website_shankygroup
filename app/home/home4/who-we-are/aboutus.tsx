@@ -116,7 +116,7 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "VMS Hub Pvt Ltd is the Group's newest venture, established to capitalize on the growing demand for food and agricultural products in India. The company is engaged in the wholesale distribution of agricultural raw materials and food products, leveraging advanced supply chain management and quality assurance systems. With an authorized share capital of ₹16.5 crore, VMS Hub is well-positioned to scale its operations and expand its market reach. VMS Hub's strategic focus includes sourcing high-quality products, building robust distribution networks, and fostering partnerships with farmers and suppliers. The company's operations are designed to ensure food safety, traceability, and customer satisfaction, aligning with the Group's commitment to excellence and sustainability.",
-      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=500&fit=crop&q=80"
+      image: "https://imgs.search.brave.com/rluaME6FX_YAtOFYDHk6coc8vT-cNUuDdso3N8YmlLo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/Z3JpY3VsdHVyZS1o/ZWFsdGh5LWZvb2Rf/MjMtMjE1MTk2OTgz/MS5qcGc_c2VtdD1h/aXNfaW5jb21pbmcm/dz03NDAmcT04MA"
     },
     {
       id: 3,
@@ -160,7 +160,7 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Shanky Metals Pvt Ltd is a leading player in the metals trading and manufacturing sector. The company specializes in the procurement, processing, and trading of a wide range of metals, including aluminium, copper, brass, iron, and steel. Its operations encompass sourcing raw materials from domestic and international suppliers, processing them into finished products, and exporting to global markets, particularly Hong Kong and other Asian countries. With an authorized share capital of ₹75 lakh and a paid-up capital of ₹70 lakh, Shanky Metals has demonstrated robust financial performance, generating a revenue of ₹7.16 crore for the financial year ending March 31, 2024. The company's focus on quality, timely delivery, and customer satisfaction has enabled it to build long-term relationships with clients and partners.",
-      image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=500&fit=crop&q=80"
+      image: "https://imgs.search.brave.com/DURoHybRGSZOU_B61qaC14ZyYpy4TjyFqLK1tRRvy-k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQw/MzA5NDc4NS9waG90/by9zdGFjay1vZi1j/YXJib24tc3RlZWwt/c3F1YXJlLXR1YmUt/YXQtbWFudWZhY3R1/cmVyLWZhY3Rvcnku/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXo3c2dyUWpkemFz/eXBOSkVKV3k5bnVF/VVlDVEVoWmU5c1c3/QWRfZTVOZEU9"
     },
   ];
 
@@ -264,18 +264,6 @@ const WhatWeDo = () => {
 
             {/* Content */}
             <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 z-10">
-              {/* Company Number */}
-              <div 
-                className="text-4xl sm:text-5xl md:text-7xl font-black mb-2 sm:mb-4 opacity-30 transition-all duration-700 group-hover:opacity-40 md:group-hover:translate-x-2"
-                style={{ 
-                  color: company.categoryColor,
-                  fontFamily: 'serif',
-                  lineHeight: 1,
-                }}
-              >
-                {String(index + 1).padStart(2, '0')}
-              </div>
-              
               {/* Company Name – same font as site headings (Syne professional) */}
               <h3 className="section-heading text-lg sm:text-xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-2 sm:line-clamp-none">
                 {company.shortName}
@@ -317,20 +305,6 @@ const WhatWeDo = () => {
                       background: `linear-gradient(135deg, ${company.categoryColor}20 0%, transparent 50%)` 
                     }}
                   />
-                </div>
-
-                {/* Company Number Overlay */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6">
-                  <div 
-                    className="text-5xl sm:text-6xl md:text-8xl font-black opacity-10"
-                    style={{ 
-                      color: company.categoryColor,
-                      fontFamily: 'serif',
-                      lineHeight: 1,
-                    }}
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </div>
                 </div>
 
                 {/* Floating Category Badge - full text on mobile */}
