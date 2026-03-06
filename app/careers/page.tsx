@@ -163,7 +163,7 @@ const CareersPage = () => {
                 BUILD YOUR FUTURE
               </h1>
               <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal w-full max-w-full leading-relaxed mb-6 sm:mb-8 md:mb-10 font-[family-name:var(--font-lato)] opacity-90 text-[var(--text-secondary)]">
-                Join a team of over 500 talented professionals across India. We believe in nurturing talent, fostering innovation, and creating opportunities for growth.
+                Join a team of talented professionals across India. We believe in nurturing talent, fostering innovation, and creating opportunities for growth.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 flex-wrap">
                 <button
@@ -234,7 +234,7 @@ const CareersPage = () => {
                 
                 <div className="flex flex-col gap-4 sm:gap-5">
                   <p className="text-base sm:text-[18px] text-[var(--text-secondary)] leading-[1.7] font-[400]">
-                    Shanky Group is a diversified conglomerate with interests in Financial Services, Technology, Agriculture, Electronics, and Corporate Training. Since our inception in 2010, we have grown into a trusted name serving thousands of clients across India.
+                    Shanky Group is a diversified conglomerate with interests in Financial Services, Technology, Agriculture, Electronics, and Corporate Training. Since our inception in 2011, we have grown into a trusted name serving thousands of clients across India.
                   </p>
                   <p className="text-base sm:text-[18px] text-[var(--text-secondary)] leading-[1.7] font-[400]">
                     We believe in nurturing talent and providing growth opportunities for our team members. Join us to be part of a dynamic organization where your skills are valued, and your career aspirations are supported.
@@ -243,17 +243,10 @@ const CareersPage = () => {
                 
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-6 sm:mt-8">
                   <div className="text-center p-4 sm:p-6 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
-                    <div className="text-2xl sm:text-[36px] font-[800] text-[#e63a27] mb-1 sm:mb-2 font-['Montserrat','Arial','sans-serif'] leading-none">2010</div>
+                    <div className="text-2xl sm:text-[36px] font-[800] text-[#e63a27] mb-1 sm:mb-2 font-['Montserrat','Arial','sans-serif'] leading-none">2011</div>
                     <div className="text-xs sm:text-[14px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">Founded</div>
                   </div>
-                  <div className="text-center p-4 sm:p-6 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
-                    <div className="text-2xl sm:text-[36px] font-[800] text-[#0ea5e9] mb-1 sm:mb-2 font-['Montserrat','Arial','sans-serif'] leading-none">500+</div>
-                    <div className="text-xs sm:text-[14px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">Employees</div>
-                  </div>
-                  <div className="text-center p-4 sm:p-6 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
-                    <div className="text-2xl sm:text-[36px] font-[800] text-[#10b981] mb-1 sm:mb-2 font-['Montserrat','Arial','sans-serif'] leading-none">6</div>
-                    <div className="text-xs sm:text-[14px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">Cities</div>
-                  </div>
+                 
                   <div className="text-center p-4 sm:p-6 bg-[var(--card-bg)] rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                     <div className="text-2xl sm:text-[36px] font-[800] text-[#8b5cf6] mb-1 sm:mb-2 font-['Montserrat','Arial','sans-serif'] leading-none">6+</div>
                     <div className="text-xs sm:text-[14px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">Business Verticals</div>

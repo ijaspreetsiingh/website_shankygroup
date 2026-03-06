@@ -17,20 +17,14 @@ const AboutUsPage = () => {
 
   const images = [
     { 
-      src: 'https://images.unsplash.com/photo-1466692476868-a93f867cb794?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "01 / 03",
-      title: "Innovation & Excellence",
-      description: "Driving sustainable growth through innovative solutions and exceptional quality across all our business sectors."
-    },
-    { 
       src: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "02 / 03",
+      number: "01 / 02",
       title: "Quality & Precision",
       description: "Maintaining the highest standards of quality and precision in all our operations and deliverables."
     },
     { 
       src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "03 / 03",
+      number: "02 / 01",
       title: "Leadership & Vision",
       description: "Leading with vision and commitment to create lasting impact across industries."
     }
@@ -57,21 +51,36 @@ const AboutUsPage = () => {
     }
   ];
 
+  const currentBackgroundSrc = images?.[currentImageIndex]?.src ?? images?.[0]?.src ?? '';
+  const secondBackgroundSrc = secondImages?.[secondImageIndex]?.src ?? secondImages?.[0]?.src ?? '';
+
   const nextImage = () => {
+    if (!images?.length) return;
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
+    if (!images?.length) return;
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   const nextSecondImage = () => {
+    if (!secondImages?.length) return;
     setSecondImageIndex((prev) => (prev + 1) % secondImages.length);
   };
 
   const prevSecondImage = () => {
+    if (!secondImages?.length) return;
     setSecondImageIndex((prev) => (prev - 1 + secondImages.length) % secondImages.length);
   };
+
+  useEffect(() => {
+    if (images?.length && currentImageIndex >= images.length) setCurrentImageIndex(0);
+  }, [currentImageIndex, images?.length]);
+
+  useEffect(() => {
+    if (secondImages?.length && secondImageIndex >= secondImages.length) setSecondImageIndex(0);
+  }, [secondImageIndex, secondImages?.length]);
 
   useEffect(() => {
     if (countingStarted && isVisible) {
@@ -230,7 +239,7 @@ const AboutUsPage = () => {
                 {/* Background Image – professional dark overlay */}
                 <div 
                   className="absolute inset-0 bg-cover bg-center brightness-[0.75] contrast-[1.05] transition-transform duration-500 ease-in-out"
-                  style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
+                  style={currentBackgroundSrc ? { backgroundImage: `url(${currentBackgroundSrc})` } : undefined}
                 />
                 <div className="absolute inset-0 bg-black/40 pointer-events-none" aria-hidden />
                 
@@ -461,7 +470,7 @@ const AboutUsPage = () => {
               <h1 className="section-heading text-2xl sm:text-3xl md:text-[40px] font-bold text-[var(--text-primary)] mb-6 sm:mb-8 md:mb-10 text-center px-1">
                 Our Achievements
               </h1>
-              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8 lg:gap-10 w-full">
+              <div className="mx-auto grid w-full max-w-5xl grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-8 lg:gap-10">
                 {/* Years of Excellence */}
                 <div className="text-center p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--card-bg)] rounded-lg sm:rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
                   <div className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-[800] text-[#3b82f6] mb-1 sm:mb-2 md:mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
@@ -479,16 +488,6 @@ const AboutUsPage = () => {
                   </div>
                   <div className="text-[10px] sm:text-xs md:text-sm lg:text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
                     Business Sectors
-                  </div>
-                </div>
-
-                {/* Employees */}
-                <div className="text-center p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--card-bg)] rounded-lg sm:rounded-xl border border-[var(--card-border)] shadow-[0_10px_30px_rgba(0,0,0,0.08)] transition-all duration-300 relative overflow-hidden">
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-[48px] font-[800] text-[#06b6d4] mb-1 sm:mb-2 md:mb-3 font-['Montserrat','Arial','sans-serif'] leading-none">
-                    {employeesCount}+
-                  </div>
-                  <div className="text-[10px] sm:text-xs md:text-sm lg:text-[16px] font-[600] text-[var(--text-secondary)] font-['Lato','Arial','sans-serif']">
-                    Employees
                   </div>
                 </div>
 

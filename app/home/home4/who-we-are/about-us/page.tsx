@@ -37,20 +37,14 @@ const AboutUsPage = () => {
 
   const secondImages = [
     { 
-      src: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "01 / 03",
-      title: "Global Impact",
-      description: "Creating sustainable value and driving positive change across communities worldwide through our diverse business portfolio."
-    },
-    { 
       src: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "02 / 03",
+      number: "01 / 02",
       title: "Sustainable Future",
       description: "Building a sustainable future through renewable energy and environmentally responsible practices across all sectors."
     },
     { 
       src: 'https://images.unsplash.com/photo-1466692476868-a93f867cb794?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80', 
-      number: "03 / 03",
+      number: "02 / 02",
       title: "Community Growth",
       description: "Empowering communities and fostering growth through education, employment, and sustainable development initiatives."
     }
