@@ -92,12 +92,62 @@ const GraphyFooter = () => {
             boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)',
           }}
         >
-          {/* Animated background orbs */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes footerCtaFloat1 {
+              0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+              25% { transform: translate(15px, -20px) scale(1.05); opacity: 0.5; }
+              50% { transform: translate(-10px, -35px) scale(0.95); opacity: 0.35; }
+              75% { transform: translate(-20px, -15px) scale(1.02); opacity: 0.45; }
+            }
+            @keyframes footerCtaFloat2 {
+              0%, 100% { transform: translate(0, 0) scale(1); }
+              33% { transform: translate(-25px, 15px) scale(1.08); }
+              66% { transform: translate(10px, -10px) scale(0.92); }
+            }
+            @keyframes footerCtaFloat3 {
+              0%, 100% { transform: translate(-50%, -50%); }
+              50% { transform: translate(calc(-50% + 20px), calc(-50% + 25px)); }
+            }
+            @keyframes footerCtaFloat4 {
+              0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+              25% { transform: translate(-15px, -25px) scale(1.1); opacity: 0.6; }
+              50% { transform: translate(20px, -10px) scale(0.9); opacity: 0.4; }
+              75% { transform: translate(-5px, 20px) scale(1.05); opacity: 0.55; }
+            }
+            @keyframes footerCtaFloat5 {
+              0%, 100% { transform: translate(0, 0); }
+              50% { transform: translate(-18px, -18px); }
+            }
+          ` }} />
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <div className="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-[80px] animate-pulse" style={{ animationDuration: '4s' }} />
-            <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-violet-500/15 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-[70px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '0.5s' }} />
-            <div className="absolute top-0 right-1/4 w-40 h-40 bg-amber-500/10 rounded-full blur-[60px]" />
+            <div
+              className="absolute -top-20 -left-20 w-72 h-72 bg-blue-500/20 rounded-full blur-[80px]"
+              style={{ animation: 'footerCtaFloat1 12s ease-in-out infinite' }}
+            />
+            <div
+              className="absolute -bottom-20 -right-20 w-96 h-96 bg-violet-500/15 rounded-full blur-[100px]"
+              style={{ animation: 'footerCtaFloat2 14s ease-in-out infinite', animationDelay: '-2s' }}
+            />
+            <div
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-[70px]"
+              style={{ animation: 'footerCtaFloat3 10s ease-in-out infinite', animationDelay: '-4s' }}
+            />
+            <div
+              className="absolute top-0 right-1/4 w-40 h-40 bg-amber-500/10 rounded-full blur-[60px]"
+              style={{ animation: 'footerCtaFloat4 16s ease-in-out infinite' }}
+            />
+            <div
+              className="absolute top-[20%] right-[15%] w-24 h-24 bg-white/5 rounded-full blur-[20px]"
+              style={{ animation: 'footerCtaFloat5 11s ease-in-out infinite', animationDelay: '-1s' }}
+            />
+            <div
+              className="absolute bottom-[30%] left-[10%] w-20 h-20 bg-blue-400/15 rounded-full blur-[25px]"
+              style={{ animation: 'footerCtaFloat1 12s ease-in-out infinite', animationDelay: '-6s' }}
+            />
+            <div
+              className="absolute top-[60%] right-[25%] w-16 h-16 bg-violet-400/10 rounded-full blur-[15px]"
+              style={{ animation: 'footerCtaFloat3 10s ease-in-out infinite', animationDelay: '-3s' }}
+            />
           </div>
 
           <div className="relative z-10">

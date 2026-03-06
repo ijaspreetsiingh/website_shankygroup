@@ -316,146 +316,143 @@ const AboutUsPage = () => {
           </div>
 
 
-<br /><br />
-          {/* CORE VALUES Section */}
-          <div className="mt-8 sm:mt-10 mb-12 sm:mb-16 md:mb-20">
+          {/* CORE VALUES Section - fully responsive */}
+          <div className="mt-8 sm:mt-10 md:mt-12 lg:mt-14 mb-10 sm:mb-14 md:mb-16 lg:mb-20">
             <div className={`transition-all duration-800 ease-out delay-1200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-[30px]'
             }`}>
-              <h2 className="section-heading text-2xl sm:text-3xl md:text-[36px] font-bold text-[var(--text-primary)] mb-6 sm:mb-8 md:mb-12 text-center">
+              <h2 className="section-heading text-xl min-[400px]:text-2xl sm:text-3xl md:text-[32px] lg:text-[38px] xl:text-[40px] font-bold text-[var(--text-primary)] mb-4 sm:mb-5 md:mb-6 lg:mb-8 text-center tracking-tight px-2">
                 CORE VALUES
               </h2>
-              
-              <div className="max-w-4xl mx-auto text-center px-1">
-                <p className="text-sm sm:text-base md:text-[18px] text-[var(--text-secondary)] leading-[1.6] sm:leading-[1.8] font-[400] mb-6 sm:mb-8">
+
+              <div className="max-w-[90%] min-[400px]:max-w-2xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mx-auto text-center px-3 sm:px-4 md:px-6 mb-5 sm:mb-6 md:mb-8 lg:mb-10">
+                <p className="text-xs min-[380px]:text-sm sm:text-base md:text-[17px] lg:text-[19px] text-[var(--text-secondary)] leading-[1.6] sm:leading-[1.65] md:leading-[1.7] lg:leading-[1.75] font-[400]">
                   Shanky Group&apos;s core values are the foundation of its corporate culture and operational philosophy. These values guide decision-making, stakeholder engagement, and business conduct across all Group companies.
                 </p>
-                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-wrap justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Integrity
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Upholding the highest standards of honesty, transparency, and ethical conduct in all business dealings.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Customer Centricity
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Placing customers at the center of all operations, striving to exceed their expectations through quality, reliability, and service excellence.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Innovation
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Fostering a culture of creativity, continuous improvement, and technological advancement to drive business growth and competitiveness.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Collaboration
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Promoting teamwork, knowledge sharing, and cross-functional collaboration to achieve collective goals.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </div>
+
+              <div className="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-4 xl:px-2 mb-8 sm:mb-10 md:mb-12">
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Accountability
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Taking ownership of decisions and actions, delivering on commitments, and being responsible stewards of resources.
-                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Sustainability
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Integrating environmental, social, and governance (ESG) principles into business operations, contributing to community development and environmental stewardship.
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-center p-4 sm:p-5 md:p-6 bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)] hover:scale-[1.02] sm:hover:scale-105 min-w-0 sm:min-w-[200px] relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/10 to-transparent rounded-full -mr-10 -mt-10"></div>
-                    <div className="relative z-10">
-                      <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 bg-gradient-to-br from-orange-500/20 to-orange-500/10 rounded-full flex items-center justify-center">
-                        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                        </svg>
-                      </div>
-                      <div className="section-heading text-sm sm:text-[15px] md:text-[16px] font-bold text-orange-500 leading-relaxed mb-2 sm:mb-3">
-                        Excellence
-                      </div>
-                      <div className="text-[11px] sm:text-xs md:text-[13px] text-[var(--text-secondary)] font-[400] leading-[1.5]">
-                        Pursuing the highest standards of quality, performance, and professionalism in all endeavours.
-                      </div>
-                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Integrity
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Upholding the highest standards of honesty, transparency, and ethical conduct in all business dealings.
+                    </p>
                   </div>
                 </div>
-                
-             
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Customer Centricity
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Placing customers at the center of all operations, striving to exceed their expectations through quality, reliability, and service excellence.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Innovation
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Fostering a culture of creativity, continuous improvement, and technological advancement to drive business growth and competitiveness.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Collaboration
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Promoting teamwork, knowledge sharing, and cross-functional collaboration to achieve collective goals.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Accountability
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Taking ownership of decisions and actions, delivering on commitments, and being responsible stewards of resources.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Sustainability
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Integrating environmental, social, and governance (ESG) principles into business operations, contributing to community development and environmental stewardship.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="core-value-card text-center p-3 min-[400px]:p-4 sm:p-5 md:p-5 lg:p-6 bg-[var(--card-bg)] rounded-lg min-[400px]:rounded-xl sm:rounded-2xl border border-[var(--card-border)] shadow-[0_12px_28px_rgba(0,0,0,0.08)] sm:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-[0_24px_48px_rgba(0,0,0,0.12)] active:scale-[0.99] hover:scale-[1.02] sm:hover:scale-[1.02] lg:hover:scale-[1.03] flex flex-col items-center min-h-0 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#e63a27]/10 to-transparent rounded-full -mr-10 -mt-10" aria-hidden />
+                  <div className="relative z-10 flex flex-col flex-1 w-full">
+                    <div className="w-10 h-10 min-[400px]:w-12 min-[400px]:h-12 sm:w-14 sm:h-14 md:w-14 md:h-14 lg:w-16 lg:h-16 mx-auto mb-2 min-[400px]:mb-3 sm:mb-4 bg-gradient-to-br from-[#e63a27]/20 to-[#e63a27]/10 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#e63a27]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                      </svg>
+                    </div>
+                    <h3 className="section-heading text-xs min-[380px]:text-sm sm:text-[15px] md:text-[16px] lg:text-[17px] font-bold text-[#e63a27] leading-tight mb-1.5 min-[400px]:mb-2 sm:mb-3">
+                      Excellence
+                    </h3>
+                    <p className="text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-[13px] lg:text-[14px] text-[var(--text-secondary)] font-[400] leading-[1.5] sm:leading-[1.55] lg:leading-[1.6] flex-1">
+                      Pursuing the highest standards of quality, performance, and professionalism in all endeavours.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <br />
                     {/* Counting Section - Our Achievements */}
           <div className="mt-8 sm:mt-12 md:mt-16 mb-12 sm:mb-16 md:mb-20">
             <div className={`transition-all duration-800 ease-out delay-1000 ${

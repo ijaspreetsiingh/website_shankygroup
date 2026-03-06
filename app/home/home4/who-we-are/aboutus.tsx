@@ -231,7 +231,7 @@ const WhatWeDo = () => {
             cardLeaveTimeoutRef.current = setTimeout(() => {
               setSelectedCard(null);
               cardLeaveTimeoutRef.current = null;
-            }, 280);
+            }, 650);
           }
         }}
         className={`relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden cursor-pointer group
@@ -369,10 +369,10 @@ const WhatWeDo = () => {
                 </div>
               </div>
 
-              {/* Right Side – desktop: no scroll full content; mobile: scroll + sticky button */}
-              <div 
-                className="flex-1 min-w-0 min-h-0 flex flex-col overflow-hidden"
-                style={{ 
+              {/* Right Side – desktop: no scroll full content; mobile: scroll + sticky button. Dark mode: transparent background (same file only). */}
+              <div
+                className="aboutus-expanded-right flex-1 min-w-0 min-h-0 flex flex-col overflow-hidden"
+                style={{
                   background: `linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 95%, ${company.categoryColor}05 100%)`,
                 }}
               >
@@ -398,18 +398,35 @@ const WhatWeDo = () => {
                     />
                   </div>
                   {/* Learn More – desktop: top right of card; mobile: hidden here (sticky bottom used) */}
-                  <div className="hidden md:block shrink-0" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
-                    <Link
-                      href={company.link}
-                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer no-underline"
+                  <div
+                    className="hidden md:block shrink-0 relative z-50"
+                    onClick={(e) => e.stopPropagation()}
+                    onMouseEnter={() => {
+                      if (cardLeaveTimeoutRef.current) {
+                        clearTimeout(cardLeaveTimeoutRef.current);
+                        cardLeaveTimeoutRef.current = null;
+                      }
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer border-0"
                       style={{
                         background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
                         boxShadow: `0 4px 20px ${company.categoryColor}40`,
                       }}
+                      onPointerDown={(e) => {
+                        e.stopPropagation();
+                        router.push(company.link);
+                      }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        router.push(company.link);
+                      }}
                     >
                       Learn More
-                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-                    </Link>
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6" /></svg>
+                    </button>
                   </div>
                 </div>
 
@@ -511,6 +528,10 @@ const WhatWeDo = () => {
       ref={sectionRef}
       className="p-0 bg-[var(--background)] font-sans m-0 overflow-x-hidden overflow-y-visible relative group-of-companies-section"
     >
+      {/* Dark mode: right-side expanded panel background transparent (this file only, not global) */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .dark .aboutus-expanded-right { background: transparent !important; }
+      `}} />
       {/* Hide scrollbar on mobile – section + body (new users on phone) */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media (max-width: 767px) {

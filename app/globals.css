@@ -536,6 +536,38 @@ html {
   }
 }
 
+/* Footer CTA "Register as a vendor" – floating bubbles / orbs */
+@keyframes float-bubble-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  25% { transform: translate(15px, -20px) scale(1.05); opacity: 0.5; }
+  50% { transform: translate(-10px, -35px) scale(0.95); opacity: 0.35; }
+  75% { transform: translate(-20px, -15px) scale(1.02); opacity: 0.45; }
+}
+@keyframes float-bubble-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-25px, 15px) scale(1.08); }
+  66% { transform: translate(10px, -10px) scale(0.92); }
+}
+@keyframes float-bubble-3 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(20px, 25px); }
+}
+@keyframes float-bubble-4 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  25% { transform: translate(-15px, -25px) scale(1.1); opacity: 0.6; }
+  50% { transform: translate(20px, -10px) scale(0.9); opacity: 0.4; }
+  75% { transform: translate(-5px, 20px) scale(1.05); opacity: 0.55; }
+}
+@keyframes float-bubble-5 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-18px, -18px); }
+}
+.footer-cta-bubble-1 { animation: float-bubble-1 12s ease-in-out infinite; }
+.footer-cta-bubble-2 { animation: float-bubble-2 14s ease-in-out infinite; }
+.footer-cta-bubble-3 { animation: float-bubble-3 10s ease-in-out infinite; }
+.footer-cta-bubble-4 { animation: float-bubble-4 16s ease-in-out infinite; }
+.footer-cta-bubble-5 { animation: float-bubble-5 11s ease-in-out infinite; }
+
 /* Force default zoom 80% — must win on Vercel/production (last rule) */
 html {
   zoom: 1 !important;
