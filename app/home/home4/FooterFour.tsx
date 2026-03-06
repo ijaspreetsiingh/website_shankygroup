@@ -248,18 +248,18 @@ const GraphyFooter = () => {
               transitionDelay: '300ms',
             }}
           >
-            <span className="block text-2xl sm:hidden tracking-[0.2em] sm:tracking-widest">{t('shanky_group').toUpperCase()}</span>
+            <span className="block text-3xl sm:hidden tracking-[0.2em] sm:tracking-widest">SHANKY  GROUP</span>
             <span
               className="hidden sm:block leading-tight"
               style={{
-                fontSize: 'clamp(3rem, 7vw, 18rem)',
+                fontSize: 'clamp(4rem, 10vw, 22rem)',
                 wordBreak: 'break-word',
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
                 maxWidth: '100%',
               }}
             >
-              {t('shanky_group').toUpperCase()}
+              SHANKY GROUP
             </span>
           </span>
         </div>
