@@ -174,9 +174,6 @@ const AboutUsPage = () => {
             <div className="absolute inset-0 flex flex-col z-30">
               <div className="flex-1 flex items-center px-3 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-16">
                 <div className="w-full max-w-2xl lg:max-w-3xl text-left">
-                  <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6 shadow-md">
-                    Who We Are
-                  </span>
                   <h1 className="section-heading text-[28px] min-[380px]:text-[32px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-3 sm:mb-4 lg:mb-5">
                     <span className="text-[#e63a27]">ABOUT US</span>
                     <br />
@@ -302,9 +299,7 @@ const AboutUsPage = () => {
             <div className={`transition-all duration-800 ease-out delay-400 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-[30px]'
             }`}>
-              <h2 className="section-heading text-xl sm:text-2xl md:text-[27px] font-bold text-[var(--text-primary)] mb-4 sm:mb-5 text-center">
-                ABOUT US
-              </h2>
+
               
               <div className="flex flex-col gap-4 sm:gap-5">
                 <p className="text-sm sm:text-base md:text-lg lg:text-[22px] text-[var(--text-secondary)] leading-[1.6] sm:leading-[1.7] font-[400]">

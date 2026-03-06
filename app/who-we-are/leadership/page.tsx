@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import WhoWeAreNav from '../WhoWeAreNav';
 
 // Shivani image from app/images/team – bundled so it always loads
@@ -218,35 +219,58 @@ const LeadershipPage = () => {
 
   return (
     <>
-      {/* Hero Section - responsive */}
-      <section 
-        ref={heroRef}
-        className="relative flex items-center justify-center overflow-hidden min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-[85vh]"
-        style={{ backgroundColor: 'var(--background)' }}
+      {/* Hero - same design as about-us */}
+      <div
+        className="relative w-full bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
       >
-        <div className="relative z-[2] w-full max-w-[1900px] px-4 sm:px-6 md:px-8 lg:px-10 xl:px-[40px] py-8 sm:py-10 md:py-12" style={{ color: 'var(--foreground)' }}>
-          <div className="max-w-[800px] lg:max-w-[1100px] xl:max-w-[1200px]">
-            {/* Breadcrumb */}
-            <div 
-              className="mb-6 sm:mb-8 md:mb-10 text-xs sm:text-sm md:text-base"
-              style={{ color: 'var(--text-secondary)', fontFamily: '"Inter", "Helvetica Neue", Arial, sans-serif' }}
-            >
-              <span style={{ cursor: 'pointer' }}>About Us</span>
-              <span className="mx-1.5 sm:mx-2">/</span>
-              <span style={{ color: '#e63a27' }}>Leadership</span>
+        <section ref={heroRef} className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
+          <div className="relative w-full h-[58vh] min-h-[260px] sm:min-h-[300px] sm:h-[65vh] md:h-[72vh] lg:h-[75vh] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
+            <Image
+              src="/images/aboutus2.png"
+              alt="Leadership - Shanky Group"
+              fill
+              className="object-cover object-[center_42%] sm:object-right brightness-100"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/30 to-transparent z-20 pointer-events-none" />
+            <div className="absolute inset-0 flex flex-col z-30">
+              <div className="flex-1 flex items-center px-3 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-16">
+                <div className="w-full max-w-2xl lg:max-w-3xl text-left">
+                  <h1 className="section-heading text-[28px] min-[380px]:text-[32px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-3 sm:mb-4 lg:mb-5">
+                    <span className="text-[#e63a27]">LEADERSHIP</span>
+                    <br />
+                    <span className="text-neutral-800">Vision. Experience. Impact.</span>
+                  </h1>
+                  <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-xl text-neutral-600 leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10">
+                    The strength of Shanky Group lies in its accomplished leadership team, whose collective expertise and strategic foresight shape our growth.
+                  </p>
+                  <div className="flex flex-wrap gap-2 sm:gap-3">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-lg sm:rounded-xl transition-all text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                    >
+                      Get in Touch
+                      <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="shrink-0 px-3 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
+                <nav className="flex items-center text-[10px] sm:text-xs md:text-sm text-neutral-500 flex-wrap gap-x-1.5 sm:gap-x-2 gap-y-1">
+                  <Link href="/" className="hover:text-neutral-800 transition-colors">Home</Link>
+                  <span className="text-neutral-400">/</span>
+                  <Link href="/who-we-are/about-us" className="hover:text-neutral-800 transition-colors">Who We Are</Link>
+                  <span className="text-neutral-400">/</span>
+                  <span className="text-neutral-800 font-medium">Leadership</span>
+                </nav>
+              </div>
             </div>
-            <h1 className="section-heading text-3xl min-[400px]:text-4xl sm:text-5xl md:text-[56px] lg:text-[64px] xl:text-[72px] font-bold leading-tight tracking-tight mb-4 sm:mb-5 text-[var(--text-primary)]">
-              OUR LEADERSHIP
-            </h1>
-            <p 
-              className="text-sm sm:text-base md:text-lg lg:text-2xl font-normal leading-relaxed lg:leading-[1.6] mb-6 sm:mb-8 md:mb-10 lg:mb-10 max-w-full w-full"
-              style={{ fontFamily: '"Lato", "Arial", sans-serif', opacity: 0.9, color: 'var(--text-secondary)' }}
-            >
-             We are a dedicated team committed to building and growing together. We are led by one of India&apos;s most visionary chairmen, supported by a talented and experienced management team.
-            </p>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Main Content Section - responsive */}
       <section 

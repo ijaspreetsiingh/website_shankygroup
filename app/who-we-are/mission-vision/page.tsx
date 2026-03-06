@@ -59,25 +59,13 @@ const MissionVisionPage = () => {
             <div className="absolute inset-0 flex flex-col z-30">
               <div className="flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16 pt-10 sm:pt-14 md:pt-20 lg:pt-24">
                 <div className="w-full max-w-3xl lg:max-w-4xl text-left">
-                  <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6 shadow-lg shadow-[#e63a27]/30">
-                    Who We Are
-                  </span>
+               
                   <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
                     Mission & <span className="text-[#e63a27]">Vision</span>
                   </h1>
                   <p className="text-sm sm:text-base md:text-xl max-w-2xl text-white/95 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
                     What drives us: clarity of purpose, excellence in execution, and lasting value for everyone we touch.
                   </p>
-                  <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-6 md:gap-10">
-                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
-                      <h2 className="section-heading text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Vision</h2>
-                      <p className="text-white/95 text-xs sm:text-sm leading-snug">A premium global conglomerate with clear focus in each business.</p>
-                    </div>
-                    <div className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-3 sm:px-5 sm:py-4 w-full sm:max-w-sm">
-                      <h2 className="section-heading text-[#e63a27] font-bold text-base sm:text-lg mb-1">Our Mission</h2>
-                      <p className="text-white/95 text-xs sm:text-sm leading-snug">Superior value to customers, shareholders, employees, and society.</p>
-                    </div>
-                  </div>
                   {!isDark && (
                     <div className="mt-4 sm:mt-6 lg:mt-8">
                       <WhoWeAreNav />

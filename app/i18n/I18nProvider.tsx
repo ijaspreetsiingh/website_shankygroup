@@ -57,6 +57,18 @@ const dict: Dict = {
     en: 'Our team is ready to assist you with every detail, big or small.',
     hi: 'हमारी टीम हर छोटी-बड़ी बात में आपकी सहायता के लिए तैयार है।'
   },
+  // Vendor Registration (vender form only)
+  vendor_heading_1: { en: 'Partner With Us', hi: 'हमारे साथ जुड़ें' },
+  vendor_heading_2: { en: 'Register as a Vendor', hi: 'वेंडर के रूप में पंजीकरण करें' },
+  vendor_desc: {
+    en: 'Become part of Shanky Group\'s trusted vendor network. Share your company details and we\'ll review your application for potential business partnerships.',
+    hi: 'शंक्य ग्रुप के विश्वसनीय वेंडर नेटवर्क का हिस्सा बनें। अपनी कंपनी का विवरण साझा करें और हम संभावित व्यावसायिक साझेदारी के लिए आपके आवेदन की समीक्षा करेंगे।'
+  },
+  vendor_form_title: { en: 'Vendor Registration', hi: 'वेंडर पंजीकरण' },
+  vendor_form_subtitle: {
+    en: 'Fill in your company and contact details. Our team will get back to you after reviewing your application.',
+    hi: 'अपनी कंपनी और संपर्क विवरण भरें। आपके आवेदन की समीक्षा के बाद हमारी टीम आपसे संपर्क करेगी।'
+  },
   first_name: { en: 'First Name', hi: 'पहला नाम' },
   last_name: { en: 'Last Name', hi: 'अंतिम नाम' },
   country: { en: 'Country', hi: 'देश' },

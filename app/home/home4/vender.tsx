@@ -10,6 +10,8 @@ const ContactUs = () => {
     companyName: '',
     status: '',
     address: '',
+    state: '',
+    city: '',
     country: '',
     gstNo: '',
     contactPerson: '',
@@ -160,6 +162,8 @@ const ContactUs = () => {
         companyName: '',
         status: '',
         address: '',
+        state: '',
+        city: '',
         country: '',
         gstNo: '',
         contactPerson: '',
@@ -205,10 +209,10 @@ const ContactUs = () => {
               </span>
               <div>
                 <h2 className="section-heading text-lg sm:text-xl md:text-2xl font-bold text-white">
-                  {t('tell_us_what_you_need')}
+                  {t('vendor_form_title')}
                 </h2>
                 <p className="section-subheading text-xs sm:text-sm text-white/80">
-                  {t('team_ready')}
+                  {t('vendor_form_subtitle')}
                 </p>
               </div>
             </div>
@@ -250,6 +254,10 @@ const ContactUs = () => {
                     </select>
                   </div>
                   <input type="text" name="address" value={formData.address} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Address *" />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input type="text" name="state" value={formData.state} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="State *" />
+                    <input type="text" name="city" value={formData.city} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="City *" />
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input type="text" name="country" value={formData.country} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="Country *" />
                     <input type="text" name="gstNo" value={formData.gstNo} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder="GST No. *" />
@@ -317,11 +325,11 @@ const ContactUs = () => {
           <div className="order-2 lg:order-1 text-white flex flex-col justify-center lg:justify-between py-4 sm:py-6 lg:py-4" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
             <div className="lg:pt-2">
               <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
-                {t('you_have_questions')}<br />
-                {t('we_have_answers')}
+                {t('vendor_heading_1')}<br />
+                {t('vendor_heading_2')}
               </h1>
               <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-0 max-w-md">
-                {t('contact_desc')}
+                {t('vendor_desc')}
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm lg:pt-10">

@@ -14,10 +14,8 @@ export default function ShankySmartTechPage() {
   const heroIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const HERO_SLIDES = [
-    { src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80', alt: 'Solar EPC and Renewable Energy', objectPosition: 'center' as const },
-    { src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1920&q=80', alt: 'Smart Technology Integration', objectPosition: 'left' as const },
-    { src: 'https://images.unsplash.com/photo-1559302504-64aae0ca2a3d?w=1920&q=80', alt: 'Energy Management Systems', objectPosition: 'left' as const },
-    { src: 'https://images.unsplash.com/photo-1569163138754-2b6141f2e4f2?w=1920&q=80', alt: 'Enterprise Solar Solutions', objectPosition: 'left' as const },
+    { src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80', alt: 'Solar panels - renewable energy', objectPosition: 'center' as const },
+    { src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=1920&q=80', alt: 'Solar power installation', objectPosition: 'center bottom' as const },
   ] as const;
   const UNOPTIMIZED = true;
   const HERO_SLIDE_COUNT = HERO_SLIDES.length;
@@ -64,7 +62,7 @@ export default function ShankySmartTechPage() {
         }`}
       >
         <div className="relative h-[65vh] md:h-[70vh] lg:h-[72vh] w-full rounded-2xl overflow-hidden">
-          {/* Sliding track: absolute slides so all 4 images render and show correctly */}
+          {/* Sliding track: 2 hero images */}
           <div
             className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{
@@ -109,23 +107,8 @@ export default function ShankySmartTechPage() {
                   SHANKY <span className="text-[#e63a27]">SMART TECH</span> PVT LTD
                 </h1>
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-lg text-white/90 leading-relaxed mb-8 lg:mb-10">
-                  Best financial service provider company based in Delhi, India
+                  Solar EPC advisory, energy management systems, IoT-enabled monitoring, and smart building electronics for enterprise clients.
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  <button
-                    type="button"
-                    onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-                    className="px-6 py-3 lg:px-8 lg:py-3.5 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg"
-                  >
-                    Explore Services
-                  </button>
-                  <Link
-                    href="/contact"
-                    className="inline-flex px-6 py-3 lg:px-8 lg:py-3.5 border-2 border-white text-white bg-white/10 hover:bg-white/20 font-semibold rounded-xl transition-all text-sm lg:text-base backdrop-blur-sm"
-                  >
-                    Contact Us
-                  </Link>
-                </div>
               </div>
             </div>
             {/* Breadcrumb: bottom left */}
@@ -145,15 +128,15 @@ export default function ShankySmartTechPage() {
       <div className="h-screen" />
       {/* Section 2 - About Us (How It Started – theme-aware for dark/light mode) */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 1 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 1 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-6 sm:py-8 lg:py-10 h-full flex items-center">
-            <div className="grid md:grid-cols-2 gap-6 lg:gap-8 xl:gap-10 items-center w-full max-w-[90rem] mx-auto">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 pt-20 sm:pt-24 lg:pt-28 xl:pt-32 pb-5 sm:pb-8 lg:pb-10 h-full flex items-stretch overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 items-stretch w-full max-w-[90rem] mx-auto py-0 pb-10 min-h-0 overflow-y-auto scrollbar-hide">
               {/* Left: How It Started – text only */}
               <div className="order-2 md:order-1">
                 <p className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-2">
@@ -165,20 +148,20 @@ export default function ShankySmartTechPage() {
                 <p className="text-[var(--text-secondary)] text-sm sm:text-base md:text-lg leading-[1.6] max-w-xl">
                   Shanky Smart Tech Pvt Ltd operates as a B2B solutions provider at the intersection of renewable energy and smart electronics, under the leadership of Directors Vipin Kumar and Manoj Kumar Mishra. The company serves industrial, commercial, and institutional clients seeking integrated energy and smart technology solutions.
                 </p>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div className="bg-[var(--background)] rounded-xl p-6 border border-[var(--card-border)]">
-                    <h4 className="text-lg font-bold text-[var(--text-primary)] mb-4">B2B Services</h4>
-                    <ul className="space-y-3">
-                      {['Solar EPC advisory for corporate rooftops and campuses', 'Energy management systems', 'IoT-enabled monitoring', 'Procurement and integration of smart building electronics', 'Turnkey project advisory and system integration', 'Post-installation performance contracts for enterprise clients'].map((t, i) => (
-                        <li key={i} className="flex items-start"><span className="text-[#e63a27] mr-2 mt-1">✓</span><span className="text-[var(--text-secondary)]">{t}</span></li>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                  <div className="bg-[var(--background)] rounded-xl p-4 border border-[var(--card-border)]">
+                    <h4 className="text-sm font-bold text-[var(--text-primary)] mb-2">B2B Services</h4>
+                    <ul className="space-y-1.5">
+                      {['Solar EPC advisory for corporate rooftops and campuses', 'Energy management systems', 'IoT-enabled monitoring', 'Procurement and integration of smart building electronics', 'End-to-end project advisory and system integration', 'Post-installation performance contracts for enterprise clients'].map((t, i) => (
+                        <li key={i} className="flex items-start gap-1.5"><span className="text-[#e63a27] shrink-0 mt-0.5 text-xs">✓</span><span className="text-[var(--text-secondary)] text-xs leading-snug">{t}</span></li>
                       ))}
                     </ul>
                   </div>
-                  <div className="bg-[var(--background)] rounded-xl p-6 border border-[var(--card-border)]">
-                    <h4 className="text-lg font-bold text-[var(--text-primary)] mb-4">Value Proposition</h4>
-                    <ul className="space-y-3">
+                  <div className="bg-[var(--background)] rounded-xl p-4 border border-[var(--card-border)]">
+                    <h4 className="text-sm font-bold text-[var(--text-primary)] mb-2">Value Proposition</h4>
+                    <ul className="space-y-1.5">
                       {['Technical design and digital monitoring', 'Lifecycle services', 'Advanced analytics and AI-driven optimization', 'Digital twin simulations', 'Predictable performance and measurable energy savings', 'Sustainability target alignment'].map((t, i) => (
-                        <li key={i} className="flex items-start"><span className="text-[#e63a27] mr-2 mt-1">✓</span><span className="text-[var(--text-secondary)]">{t}</span></li>
+                        <li key={i} className="flex items-start gap-1.5"><span className="text-[#e63a27] shrink-0 mt-0.5 text-xs">✓</span><span className="text-[var(--text-secondary)] text-xs leading-snug">{t}</span></li>
                       ))}
                     </ul>
                   </div>
@@ -186,13 +169,13 @@ export default function ShankySmartTechPage() {
               </div>
               {/* Right: Image + 2x2 stats grid */}
               <div className="order-1 md:order-2 space-y-4">
-                <div className="relative aspect-[4/3] max-h-[38vh] w-full overflow-hidden rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)]">
+                <div className="relative w-full overflow-hidden rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] h-[200px] sm:h-[240px] md:h-[280px] lg:h-[320px] xl:h-[360px]">
                   <Image
                     src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80"
                     alt="Shanky Smart Tech - Solar EPC and smart technology"
                     fill
                     className="object-cover rounded-xl"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 55vw"
                     unoptimized={UNOPTIMIZED}
                   />
                 </div>
@@ -200,8 +183,6 @@ export default function ShankySmartTechPage() {
                   {[
                     { value: '10+', label: 'Years Experience' },
                     { value: '2014', label: 'Established' },
-                    { value: '150+', label: 'Projects Completed' },
-                    { value: '50+', label: 'Enterprise Clients' },
                   ].map((stat) => (
                     <div
                       key={stat.label}
@@ -226,60 +207,58 @@ export default function ShankySmartTechPage() {
 
       {/* Section 3 - Services */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 2 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 2 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="container mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-8 sm:py-10 lg:py-12 h-full flex flex-col max-w-[90rem]">
-            <div className="text-center mt-6 sm:mt-8 lg:mt-10 mb-6 sm:mb-8">
-              <p className="text-[#e63a27] font-semibold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-2">What We Offer</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-2">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 h-full flex flex-col max-w-[90rem] overflow-y-auto scrollbar-hide">
+            <div className="text-center mt-1 sm:mt-6 lg:mt-8 mb-3 sm:mb-6 flex-shrink-0">
+              <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-1 sm:mb-2">What We Offer</p>
+              <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 leading-tight">
                 B2B <span className="text-[#e63a27]">Services</span>
               </h2>
-              <div className="w-16 h-0.5 bg-[#e63a27] mx-auto mb-3" />
-              <p className="text-[var(--text-secondary)] text-sm md:text-base max-w-2xl mx-auto">
+              <div className="w-16 sm:w-24 h-0.5 bg-[#e63a27] mx-auto mb-2 sm:mb-3 rounded-full" />
+              <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed px-2">
                 Solar EPC advisory, energy management systems, IoT-enabled monitoring, and smart building electronics for enterprise clients.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 flex-1 min-h-0 overflow-y-auto pb-6 scrollbar-hide items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 pb-16 sm:pb-8">
               {[
-                { title: 'Solar EPC Advisory', desc: 'Turnkey advisory for corporate rooftops and campuses; system design and implementation.', image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80' },
-                { title: 'Energy Management Systems', desc: 'Integrated energy management and optimization for commercial and industrial sites.', image: 'https://images.unsplash.com/photo-1559302504-64aae0ca2a3d?w=600&q=80' },
-                { title: 'IoT-Enabled Monitoring', desc: 'Real-time monitoring, analytics, and remote management of energy assets.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80' },
-                { title: 'Smart Building Electronics', desc: 'Procurement and integration of smart building electronics and controls.', image: 'https://images.unsplash.com/photo-1569163138754-2b6141f2e4f2?w=600&q=80' },
-              ].map((item) => (
-                <div key={item.title} className="group bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300">
-                  <div className="relative aspect-[16/9] w-full max-h-[160px] overflow-hidden bg-[var(--background)]">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      unoptimized={UNOPTIMIZED}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <span className="inline-block px-2.5 py-1 bg-[#e63a27] text-white text-[10px] font-semibold tracking-wider uppercase rounded-full">
-                        {item.title}
-                      </span>
+                { title: 'Solar EPC Advisory', desc: 'End-to-end advisory for corporate rooftops and campuses; system design and implementation.', image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80', bgColor: 'from-blue-900/40' },
+                { title: 'Energy Management Systems', desc: 'Integrated energy management and optimization for commercial and industrial sites.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80', bgColor: 'from-purple-900/40' },
+                { title: 'IoT-Enabled Monitoring', desc: 'Real-time monitoring, analytics, and remote management of energy assets.', image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80', bgColor: 'from-green-900/40' },
+                { title: 'Smart Building Electronics', desc: 'Procurement and integration of smart building electronics and controls.', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', bgColor: 'from-orange-900/40' },
+              ].map((item, index) => (
+                <div key={index} className="group bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[280px] sm:min-h-[320px]">
+                  <div className="relative w-full h-32 sm:h-40 md:h-44 lg:h-48 overflow-hidden bg-[var(--card-bg)]">
+                    <Image src={item.image} alt={item.title} fill className="object-cover object-center transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" unoptimized={UNOPTIMIZED} />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${item.bgColor} via-transparent to-transparent opacity-90`} />
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+                      <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 bg-[#e63a27] text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase rounded-full shadow-lg">{item.title}</span>
                     </div>
                   </div>
-                  <div className="p-3 sm:p-4">
-                    <h3 className="text-sm sm:text-base font-bold text-[var(--text-primary)] group-hover:text-[#e63a27] transition-colors mb-1">{item.title}</h3>
-                    <p className="text-xs text-[var(--text-secondary)] leading-snug line-clamp-2">{item.desc}</p>
-                    <div className="mt-2 pt-2 border-t border-[var(--card-border)]/80">
-                      <span className="inline-flex items-center text-[11px] font-semibold text-[#e63a27] group-hover:gap-1.5 transition-all gap-1">
+                  <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-[var(--text-primary)] group-hover:text-[#e63a27] transition-colors line-clamp-1 mb-1.5 sm:mb-2">{item.title}</h3>
+                    <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-3 sm:line-clamp-2 mb-2 sm:mb-3 flex-1">{item.desc}</p>
+                    <div className="mt-auto pt-2 border-t border-[var(--card-border)]/80">
+                      <span className="inline-flex items-center text-[10px] sm:text-xs font-semibold text-[#e63a27] group-hover:gap-1.5 transition-all gap-1 cursor-pointer active:opacity-80">
                         Learn more
-                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                       </span>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 sm:hidden">
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/50 animate-pulse" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/30" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/30" />
+              </div>
             </div>
           </div>
         </div>
@@ -289,15 +268,16 @@ export default function ShankySmartTechPage() {
 
       {/* Section 4 - Value Proposition */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 3 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 3 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-10 lg:py-12 h-full flex flex-col overflow-y-auto scrollbar-hide max-w-[90rem]">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 lg:py-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
+            <div className="min-h-[min-content] pb-8">
             <div className="rounded-2xl overflow-hidden mb-8 lg:mb-10 border border-[var(--card-border)] shadow-xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[200px] sm:min-h-[240px]">
                 <div className="lg:col-span-5 relative w-full aspect-[2/1] lg:aspect-[4/3] lg:min-h-[240px]">
@@ -423,7 +403,7 @@ export default function ShankySmartTechPage() {
                   { title: 'Lifecycle Support', desc: 'Design to operation and maintenance' },
                   { title: 'Enterprise-Grade', desc: 'Scalable solutions for large sites' },
                 ].map((item, idx) => (
-                  <div key={item.title} className={`flex items-start gap-4 p-5 sm:p-6 border-[var(--card-border)] hover:bg-[#e63a27]/5 transition-colors border-b sm:border-r-0 sm:border-b ${(idx + 1) % 3 !== 0 && idx < 6 ? 'lg:border-r' : ''} ${idx >= 3 ? 'sm:border-b-0' : ''}`}>
+                  <div key={item.title} className={`flex items-start gap-4 p-5 sm:p-6 border-[var(--card-border)] hover:bg-[#e63a27]/5 transition-colors border-b ${idx >= 3 ? 'sm:border-b-0' : ''}`}>
                     <span className="w-10 h-10 rounded-lg bg-[#e63a27] flex items-center justify-center flex-shrink-0">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                     </span>
@@ -435,6 +415,7 @@ export default function ShankySmartTechPage() {
                 ))}
               </div>
             </div>
+            </div>
           </div>
         </div>
       </section>
@@ -443,7 +424,7 @@ export default function ShankySmartTechPage() {
 
       {/* Section 5 - Vision, Mission & Vendor Finance (home4 style) */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 4 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 4 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
@@ -519,7 +500,7 @@ export default function ShankySmartTechPage() {
 
       {/* Section 6 - Dealer, Factoring, Sales Invoice (home4 style) */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 5 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 5 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
@@ -530,7 +511,7 @@ export default function ShankySmartTechPage() {
             <div className="text-center mb-6 sm:mb-8 lg:mb-12">
               <span className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-wider mb-2 lg:mb-4 block uppercase">How We Deliver</span>
               <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[var(--text-primary)] mb-3 lg:mb-6">
-                Turnkey & <span className="text-[#e63a27]">Performance</span>
+                End-to-end & <span className="text-[#e63a27]">Performance</span>
               </h2>
               <div className="w-[80px] h-[4px] bg-[#e63a27] mx-auto mb-4 rounded-[2px]" />
             </div>
@@ -541,10 +522,10 @@ export default function ShankySmartTechPage() {
                   <div className="w-10 h-10 bg-[#e63a27] rounded-xl flex items-center justify-center mr-3">
                     <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 8h1m-1 4h1m4-4h1m-1 4h1m-5-10v-2a2 2 0 012-2h2a2 2 0 012 2v2m-4 0h.01" /></svg>
                   </div>
-                  Turnkey Project Advisory
+                  End-to-end Project Advisory
                 </h3>
                 <p className="text-[var(--text-secondary)] text-lg mb-6 leading-relaxed">
-                  We provide end-to-end turnkey project advisory for solar EPC and smart building solutions. From design and procurement to system integration and commissioning, we ensure enterprise clients get a single point of accountability and seamless execution.
+                  We provide end-to-end project advisory for solar EPC and smart building solutions. From design and procurement to system integration and commissioning, we ensure enterprise clients get a single point of accountability and seamless execution.
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="bg-[var(--background)] rounded-xl p-6 border border-[var(--card-border)]">
@@ -603,7 +584,7 @@ export default function ShankySmartTechPage() {
 
       {/* Section 7 - Why We Are Best & Contact (home4 style) */}
       <section 
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 6 ? 'z-50 translate-y-0 scale-100 opacity-100' : 
           activeSection > 6 ? 'z-50 -translate-y-full scale-95 opacity-0' : 
           'z-30 translate-y-full scale-95 opacity-0'
@@ -640,7 +621,7 @@ export default function ShankySmartTechPage() {
             <div className="bg-[var(--card-bg)] rounded-2xl p-6 lg:p-8 border border-[var(--card-border)] mb-8">
               <h3 className="text-2xl lg:text-3xl font-bold text-[#e63a27] mb-4">Our Strengths</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {['Technical design and digital monitoring', 'Turnkey project advisory and system integration', 'Post-installation performance contracts', 'Electrical safety and green building compliance', 'IoT-enabled monitoring and analytics', 'Enterprise-grade scalable solutions'].map((t, i) => (
+                {['Technical design and digital monitoring', 'End-to-end project advisory and system integration', 'Post-installation performance contracts', 'Electrical safety and green building compliance', 'IoT-enabled monitoring and analytics', 'Enterprise-grade scalable solutions'].map((t, i) => (
                   <div key={i} className="flex items-start space-x-3">
                     <span className="text-[#e63a27] text-xl">✓</span>
                     <span className="text-[var(--text-secondary)]">{t}</span>
@@ -656,7 +637,7 @@ export default function ShankySmartTechPage() {
 
       {/* Section 8 - Contact Us */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 7 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 7 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'

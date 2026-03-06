@@ -143,6 +143,8 @@ export function GlobeDemo() {
       const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
       sphere.castShadow = true;
       sphere.receiveShadow = true;
+      // Start with India facing the camera (~77° E longitude → rotate globe so India is in front)
+      sphere.rotation.y = -77 * (Math.PI / 180);
       scene.add(sphere);
 
       // setup map overlay
@@ -604,7 +606,7 @@ export function GlobeDemo() {
             <div className="mt-4 sm:mt-5 md:mt-[20px] pt-4 sm:pt-5 md:pt-[20px] border-t border-[var(--card-border)]">
               <div className="flex flex-col min-[400px]:flex-row items-start min-[400px]:items-center justify-between gap-1 sm:gap-2">
                 <div className="text-[10px] sm:text-[11px] md:text-[12px] text-[var(--text-secondary)]">
-                  <span className="font-semibold text-[var(--text-primary)]">Top Market:</span> United States ($1.8M)
+                  <span className="font-semibold text-[var(--text-primary)]">Top Market:</span> India
                 </div>
                 <div className="text-[10px] sm:text-[11px] md:text-[12px] text-[var(--text-secondary)]">
                   <span className="font-semibold text-[var(--text-primary)]">Q4 2024:</span> +32% YoY

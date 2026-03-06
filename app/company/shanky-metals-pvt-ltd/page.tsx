@@ -90,14 +90,6 @@ export default function ShankyMetalsPvtLtdPage() {
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-lg text-white/95 leading-relaxed mb-8 lg:mb-10">
                   A B2B metals trading and distribution specialist—sourcing and supplying a broad range of metals to industrial buyers, traders, and export partners.
                 </p>
-                <div className="flex flex-wrap gap-3">
-                  <button type="button" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })} className="px-6 py-3 lg:px-8 lg:py-3.5 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]">
-                    Explore Services
-                  </button>
-                  <Link href="/contact" className="inline-flex px-6 py-3 lg:px-8 lg:py-3.5 border-2 border-white text-white bg-white/10 hover:bg-white/25 font-semibold rounded-xl transition-all text-sm lg:text-base backdrop-blur-sm hover:scale-[1.02] active:scale-[0.98]">
-                    Contact Us
-                  </Link>
-                </div>
               </div>
             </div>
             <div className="shrink-0 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-4 lg:py-5">
@@ -116,17 +108,17 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 2 - Overview */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 1 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 1 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+        <div className="relative h-full w-full rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--background)] via-[var(--background)] to-[#0f172a]/30" />
           <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#e63a27 1px, transparent 1px), linear-gradient(90deg, #e63a27 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-          <div className="container relative mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-12 sm:py-16 lg:py-20 h-full flex items-center">
-            <div className="grid md:grid-cols-[1fr_1.25fr] gap-8 lg:gap-12 xl:gap-14 items-center w-full max-w-[90rem] mx-auto">
+          <div className="container relative mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-5 sm:py-12 lg:py-20 h-full flex items-stretch overflow-hidden">
+            <div className="grid md:grid-cols-[1fr_1.25fr] gap-4 sm:gap-8 lg:gap-12 xl:gap-14 items-stretch w-full max-w-[90rem] mx-auto py-4 sm:py-0 pb-10 min-h-0 overflow-y-auto scrollbar-hide">
               <div className="order-2 md:order-1">
                 <p className="text-[#e63a27] font-semibold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-3">
                   Overview
@@ -186,62 +178,58 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 3 - B2B Services */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 2 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 2 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="absolute inset-0 bg-[var(--background)]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#e63a27]/[0.03] via-transparent to-transparent" />
-          <div className="container relative mx-auto px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-8 sm:py-10 lg:py-12 h-full flex flex-col max-w-[90rem]">
-            <div className="text-center mt-6 sm:mt-8 lg:mt-10 mb-6 sm:mb-8">
-              <p className="text-[#e63a27] font-semibold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-2">What We Offer</p>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-2">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 h-full flex flex-col max-w-[90rem] overflow-y-auto scrollbar-hide">
+            <div className="text-center mt-1 sm:mt-6 lg:mt-8 mb-3 sm:mb-6 flex-shrink-0">
+              <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-1 sm:mb-2">What We Offer</p>
+              <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 leading-tight">
                 B2B <span className="text-[#e63a27]">Services</span>
               </h2>
-              <div className="w-20 h-1 bg-[#e63a27] mx-auto mb-3 rounded-full" />
-              <p className="text-[var(--text-secondary)] text-sm md:text-base max-w-2xl mx-auto">
-                Bulk metal trading, procurement and supply contracts, inventory management, and export facilitation for industrial buyers and international partners
+              <div className="w-16 sm:w-24 h-0.5 bg-[#e63a27] mx-auto mb-2 sm:mb-3 rounded-full" />
+              <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base max-w-2xl mx-auto leading-relaxed px-2">
+                Bulk metal trading, procurement and supply contracts, inventory management, and export facilitation for industrial buyers and international partners.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 flex-1 min-h-0 overflow-y-auto pb-6 scrollbar-hide items-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 pb-16 sm:pb-8">
               {[
-                { title: 'Bulk Metal Trading', desc: 'Bulk metal trading for fabricators, OEMs, distributors, and international trading partners.', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
-                { title: 'Procurement & Supply Contracts', desc: 'Procurement and supply contracts to stabilize corporate procurement and manage cost volatility.', image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80' },
-                { title: 'Inventory & Export Facilitation', desc: 'Inventory management and export facilitation with trade-compliant processes and documentation.', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80' },
-                { title: 'Product Coverage', desc: 'Aluminium, copper, brass, iron, and steel supplied to industrial buyers and overseas markets.', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80' },
-              ].map((item) => (
-                <div key={item.title} className="group bg-[var(--card-bg)] rounded-2xl overflow-hidden border-2 border-[var(--card-border)] hover:border-[#e63a27]/50 hover:shadow-xl hover:shadow-[#e63a27]/10 hover:-translate-y-1 transition-all duration-300">
-                  <div className="relative aspect-[16/9] w-full max-h-[160px] overflow-hidden bg-[var(--background)]">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      unoptimized={UNOPTIMIZED}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3">
-                      <span className="inline-block px-3 py-1.5 bg-[#e63a27] text-white text-[10px] font-semibold tracking-wider uppercase rounded-lg shadow-lg">
-                        {item.title}
-                      </span>
+                { title: 'Bulk Metal Trading', desc: 'Bulk metal trading for fabricators, OEMs, distributors, and international trading partners.', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80', bgColor: 'from-blue-900/40' },
+                { title: 'Procurement & Supply Contracts', desc: 'Procurement and supply contracts to stabilize corporate procurement and manage cost volatility.', image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80', bgColor: 'from-purple-900/40' },
+                { title: 'Inventory & Export Facilitation', desc: 'Inventory management and export facilitation with trade-compliant processes and documentation.', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80', bgColor: 'from-green-900/40' },
+                { title: 'Product Coverage', desc: 'Aluminium, copper, brass, iron, and steel supplied to industrial buyers and overseas markets.', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80', bgColor: 'from-orange-900/40' },
+              ].map((item, index) => (
+                <div key={index} className="group bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300 flex flex-col min-h-[280px] sm:min-h-[320px]">
+                  <div className="relative w-full h-32 sm:h-40 md:h-44 lg:h-48 overflow-hidden bg-[var(--background)]">
+                    <Image src={item.image} alt={item.title} fill className="object-cover object-center transition-transform duration-500 group-hover:scale-105" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" priority={index < 2} unoptimized={UNOPTIMIZED} />
+                    <div className={`absolute inset-0 bg-gradient-to-t ${item.bgColor} via-transparent to-transparent opacity-90`} />
+                    <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+                      <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 bg-[#e63a27] text-white text-[10px] sm:text-xs font-semibold tracking-wider uppercase rounded-full shadow-lg">{item.title}</span>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-5">
-                    <h3 className="text-sm sm:text-base font-bold text-[var(--text-primary)] group-hover:text-[#e63a27] transition-colors mb-1">{item.title}</h3>
-                    <p className="text-xs text-[var(--text-secondary)] leading-snug line-clamp-2">{item.desc}</p>
-                    <div className="mt-3 pt-3 border-t border-[var(--card-border)]/80">
-                      <span className="inline-flex items-center text-[11px] font-semibold text-[#e63a27] group-hover:gap-1.5 transition-all gap-1">
+                  <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                    <h3 className="text-xs sm:text-sm md:text-base font-bold text-[var(--text-primary)] group-hover:text-[#e63a27] transition-colors line-clamp-1 mb-1.5 sm:mb-2">{item.title}</h3>
+                    <p className="text-[11px] sm:text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-3 sm:line-clamp-2 mb-2 sm:mb-3 flex-1">{item.desc}</p>
+                    <div className="mt-auto pt-2 border-t border-[var(--card-border)]/80">
+                      <span className="inline-flex items-center text-[10px] sm:text-xs font-semibold text-[#e63a27] group-hover:gap-1.5 transition-all gap-1 cursor-pointer active:opacity-80">
                         Learn more
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                        <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                       </span>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 sm:hidden">
+              <div className="flex gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/50 animate-pulse" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/30" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#e63a27]/30" />
+              </div>
             </div>
           </div>
         </div>
@@ -250,7 +238,7 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 4 - Value Proposition */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 3 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 3 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'
@@ -364,7 +352,7 @@ export default function ShankyMetalsPvtLtdPage() {
                   { title: 'Trade Compliance', desc: 'Documentation & processes' },
                   { title: 'Commercial Credibility', desc: 'Authorized & paid-up capital' },
                 ].map((item, idx) => (
-                  <div key={item.title} className={`flex items-start gap-4 p-5 sm:p-6 border-[var(--card-border)] hover:bg-[#e63a27]/5 transition-colors border-b sm:border-r-0 sm:border-b ${(idx + 1) % 3 !== 0 && idx < 6 ? 'lg:border-r' : ''} ${idx >= 3 ? 'sm:border-b-0' : ''}`}>
+                  <div key={item.title} className={`flex items-start gap-4 p-5 sm:p-6 border-[var(--card-border)] hover:bg-[#e63a27]/5 transition-colors border-b ${idx >= 3 ? 'sm:border-b-0' : ''}`}>
                     <span className="w-10 h-10 rounded-lg bg-[#e63a27] flex items-center justify-center flex-shrink-0">
                       <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                     </span>
@@ -383,7 +371,7 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 5 - Clients, Financial Strength, Quality & Growth */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 4 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 4 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'
@@ -450,7 +438,7 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 6 - Trading & Export */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 5 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 5 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'
@@ -510,7 +498,7 @@ export default function ShankyMetalsPvtLtdPage() {
       <div className="h-screen" />
       {/* Section 7 - Why Shanky Metals & CTA */}
       <section
-        className={`fixed top-20 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
+        className={`fixed top-16 left-0 w-full h-[calc(100vh-4rem)] transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] ${
           activeSection === 6 ? 'z-50 translate-y-0 scale-100 opacity-100' :
           activeSection > 6 ? 'z-50 -translate-y-full scale-95 opacity-0' :
           'z-30 translate-y-full scale-95 opacity-0'

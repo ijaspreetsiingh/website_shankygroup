@@ -87,12 +87,6 @@ const AboutHomeFour = () => {
                 <p className="text-[15px] sm:text-[16px] md:text-[18px] lg:text-[17px] xl:text-[18px] font-bold text-[var(--text-primary)] tracking-tight">{t('vipin_kumar')}</p>
                 <p className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[14px] xl:text-[15px] text-[var(--text-secondary)] mt-0.5 uppercase tracking-[0.12em] font-medium">{t('managing_director')}</p>
               </div>
-              <div className="mt-6 lg:mt-[16px] text-left lg:text-left">
-                <a href="#" className="inline-flex items-center justify-center gap-2 w-full sm:w-auto lg:gap-[10px] px-5 py-3 lg:px-[24px] lg:py-[11px] rounded-md lg:rounded-[10px] font-medium text-[13px] lg:text-[15px] border border-[var(--card-border)] text-[var(--text-primary)] bg-transparent hover:bg-[var(--card-bg)] lg:bg-[var(--card-bg)] lg:hover:bg-[var(--background)] active:scale-[0.99] transition-all duration-200">
-                  {t('view_profile')}
-                  <span className="text-[14px] lg:text-[17px] font-normal opacity-80">→</span>
-                </a>
-              </div>
             </div>
           </div>
         </div>
