@@ -81,7 +81,7 @@ const GraphyFooter = () => {
   }, []);
 
   return (
-    <footer className="py-5 sm:py-10 px-4 sm:px-6 lg:px-8 bg-[var(--background)] overflow-x-hidden">
+    <footer className="pt-5 pb-0 sm:py-10 px-4 sm:px-6 lg:px-8 bg-[var(--background)] overflow-x-hidden">
       <div className="max-w-[1800px] mx-auto">
         {/* CTA Block - Above Footer */}
         <div
@@ -231,8 +231,12 @@ const GraphyFooter = () => {
         </div>
       </div>
 
-      {/* Watermark: full bleed edge-to-edge */}
-      <div ref={watermarkRef} className="relative flex justify-center items-center overflow-hidden py-4 sm:py-6 min-h-[50px] sm:min-h-[80px] w-screen max-w-none -ml-4 sm:-ml-6 lg:-ml-8" style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}>
+      {/* Watermark: full bleed edge-to-edge (mobile: no side/bottom gaps) */}
+      <div
+        ref={watermarkRef}
+        className="relative flex justify-center items-end sm:items-center overflow-hidden pt-3 pb-0 sm:py-6 min-h-[92px] sm:min-h-[80px] w-screen max-w-none -ml-4 sm:-ml-6 lg:-ml-8"
+        style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}
+      >
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-[8px]" style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }} />
           <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-[10px]" style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }} />
@@ -248,7 +252,19 @@ const GraphyFooter = () => {
               transitionDelay: '300ms',
             }}
           >
-            <span className="block text-3xl sm:hidden tracking-[0.2em] sm:tracking-widest">SHANKY  GROUP</span>
+            {/* Mobile: big 2-line watermark, fills width better */}
+            <span
+              className="block sm:hidden leading-none w-full"
+              style={{
+                fontSize: 'clamp(2.6rem, 12.5vw, 5rem)',
+                letterSpacing: '0.18em',
+                lineHeight: 1,
+                paddingBottom: '6px',
+              }}
+            >
+              <span className="block">SHANKY</span>
+              <span className="block">GROUP</span>
+            </span>
             <span
               className="hidden sm:block leading-tight"
               style={{
