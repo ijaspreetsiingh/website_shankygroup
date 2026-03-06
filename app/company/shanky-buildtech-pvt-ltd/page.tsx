@@ -36,9 +36,9 @@ export default function ShankyBuildTechPage() {
       className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
       style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
     >
-      {/* Section 1 - Hero (home4 style: top margin + rounded image) */}
+      {/* Section 1 - Hero */}
       <section 
-        className={`fixed top-0 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] pt-40 md:pt-44 lg:pt-52 px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)] ${
+        className={`fixed top-0 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0.0,0.2,1)] pt-32 md:pt-40 lg:pt-44 px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)] ${
           activeSection === 0 ? 'z-40 translate-y-0 scale-100 opacity-100' : 
           activeSection > 0 ? 'z-40 -translate-y-full scale-95 opacity-0' : 
           'z-40 translate-y-0 scale-100 opacity-100'
@@ -95,7 +95,7 @@ export default function ShankyBuildTechPage() {
         }`}
       >
         <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
-          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-5 sm:py-8 lg:py-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 pt-20 sm:pt-24 lg:pt-28 xl:pt-32 pb-5 sm:pb-8 lg:pb-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
             <div className="grid md:grid-cols-[1fr_1fr] gap-4 sm:gap-6 lg:gap-8 xl:gap-10 items-start w-full mx-auto pb-8">
               {/* Left: Overview + B2B + Value Proposition */}
               <div className="order-2 md:order-1">
@@ -165,8 +165,8 @@ export default function ShankyBuildTechPage() {
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 h-full flex flex-col max-w-[90rem] overflow-y-auto scrollbar-hide">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 flex-1 min-h-0 flex flex-col overflow-y-auto scrollbar-hide max-w-[90rem]">
             <div className="text-center mt-1 sm:mt-6 lg:mt-8 mb-3 sm:mb-6 flex-shrink-0">
               <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-1 sm:mb-2">What We Offer</p>
               <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 leading-tight">
@@ -226,9 +226,10 @@ export default function ShankyBuildTechPage() {
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-10 lg:py-12 h-full flex flex-col overflow-y-auto scrollbar-hide max-w-[90rem]">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
+          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 lg:py-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
+            <div className="min-h-[min-content] pb-8">
             <div className="rounded-2xl overflow-hidden mb-8 lg:mb-10 border border-[var(--card-border)] shadow-xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[200px] sm:min-h-[240px]">
                 <div className="lg:col-span-5 relative aspect-[2/1] lg:aspect-auto lg:min-h-[240px]">
@@ -344,6 +345,7 @@ export default function ShankyBuildTechPage() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           </div>
         </div>

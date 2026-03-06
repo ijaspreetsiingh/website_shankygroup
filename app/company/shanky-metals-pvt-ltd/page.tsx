@@ -114,11 +114,11 @@ export default function ShankyMetalsPvtLtdPage() {
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+        <div className="relative h-full w-full rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--background)] via-[var(--background)] to-[#0f172a]/30" />
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'linear-gradient(#e63a27 1px, transparent 1px), linear-gradient(90deg, #e63a27 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-          <div className="container relative mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-5 sm:py-12 lg:py-20 h-full flex items-stretch overflow-hidden">
-            <div className="grid md:grid-cols-[1fr_1.25fr] gap-4 sm:gap-8 lg:gap-12 xl:gap-14 items-stretch w-full max-w-[90rem] mx-auto py-4 sm:py-0 pb-10 min-h-0 overflow-y-auto scrollbar-hide">
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#e63a27 1px, transparent 1px), linear-gradient(90deg, #e63a27 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
+          <div className="container relative mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 pt-20 sm:pt-24 lg:pt-28 xl:pt-32 pb-5 sm:pb-8 lg:pb-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
+            <div className="grid md:grid-cols-[1fr_1fr] gap-4 sm:gap-6 lg:gap-8 xl:gap-10 items-start w-full mx-auto pb-8">
               <div className="order-2 md:order-1">
                 <p className="text-[#e63a27] font-semibold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-3">
                   Overview
@@ -146,13 +146,13 @@ export default function ShankyMetalsPvtLtdPage() {
                   </div>
                 </div>
               </div>
-              <div className="relative order-1 md:order-2">
-                <div className="aspect-[4/3] md:aspect-[4/3] max-h-[55vh] md:max-h-[68vh] w-full overflow-hidden rounded-2xl border-2 border-[var(--text-primary)]/10 shadow-2xl ring-2 ring-[#e63a27]/20 [&>span]:!rounded-[1.5rem] [&_img]:!rounded-[1.5rem]" style={{ borderRadius: '1.5rem' }}>
+              <div className="relative order-1 md:order-2 w-full">
+                <div className="aspect-[4/3] w-full max-h-[38vh] sm:max-h-[42vh] md:max-h-[48vh] overflow-hidden rounded-2xl border-2 border-[var(--text-primary)]/10 shadow-2xl [&>span]:!rounded-2xl [&_img]:!rounded-2xl">
                   <Image
                     src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
                     alt="Shanky Metals - B2B metals trading and distribution"
                     fill
-                    className="object-cover !rounded-[1.5rem]"
+                    className="object-cover object-center !rounded-2xl"
                     sizes="(max-width: 768px) 100vw, 45vw"
                     unoptimized={UNOPTIMIZED}
                   />
@@ -184,8 +184,8 @@ export default function ShankyMetalsPvtLtdPage() {
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
-          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 h-full flex flex-col max-w-[90rem] overflow-y-auto scrollbar-hide">
+        <div className="relative h-full w-full bg-[var(--background)] rounded-t-xl sm:rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
+          <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-3 sm:py-8 lg:py-10 flex-1 min-h-0 flex flex-col overflow-y-auto scrollbar-hide max-w-[90rem]">
             <div className="text-center mt-1 sm:mt-6 lg:mt-8 mb-3 sm:mb-6 flex-shrink-0">
               <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-1 sm:mb-2">What We Offer</p>
               <h2 className="text-lg sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] mb-1.5 sm:mb-2 leading-tight">
@@ -244,10 +244,11 @@ export default function ShankyMetalsPvtLtdPage() {
           'z-30 translate-y-full scale-95 opacity-0'
         }`}
       >
-        <div className="relative h-full w-full rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)]">
+        <div className="relative h-full w-full rounded-t-[2rem] overflow-hidden border-t border-[var(--card-border)] flex flex-col min-h-0">
           <div className="absolute inset-0 bg-[var(--background)]" />
-          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
-          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-10 lg:py-12 h-full flex flex-col overflow-y-auto scrollbar-hide max-w-[90rem]">
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, #e63a27 1px, transparent 1px), radial-gradient(circle at 80% 80%, #e63a27 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
+          <div className="container relative mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8 lg:py-10 flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide max-w-[90rem]">
+            <div className="min-h-[min-content] pb-8">
             <div className="rounded-2xl overflow-hidden mb-8 lg:mb-10 border-2 border-[var(--card-border)] shadow-2xl ring-2 ring-[#e63a27]/10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 min-h-[200px] sm:min-h-[240px]">
                 <div className="lg:col-span-5 relative aspect-[2/1] lg:aspect-auto lg:min-h-[240px]">
@@ -363,6 +364,7 @@ export default function ShankyMetalsPvtLtdPage() {
                   </div>
                 ))}
               </div>
+            </div>
             </div>
           </div>
         </div>
