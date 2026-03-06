@@ -1,16 +1,40 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useI18n } from '../../../i18n/I18nProvider';
 
 const WhatWeDo = () => {
+  const router = useRouter();
   const [selectedCard, setSelectedCard] = useState<number | null>(null);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showReadMoreContent, setShowReadMoreContent] = useState(false);
+  const [mobileOpenCompanyId, setMobileOpenCompanyId] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const cardLeaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const { t } = useI18n();
+
+  // Lock body scroll when mobile single-company overlay is open
+  useEffect(() => {
+    if (mobileOpenCompanyId !== null && typeof window !== 'undefined' && window.innerWidth < 768) {
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = ''; };
+    }
+  }, [mobileOpenCompanyId]);
+
+  // Hide scrollbar on mobile when this section is mounted (new user on phone)
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth > 767) return;
+    document.body.classList.add('hide-scrollbar-mobile');
+    return () => document.body.classList.remove('hide-scrollbar-mobile');
+  }, []);
+
+  useEffect(() => () => {
+    if (cardLeaveTimeoutRef.current) clearTimeout(cardLeaveTimeoutRef.current);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -105,7 +129,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Operating alongside its namesake, Shanky Financial Services Pvt Ltd focuses on specialized financial intermediation activities, including investment in securities and proprietary trading. The company's operations are aligned with the Group's broader financial services strategy, enabling cross-selling opportunities and operational efficiencies. Its compliance with the Ministry of Corporate Affairs' regulatory requirements underscores its commitment to governance and transparency.",
-      image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=500&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-financial-pvt-ltd"
     },
     {
       id: 2,
@@ -116,7 +141,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "VMS Hub Pvt Ltd is the Group's newest venture, established to capitalize on the growing demand for food and agricultural products in India. The company is engaged in the wholesale distribution of agricultural raw materials and food products, leveraging advanced supply chain management and quality assurance systems. With an authorized share capital of ₹16.5 crore, VMS Hub is well-positioned to scale its operations and expand its market reach. VMS Hub's strategic focus includes sourcing high-quality products, building robust distribution networks, and fostering partnerships with farmers and suppliers. The company's operations are designed to ensure food safety, traceability, and customer satisfaction, aligning with the Group's commitment to excellence and sustainability.",
-      image: "https://imgs.search.brave.com/rluaME6FX_YAtOFYDHk6coc8vT-cNUuDdso3N8YmlLo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/Z3JpY3VsdHVyZS1o/ZWFsdGh5LWZvb2Rf/MjMtMjE1MTk2OTgz/MS5qcGc_c2VtdD1h/aXNfaW5jb21pbmcm/dz03NDAmcT04MA"
+      image: "https://imgs.search.brave.com/rluaME6FX_YAtOFYDHk6coc8vT-cNUuDdso3N8YmlLo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/ZnJlZS1waG90by9h/Z3JpY3VsdHVyZS1o/ZWFsdGh5LWZvb2Rf/MjMtMjE1MTk2OTgz/MS5qcGc_c2VtdD1h/aXNfaW5jb21pbmcm/dz03NDAmcT04MA",
+      link: "/company/vms-hub"
     },
     {
       id: 3,
@@ -127,7 +153,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Shanky Smart Tech Pvt Ltd operates at the intersection of renewable energy and electronics, offering end-to-end solutions in solar engineering, procurement, and construction (EPC), as well as trading and servicing of electronic products. The company's offerings include solar panel installation, energy management systems, and smart technology integration for industrial and commercial clients. With an authorized share capital of ₹5 lakh, the company is poised for rapid growth in the burgeoning solar and electronics markets. Shanky Smart Tech leverages cutting-edge technologies such as IoT, AI, and digital twins to enhance project efficiency, sustainability, and cost-effectiveness. The company's focus on green building certifications, renewable energy integration, and smart construction practices positions it as a leader in sustainable EPC solutions.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=500&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-smart-tech"
     },
     {
       id: 4,
@@ -138,7 +165,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Shanky Corporate Training Pvt Ltd is the Group's dedicated arm for educational and corporate training services. The company offers a comprehensive suite of training programs, including leadership development, soft skills, technical training, and organizational development. Its clientele includes corporates, educational institutions, and government agencies seeking to enhance workforce capabilities and drive organizational excellence. The company's training solutions are designed to address evolving industry needs, leveraging experienced trainers, customized curricula, and digital learning platforms. Shanky Corporate Training's commitment to quality and innovation has positioned it as a preferred partner for talent development and capacity building.",
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-corporate-training"
     },
     {
       id: 5,
@@ -149,7 +177,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Shanky Build Tech Pvt Ltd is the Group's infrastructure and construction arm, specializing in the development and completion of residential, commercial, and industrial projects. The company's expertise spans building completion, repairs, and finishing works, with a focus on quality, safety, and sustainability. Its operations are supported by a team of experienced engineers, project managers, and skilled workers, ensuring timely and cost-effective project delivery. Shanky Build Tech adopts smart construction practices, leveraging digital project management tools, modular construction techniques, and green building certifications to enhance project outcomes. The company's commitment to sustainability and resource optimization aligns with global best practices in the EPC sector.",
-      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80"
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-buildtech-pvt-ltd"
     },
     {
       id: 6,
@@ -160,7 +189,8 @@ const WhatWeDo = () => {
       legalStructure: "Private Limited Company",
       keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
       description: "Shanky Metals Pvt Ltd is a leading player in the metals trading and manufacturing sector. The company specializes in the procurement, processing, and trading of a wide range of metals, including aluminium, copper, brass, iron, and steel. Its operations encompass sourcing raw materials from domestic and international suppliers, processing them into finished products, and exporting to global markets, particularly Hong Kong and other Asian countries. With an authorized share capital of ₹75 lakh and a paid-up capital of ₹70 lakh, Shanky Metals has demonstrated robust financial performance, generating a revenue of ₹7.16 crore for the financial year ending March 31, 2024. The company's focus on quality, timely delivery, and customer satisfaction has enabled it to build long-term relationships with clients and partners.",
-      image: "https://imgs.search.brave.com/DURoHybRGSZOU_B61qaC14ZyYpy4TjyFqLK1tRRvy-k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQw/MzA5NDc4NS9waG90/by9zdGFjay1vZi1j/YXJib24tc3RlZWwt/c3F1YXJlLXR1YmUt/YXQtbWFudWZhY3R1/cmVyLWZhY3Rvcnku/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXo3c2dyUWpkemFz/eXBOSkVKV3k5bnVF/VVlDVEVoWmU5c1c3/QWRfZTVOZEU9"
+      image: "https://imgs.search.brave.com/DURoHybRGSZOU_B61qaC14ZyYpy4TjyFqLK1tRRvy-k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTQw/MzA5NDc4NS9waG90/by9zdGFjay1vZi1j/YXJib24tc3RlZWwt/c3F1YXJlLXR1YmUt/YXQtbWFudWZhY3R1/cmVyLWZhY3Rvcnku/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PXo3c2dyUWpkemFz/eXBOSkVKV3k5bnVF/VVlDVEVoWmU5c1c3/QWRfZTVOZEU9",
+      link: "/company/shanky-metals-pvt-ltd"
     },
   ];
 
@@ -189,22 +219,24 @@ const WhatWeDo = () => {
         key={company.id}
         onMouseEnter={() => {
           if (window.innerWidth >= 768) {
+            if (cardLeaveTimeoutRef.current) {
+              clearTimeout(cardLeaveTimeoutRef.current);
+              cardLeaveTimeoutRef.current = null;
+            }
             setSelectedCard(index);
           }
         }}
         onMouseLeave={() => {
           if (window.innerWidth >= 768) {
-            setSelectedCard(null);
-          }
-        }}
-        onTouchStart={() => {
-          if (window.innerWidth < 768) {
-            setSelectedCard(selectedCard === index ? null : index);
+            cardLeaveTimeoutRef.current = setTimeout(() => {
+              setSelectedCard(null);
+              cardLeaveTimeoutRef.current = null;
+            }, 280);
           }
         }}
         className={`relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden cursor-pointer group
           w-full min-w-0 max-w-full md:flex-1 md:mx-0.5 md:my-0.5
-          ${isExpanded ? 'h-[82vh] min-h-[420px] sm:min-h-[480px] md:min-h-0 md:h-[550px] md:w-full md:flex-none md:basis-full z-50 md:scale-[1.03]' : 'h-[300px] sm:h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 md:hover:scale-[1.02]'}
+          ${isExpanded ? 'h-[82vh] min-h-[420px] sm:min-h-[480px] md:h-[480px] md:max-h-[55vh] md:w-full md:flex-none md:basis-full z-50 md:scale-[1.03]' : 'h-[300px] sm:h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 md:hover:scale-[1.02]'}
           ${shouldHide ? 'md:w-0 md:basis-0 md:opacity-0 md:pointer-events-none md:scale-90' : 'opacity-100'}
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[80px] opacity-0'}
         `}
@@ -282,10 +314,26 @@ const WhatWeDo = () => {
               <div className="hidden md:block text-white/90 text-sm font-semibold tracking-[0.5px] uppercase opacity-0 transition-all duration-300 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0">
                 {company.legalStructure}
               </div>
+
+              {/* Mobile only: button under card – opens this company's full-screen */}
+              <div className="md:hidden mt-3 z-20 relative" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
+                <button
+                  type="button"
+                  onClick={() => setMobileOpenCompanyId(company.id)}
+                  className="w-full py-2.5 px-4 rounded-xl text-white text-xs font-bold uppercase tracking-wide border-0 cursor-pointer flex items-center justify-center gap-2"
+                  style={{
+                    background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
+                    boxShadow: `0 4px 16px ${company.categoryColor}50`,
+                  }}
+                >
+                  <span>View details</span>
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Expanded State - Premium Layout */}
+          {/* Expanded State - Premium Layout (desktop: height auto so full content no scroll) */}
           {isExpanded && (
             <div className="flex flex-col md:flex-row h-full w-full min-w-0 overflow-hidden">
               {/* Left Side - Premium Image - slightly shorter on mobile so content + button get more space */}
@@ -321,81 +369,92 @@ const WhatWeDo = () => {
                 </div>
               </div>
 
-              {/* Right Side - On mobile: scrollable content + sticky Learn More button at bottom */}
+              {/* Right Side – desktop: no scroll full content; mobile: scroll + sticky button */}
               <div 
                 className="flex-1 min-w-0 min-h-0 flex flex-col overflow-hidden"
                 style={{ 
                   background: `linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 95%, ${company.categoryColor}05 100%)`,
                 }}
               >
-                {/* Scrollable content - only this part scrolls on mobile */}
+                {/* Content area – scroll when needed (compact card height) */}
                 <div 
-                  className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-4 sm:p-6 md:p-12 pb-4 sm:pb-6 md:pb-8 scrollbar-hide" 
+                  className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-3 sm:p-5 md:p-8 pb-3 sm:pb-5 md:pb-6 scrollbar-hide"
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
-                  <style jsx>{`
-                    .scrollbar-hide::-webkit-scrollbar {
-                      display: none;
-                    }
-                  `}</style>
-                {/* Company Header – same font as site headings (Syne professional) */}
-                <div className="mb-4 sm:mb-8">
-                  <h3 className="section-heading text-xl sm:text-2xl md:text-4xl font-bold text-[var(--text-primary)] mb-3 sm:mb-4 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase break-words">
-                    {company.name}
-                  </h3>
-                  
-                  {/* Premium Accent Line */}
-                  <div 
-                    className="w-20 h-1 sm:w-32 sm:h-1.5 rounded-full mb-4 sm:mb-6"
-                    style={{
-                      background: `linear-gradient(90deg, ${company.categoryColor} 0%, ${company.categoryColor}cc 100%)`,
-                      boxShadow: `0 0 30px ${company.categoryColor}60, 0 0 15px ${company.categoryColor}40`,
-                    }}
-                  />
+                  <style dangerouslySetInnerHTML={{ __html: `.scrollbar-hide::-webkit-scrollbar { display: none; }` }} />
+                {/* Company Header row – title + Learn More (desktop: top right) */}
+                <div className="mb-3 sm:mb-5 flex flex-col md:flex-row md:items-start md:justify-between md:gap-4">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="section-heading text-xl sm:text-2xl md:text-3xl font-bold text-[var(--text-primary)] mb-2 sm:mb-3 leading-[1.2] tracking-[0.5px] uppercase break-words">
+                      {company.name}
+                    </h3>
+                    {/* Premium Accent Line */}
+                    <div 
+                      className="w-16 h-1 sm:w-24 sm:h-1 rounded-full mb-2 sm:mb-4"
+                      style={{
+                        background: `linear-gradient(90deg, ${company.categoryColor} 0%, ${company.categoryColor}cc 100%)`,
+                        boxShadow: `0 0 20px ${company.categoryColor}50`,
+                      }}
+                    />
+                  </div>
+                  {/* Learn More – desktop: top right of card; mobile: hidden here (sticky bottom used) */}
+                  <div className="hidden md:block shrink-0" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
+                    <Link
+                      href={company.link}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-sm font-bold tracking-wide uppercase transition-all duration-300 hover:scale-105 hover:shadow-lg cursor-pointer no-underline"
+                      style={{
+                        background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
+                        boxShadow: `0 4px 20px ${company.categoryColor}40`,
+                      }}
+                    >
+                      Learn More
+                      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                    </Link>
+                  </div>
                 </div>
 
                 {/* Info Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-3 sm:mb-5">
                   <div 
-                    className="group p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
+                    className="group p-3 sm:p-4 rounded-xl border transition-all duration-300"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor}08 0%, ${company.categoryColor}03 100%)`,
                       borderColor: `${company.categoryColor}20`,
-                      boxShadow: `0 8px 32px ${company.categoryColor}10`,
+                      boxShadow: `0 4px 20px ${company.categoryColor}08`,
                     }}
                   >
-                    <div className="flex items-center mb-2 sm:mb-3">
+                    <div className="flex items-center mb-1.5 sm:mb-2">
                       <div 
-                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
+                        className="w-2.5 h-2.5 rounded-full mr-2 flex-shrink-0"
                         style={{ backgroundColor: company.categoryColor }}
                       />
-                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
+                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
                         Legal Structure
                       </div>
                     </div>
-                    <div className="text-sm sm:text-lg font-semibold text-[var(--text-primary)] leading-[1.35] break-words">
+                    <div className="text-sm sm:text-base font-semibold text-[var(--text-primary)] leading-snug break-words">
                       {company.legalStructure}
                     </div>
                   </div>
 
                   <div 
-                    className="group p-4 sm:p-6 rounded-xl sm:rounded-2xl border transition-all duration-300 hover:shadow-xl hover:scale-[1.01] hover:-translate-y-1"
+                    className="group p-3 sm:p-4 rounded-xl border transition-all duration-300"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor}08 0%, ${company.categoryColor}03 100%)`,
                       borderColor: `${company.categoryColor}20`,
-                      boxShadow: `0 8px 32px ${company.categoryColor}10`,
+                      boxShadow: `0 4px 20px ${company.categoryColor}08`,
                     }}
                   >
-                    <div className="flex items-center mb-2 sm:mb-3">
+                    <div className="flex items-center mb-1.5 sm:mb-2">
                       <div 
-                        className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
+                        className="w-2.5 h-2.5 rounded-full mr-2 flex-shrink-0"
                         style={{ backgroundColor: company.categoryColor }}
                       />
-                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
+                      <div className="text-[10px] sm:text-xs font-bold tracking-[1.2px] uppercase opacity-80 min-w-0" style={{ color: company.categoryColor }}>
                         Key Leadership
                       </div>
                     </div>
-                    <div className="text-sm sm:text-lg font-semibold text-[var(--text-primary)] leading-[1.35] break-words">
+                    <div className="text-sm sm:text-base font-semibold text-[var(--text-primary)] leading-snug break-words">
                       {company.keyPeople.split(':')[1]}
                     </div>
                   </div>
@@ -403,56 +462,37 @@ const WhatWeDo = () => {
 
                 {/* Description Card */}
                 <div 
-                  className="p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl transition-all duration-300 hover:shadow-xl"
+                  className="p-3 sm:p-4 md:p-5 rounded-xl transition-all duration-300"
                   style={{
                     background: `linear-gradient(135deg, var(--card-bg) 0%, ${company.categoryColor}05 100%)`,
                     border: `1px solid var(--card-border)`,
-                    boxShadow: `0 8px 32px rgba(0,0,0,0.08)`,
+                    boxShadow: `0 4px 20px rgba(0,0,0,0.06)`,
                   }}
                 >
-                  <div className="flex items-center mb-3 sm:mb-4">
+                  <div className="flex items-center mb-2 sm:mb-3">
                     <div 
-                      className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full mr-2 sm:mr-3 flex-shrink-0"
+                      className="w-2.5 h-2.5 rounded-full mr-2 flex-shrink-0"
                       style={{ backgroundColor: company.categoryColor }}
                     />
-                    <div className="text-[10px] sm:text-xs font-bold tracking-[1.5px] sm:tracking-[2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
+                    <div className="text-[10px] sm:text-xs font-bold tracking-[1.2px] uppercase opacity-80" style={{ color: company.categoryColor }}>
                       Company Overview
                     </div>
                   </div>
-                  <p className="text-[var(--text-secondary)] text-sm sm:text-base leading-[1.7] sm:leading-[1.8] font-normal tracking-[0.2px] text-justify break-words">
+                  <p className="text-[var(--text-secondary)] text-sm sm:text-[15px] leading-[1.6] font-normal tracking-[0.1px] text-justify break-words whitespace-normal">
                     {company.description}
                   </p>
                 </div>
+                </div>
 
-                {/* Desktop only: button at end of scroll */}
-                <div className="mt-6 sm:mt-8 text-center hidden md:block">
+                {/* Mobile/tablet only: sticky Learn More at bottom */}
+                <div className="flex-shrink-0 p-4 pt-3 pb-5 sm:p-5 text-center border-t border-[var(--card-border)]/30 md:hidden" onClick={(e) => e.stopPropagation()} onTouchStart={(e) => e.stopPropagation()}>
                   <button
-                    className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl"
+                    type="button"
+                    onClick={() => router.push(company.link)}
+                    className="w-full sm:w-auto px-6 py-3.5 sm:px-7 sm:py-4 rounded-full text-white text-sm font-bold tracking-wide uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl cursor-pointer border-0"
                     style={{
                       background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
                       boxShadow: `0 8px 32px ${company.categoryColor}40, inset 0 0 20px rgba(255,255,255,0.3)`,
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(`/company/${company.id.toString().toLowerCase().replace(/\s+/g, '-')}`, '_blank');
-                    }}
-                  >
-                    Learn More
-                  </button>
-                </div>
-                </div>
-
-                {/* Mobile/tablet: sticky Learn More button - always visible at bottom */}
-                <div className="flex-shrink-0 p-4 pt-3 pb-5 sm:p-6 sm:pt-4 sm:pb-6 text-center border-t border-[var(--card-border)]/30 md:hidden">
-                  <button
-                    className="w-full sm:w-auto px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-white text-sm sm:text-base font-bold tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-300 hover:scale-102 hover:shadow-xl"
-                    style={{
-                      background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
-                      boxShadow: `0 8px 32px ${company.categoryColor}40, inset 0 0 20px rgba(255,255,255,0.3)`,
-                    }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      window.open(`/company/${company.id.toString().toLowerCase().replace(/\s+/g, '-')}`, '_blank');
                     }}
                   >
                     Learn More
@@ -469,8 +509,33 @@ const WhatWeDo = () => {
   return (
     <section 
       ref={sectionRef}
-      className="p-0 bg-[var(--background)] font-sans m-0 overflow-x-hidden overflow-y-visible relative"
+      className="p-0 bg-[var(--background)] font-sans m-0 overflow-x-hidden overflow-y-visible relative group-of-companies-section"
     >
+      {/* Hide scrollbar on mobile – section + body (new users on phone) */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media (max-width: 767px) {
+          .group-of-companies-section,
+          .group-of-companies-section * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          .group-of-companies-section::-webkit-scrollbar,
+          .group-of-companies-section *::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+          }
+          body.hide-scrollbar-mobile {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+          }
+          body.hide-scrollbar-mobile::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+          }
+        }
+      `}} />
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle_at_50%_50%,var(--text-primary)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></div>
       
@@ -607,6 +672,85 @@ const WhatWeDo = () => {
           {bottomRow.map((company, index) => renderCard(company, index + 3, 3))}
         </div>
       </div>
+
+      {/* Mobile full-screen overlay: only the selected company's data + close button */}
+      {mobileOpenCompanyId !== null && (() => {
+        const company = companies.find((c) => c.id === mobileOpenCompanyId);
+        if (!company) return null;
+        return (
+          <div className="md:hidden fixed inset-0 z-[2000] flex flex-col bg-[var(--background)]">
+            {/* Sticky header with close button */}
+            <div className="sticky top-0 z-10 flex items-center justify-between px-4 py-4 safe-area-inset-top bg-[var(--card-bg)] border-b border-[var(--card-border)] shadow-sm">
+              <h3 className="section-heading text-base font-bold text-[var(--text-primary)] uppercase tracking-wide line-clamp-1 pr-2">{company.shortName}</h3>
+              <button
+                type="button"
+                onClick={() => setMobileOpenCompanyId(null)}
+                className="flex items-center justify-center w-12 h-12 rounded-xl bg-[var(--card-border)] text-[var(--text-primary)] hover:bg-[#e63a27] hover:text-white transition-colors shrink-0"
+                aria-label="Close"
+              >
+                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+              </button>
+            </div>
+            {/* Single company full content */}
+            <div className="flex-1 overflow-y-auto overflow-x-hidden scrollbar-hide pb-8">
+              <style dangerouslySetInnerHTML={{ __html: '.scrollbar-hide::-webkit-scrollbar { display: none; }' }} />
+              <div
+                className="mx-4 mt-6 rounded-2xl overflow-hidden border border-[var(--card-border)] shadow-lg"
+                style={{
+                  background: `linear-gradient(135deg, var(--card-bg) 0%, ${company.categoryColor}08 100%)`,
+                }}
+              >
+                <div className="relative h-40">
+                  <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${company.image})` }} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                  <div className="absolute top-3 right-3">
+                    <span
+                      className="inline-block px-3 py-1.5 rounded-full text-white text-[10px] font-bold uppercase tracking-wide"
+                      style={{ background: company.categoryColor }}
+                    >
+                      {company.category}
+                    </span>
+                  </div>
+                  <h3 className="section-heading absolute bottom-3 left-3 right-3 text-lg font-bold text-white uppercase leading-tight">
+                    {company.shortName}
+                  </h3>
+                </div>
+                <div className="p-4 space-y-4">
+                  <div className="grid grid-cols-1 gap-3">
+                    <div className="p-3 rounded-xl border" style={{ borderColor: `${company.categoryColor}30`, background: `${company.categoryColor}08` }}>
+                      <p className="text-[10px] font-bold uppercase tracking-wider opacity-80" style={{ color: company.categoryColor }}>Legal Structure</p>
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">{company.legalStructure}</p>
+                    </div>
+                    <div className="p-3 rounded-xl border" style={{ borderColor: `${company.categoryColor}30`, background: `${company.categoryColor}08` }}>
+                      <p className="text-[10px] font-bold uppercase tracking-wider opacity-80" style={{ color: company.categoryColor }}>Key Leadership</p>
+                      <p className="text-sm font-semibold text-[var(--text-primary)]">{company.keyPeople.split(':')[1]?.trim() || company.keyPeople}</p>
+                    </div>
+                  </div>
+                  <div className="p-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)]">
+                    <p className="text-[10px] font-bold uppercase tracking-wider opacity-80 mb-2" style={{ color: company.categoryColor }}>Company Overview</p>
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{company.description}</p>
+                  </div>
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={() => { setMobileOpenCompanyId(null); router.push(company.link); }}
+                      className="w-full py-3.5 px-6 rounded-full text-white text-sm font-bold uppercase tracking-wide border-0 cursor-pointer"
+                      style={{
+                        background: `linear-gradient(135deg, ${company.categoryColor} 0%, ${company.categoryColor}dd 100%)`,
+                        boxShadow: `0 4px 20px ${company.categoryColor}40`,
+                      }}
+                    >
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
     </section>
   );
 };

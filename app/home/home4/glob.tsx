@@ -15,6 +15,7 @@ export function GlobeDemo() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const globeInitializedRef = useRef(false);
 
   // Scroll animation observer
   useEffect(() => {
@@ -60,8 +61,9 @@ export function GlobeDemo() {
     return () => observer.disconnect();
   }, []);
 
+  // Initialize globe only when section is visible (fixes mobile: no spin when below fold)
   useEffect(() => {
-    if (!mountRef.current || typeof window === "undefined") return;
+    if (!isVisible || !mountRef.current || typeof window === "undefined" || globeInitializedRef.current) return;
 
     // Load Three.js
     const script = document.createElement("script");
@@ -229,36 +231,77 @@ export function GlobeDemo() {
       const camera = new THREE.PerspectiveCamera(75, container.offsetWidth / container.offsetHeight, 0.1, 1000);
       camera.position.z = 6;
 
-      // Mouse interaction
+      // Mouse + Touch interaction (touch for phone – manual rotate)
       let isDragging = false;
       let previousMousePosition = { x: 0, y: 0 };
 
       const handleMouseDown = (e: MouseEvent) => {
         isDragging = true;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
       };
 
       const handleMouseMove = (e: MouseEvent) => {
-        const rect = container.getBoundingClientRect();
-        const deltaX = e.clientX - rect.left - previousMousePosition.x;
-
-        if (isDragging) {
-          sphere.rotation.y += deltaX * 0.004;
-        }
-
-        previousMousePosition = {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
+        if (!isDragging) return;
+        const deltaX = e.clientX - previousMousePosition.x;
+        sphere.rotation.y += deltaX * 0.004;
+        previousMousePosition = { x: e.clientX, y: e.clientY };
       };
 
       const handleMouseUp = () => {
         isDragging = false;
       };
 
+      // Touch: decide scroll vs globe-drag from first move direction (so page scroll works)
+      let touchStartPos = { x: 0, y: 0 };
+      let touchGesture: 'scroll' | 'globe' | null = null;
+      const DIRECTION_THRESHOLD = 10;
+      const HORIZONTAL_BIAS = 1.3;
+
+      const handleTouchStart = (e: TouchEvent) => {
+        if (e.touches.length === 1) {
+          touchStartPos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+          previousMousePosition = { x: touchStartPos.x, y: touchStartPos.y };
+          touchGesture = null;
+        }
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        if (e.touches.length !== 1) return;
+        const x = e.touches[0].clientX;
+        const y = e.touches[0].clientY;
+        const totalDeltaX = x - touchStartPos.x;
+        const totalDeltaY = y - touchStartPos.y;
+
+        if (touchGesture === null) {
+          const absX = Math.abs(totalDeltaX);
+          const absY = Math.abs(totalDeltaY);
+          if (absX > DIRECTION_THRESHOLD || absY > DIRECTION_THRESHOLD) {
+            touchGesture = absX * HORIZONTAL_BIAS > absY ? 'globe' : 'scroll';
+          }
+        }
+
+        if (touchGesture === 'globe') {
+          e.preventDefault();
+          isDragging = true;
+          const deltaX = x - previousMousePosition.x;
+          sphere.rotation.y += deltaX * 0.004;
+          previousMousePosition = { x, y };
+        }
+      };
+
+      const handleTouchEnd = () => {
+        isDragging = false;
+        touchGesture = null;
+      };
+
       container.addEventListener('mousedown', handleMouseDown);
       container.addEventListener('mousemove', handleMouseMove);
       container.addEventListener('mouseup', handleMouseUp);
       container.addEventListener('mouseleave', handleMouseUp);
+      container.addEventListener('touchstart', handleTouchStart, { passive: true });
+      container.addEventListener('touchmove', handleTouchMove, { passive: false });
+      container.addEventListener('touchend', handleTouchEnd);
+      container.addEventListener('touchcancel', handleTouchEnd);
 
       // Animation variables
       let renderCount = 0;
@@ -297,6 +340,7 @@ export function GlobeDemo() {
       };
 
       animate();
+      globeInitializedRef.current = true;
 
       // Handle resize
       const handleResize = () => {
@@ -320,6 +364,10 @@ export function GlobeDemo() {
         container.removeEventListener('mousemove', handleMouseMove);
         container.removeEventListener('mouseup', handleMouseUp);
         container.removeEventListener('mouseleave', handleMouseUp);
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
+        container.removeEventListener('touchend', handleTouchEnd);
+        container.removeEventListener('touchcancel', handleTouchEnd);
         window.removeEventListener('resize', handleResize);
         
         if (frameRef.current) {
@@ -341,7 +389,7 @@ export function GlobeDemo() {
         script.parentNode.removeChild(script);
       }
     };
-  }, []);
+  }, [isVisible]);
 
   return (
     <>

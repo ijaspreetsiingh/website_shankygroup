@@ -491,7 +491,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
             {/* Logo - Left Side - larger size */}
             <div className="flex items-center flex-shrink-0 min-w-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
               <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border border-[var(--card-border)] sm:border-transparent shrink-0 transition-all group-hover:border-[#e63a27]/40 flex items-center justify-center h-[68px] sm:h-auto">
+                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border-0 sm:border-none shrink-0 transition-all flex items-center justify-center h-[68px] sm:h-auto">
                   <img 
                     src="/images/new_logo_finalM.png" 
                     alt="Shanky Group Logo"

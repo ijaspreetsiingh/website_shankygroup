@@ -176,12 +176,12 @@ const ContactUs = () => {
 
   return (
     <>
-      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-3 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 transition-all duration-500 ease-out ${
+      <section ref={sectionRef} className={`w-full min-h-screen flex items-center justify-center px-0 sm:px-4 md:px-6 lg:px-8 py-6 sm:py-8 lg:py-12 transition-all duration-500 ease-out ${
         isDark ? 'bg-[#0a0a0a]' : 'bg-gradient-to-b from-[#0f0f12] to-[#1a1a20]'
       }`} style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}>
       {/* Main container - form-first on mobile for engagement */}
       <div 
-        className="relative w-full max-w-[1800px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500"
+        className="relative w-full max-w-[1800px] rounded-none sm:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500"
         style={{ 
           backgroundImage: 'url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85)',
           backgroundSize: 'cover',
@@ -192,7 +192,7 @@ const ContactUs = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-black/85 via-black/75 to-black/65" />
         
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[48%_52%] gap-0 lg:gap-6 px-3 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-6 sm:py-8 lg:py-12 xl:py-14">
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[48%_52%] gap-0 lg:gap-6 px-2 sm:px-6 md:px-10 lg:px-16 xl:px-20 py-6 sm:py-8 lg:py-12 xl:py-14">
           
           {/* Right Section - Form Card (show first on mobile) - blur/glass background */}
           <div 
