@@ -38,7 +38,7 @@ const dict: Dict = {
   view_profile: { en: 'View Profile', hi: 'प्रोफाइल देखें' },
   
   // Contact Section
-  you_have_questions: { en: 'You Have Questions, We Have Answers', hi: 'आपके प्रश्न हैं, हमारे पास उत्तर हैं' },
+  you_have_questions: { en: 'You Have Questions', hi: 'आपके प्रश्न हैं' },
   we_have_answers: { en: 'We Have Answers', hi: 'हमारे पास उत्तर हैं' },
   contact_desc: { 
     en: 'Discover experiences you won\'t find anywhere else — thoughtfully designed to immerse you in the heart of the destination. Soulful stories waiting to be lived.',
@@ -52,7 +52,7 @@ const dict: Dict = {
     en: 'Unit no. 03 and 04, Ground floor, D-Mall, NSP New Delhi 110034',
     hi: 'यूनिट नं. 03 और 04, ग्राउंड फ्लोर, डी-मॉल, एनएसपी'
   },
-  tell_us_what_you_need: { en: 'Tell Us What You Need', hi: 'हमें बताएं कि आपको क्या चाहिए' },
+  tell_us_what_you_need: { en: 'Tell Us Your Requirements', hi: 'हमें बताएं आपकी आवश्यकता क्या है' },
   team_ready: { 
     en: 'Our team is ready to assist you with every detail, big or small.',
     hi: 'हमारी टीम हर छोटी-बड़ी बात में आपकी सहायता के लिए तैयार है।'

@@ -314,15 +314,17 @@ const ContactUs = () => {
           </div>
 
           {/* Left Section - Info (after form on mobile) */}
-          <div className="order-2 lg:order-1 text-white flex flex-col justify-center py-4 sm:py-6 lg:py-0" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
-            <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
-              {t('you_have_questions')},<br />
-              {t('we_have_answers')}
-            </h1>
-            <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-10 max-w-md">
-              {t('contact_desc')}
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm">
+          <div className="order-2 lg:order-1 text-white flex flex-col justify-center lg:justify-between py-4 sm:py-6 lg:py-4" style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateX(0)' : 'translateX(-20px)' }}>
+            <div className="lg:pt-2">
+              <h1 className="section-heading text-2xl sm:text-3xl md:text-[2rem] lg:text-[2.5rem] xl:text-[2.8rem] leading-tight font-bold mb-2 sm:mb-4 tracking-tight">
+                {t('you_have_questions')}<br />
+                {t('we_have_answers')}
+              </h1>
+              <p className="section-subheading text-sm sm:text-base text-white/85 leading-relaxed mb-6 lg:mb-0 max-w-md">
+                {t('contact_desc')}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm lg:pt-10">
               <div>
                 <h3 className="font-semibold mb-1 text-white/90">{t('location')}</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">{t('address')}</p>
