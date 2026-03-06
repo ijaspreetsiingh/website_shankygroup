@@ -242,7 +242,7 @@ const LeadershipPage = () => {
               className="text-sm sm:text-base md:text-lg lg:text-2xl font-normal leading-relaxed lg:leading-[1.6] mb-6 sm:mb-8 md:mb-10 lg:mb-10 max-w-full w-full"
               style={{ fontFamily: '"Lato", "Arial", sans-serif', opacity: 0.9, color: 'var(--text-secondary)' }}
             >
-              We are a team of over 48,000 people across the globe, working for a common purpose. We are led by one of India&apos;s most visionary chairmen, supported by a talented and experienced management team.
+             We are a dedicated team committed to building and growing together. We are led by one of India&apos;s most visionary chairmen, supported by a talented and experienced management team.
             </p>
           </div>
         </div>
