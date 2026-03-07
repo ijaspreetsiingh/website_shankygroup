@@ -162,10 +162,7 @@ export default function ShankySmartTechPage() {
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 xl:gap-12 items-stretch w-full max-w-[90rem] mx-auto">
               <div className="order-2 md:order-1">
                 <p className="text-[#e63a27] font-semibold text-xs sm:text-sm tracking-[0.2em] uppercase mb-2">Overview</p>
-                <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight mb-3">
-                  Shanky Smart Tech <span className="text-[#e63a27]">Pvt Ltd</span>
-                </h2>
-                <p className="text-[var(--text-secondary)] text-sm sm:text-base md:text-lg leading-[1.6] max-w-xl">
+                <p className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.65] max-w-2xl font-medium mb-4">
                   Shanky Smart Tech Pvt Ltd operates as a B2B solutions provider at the intersection of renewable energy and smart electronics, under the leadership of Directors Vipin Kumar and Manoj Kumar Mishra. The company serves industrial, commercial, and institutional clients seeking integrated energy and smart technology solutions.
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

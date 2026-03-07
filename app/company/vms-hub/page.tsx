@@ -162,10 +162,7 @@ export default function VMSHubPage() {
             <div className="grid md:grid-cols-[1fr_1.15fr] lg:grid-cols-[1fr_1.25fr] gap-4 sm:gap-6 lg:gap-8 xl:gap-10 items-stretch w-full max-w-[90rem] mx-auto">
               <div className="order-2 md:order-1 min-w-0 flex flex-col justify-center">
                 <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase mb-1.5 sm:mb-2">Overview</p>
-                <h2 className="section-heading text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight mb-2 sm:mb-3">
-                  VMS Hub <span className="text-[#e63a27]">Pvt Ltd</span>
-                </h2>
-                <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-lg leading-[1.6] max-w-xl mb-4 sm:mb-0">
+                <p className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.65] max-w-2xl mb-4 sm:mb-0 font-medium">
                   VMS Hub Pvt Ltd is the Group's B2B wholesale distribution specialist for food and agricultural products, led by Directors Vipin Kumar and Manoj Kumar Mishra. The company connects producers and suppliers with retailers, food processors, institutional buyers, and large-scale foodservice operators.
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">

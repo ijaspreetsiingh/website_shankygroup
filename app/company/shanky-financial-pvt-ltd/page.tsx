@@ -137,8 +137,8 @@ export default function ShankyFinancialScrollPage() {
                   </span>
                 </div>
                 <h1 className="section-heading text-2xl min-[360px]:text-3xl min-[400px]:text-4xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold leading-[1.15] sm:leading-[1.12] text-white drop-shadow-md">
-                  <span className="block">SHANKY <span className="text-[#e63a27]">FINANCIAL</span></span>
-                  <span className="block mt-0.5 sm:mt-1">SERVICES</span>
+                  <span className="block">SHANKY <span className="text-[#e63a27]">FINANCIAL</span> SERVICES</span>
+                  <span className="block mt-0.5 sm:mt-1 text-[#e63a27]">PVT LTD</span>
                 </h1>
                 <p className="text-xs min-[375px]:text-sm sm:text-base md:text-lg lg:text-xl max-w-lg text-white/95 leading-relaxed font-medium">
                   Best financial service provider company based in Delhi, India
@@ -170,10 +170,7 @@ export default function ShankyFinancialScrollPage() {
                 <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase mb-1.5 sm:mb-2">
                   Overview
                 </p>
-                <h2 className="section-heading text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold leading-[1.2] text-[var(--text-primary)] tracking-tight mb-2 sm:mb-3">
-                  Shanky Financial <span className="text-[#e63a27]">Services Pvt Ltd</span>
-                </h2>
-                <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-lg leading-[1.6] max-w-xl mb-4 sm:mb-0">
+                <p className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.65] max-w-2xl mb-4 sm:mb-0 font-medium">
                   Shanky Financial Services Pvt Ltd is a private B2B financial intermediary led by Directors Vipin Kumar and Manoj Kumar Mishra. The company delivers institutional-grade investment and trading services tailored for corporate clients, asset managers, family offices, and other financial institutions.
                 </p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-6">

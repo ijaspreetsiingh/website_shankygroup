@@ -236,7 +236,7 @@ const WhatWeDo = () => {
         }}
         className={`relative transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] overflow-hidden cursor-pointer group
           w-full min-w-0 max-w-full md:flex-1 md:mx-0.5 md:my-0.5
-          ${isExpanded ? 'h-[82vh] min-h-[420px] sm:min-h-[480px] md:h-[480px] md:max-h-[55vh] md:w-full md:flex-none md:basis-full z-50 md:scale-[1.03]' : 'h-[300px] sm:h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 md:hover:scale-[1.02]'}
+          ${isExpanded ? 'h-[82vh] min-h-[420px] sm:min-h-[480px] md:min-h-[520px] md:h-[72vh] md:max-h-[72vh] md:w-full md:flex-none md:basis-full z-50 md:scale-[1.03]' : 'h-[300px] sm:h-[320px] md:h-[350px] md:basis-1/3 hover:z-30 md:hover:scale-[1.02]'}
           ${shouldHide ? 'md:w-0 md:basis-0 md:opacity-0 md:pointer-events-none md:scale-90' : 'opacity-100'}
           ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[80px] opacity-0'}
         `}
@@ -295,9 +295,9 @@ const WhatWeDo = () => {
             </div>
 
             {/* Content */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 z-10">
+            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 pb-5 sm:pb-6 md:pb-8 z-10">
               {/* Company Name – same font as site headings (Syne professional) */}
-              <h3 className="section-heading text-lg sm:text-xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-2 sm:line-clamp-none">
+              <h3 className="section-heading text-lg sm:text-xl md:text-3xl font-bold text-white mb-2 sm:mb-3 leading-[1.15] tracking-[0.5px] sm:tracking-[1px] uppercase transition-all duration-400 group-hover:translate-y-[-3px] md:group-hover:scale-102 line-clamp-3 sm:line-clamp-none">
                 {company.shortName}
               </h3>
               
@@ -376,9 +376,9 @@ const WhatWeDo = () => {
                   background: `linear-gradient(135deg, var(--card-bg) 0%, var(--card-bg) 95%, ${company.categoryColor}05 100%)`,
                 }}
               >
-                {/* Content area – scroll when needed (compact card height) */}
+                {/* Content area – scroll when needed (more height so paragraph visible) */}
                 <div 
-                  className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-3 sm:p-5 md:p-8 pb-3 sm:pb-5 md:pb-6 scrollbar-hide"
+                  className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-3 sm:p-5 md:p-8 pb-6 sm:pb-8 md:pb-10 scrollbar-hide"
                   style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                 >
                   <style dangerouslySetInnerHTML={{ __html: `.scrollbar-hide::-webkit-scrollbar { display: none; }` }} />
@@ -477,9 +477,9 @@ const WhatWeDo = () => {
                   </div>
                 </div>
 
-                {/* Description Card */}
+                {/* Description Card – full paragraph visible, no clamp */}
                 <div 
-                  className="p-3 sm:p-4 md:p-5 rounded-xl transition-all duration-300"
+                  className="p-3 sm:p-4 md:p-5 rounded-xl transition-all duration-300 min-h-0"
                   style={{
                     background: `linear-gradient(135deg, var(--card-bg) 0%, ${company.categoryColor}05 100%)`,
                     border: `1px solid var(--card-border)`,
@@ -495,7 +495,7 @@ const WhatWeDo = () => {
                       Company Overview
                     </div>
                   </div>
-                  <p className="text-[var(--text-secondary)] text-sm sm:text-[15px] leading-[1.6] font-normal tracking-[0.1px] text-justify break-words whitespace-normal">
+                  <p className="text-[var(--text-secondary)] text-sm sm:text-[15px] leading-[1.65] font-normal tracking-[0.1px] text-justify break-words whitespace-normal">
                     {company.description}
                   </p>
                 </div>
@@ -751,7 +751,7 @@ const WhatWeDo = () => {
                   </div>
                   <div className="p-3 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)]">
                     <p className="text-[10px] font-bold uppercase tracking-wider opacity-80 mb-2" style={{ color: company.categoryColor }}>Company Overview</p>
-                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{company.description}</p>
+                    <p className="text-sm text-[var(--text-secondary)] leading-[1.65]">{company.description}</p>
                   </div>
                   <div className="pt-2">
                     <button
