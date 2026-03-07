@@ -133,7 +133,7 @@ export default function ShankyFinancialScrollPage() {
               >
                 <div>
                   <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] min-[375px]:text-[11px] sm:text-xs lg:text-sm font-semibold tracking-[0.12em] sm:tracking-widest rounded-full uppercase">
-                    Established Excellence Since 2014
+                    Established Excellence Since 2011
                   </span>
                 </div>
                 <h1 className="section-heading text-2xl min-[360px]:text-3xl min-[400px]:text-4xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold leading-[1.15] sm:leading-[1.12] text-white drop-shadow-md">
