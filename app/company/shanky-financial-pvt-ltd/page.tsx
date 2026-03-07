@@ -152,7 +152,7 @@ export default function ShankyFinancialScrollPage() {
                 <span className="opacity-70">/</span>
                 <Link href="/company" className="hover:text-white transition-colors">Our Companies</Link>
                 <span className="opacity-70">/</span>
-                <span className="text-white font-medium truncate max-w-[120px] min-[380px]:max-w-[160px] sm:max-w-none">Shanky Financial Services</span>
+                <span className="text-white font-medium truncate max-w-[120px] min-[380px]:max-w-[160px] sm:max-w-none">Shanky Financial Services Pvt Ltd</span>
               </nav>
             </div>
           </div>
