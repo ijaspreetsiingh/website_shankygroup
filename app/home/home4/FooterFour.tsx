@@ -194,7 +194,7 @@ const GraphyFooter = () => {
         {/* Main Footer Card - balanced multi-column layout */}
         <div className="relative z-10 rounded-2xl shadow-md px-6 sm:px-10 md:px-14 py-8 sm:py-12 bg-[var(--card-bg)] border border-[var(--card-border)]">
           {/* Top: Brand + Links — all columns top-aligned for balanced look */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr_1fr_1fr] gap-8 lg:gap-x-5 lg:gap-y-8 pb-8 sm:pb-10 border-b border-[var(--card-border)] items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8 lg:gap-x-5 lg:gap-y-8 pb-8 sm:pb-10 border-b border-[var(--card-border)] items-start">
             {/* Brand Section — description clamped so column doesn’t tower */}
             <div className="text-center lg:text-left order-1">
               <div className="flex justify-center lg:justify-start mb-4">
@@ -223,23 +223,15 @@ const GraphyFooter = () => {
               </div>
             </div>
 
-            {/* Link columns — consistent min-height and heading style */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:contents gap-6 lg:gap-0 order-2 lg:order-none">
+            {/* Link columns — Who We Are + Company + Quick Links (3 blocks) */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:contents gap-6 lg:gap-0 order-2 lg:order-none">
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('product')}</h3>
+                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('who_we_are')}</h3>
                 <ul className="space-y-2.5 mt-1">
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('features')}</Link></li>
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('pricing')}</Link></li>
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('solutions')}</Link></li>
-                </ul>
-              </div>
-              <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">
-                <h3 className="section-heading text-xs sm:text-[13px] font-semibold mb-3 sm:mb-4 text-[var(--text-primary)] uppercase tracking-widest pb-2 border-b border-[var(--card-border)] inline-block sm:block">{t('resources')}</h3>
-                <ul className="space-y-2.5 mt-1">
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('documentation')}</Link></li>
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('tutorials')}</Link></li>
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('blog')}</Link></li>
-                  <li><Link href="#" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('support')}</Link></li>
+                  <li><Link href="/who-we-are/about-us" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('about_us')}</Link></li>
+                  <li><Link href="/who-we-are/mission-vision" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('mission_vision')}</Link></li>
+                  <li><Link href="/who-we-are/leadership" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('leadership')}</Link></li>
+                  <li><Link href="/who-we-are/compliance" className="text-[13px] sm:text-[14px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors duration-200">{t('compliance')}</Link></li>
                 </ul>
               </div>
               <div className="text-center sm:text-left min-h-[120px] sm:min-h-0">

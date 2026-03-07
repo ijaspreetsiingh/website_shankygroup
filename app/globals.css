@@ -218,6 +218,72 @@ html {
   letter-spacing: 0.04em !important;
 }
 
+/* Company Financial page – same heading font as /careers (Syne, bold, tracking) */
+.company-financial-root .section-heading,
+.company-financial-root .hero-legacy-heading,
+.company-financial-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Company VMS Hub page – same heading font as /careers (Syne) */
+.company-vms-hub-root .section-heading,
+.company-vms-hub-root .hero-legacy-heading,
+.company-vms-hub-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Company Corporate Training, Smart Tech, BuildTech – same heading font (Syne) */
+.company-corporate-training-root .section-heading,
+.company-corporate-training-root .hero-legacy-heading,
+.company-corporate-training-root .heading,
+.company-corporate-training-root h1,
+.company-corporate-training-root h2,
+.company-corporate-training-root h3,
+.company-corporate-training-root h4 {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+.company-smart-tech-root .section-heading,
+.company-smart-tech-root .hero-legacy-heading,
+.company-smart-tech-root .heading,
+.company-smart-tech-root h1,
+.company-smart-tech-root h2,
+.company-smart-tech-root h3,
+.company-smart-tech-root h4 {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+.company-buildtech-root .section-heading,
+.company-buildtech-root .hero-legacy-heading,
+.company-buildtech-root .heading,
+.company-buildtech-root h1,
+.company-buildtech-root h2,
+.company-buildtech-root h3,
+.company-buildtech-root h4 {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Company Metals – same heading font (Syne) */
+.company-metals-root .section-heading,
+.company-metals-root .hero-legacy-heading,
+.company-metals-root .heading,
+.company-metals-root h1,
+.company-metals-root h2,
+.company-metals-root h3,
+.company-metals-root h4 {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
 /* Contact page – same heading font as /who-we-are/about-us (Syne) */
 .contact-root h1,
 .contact-root h2,
@@ -567,7 +633,7 @@ html {
 .footer-cta-bubble-3 { animation: float-bubble-3 10s ease-in-out infinite; }
 .footer-cta-bubble-4 { animation: float-bubble-4 16s ease-in-out infinite; }
 .footer-cta-bubble-5 { animation: float-bubble-5 11s ease-in-out infinite; }
-
+ 
 /* Force default zoom 80% — must win on Vercel/production (last rule) */
 html {
   zoom: 1 !important;
