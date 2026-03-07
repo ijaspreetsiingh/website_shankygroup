@@ -67,6 +67,10 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap"
         />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap"
+        />
       </head>
       <body className={bodyClassName}>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

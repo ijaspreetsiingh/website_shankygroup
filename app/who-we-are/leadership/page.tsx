@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import WhoWeAreNav from '../WhoWeAreNav';
-
-// Shivani image from app/images/team – bundled so it always loads
 import shivani1Img from '../../images/team/shivani1.jpeg';
 
 const LeadershipPage = () => {
@@ -199,7 +197,26 @@ const LeadershipPage = () => {
 
   const handleLeaderClick = (leader: any) => {
     setSelectedLeader(leader);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('leadership-modal-open'));
+    }
   };
+
+  const closeProfileModal = () => {
+    setSelectedLeader(null);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new CustomEvent('leadership-modal-close'));
+    }
+  };
+
+  useEffect(() => {
+    if (selectedLeader && typeof window !== 'undefined' && window.innerWidth < 1024) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = '';
+      };
+    }
+  }, [selectedLeader]);
 
   const handleFilterClick = (filterId: string) => {
     setActiveFilter(filterId);
@@ -455,20 +472,21 @@ const LeadershipPage = () => {
         const social = getSocialLinks(selectedLeader);
         return (
         <div 
-          className="fixed inset-0 z-[1000] flex items-center justify-center p-3 sm:p-4 md:p-6"
+          className="fixed inset-0 z-[1002] flex items-center justify-center p-3 sm:p-4 md:p-6"
           style={{ backgroundColor: 'rgba(0, 0, 0, 0.55)' }}
         >
           <div 
-            className="w-full max-w-[560px] max-h-[90vh] overflow-hidden relative rounded-xl sm:rounded-2xl md:rounded-[28px] border overflow-y-auto"
+            className="w-full max-w-[560px] max-h-[85dvh] sm:max-h-[90vh] overflow-y-auto overflow-x-hidden relative rounded-xl sm:rounded-2xl md:rounded-[28px] border overscroll-contain"
             style={{
               backgroundColor: 'var(--card-bg)',
               borderColor: 'var(--card-border)',
-              boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px var(--card-border)'
+              boxShadow: '0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px var(--card-border)',
+              WebkitOverflowScrolling: 'touch'
             }}
           >
             {/* Close Button - responsive */}
             <button
-              onClick={() => setSelectedLeader(null)}
+              onClick={() => closeProfileModal()}
               className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-lg sm:text-xl font-medium cursor-pointer transition-all z-10 border"
               style={{
                 backgroundColor: 'var(--card-border)',

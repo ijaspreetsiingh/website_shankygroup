@@ -143,8 +143,10 @@ export function GlobeDemo() {
       const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
       sphere.castShadow = true;
       sphere.receiveShadow = true;
-      // Start with India facing the camera (~77° E longitude → rotate globe so India is in front)
-      sphere.rotation.y = -77 * (Math.PI / 180);
+      // Default view: India facing camera — Y for longitude, X tilt thoda niche so India proper dikhe.
+      const indiaLongitudeDeg = 160;
+      sphere.rotation.y = -(indiaLongitudeDeg * (Math.PI / 180));
+      sphere.rotation.x = 0.32;
       scene.add(sphere);
 
       // setup map overlay
@@ -333,10 +335,7 @@ export function GlobeDemo() {
           }
         }
 
-        if (!isDragging) {
-          sphere.rotation.y += 0.0005;
-        }
-
+        // No auto-rotation: globe moves only when user drags
         renderer.render(scene, camera);
         frameRef.current = requestAnimationFrame(animate);
       };
@@ -471,17 +470,6 @@ export function GlobeDemo() {
             <div className="hidden md:block floating-particle absolute bottom-[30%] left-[15%] w-[10px] h-[10px] bg-amber-500 rounded-full shadow-[0_0_25px_rgba(245,158,11,0.8)] [animation-delay:1s]" />
             <div className="hidden md:block floating-particle absolute top-[40%] right-[20%] w-[4px] h-[4px] bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.8)] [animation-delay:3s]" />
 
-            {/* Data Points - hidden on very small screens to avoid clutter */}
-            <div className="fading-label absolute top-[12%] left-[55%] min-[400px]:left-[60%] text-[10px] sm:text-[12px] text-white bg-blue-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold hidden min-[400px]:block">
-              North America
-            </div>
-            <div className="fading-label absolute top-[42%] right-[10%] min-[400px]:right-[15%] text-[10px] sm:text-[12px] text-white bg-emerald-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold [animation-delay:2s] hidden min-[400px]:block">
-              Europe
-            </div>
-            <div className="fading-label absolute bottom-[18%] left-[35%] min-[400px]:left-[40%] text-[10px] sm:text-[12px] text-white bg-amber-500/90 px-1.5 py-1 sm:px-2 sm:py-1 rounded font-semibold [animation-delay:1s] hidden min-[400px]:block">
-              Asia Pacific
-            </div>
-
             {/* Gradient Overlay */}
             <div 
               className="absolute bottom-0 left-0 right-0 h-20 sm:h-28 md:h-[160px] pointer-events-none z-40"
@@ -499,7 +487,7 @@ export function GlobeDemo() {
           <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-[16px] p-4 sm:p-5 md:p-[24px] lg:p-[32px] shadow-[0_8px_32px_rgba(0,0,0,0.4)] border border-[var(--card-border)] w-full max-w-[600px] transition-all duration-500 hover:shadow-[0_12px_40px_rgba(0,0,0,0.5)] hover:scale-[1.02]">
             <div className="flex flex-col min-[400px]:flex-row items-start min-[400px]:items-center justify-between gap-2 mb-4 sm:mb-5 md:mb-[24px]">
               <h3 className="section-heading text-[18px] sm:text-[22px] md:text-[28px] font-bold text-[var(--text-primary)]">
-                Global Distribution
+                PAN India
               </h3>
               <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 md:px-[12px] md:py-[6px] bg-gradient-to-r from-amber-500 to-orange-600 rounded-full shrink-0">
                 <span className="text-white text-[10px] sm:text-[12px] font-bold">2024</span>
@@ -510,7 +498,7 @@ export function GlobeDemo() {
             <div className="grid grid-cols-3 gap-2 sm:gap-3 md:gap-[16px] mb-4 sm:mb-5 md:mb-[24px]">
               <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-lg sm:rounded-[12px] border border-blue-500/20">
                 <div className="text-[14px] sm:text-[16px] md:text-[20px] font-bold text-blue-500">43</div>
-                <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">Countries</div>
+                <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">India</div>
               </div>
               <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-lg sm:rounded-[12px] border border-emerald-500/20">
                 <div className="text-[12px] sm:text-[14px] md:text-[20px] font-bold text-emerald-500">$12.9M</div>
@@ -522,7 +510,7 @@ export function GlobeDemo() {
               </div>
             </div>
 
-            <div className="overflow-x-auto -mx-1 w-full">
+            {/* <div className="overflow-x-auto -mx-1 w-full">
               <table className="w-full border-collapse bg-[var(--card-bg)] rounded-lg sm:rounded-[12px] overflow-hidden min-w-[280px]">
                 <thead>
                   <tr className="bg-gradient-to-r from-blue-600 to-blue-700">
@@ -600,7 +588,7 @@ export function GlobeDemo() {
                   </tr>
                 </tbody>
               </table>
-            </div>
+            </div> */}
             
             {/* Additional Info */}
             <div className="mt-4 sm:mt-5 md:mt-[20px] pt-4 sm:pt-5 md:pt-[20px] border-t border-[var(--card-border)]">

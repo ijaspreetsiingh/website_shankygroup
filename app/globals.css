@@ -135,6 +135,25 @@ html {
 }
 
 /* app/home/home4: same Syne font, professional look – bold (700) + open tracking */
+/* Hero right-side sector text (VMS HUB, Shanky Metals, etc.) – Montserrat, must override h2 */
+.home4-root .hero-sector-text,
+.hero-sector-text {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Footer + watermark "Shanky Group" text – Montserrat, professional */
+.footer-shanky-font {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .home4-root h1,
 .home4-root h2,
 .home4-root h3,

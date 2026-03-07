@@ -149,27 +149,27 @@ const HeroHomeFour = () => {
               {/* Old Text - Sliding Out */}
               {isTransitioning && (
                 <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center md:justify-start">
-                  <h2 
-                    className="text-[clamp(14px,1.5vw,28px)] md:text-[clamp(16px,1.8vw,32px)] font-[300] leading-none tracking-[0.5px] text-white font-['SF_Pro_Display','Helvetica_Neue',Arial,sans-serif] m-0 uppercase whitespace-nowrap overflow-visible"
+                  <span
+                    className="hero-sector-text text-[clamp(14px,1.5vw,28px)] md:text-[clamp(16px,1.8vw,32px)] leading-none text-white m-0 uppercase whitespace-nowrap overflow-visible block"
                     style={{
                       animation: 'slideOutRight 0.8s ease-out forwards'
                     }}
                   >
                     {heroSlides[previousIndex].sector}
-                  </h2>
+                  </span>
                 </div>
               )}
               
               {/* New Text - Sliding In */}
               <div className="absolute w-full h-full top-0 left-0 flex items-center justify-center md:justify-start">
-                <h2 
-                  className="text-[clamp(14px,1.5vw,28px)] md:text-[clamp(16px,1.8vw,32px)] font-[300] leading-none tracking-[0.5px] text-white font-['SF_Pro_Display','Helvetica_Neue',Arial,sans-serif] m-0 uppercase whitespace-nowrap overflow-visible"
+                <span
+                  className="hero-sector-text text-[clamp(14px,1.5vw,28px)] md:text-[clamp(16px,1.8vw,32px)] leading-none text-white m-0 uppercase whitespace-nowrap overflow-visible block"
                   style={{
                     animation: isTransitioning ? 'slideInLeft 0.8s ease-out forwards' : 'none'
                   }}
                 >
                   {heroSlides[activeIndex].sector}
-                </h2>
+                </span>
               </div>
             </div>
           </div>

@@ -255,7 +255,7 @@ const GraphyFooter = () => {
 
           {/* Copyright bar — clear separation */}
           <div className="pt-6 sm:pt-8 flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center bg-transparent">
-            <p className="text-[11px] sm:text-[13px] text-[var(--text-secondary)] text-center sm:text-left order-2 sm:order-1">
+            <p className="footer-shanky-font text-[11px] sm:text-[13px] text-[var(--text-secondary)] text-center sm:text-left order-2 sm:order-1">
               © {currentYear} {t('shanky_group')}. {t('all_rights_reserved')}
             </p>
             <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 order-1 sm:order-2">
@@ -285,7 +285,7 @@ const GraphyFooter = () => {
         </div>
         <div className="relative z-10 w-full flex justify-center min-w-0">
           <span
-            className={`font-bold select-none text-center ${
+            className={`section-heading font-bold select-none text-center ${
               isDark ? 'text-gray-700/30' : 'text-[#e8e8ed]/50'
             }`}
             style={{
@@ -315,7 +315,7 @@ const GraphyFooter = () => {
                 lineHeight: 1,
                 letterSpacing: '-0.02em',
                 maxWidth: '100%',
-              }}
+              }}  
             >
               SHANKY GROUP
             </span>

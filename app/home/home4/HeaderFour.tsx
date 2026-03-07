@@ -116,6 +116,19 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
     };
   }, []);
 
+  // When leadership profile card opens on mobile, hide sidebar (mobile menu) so user can scroll the card
+  useEffect(() => {
+    const onLeadershipModalOpen = () => {
+      if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+        setIsMobileMenuOpen(false);
+        setWhoWeAreMobileOpen(false);
+        setBusinessMobileOpen(false);
+      }
+    };
+    window.addEventListener('leadership-modal-open', onLeadershipModalOpen);
+    return () => window.removeEventListener('leadership-modal-open', onLeadershipModalOpen);
+  }, []);
+
   // Zoom-based UI scaling while preserving positions
   useEffect(() => {
     if (typeof window === 'undefined') return;
