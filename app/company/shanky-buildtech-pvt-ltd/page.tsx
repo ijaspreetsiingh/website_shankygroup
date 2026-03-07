@@ -70,8 +70,8 @@ export default function ShankyBuildTechPage() {
       `}} />
 
       {/* Section 1 - Hero */}
-      <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pb-8 sm:pb-10 bg-[var(--background)]">
-        <div className="relative h-[56vh] min-h-[260px] sm:min-h-[320px] sm:h-[60vh] md:h-[65vh] lg:h-[68vh] xl:h-[70vh] max-w-[1600px] mx-auto w-full rounded-xl sm:rounded-2xl overflow-hidden">
+      <section className="relative w-full pt-2 sm:pt-3 md:pt-4 px-3 sm:px-4 md:px-8 lg:px-12 pb-8 bg-[var(--background)]">
+        <div className="relative h-[58vh] min-h-[280px] min-[375px]:min-h-[300px] sm:min-h-[360px] sm:h-[65vh] md:h-[70vh] lg:h-[72vh] w-full rounded-xl sm:rounded-2xl overflow-hidden">
             <Image
             src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80"
             alt="Shanky BuildTech - Construction and project delivery"
@@ -90,7 +90,7 @@ export default function ShankyBuildTechPage() {
               >
                 <div>
                   <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] min-[375px]:text-[11px] sm:text-xs lg:text-sm font-semibold tracking-[0.12em] sm:tracking-widest rounded-full uppercase">
-                    B2B construction services & project delivery
+                  B2B Construction & Project Delivery
                   </span>
                 </div>
                 <h1 className="section-heading text-2xl min-[360px]:text-3xl min-[400px]:text-4xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-6xl font-bold leading-[1.15] sm:leading-[1.12] text-white drop-shadow-md">

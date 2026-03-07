@@ -137,7 +137,7 @@ export default function VMSHubPage() {
                   <span className="block mt-0.5 sm:mt-1">PVT LTD</span>
                 </h1>
                 <p className="text-xs min-[375px]:text-sm sm:text-base md:text-lg lg:text-xl max-w-lg text-white/95 leading-relaxed font-medium">
-                  B2B wholesale distribution specialist for food and agricultural products
+                A trusted B2B wholesale distribution specialist dealing in premium food and agricultural products, committed to quality sourcing, efficient logistics, and building long-term partnerships with businesses worldwide.
                 </p>
               </div>
             </div>
@@ -161,7 +161,7 @@ export default function VMSHubPage() {
           <div className="container mx-auto px-3 sm:px-5 md:px-6 lg:px-8 xl:px-10 py-12 sm:py-16 lg:py-20">
             <div className="grid md:grid-cols-[1fr_1.15fr] lg:grid-cols-[1fr_1.25fr] gap-4 sm:gap-6 lg:gap-8 xl:gap-10 items-stretch w-full max-w-[90rem] mx-auto">
               <div className="order-2 md:order-1 min-w-0 flex flex-col justify-center">
-                <p className="text-[#e63a27] font-semibold text-[10px] sm:text-xs md:text-sm tracking-[0.2em] uppercase mb-1.5 sm:mb-2">Overview</p>
+                <p className="text-[#e63a27] font-semibold text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase mb-1.5 sm:mb-2">Overview</p>
                 <p className="text-[var(--text-secondary)] text-base sm:text-lg md:text-xl lg:text-2xl leading-[1.65] max-w-2xl mb-4 sm:mb-0 font-medium">
                   VMS Hub Pvt Ltd is the Group's B2B wholesale distribution specialist for food and agricultural products, led by Directors Vipin Kumar and Manoj Kumar Mishra. The company connects producers and suppliers with retailers, food processors, institutional buyers, and large-scale foodservice operators.
                 </p>

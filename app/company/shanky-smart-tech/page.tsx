@@ -87,8 +87,8 @@ export default function ShankySmartTechPage() {
       `}} />
 
       {/* Section 1 - Hero */}
-      <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pb-8 sm:pb-10 bg-[var(--background)]">
-        <div className="relative h-[56vh] min-h-[260px] sm:min-h-[320px] sm:h-[60vh] md:h-[65vh] lg:h-[68vh] xl:h-[70vh] max-w-[1600px] mx-auto w-full rounded-xl sm:rounded-2xl overflow-hidden">
+      <section className="relative w-full pt-2 sm:pt-3 md:pt-4 px-3 sm:px-4 md:px-8 lg:px-12 pb-8 bg-[var(--background)]">
+        <div className="relative h-[58vh] min-h-[280px] min-[375px]:min-h-[300px] sm:min-h-[360px] sm:h-[65vh] md:h-[70vh] lg:h-[72vh] w-full rounded-xl sm:rounded-2xl overflow-hidden">
           <div
             className="absolute inset-0 transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{
