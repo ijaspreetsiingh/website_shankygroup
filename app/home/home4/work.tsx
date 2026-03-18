@@ -103,7 +103,7 @@ const WorkWithUs = () => {
               { name: 'Coventry Coilomatic Haryana Ltd', color: '#0078D4' },
               { name: 'Metal Canns Company', color: '#4285F4' },
               { name: 'Shubhampress Automation Pvt Ltd', color: '#FF9900' },
-              { name: 'Apollo Green Energy Ltd', color: '#000000' },
+              { name: 'Apollo Green Energy Ltd', color: '#1877F2' },
               { name: 'Maxvolt Energy Industries Ltd', color: '#CC0000' },
               { name: 'Kinetic Green Energy & Power Solution Ltd', color: '#1877F2' },
               { name: 'Pawan Energy India Pvt Ltd', color: '#E50914' },
@@ -119,7 +119,7 @@ const WorkWithUs = () => {
               { name: 'Coventry Coilomatic Haryana Ltd', color: '#0078D4' },
               { name: 'Metal Canns Company', color: '#4285F4' },
               { name: 'Shubhampress Automation Pvt Ltd', color: '#FF9900' },
-              { name: 'Apollo Green Energy Ltd', color: '#000000' },
+              { name: 'Apollo Green Energy Ltd', color: '#1877F2' },
               { name: 'Maxvolt Energy Industries Ltd', color: '#CC0000' },
               { name: 'Kinetic Green Energy & Power Solution Ltd', color: '#1877F2' },
               { name: 'Pawan Energy India Pvt Ltd', color: '#E50914' },
@@ -163,7 +163,7 @@ const WorkWithUs = () => {
               </div>
             ))}
             
-            {[
+            {[  
               { name: 'Uchai Infra Pvt Ltd', color: '#054ADA' },
               { name: 'Rajgor Protein Pvt Ltd', color: '#F80000' },
               { name: 'Rajgor castor Derivatives Limited', color: '#008FD3' },
