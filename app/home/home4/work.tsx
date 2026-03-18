@@ -100,32 +100,32 @@ const WorkWithUs = () => {
             }}
           >
             {[
-              { name: 'Microsoft', color: '#0078D4' },
-              { name: 'Google', color: '#4285F4' },
-              { name: 'Amazon', color: '#FF9900' },
-              { name: 'Apple', color: '#000000' },
-              { name: 'Tesla', color: '#CC0000' },
-              { name: 'Meta', color: '#1877F2' },
-              { name: 'Netflix', color: '#E50914' },
-              { name: 'Spotify', color: '#1DB954' }
+              { name: 'Coventry Coilomatic Haryana Ltd', color: '#0078D4' },
+              { name: 'Metal Canns Company', color: '#4285F4' },
+              { name: 'Shubhampress Automation Pvt Ltd', color: '#FF9900' },
+              { name: 'Apollo Green Energy Ltd', color: '#000000' },
+              { name: 'Maxvolt Energy Industries Ltd', color: '#CC0000' },
+              { name: 'Kinetic Green Energy & Power Solution Ltd', color: '#1877F2' },
+              { name: 'Pawan Energy India Pvt Ltd', color: '#E50914' },
+              { name: 'Shailender Bhadur Singh Infra Pvt Ltd', color: '#1DB954' }
             ].map((company, index) => (
-              <div key={index} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5 transition-transform duration-300"
+              <div key={index} className="flex-[0_0_260px] sm:flex-[0_0_320px] md:flex-[0_0_400px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-2 sm:mx-3 md:mx-4 text-xs sm:text-sm md:text-base text-center font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-4 transition-transform duration-300"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
             ))}
             {/* Duplicate for seamless loop */}
             {[
-              { name: 'Microsoft', color: '#0078D4' },
-              { name: 'Google', color: '#4285F4' },
-              { name: 'Amazon', color: '#FF9900' },
-              { name: 'Apple', color: '#000000' },
-              { name: 'Tesla', color: '#CC0000' },
-              { name: 'Meta', color: '#1877F2' },
-              { name: 'Netflix', color: '#E50914' },
-              { name: 'Spotify', color: '#1DB954' }
+              { name: 'Coventry Coilomatic Haryana Ltd', color: '#0078D4' },
+              { name: 'Metal Canns Company', color: '#4285F4' },
+              { name: 'Shubhampress Automation Pvt Ltd', color: '#FF9900' },
+              { name: 'Apollo Green Energy Ltd', color: '#000000' },
+              { name: 'Maxvolt Energy Industries Ltd', color: '#CC0000' },
+              { name: 'Kinetic Green Energy & Power Solution Ltd', color: '#1877F2' },
+              { name: 'Pawan Energy India Pvt Ltd', color: '#E50914' },
+              { name: 'Shailender Bhadur Singh Infra Pvt Ltd', color: '#1DB954' }
             ].map((company, index) => (
-              <div key={`duplicate-${index}`} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
+              <div key={`duplicate-${index}`} className="flex-[0_0_260px] sm:flex-[0_0_320px] md:flex-[0_0_400px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-2 sm:mx-3 md:mx-4 text-xs sm:text-sm md:text-base text-center font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-4"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
@@ -148,32 +148,32 @@ const WorkWithUs = () => {
             }}
           >
             {[
-              { name: 'IBM', color: '#054ADA' },
-              { name: 'Oracle', color: '#F80000' },
-              { name: 'SAP', color: '#008FD3' },
-              { name: 'Salesforce', color: '#00A1E0' },
-              { name: 'Adobe', color: '#FF0000' },
-              { name: 'Cisco', color: '#1BA1D2' },
-              { name: 'Intel', color: '#0071C5' },
-              { name: 'HP', color: '#0096D6' }
+              { name: 'Uchai Infra Pvt Ltd', color: '#054ADA' },
+              { name: 'Rajgor Protein Pvt Ltd', color: '#F80000' },
+              { name: 'Rajgor castor Derivatives Limited', color: '#008FD3' },
+              { name: 'Coventry Coilomatic Haryana Ltd', color: '#00A1E0' },
+              { name: 'Metal Canns Company', color: '#FF0000' },
+              { name: 'Shubhampress Automation Pvt Ltd', color: '#1BA1D2' },
+              { name: 'Apollo Green Energy Ltd', color: '#0071C5' },
+              { name: 'Maxvolt Energy Industries Ltd', color: '#0096D6' }
             ].map((company, index) => (
-              <div key={index} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
+              <div key={index} className="flex-[0_0_260px] sm:flex-[0_0_320px] md:flex-[0_0_400px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-2 sm:mx-3 md:mx-4 text-xs sm:text-sm md:text-base text-center font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-4"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
             ))}
             
             {[
-              { name: 'IBM', color: '#054ADA' },
-              { name: 'Oracle', color: '#F80000' },
-              { name: 'SAP', color: '#008FD3' },
-              { name: 'Salesforce', color: '#00A1E0' },
-              { name: 'Adobe', color: '#FF0000' },
-              { name: 'Cisco', color: '#1BA1D2' },
-              { name: 'Intel', color: '#0071C5' },
-              { name: 'HP', color: '#0096D6' }
+              { name: 'Uchai Infra Pvt Ltd', color: '#054ADA' },
+              { name: 'Rajgor Protein Pvt Ltd', color: '#F80000' },
+              { name: 'Rajgor castor Derivatives Limited', color: '#008FD3' },
+              { name: 'Coventry Coilomatic Haryana Ltd', color: '#00A1E0' },
+              { name: 'Metal Canns Company', color: '#FF0000' },
+              { name: 'Shubhampress Automation Pvt Ltd', color: '#1BA1D2' },
+              { name: 'Apollo Green Energy Ltd', color: '#0071C5' },
+              { name: 'Maxvolt Energy Industries Ltd', color: '#0096D6' }
             ].map((company, index) => (
-              <div key={`duplicate-reverse-${index}`} className="flex-[0_0_120px] sm:flex-[0_0_160px] md:flex-[0_0_200px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-3 sm:mx-5 md:mx-[30px] text-sm sm:text-lg md:text-2xl font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-5"
+              <div key={`duplicate-reverse-${index}`} className="flex-[0_0_260px] sm:flex-[0_0_320px] md:flex-[0_0_400px] h-[56px] sm:h-[64px] md:h-[80px] flex items-center justify-center mx-2 sm:mx-3 md:mx-4 text-xs sm:text-sm md:text-base text-center font-bold bg-[var(--background)] rounded-lg sm:rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.1)] p-2 sm:p-3 md:p-4"
                    style={{ color: company.color }}>
                 {company.name}
               </div>
