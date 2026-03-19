@@ -139,7 +139,7 @@ const LeadershipPage = () => {
         image: "/images/team/shubh.png",
         department: "Purchase",
         category: "senior",
-        education: "Bachelor Degree in Business Administration",
+        education: "Bachelor Degree in Science",
         tenure: "From 2021-Present",
         social: { linkedin: "https://linkedin.com" }
       }
