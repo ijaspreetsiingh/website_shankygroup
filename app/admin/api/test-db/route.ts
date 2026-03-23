@@ -8,12 +8,12 @@ export async function GET() {
     console.log('=== TEST DATABASE CONNECTION ===');
     
     // Test basic database connection
-    const result = await query('SELECT COUNT(*) as count FROM vendor_registrations');
+    const result = await query<Array<{ count: number }>>('SELECT COUNT(*) as count FROM vendor_registrations');
     console.log('Database connection successful');
     console.log('Vendor count result:', result);
     
     // Test full query
-    const vendors = await query('SELECT * FROM vendor_registrations ORDER BY id DESC LIMIT 5');
+    const vendors = await query<Array<Record<string, unknown>>>('SELECT * FROM vendor_registrations ORDER BY id DESC LIMIT 5');
     console.log('Sample vendor data:', vendors);
     
     return NextResponse.json({ 

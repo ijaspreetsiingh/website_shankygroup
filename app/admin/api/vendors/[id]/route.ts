@@ -1,29 +1,35 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { execute } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
 
+function hasSelectRows(result: unknown): boolean {
+  if (!Array.isArray(result)) return false;
+  if (result.length > 0 && Array.isArray(result[0])) return (result[0] as unknown[]).length > 0;
+  return result.length > 0;
+}
+
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id: idParam } = await context.params;
     console.log('=== DELETE VENDOR DEBUG ===');
-    console.log('Raw params:', params);
-    console.log('Vendor ID string:', params.id);
-    console.log('Vendor ID type:', typeof params.id);
+    console.log('Vendor ID string:', idParam);
+    console.log('Vendor ID type:', typeof idParam);
     
-    const id = parseInt(params.id);
+    const id = parseInt(idParam);
     console.log('Parsed ID:', id);
     console.log('Parsed ID type:', typeof id);
     console.log('Is NaN:', isNaN(id));
     
-    if (!params.id || params.id === 'undefined' || params.id === 'null') {
+    if (!idParam || idParam === 'undefined' || idParam === 'null') {
       throw new Error('Vendor ID is missing or invalid');
     }
     
     if (isNaN(id) || id <= 0) {
-      throw new Error(`Invalid vendor ID: ${params.id}`);
+      throw new Error(`Invalid vendor ID: ${idParam}`);
     }
     
     // First check if vendor exists
@@ -34,7 +40,7 @@ export async function DELETE(
     
     console.log('Vendor check result:', checkResult);
     
-    if (!checkResult || checkResult.length === 0) {
+    if (!hasSelectRows(checkResult)) {
       throw new Error(`Vendor not found with ID: ${id}`);
     }
     
@@ -64,14 +70,15 @@ export async function DELETE(
 }
 
 export async function PUT(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id: idParam } = await context.params;
     console.log('=== UPDATE VENDOR DEBUG ===');
-    console.log('Vendor ID to update:', params.id);
+    console.log('Vendor ID to update:', idParam);
     
-    const id = parseInt(params.id);
+    const id = parseInt(idParam);
     if (isNaN(id)) {
       throw new Error('Invalid vendor ID');
     }
@@ -85,7 +92,7 @@ export async function PUT(
       [id]
     );
     
-    if (!checkResult || checkResult.length === 0) {
+    if (!hasSelectRows(checkResult)) {
       throw new Error('Vendor not found');
     }
     

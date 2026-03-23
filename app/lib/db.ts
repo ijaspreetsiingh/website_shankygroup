@@ -1,4 +1,4 @@
-import mysql, { Pool, RowDataPacket } from 'mysql2/promise';
+import mysql, { Pool } from 'mysql2/promise';
 
 declare global {
   var __shankyDbPool: Pool | undefined;
@@ -28,12 +28,12 @@ function getPool(): Pool {
   return global.__shankyDbPool;
 }
 
-export async function query<T extends RowDataPacket[]>(
+export async function query<T = any>(
   sql: string,
   params: Array<string | number | boolean | null> = []
 ): Promise<T> {
-  const [rows] = await getPool().execute<T>(sql, params);
-  return rows;
+  const [rows] = await getPool().execute(sql, params);
+  return rows as T;
 }
 
 export async function execute(

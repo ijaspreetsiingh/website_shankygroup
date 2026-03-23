@@ -73,7 +73,7 @@ function generateRSSXML(blogs: RssBlog[]) {
       <link>${siteUrl}/blog/${blog.slug}</link>
       <guid isPermaLink="true">${siteUrl}/blog/${blog.slug}</guid>
       <dc:creator><![CDATA[${escapeXml(blog.author_name || 'Shanky Group')}]]></dc:creator>
-      <pubDate>${new Date(blog.published_at || blog.created_at).toUTCString()}</pubDate>
+      <pubDate>${new Date(blog.published_at || blog.created_at || currentDate).toUTCString()}</pubDate>
       ${blog.featured_image ? `<image>${escapeXml(blog.featured_image)}</image>` : ''}
       ${blog.category ? `<category><![CDATA[${escapeXml(blog.category)}]]></category>` : ''}
       ${blog.tags ? blog.tags.split(',').map((tag: string) => `<category><![CDATA[${escapeXml(tag.trim())}]]></category>`).join('') : ''}

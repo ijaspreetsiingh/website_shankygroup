@@ -1,12 +1,14 @@
 import { query, execute } from '@/app/lib/db';
+import { RowDataPacket } from 'mysql2';
 import { NextResponse } from 'next/server';
 
-export async function safeRows<T extends Record<string, string | number | null>>(
+export async function safeRows<T extends Record<string, unknown>>(
   sql: string,
   params: Array<string | number | boolean | null> = []
 ): Promise<T[]> {
   try {
-    return await query<T[]>(sql, params);
+    const rows = await query<RowDataPacket[]>(sql, params);
+    return rows as unknown as T[];
   } catch {
     return [];
   }
@@ -14,7 +16,7 @@ export async function safeRows<T extends Record<string, string | number | null>>
 
 export async function safeCount(sql: string): Promise<number> {
   try {
-    const rows = await query<Array<{ total: number }>>(sql);
+    const rows = await query<Array<RowDataPacket & { total: number }>>(sql);
     return Number(rows[0]?.total || 0);
   } catch {
     return 0;

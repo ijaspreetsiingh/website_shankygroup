@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { execute } from '@/app/lib/db';
+import { execute, query } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
 
@@ -38,10 +38,10 @@ export async function GET() {
     
     // Check existing users
     console.log('Checking existing users...');
-    const users = await execute('SELECT COUNT(*) as count FROM users');
+    const users = await query<Array<{ count: number }>>('SELECT COUNT(*) as count FROM users');
     console.log('Users count result:', users);
     
-    const count = Array.isArray(users) ? users[0]?.count || 0 : 0;
+    const count = users[0]?.count || 0;
     console.log('Total users:', count);
     
     console.log('=== DATABASE TEST END ===');

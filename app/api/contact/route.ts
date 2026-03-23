@@ -218,10 +218,10 @@ export async function POST(request: Request) {
       
       const personalizedThankYouBody = (thankYouBody || '')
         // Replace double braces first
-        .replace(/{{firstName}}/g, firstName)
+        .replace(/{{firstName}}/g, firstName || '')
         .replace(/{{lastName}}/g, lastName || '')
         .replace(/{{companyName}}/g, String(body?.companyName || '').trim() || 'Your Company')
-        .replace(/{{email}}/g, email)
+        .replace(/{{email}}/g, email || '')
         .replace(/{{mobile}}/g, String(body?.mobile || '').trim() || 'N/A')
         .replace(/{{landline}}/g, String(body?.landline || '').trim() || 'N/A')
         .replace(/{{address}}/g, String(body?.address || '').trim() || 'N/A')
@@ -235,10 +235,10 @@ export async function POST(request: Request) {
         .replace(/{{message}}/g, String(body?.message || '').trim() || 'N/A')
         .replace(/{{ticketId}}/g, `VR-${Date.now()}`)
         // Also replace single braces (fallback)
-        .replace(/\{firstName\}/g, firstName)
+        .replace(/\{firstName\}/g, firstName || '')
         .replace(/\{lastName\}/g, lastName || '')
         .replace(/\{companyName\}/g, String(body?.companyName || '').trim() || 'Your Company')
-        .replace(/\{email\}/g, email)
+        .replace(/\{email\}/g, email || '')
         .replace(/\{mobile\}/g, String(body?.mobile || '').trim() || 'N/A')
         .replace(/\{landline\}/g, String(body?.landline || '').trim() || 'N/A')
         .replace(/\{address\}/g, String(body?.address || '').trim() || 'N/A')
@@ -327,8 +327,9 @@ export async function POST(request: Request) {
       thankYouBody = `<!DOCTYPE html><html><body><h2>Thank You {{firstName}}!</h2><p>We have received your message and will contact you soon.</p></body></html>`;
     }
     
+    const contactLastName = String(body?.lastName || '').trim();
     const personalizedThankYouBody = (thankYouBody || '')
-      .replace(/{{firstName}}/g, firstName)
+      .replace(/{{firstName}}/g, firstName || '')
       .replace(/{{companyName}}/g, 'Shanky Group')
       .replace(/{{ticketId}}/g, `CT-${Date.now()}`);
     
@@ -336,10 +337,10 @@ export async function POST(request: Request) {
     
     // Send notification to admin
     if (adminEmail) {
-      const adminSubject = `New Contact Inquiry: ${firstName} ${lastName || ''}`;
+      const adminSubject = `New Contact Inquiry: ${firstName || ''} ${contactLastName}`;
       const adminBody = `<!DOCTYPE html><html><body>
         <h2>New Contact Inquiry Received</h2>
-        <p><strong>Name:</strong> ${firstName} ${lastName || ''}</p>
+        <p><strong>Name:</strong> ${firstName || ''} ${contactLastName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${body?.phone || 'N/A'}</p>
         <p><strong>Inquiry Type:</strong> ${body?.inquiryType || 'general'}</p>
