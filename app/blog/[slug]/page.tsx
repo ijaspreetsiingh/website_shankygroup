@@ -343,7 +343,7 @@ export default function BlogDetailPage() {
                 <button
                   onClick={handleLike}
                   className={`p-2 rounded-lg transition-colors ${
-                    liked ? 'bg-red-100 text-red-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    liked ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-300' : 'bg-[var(--card-border)] text-[var(--text-secondary)] hover:opacity-80'
                   }`}
                 >
                   <Heart className={`w-5 h-5 ${liked ? 'fill-current' : ''}`} />
@@ -351,7 +351,7 @@ export default function BlogDetailPage() {
                 <button
                   onClick={handleBookmark}
                   className={`p-2 rounded-lg transition-colors ${
-                    bookmarked ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    bookmarked ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-300' : 'bg-[var(--card-border)] text-[var(--text-secondary)] hover:opacity-80'
                   }`}
                 >
                   <Bookmark className={`w-5 h-5 ${bookmarked ? 'fill-current' : ''}`} />
@@ -359,37 +359,37 @@ export default function BlogDetailPage() {
                 <div className="relative">
                   <button
                     onClick={() => setShareMenuOpen(!shareMenuOpen)}
-                    className="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors"
+                    className="p-2 rounded-lg bg-[var(--card-border)] text-[var(--text-secondary)] hover:opacity-80 transition-colors"
                   >
                     <Share2 className="w-5 h-5" />
                   </button>
                   
                   {shareMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-10">
+                    <div className="absolute right-0 mt-2 w-48 bg-[var(--card-bg)] rounded-lg shadow-lg border border-[var(--card-border)] py-2 z-10">
                       <button
                         onClick={() => handleShare('facebook')}
-                        className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left hover:bg-[var(--card-border)] text-[var(--text-primary)] flex items-center gap-2"
                       >
                         <Facebook className="w-4 h-4 text-blue-600" />
                         Facebook
                       </button>
                       <button
                         onClick={() => handleShare('twitter')}
-                        className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left hover:bg-[var(--card-border)] text-[var(--text-primary)] flex items-center gap-2"
                       >
                         <Twitter className="w-4 h-4 text-blue-400" />
                         Twitter
                       </button>
                       <button
                         onClick={() => handleShare('linkedin')}
-                        className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left hover:bg-[var(--card-border)] text-[var(--text-primary)] flex items-center gap-2"
                       >
                         <Linkedin className="w-4 h-4 text-blue-700" />
                         LinkedIn
                       </button>
                       <button
                         onClick={() => handleShare('copy')}
-                        className="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center gap-2"
+                        className="w-full px-4 py-2 text-left hover:bg-[var(--card-border)] text-[var(--text-primary)] flex items-center gap-2"
                       >
                         <Link2 className="w-4 h-4 text-gray-600" />
                         Copy Link
@@ -424,9 +424,9 @@ export default function BlogDetailPage() {
             )}
 
             {/* Author Bio */}
-            <div className="bg-gray-50 rounded-lg p-6 mb-8">
+            <div className="bg-[var(--card-border)] rounded-lg p-6 mb-8">
               <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 bg-blue-100/90 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
                   <User className="w-8 h-8 text-blue-600" />
                 </div>
                 <div>
@@ -460,14 +460,14 @@ export default function BlogDetailPage() {
 
             {/* Comment Form */}
             {commentFormOpen && (
-              <form onSubmit={handleCommentSubmit} className="mb-8 p-6 bg-gray-50 rounded-lg">
+              <form onSubmit={handleCommentSubmit} className="mb-8 p-6 bg-[var(--card-border)] rounded-lg border border-[var(--card-border)]">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <input
                     type="text"
                     placeholder="Your Name"
                     value={newComment.name}
                     onChange={(e) => setNewComment({...newComment, name: e.target.value})}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-4 py-2 border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                   <input
@@ -475,7 +475,7 @@ export default function BlogDetailPage() {
                     placeholder="Your Email"
                     value={newComment.email}
                     onChange={(e) => setNewComment({...newComment, email: e.target.value})}
-                    className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-4 py-2 border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     required
                   />
                 </div>
@@ -484,7 +484,7 @@ export default function BlogDetailPage() {
                   value={newComment.content}
                   onChange={(e) => setNewComment({...newComment, content: e.target.value})}
                   rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
+                  className="w-full px-4 py-2 border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-4"
                   required
                 />
                 <div className="flex gap-3">
@@ -498,7 +498,7 @@ export default function BlogDetailPage() {
                   <button
                     type="button"
                     onClick={() => setCommentFormOpen(false)}
-                    className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors"
+                    className="px-6 py-2 bg-[var(--card-bg)] text-[var(--text-secondary)] border border-[var(--card-border)] rounded-lg hover:opacity-80 transition-colors"
                   >
                     Cancel
                   </button>
@@ -515,10 +515,10 @@ export default function BlogDetailPage() {
                 </div>
               ) : (
                 comments.map((comment) => (
-                  <div key={comment.id} className="border-b border-gray-200 pb-6 last:border-0">
+                  <div key={comment.id} className="border-b border-[var(--card-border)] pb-6 last:border-0">
                     <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center flex-shrink-0">
-                        <User className="w-5 h-5 text-gray-600" />
+                      <div className="w-10 h-10 bg-[var(--card-border)] rounded-full flex items-center justify-center flex-shrink-0">
+                        <User className="w-5 h-5 text-[var(--text-secondary)]" />
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">

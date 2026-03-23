@@ -13,6 +13,16 @@ import {
 // Simple Rich Text Editor Component
 const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) => {
   const editorRef = useRef<HTMLDivElement>(null);
+  const lastHtmlRef = useRef('');
+
+  useEffect(() => {
+    if (!editorRef.current) return;
+    const safeValue = String(value || '');
+    if (safeValue !== lastHtmlRef.current && editorRef.current.innerHTML !== safeValue) {
+      editorRef.current.innerHTML = safeValue;
+      lastHtmlRef.current = safeValue;
+    }
+  }, [value]);
 
   const execCommand = (command: string, value: any = null) => {
     document.execCommand(command, false, value);
@@ -21,7 +31,9 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
 
   const handleInput = () => {
     if (editorRef.current) {
-      onChange(editorRef.current.innerHTML);
+      const html = editorRef.current.innerHTML;
+      lastHtmlRef.current = html;
+      onChange(html);
     }
   };
 
@@ -129,9 +141,10 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         contentEditable
         onInput={handleInput}
         onPaste={handlePaste}
-        className="min-h-[400px] p-4 focus:outline-none text-white"
-        style={{ minHeight: '400px' }}
-        dangerouslySetInnerHTML={{ __html: value }}
+        className="min-h-[400px] p-4 focus:outline-none text-white text-left"
+        style={{ minHeight: '400px', direction: 'ltr', unicodeBidi: 'plaintext' }}
+        dir="ltr"
+        suppressContentEditableWarning
         data-placeholder={placeholder}
       />
     </div>

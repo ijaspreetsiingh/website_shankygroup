@@ -15,6 +15,11 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
   const [formData, setFormData] = useState<Row>({});
   const [actionLoading, setActionLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [showFullData, setShowFullData] = useState(false);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [detailRow, setDetailRow] = useState<Row | null>(null);
+  const [detailTab, setDetailTab] = useState<'basic' | 'contact' | 'business' | 'meta'>('basic');
 
   const load = async () => {
     try {
@@ -29,6 +34,10 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
   };
 
   useEffect(() => { void load(); }, [endpoint]);
+  useEffect(() => {
+    const valid = new Set(rows.map(r => String(r.id ?? '')));
+    setSelectedIds(prev => new Set(Array.from(prev).filter(id => valid.has(id))));
+  }, [rows]);
 
   const columns = rows.length > 0 ? Object.keys(rows[0]) : [];
   const formColumns = columns.filter(c => !['id', 'created_at', 'updated_at'].includes(c));
@@ -70,7 +79,82 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
     finally { setActionLoading(false); }
   };
 
+  const getRowId = (row: Row): string => String(row.id ?? '');
+  const toggleRowSelection = (row: Row) => {
+    const id = getRowId(row);
+    if (!id) return;
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+  const allFilteredSelected = filteredRows.length > 0 && filteredRows.every(r => selectedIds.has(getRowId(r)));
+  const toggleSelectAllFiltered = () => {
+    setSelectedIds(prev => {
+      const next = new Set(prev);
+      if (allFilteredSelected) filteredRows.forEach(r => next.delete(getRowId(r)));
+      else filteredRows.forEach(r => { const id = getRowId(r); if (id) next.add(id); });
+      return next;
+    });
+  };
+  const handleBulkDelete = async () => {
+    const ids = Array.from(selectedIds);
+    if (ids.length === 0) return;
+    if (!confirm(`Delete ${ids.length} selected record(s)? This action cannot be undone.`)) return;
+    setActionLoading(true); setError('');
+    try {
+      for (const id of ids) {
+        const row = rows.find(r => getRowId(r) === id);
+        if (!row) continue;
+        const res = await fetch(endpoint, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: row.id }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.message || `Failed to delete record ${id}.`);
+      }
+      setSelectedIds(new Set());
+      await load();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Bulk delete failed');
+    } finally {
+      setActionLoading(false);
+    }
+  };
+
   const isTextarea = (col: string) => ['message','description','content','requirements'].includes(col);
+  const isVendorPage = endpoint.includes('/vendors');
+  const visibleValue = (val: Row[string]) => {
+    const str = val===null||val==='' ? '—' : String(val);
+    if (showFullData) return str;
+    return str.length > 50 ? `${str.substring(0, 50)}…` : str;
+  };
+  const vendorTabs = detailRow ? {
+    basic: ['company_name','first_name','last_name','vendor_status','created_at'],
+    contact: ['email','phone','landline','contact_person','designation','website'],
+    business: ['address','city','state','country','gst_no','exclusive_offers'],
+    meta: ['message'],
+  } : null;
+  const openDetails = (row: Row) => {
+    setDetailRow(row);
+    setDetailTab('basic');
+    setIsDetailsOpen(true);
+  };
+  const renderDetailField = (key: string) => {
+    if (!detailRow || !(key in detailRow)) return null;
+    const value = detailRow[key];
+    return (
+      <div key={key} style={{ padding:'10px 12px', border:'1px solid rgba(255,255,255,0.08)', borderRadius:8, background:'rgba(255,255,255,0.02)' }}>
+        <div style={{ fontSize:10, textTransform:'uppercase', letterSpacing:'.06em', color:'rgba(255,255,255,0.35)', marginBottom:4 }}>{key.replace(/_/g, ' ')}</div>
+        <div style={{ fontSize:13, color:'rgba(255,255,255,0.82)', whiteSpace:key==='message'?'pre-wrap':'normal', wordBreak:'break-word' }}>
+          {value===null || value==='' ? '—' : String(value)}
+        </div>
+      </div>
+    );
+  };
 
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
@@ -224,15 +308,37 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
             <span className="atc-count">
               {loading ? 'Loading…' : <><strong>{filteredRows.length}</strong> of <strong>{rows.length}</strong> records</>}
             </span>
-            <button className="atc-btn atc-btn-ghost" style={{height:30,padding:'0 11px',fontSize:12}}>
-              <Filter size={11}/> Filter
-            </button>
+            <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+              <button className="atc-btn atc-btn-ghost" style={{height:30,padding:'0 11px',fontSize:12}}>
+                <Filter size={11}/> Filter
+              </button>
+              <button
+                className="atc-btn atc-btn-ghost"
+                style={{height:30,padding:'0 11px',fontSize:12}}
+                onClick={() => setShowFullData(v => !v)}
+              >
+                {showFullData ? 'Show Less' : 'Show More'}
+              </button>
+              <button
+                className="atc-btn atc-btn-ghost"
+                style={{height:30,padding:'0 11px',fontSize:12,color:'#fca5a5',borderColor:'rgba(248,113,113,0.35)'}}
+                onClick={handleBulkDelete}
+                disabled={actionLoading || selectedIds.size === 0}
+              >
+                <Trash2 size={11}/> Delete Selected ({selectedIds.size})
+              </button>
+            </div>
           </div>
 
           <div className="atc-table-wrap">
             <table className="atc-table">
               <thead>
                 <tr>
+                  {!loading && rows.length > 0 && (
+                    <th style={{ width:40 }}>
+                      <input type="checkbox" checked={allFilteredSelected} onChange={toggleSelectAllFiltered} />
+                    </th>
+                  )}
                   {columns.map(col=>(
                     <th key={col}>{col.replace(/_/g,' ')}</th>
                   ))}
@@ -243,13 +349,13 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
                 {loading ? (
                   Array.from({length:5}).map((_,i)=>(
                     <tr key={i}>
-                      {Array.from({length:Math.max(columns.length+1,5)}).map((_,j)=>(
+                      {Array.from({length:Math.max(columns.length+2,6)}).map((_,j)=>(
                         <td key={j}><div className="atc-skel" style={{width:j===0?'60%':'80%'}}/></td>
                       ))}
                     </tr>
                   ))
                 ) : rows.length === 0 ? (
-                  <tr><td colSpan={Math.max(columns.length+1,1)}>
+                  <tr><td colSpan={Math.max(columns.length+2,1)}>
                     <div className="atc-empty">
                       <div className="atc-empty-icon"><FileSearch size={22}/></div>
                       <p className="atc-empty-title">No records yet</p>
@@ -258,24 +364,36 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
                     </div>
                   </td></tr>
                 ) : filteredRows.length === 0 ? (
-                  <tr><td colSpan={columns.length+1} style={{padding:'32px 16px',textAlign:'center',fontSize:13,color:'rgba(255,255,255,0.3)'}}>
+                  <tr><td colSpan={columns.length+2} style={{padding:'32px 16px',textAlign:'center',fontSize:13,color:'rgba(255,255,255,0.3)'}}>
                     No results match &ldquo;{searchTerm}&rdquo;
                   </td></tr>
                 ) : (
                   filteredRows.map((row, idx)=>(
-                    <tr key={idx}>
+                    <tr
+                      key={idx}
+                      style={{ cursor:'pointer' }}
+                      onClick={() => { if (isVendorPage) openDetails(row); }}
+                    >
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={selectedIds.has(getRowId(row))}
+                          onChange={() => toggleRowSelection(row)}
+                          onClick={e => e.stopPropagation()}
+                        />
+                      </td>
                       {columns.map((col, ci)=>(
                         <td key={col}>
                           {ci === 0
                             ? <span className="atc-cell-primary">{row[col]===null||row[col]===''?'—':String(row[col])}</span>
-                            : <span className="atc-cell-val">{row[col]===null||row[col]===''?'—':String(row[col]).length>50?String(row[col]).substring(0,50)+'…':String(row[col])}</span>
+                            : <span className="atc-cell-val">{visibleValue(row[col])}</span>
                           }
                         </td>
                       ))}
                       <td>
                         <div className="atc-row-actions">
-                          <button className="atc-row-btn edit" title="Edit" onClick={()=>handleOpenEdit(row)}><Edit2 size={13}/></button>
-                          <button className="atc-row-btn del" title="Delete" onClick={()=>handleDelete(row.id)}><Trash2 size={13}/></button>
+                          <button className="atc-row-btn edit" title="Edit" onClick={(e)=>{ e.stopPropagation(); handleOpenEdit(row); }}><Edit2 size={13}/></button>
+                          <button className="atc-row-btn del" title="Delete" onClick={(e)=>{ e.stopPropagation(); handleDelete(row.id); }}><Trash2 size={13}/></button>
                         </div>
                       </td>
                     </tr>
@@ -351,6 +469,40 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
                   {actionLoading ? <span className="atc-modal-spinner"/> : null}
                   {modalMode==='add'?'Create Record':'Save Changes'}
                 </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* DETAILS MODAL (VENDORS) */}
+        {isDetailsOpen && detailRow && isVendorPage && (
+          <div className="atc-overlay" onClick={e => { if (e.target === e.currentTarget) setIsDetailsOpen(false); }}>
+            <div className="atc-modal" style={{ maxWidth: 860 }}>
+              <div className="atc-modal-header">
+                <span className="atc-modal-title">Vendor Details</span>
+                <button className="atc-modal-close" onClick={()=>setIsDetailsOpen(false)}><X size={14}/></button>
+              </div>
+              <div className="atc-modal-body">
+                <div style={{ display:'flex', gap:8, marginBottom:14, flexWrap:'wrap' }}>
+                  {(['basic','contact','business','meta'] as const).map(tab => (
+                    <button
+                      key={tab}
+                      className="atc-btn atc-btn-ghost"
+                      style={{
+                        height:30, padding:'0 10px', fontSize:12,
+                        borderColor: detailTab===tab ? 'rgba(99,57,255,0.6)' : undefined,
+                        color: detailTab===tab ? '#c4b5fd' : undefined,
+                        background: detailTab===tab ? 'rgba(99,57,255,0.12)' : undefined,
+                      }}
+                      onClick={() => setDetailTab(tab)}
+                    >
+                      {tab === 'basic' ? 'Basic' : tab === 'contact' ? 'Contact' : tab === 'business' ? 'Business' : 'Message'}
+                    </button>
+                  ))}
+                </div>
+                <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                  {vendorTabs?.[detailTab].map(renderDetailField)}
+                </div>
               </div>
             </div>
           </div>
