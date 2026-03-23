@@ -415,6 +415,38 @@ export default function AdminLeadsPage() {
         .icb{transition:background .12s;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif}
         .icb:hover{background:rgba(255,255,255,.1)!important}
         @keyframes spin{to{transform:rotate(360deg)}}
+        @media (max-width: 980px){
+          .al-header{padding:12px !important;align-items:flex-start !important;gap:10px !important;flex-direction:column !important}
+          .al-actions{width:100% !important;display:flex !important;flex-wrap:wrap !important}
+          .al-actions button{flex:1 1 calc(50% - 6px) !important;min-width:0 !important}
+          .al-stats{grid-template-columns:repeat(2,1fr) !important}
+          .al-stat{padding:12px !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06) !important}
+          .al-layout{grid-template-columns:1fr !important;height:auto !important;min-height:calc(100vh - 162px) !important}
+          .al-left{max-height:42vh !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06) !important}
+          .al-right{min-height:58vh !important}
+          .al-lead-head{padding:12px !important;flex-direction:column !important;align-items:flex-start !important}
+          .al-tabs{padding:0 12px !important;overflow-x:auto !important}
+          .al-tab-body{padding:12px !important}
+          .al-grid-2,.al-grid-3{grid-template-columns:1fr !important}
+          .al-meta-grid{grid-template-columns:1fr !important}
+          .al-note-input{flex-direction:column !important}
+          .al-note-input button{width:100% !important}
+          .al-invoice-top{padding:10px 12px !important;flex-direction:column !important;gap:8px !important}
+          .al-invoice-footer{padding:10px 12px !important;flex-direction:column !important;align-items:stretch !important}
+          .al-invoice-footer-actions{width:100% !important;display:grid !important;grid-template-columns:1fr 1fr !important;gap:6px !important}
+          .al-invoice-table-wrap{overflow-x:auto !important}
+          .al-modal{padding:14px !important}
+          .al-modal-card{padding:14px !important;max-width:100% !important;border-radius:12px !important}
+          .al-modal-actions{flex-direction:column !important}
+          .al-modal-actions button{width:100% !important}
+          .al-item-head,.al-item-row{grid-template-columns:minmax(180px,1fr) 90px 70px 100px 80px 34px !important;min-width:560px !important}
+          .al-item-wrap{overflow-x:auto !important}
+        }
+        @media (max-width: 640px){
+          .al-actions button{flex:1 1 100% !important}
+          .al-stats{grid-template-columns:1fr !important}
+          .al-invoice-footer-actions{grid-template-columns:1fr !important}
+        }
       `}</style>
 
       {/* Toast */}
@@ -427,12 +459,12 @@ export default function AdminLeadsPage() {
       )}
 
       {/* Header */}
-      <div style={{ padding:'18px 24px 14px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+      <div className="al-header" style={{ padding:'18px 24px 14px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <div>
           <div style={{ fontSize:11, fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#6366f1', marginBottom:3 }}>CRM</div>
           <h1 style={{ fontSize:22, fontWeight:700, color:'#f1f5f9', margin:0 }}>Leads</h1>
         </div>
-        <div style={{ display:'flex', gap:8 }}>
+        <div className="al-actions" style={{ display:'flex', gap:8 }}>
           <button onClick={() => void importFrom('contacts')} style={G} disabled={saving}><Download size={13}/> Import Contacts</button>
           <button onClick={() => void importFrom('vendors')}  style={G} disabled={saving}><Download size={13}/> Import Vendors</button>
           <button onClick={() => void loadLeads()} style={G} disabled={loading}><RefreshCw size={13} style={{ animation:loading?'spin 1s linear infinite':'none' }}/></button>
@@ -441,14 +473,14 @@ export default function AdminLeadsPage() {
       </div>
 
       {/* Stats */}
-      <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+      <div className="al-stats" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
         {[
           { label:'Total Leads', value:stats.total,    icon:<User size={13}/>,        color:'#818cf8' },
           { label:'Active',      value:stats.active,   icon:<Zap size={13}/>,         color:'#34d399' },
           { label:'Won',         value:stats.won,      icon:<CheckCircle size={13}/>, color:'#4ade80' },
           { label:'Pipeline',    value:fmt(stats.pipeline), icon:<TrendingUp size={13}/>, color:'#fbbf24' },
         ].map((s,i) => (
-          <div key={i} style={{ padding:'14px 20px', borderRight:i<3?'1px solid rgba(255,255,255,.06)':'none' }}>
+          <div key={i} className="al-stat" style={{ padding:'14px 20px', borderRight:i<3?'1px solid rgba(255,255,255,.06)':'none' }}>
             <div style={{ display:'flex', alignItems:'center', gap:6, color:s.color, marginBottom:5 }}>
               {s.icon}<span style={{ fontSize:11, fontWeight:600 }}>{s.label}</span>
             </div>
@@ -458,10 +490,10 @@ export default function AdminLeadsPage() {
       </div>
 
       {/* 2-Column layout */}
-      <div style={{ display:'grid', gridTemplateColumns:'310px 1fr', height:'calc(100vh - 162px)' }}>
+      <div className="al-layout" style={{ display:'grid', gridTemplateColumns:'310px 1fr', height:'calc(100vh - 162px)' }}>
 
         {/* LEFT – Lead list */}
-        <div style={{ borderRight:'1px solid rgba(255,255,255,.06)', display:'flex', flexDirection:'column', overflow:'hidden' }}>
+        <div className="al-left" style={{ borderRight:'1px solid rgba(255,255,255,.06)', display:'flex', flexDirection:'column', overflow:'hidden' }}>
           {/* Search + filter chips */}
           <div style={{ padding:'10px 12px 8px' }}>
             <div style={{ position:'relative', marginBottom:8 }}>
@@ -540,7 +572,7 @@ export default function AdminLeadsPage() {
         </div>
 
         {/* RIGHT – Detail panel */}
-        <div style={{ display:'flex', flexDirection:'column', overflow:'hidden' }}>
+        <div className="al-right" style={{ display:'flex', flexDirection:'column', overflow:'hidden' }}>
           {!selectedLead ? (
             <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', color:'#1e293b' }}>
               <User size={44} style={{ marginBottom:14, opacity:.4 }}/>
@@ -551,7 +583,7 @@ export default function AdminLeadsPage() {
             <div style={{ display:'flex', flexDirection:'column', height:'100%' }} className="fade">
 
               {/* Lead header */}
-              <div style={{ padding:'14px 20px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+              <div className="al-lead-head" style={{ padding:'14px 20px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
                 <div style={{ display:'flex', alignItems:'center', gap:12 }}>
                   <div style={{ width:42, height:42, borderRadius:11, background:sc?.bg, border:`1px solid ${sc?.dot}55`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:17, fontWeight:700, color:sc?.color }}>
                     {(selectedLead.name||'?')[0].toUpperCase()}
@@ -590,7 +622,7 @@ export default function AdminLeadsPage() {
               </div>
 
               {/* Tabs */}
-              <div style={{ display:'flex', borderBottom:'1px solid rgba(255,255,255,.06)', padding:'0 20px' }}>
+              <div className="al-tabs" style={{ display:'flex', borderBottom:'1px solid rgba(255,255,255,.06)', padding:'0 20px' }}>
                 {([
                   ['details', 'Details',                   <Edit2 size={12}/>],
                   ['notes',   `Notes (${activities.length})`, <StickyNote size={12}/>],
@@ -604,12 +636,12 @@ export default function AdminLeadsPage() {
               </div>
 
               {/* Tab body */}
-              <div style={{ flex:1, overflowY:'auto', padding:'18px 20px' }}>
+              <div className="al-tab-body" style={{ flex:1, overflowY:'auto', padding:'18px 20px' }}>
 
                 {/* DETAILS */}
                 {rightTab==='details' && (
                   <div style={{ display:'grid', gap:14, maxWidth:580 }} className="fade">
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                    <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                       <F label="Full Name" icon={<User size={11}/>}>
                         <input style={I} value={leadForm.name} onChange={e => setLeadForm(p => ({ ...p, name:e.target.value }))} placeholder="Full name"/>
                       </F>
@@ -617,7 +649,7 @@ export default function AdminLeadsPage() {
                         <input style={I} type="email" value={leadForm.email} onChange={e => setLeadForm(p => ({ ...p, email:e.target.value }))} placeholder="email@co.com"/>
                       </F>
                     </div>
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                    <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                       <F label="Phone" icon={<Phone size={11}/>}>
                         <input style={I} value={leadForm.phone} onChange={e => setLeadForm(p => ({ ...p, phone:e.target.value }))} placeholder="+91 98765 43210"/>
                       </F>
@@ -625,7 +657,7 @@ export default function AdminLeadsPage() {
                         <input style={I} value={leadForm.company} onChange={e => setLeadForm(p => ({ ...p, company:e.target.value }))} placeholder="Company name"/>
                       </F>
                     </div>
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
+                    <div className="al-grid-3" style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
                       <F label="Status">
                         <select style={I} value={leadForm.status} onChange={e => setLeadForm(p => ({ ...p, status:e.target.value }))}>
                           {Object.entries(STATUSES).map(([k,v]) => <option key={k} value={k}>{v.label}</option>)}
@@ -640,7 +672,7 @@ export default function AdminLeadsPage() {
                         <input style={I} type="number" value={leadForm.value_amount||''} onChange={e => setLeadForm(p => ({ ...p, value_amount:Number(e.target.value||0) }))} placeholder="0"/>
                       </F>
                     </div>
-                    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+                    <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                       <F label="Source">
                         <select style={I} value={leadForm.source} onChange={e => setLeadForm(p => ({ ...p, source:e.target.value }))}>
                           {SOURCES.map(s => <option key={s} value={s}>{s.replace(/_/g,' ')}</option>)}
@@ -657,7 +689,7 @@ export default function AdminLeadsPage() {
                     <button style={{ ...P, justifyContent:'center', width:'100%' }} className="pbtn" onClick={() => void saveLead()} disabled={saving}>
                       <Save size={13}/> {saving?'Saving…':'Save Changes'}
                     </button>
-                    <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
+                    <div className="al-meta-grid" style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:8 }}>
                       {[
                         { label:'Lead ID', val:`#${selectedLead.id}` },
                         { label:'Created',  val:new Date(selectedLead.created_at).toLocaleDateString('en-IN') },
@@ -675,7 +707,7 @@ export default function AdminLeadsPage() {
                 {/* NOTES */}
                 {rightTab==='notes' && (
                   <div className="fade">
-                    <div style={{ display:'flex', gap:8, marginBottom:6 }}>
+                    <div className="al-note-input" style={{ display:'flex', gap:8, marginBottom:6 }}>
                       <textarea style={{ ...I, flex:1, minHeight:70, paddingTop:10, resize:'none', lineHeight:1.6 }}
                         placeholder="Write a note, call log, or follow-up reminder… (Ctrl+Enter to save)"
                         value={noteInput} onChange={e => setNoteInput(e.target.value)}
@@ -743,7 +775,7 @@ export default function AdminLeadsPage() {
                           return (
                             <div key={inv.id} style={{ borderRadius:12, border:'1px solid rgba(255,255,255,.08)', overflow:'hidden', background:'rgba(255,255,255,.02)' }}>
                               {/* Invoice top */}
-                              <div style={{ padding:'13px 15px', display:'flex', justifyContent:'space-between', alignItems:'flex-start', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                              <div className="al-invoice-top" style={{ padding:'13px 15px', display:'flex', justifyContent:'space-between', alignItems:'flex-start', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
                                 <div>
                                   <div style={{ fontSize:14, fontWeight:700, color:'#f1f5f9', marginBottom:2 }}>{inv.invoice_number}</div>
                                   <div style={{ fontSize:11, color:'#64748b' }}>{inv.invoice_date}{inv.due_date?` · Due ${inv.due_date}`:''}</div>
@@ -755,7 +787,7 @@ export default function AdminLeadsPage() {
                               </div>
                               {/* Line items table */}
                               {lines.length>0 && (
-                                <div style={{ padding:'10px 15px', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                                <div className="al-invoice-table-wrap" style={{ padding:'10px 15px', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
                                   <table style={{ width:'100%', borderCollapse:'collapse', fontSize:12 }}>
                                     <thead>
                                       <tr>
@@ -783,12 +815,12 @@ export default function AdminLeadsPage() {
                                 </div>
                               )}
                               {/* Footer */}
-                              <div style={{ padding:'9px 15px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:8, flexWrap:'wrap' }}>
+                              <div className="al-invoice-footer" style={{ padding:'9px 15px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:8, flexWrap:'wrap' }}>
                                 {inv.sent_to_email
                                   ? <span style={{ fontSize:11, color:'#475569', display:'flex', alignItems:'center', gap:4 }}><Mail size={11}/> Sent to {inv.sent_to_email}</span>
                                   : <span style={{ fontSize:11, color:'#334155' }}>Not sent yet</span>
                                 }
-                                <div style={{ display:'flex', alignItems:'center', gap:6 }}>
+                                <div className="al-invoice-footer-actions" style={{ display:'flex', alignItems:'center', gap:6 }}>
                                   <button style={{ ...G, height:32, fontSize:12 }} onClick={() => printInvoice(inv)}><Printer size={11}/> Print</button>
                                   <button style={{ ...G, height:32, fontSize:12 }} onClick={() => downloadInvoice(inv)}><Download size={11}/> Download</button>
                                   {inv.status!=='sent' && inv.status!=='paid' && (
@@ -814,9 +846,9 @@ export default function AdminLeadsPage() {
 
       {/* MODAL – New Lead */}
       {showNewLead && (
-        <div className="ov" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
+        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
           onClick={e => e.target===e.currentTarget && setShowNewLead(false)}>
-          <div className="mod" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:500, maxHeight:'90vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
+          <div className="mod al-modal-card" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:500, maxHeight:'90vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:18 }}>
               <div>
                 <div style={{ fontSize:15, fontWeight:700, color:'#f1f5f9' }}>New Lead</div>
@@ -825,15 +857,15 @@ export default function AdminLeadsPage() {
               <button onClick={() => setShowNewLead(false)} className="icb" style={{ width:28, height:28, borderRadius:8, background:'rgba(255,255,255,.06)', color:'#64748b', padding:0 }}><X size={14}/></button>
             </div>
             <form onSubmit={createLead} style={{ display:'grid', gap:11 }}>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="Full Name *"><input style={I} placeholder="John Doe" value={newLeadForm.name} onChange={e => setNewLead(p => ({ ...p, name:e.target.value }))} required/></F>
                 <F label="Email *"><input style={I} type="email" placeholder="john@company.com" value={newLeadForm.email} onChange={e => setNewLead(p => ({ ...p, email:e.target.value }))} required/></F>
               </div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="Phone"><input style={I} placeholder="+91 98765 43210" value={newLeadForm.phone} onChange={e => setNewLead(p => ({ ...p, phone:e.target.value }))} /></F>
                 <F label="Company"><input style={I} placeholder="Company name" value={newLeadForm.company} onChange={e => setNewLead(p => ({ ...p, company:e.target.value }))} /></F>
               </div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
+              <div className="al-grid-3" style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
                 <F label="Status">
                   <select style={I} value={newLeadForm.status} onChange={e => setNewLead(p => ({ ...p, status:e.target.value }))}>
                     {Object.entries(STATUSES).map(([k,v]) => <option key={k} value={k}>{v.label}</option>)}
@@ -847,7 +879,7 @@ export default function AdminLeadsPage() {
                 <F label="Value (₹)"><input style={I} type="number" placeholder="0" value={newLeadForm.value_amount||''} onChange={e => setNewLead(p => ({ ...p, value_amount:Number(e.target.value||0) }))} /></F>
               </div>
               <F label="Notes"><textarea style={{ ...I, minHeight:68, paddingTop:10, resize:'vertical', lineHeight:1.6 }} placeholder="Initial notes…" value={newLeadForm.notes} onChange={e => setNewLead(p => ({ ...p, notes:e.target.value }))} /></F>
-              <div style={{ display:'flex', gap:8, paddingTop:4 }}>
+              <div className="al-modal-actions" style={{ display:'flex', gap:8, paddingTop:4 }}>
                 <button type="button" onClick={() => setShowNewLead(false)} style={{ ...G, flex:1, justifyContent:'center' }}>Cancel</button>
                 <button type="submit" style={{ ...P, flex:2, justifyContent:'center' }} className="pbtn" disabled={saving}>{saving?'Creating…':<><Plus size={13}/> Create Lead</>}</button>
               </div>
@@ -858,9 +890,9 @@ export default function AdminLeadsPage() {
 
       {/* MODAL – New Invoice */}
       {showNewInvoice && selectedLead && (
-        <div className="ov" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
+        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
           onClick={e => e.target===e.currentTarget && setShowNewInvoice(false)}>
-          <div className="mod" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:580, maxHeight:'92vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
+          <div className="mod al-modal-card" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:580, maxHeight:'92vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:18 }}>
               <div>
                 <div style={{ fontSize:15, fontWeight:700, color:'#f1f5f9' }}>Create Invoice</div>
@@ -871,7 +903,7 @@ export default function AdminLeadsPage() {
 
             <div style={{ display:'grid', gap:13 }}>
               {/* Meta row */}
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
+              <div className="al-grid-3" style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
                 <F label="Invoice No."><input style={I} placeholder="Auto-generated" value={invF.invoice_number} onChange={e => setInvF(p => ({ ...p, invoice_number:e.target.value }))}/></F>
                 <F label="Currency">
                   <select style={I} value={invF.currency} onChange={e => setInvF(p => ({ ...p, currency:e.target.value }))}>
@@ -880,7 +912,7 @@ export default function AdminLeadsPage() {
                 </F>
                 <F label="Tax (%)"><input style={I} type="number" value={invF.tax_percent} onChange={e => setInvF(p => ({ ...p, tax_percent:Number(e.target.value||0) }))}/></F>
               </div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="GST Mode">
                   <select style={I} value={invF.gst_mode} onChange={e => setInvF(p => ({ ...p, gst_mode:e.target.value as 'igst'|'cgst_sgst' }))}>
                     <option value="igst">IGST</option>
@@ -889,16 +921,16 @@ export default function AdminLeadsPage() {
                 </F>
                 <F label="Template In Use"><input style={I} value={invoiceTemplateId} readOnly /></F>
               </div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="Invoice Date"><input style={I} type="date" value={invF.invoice_date} onChange={e => setInvF(p => ({ ...p, invoice_date:e.target.value }))}/></F>
                 <F label="Due Date"><input style={I} type="date" value={invF.due_date} onChange={e => setInvF(p => ({ ...p, due_date:e.target.value }))}/></F>
               </div>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="Bill To Name"><input style={I} value={invF.bill_to_name} onChange={e => setInvF(p => ({ ...p, bill_to_name:e.target.value }))} placeholder={selectedLead.name} /></F>
                 <F label="PO Number"><input style={I} value={invF.po_number} onChange={e => setInvF(p => ({ ...p, po_number:e.target.value }))} placeholder="PO-001" /></F>
               </div>
               <F label="Bill To Address"><input style={I} value={invF.bill_to_address} onChange={e => setInvF(p => ({ ...p, bill_to_address:e.target.value }))} placeholder={selectedLead.company || 'Client billing address'} /></F>
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
+              <div className="al-grid-3" style={{ display:'grid', gridTemplateColumns:'1fr 1fr 1fr', gap:10 }}>
                 <F label="Client GSTIN"><input style={I} value={invF.bill_to_gstin} onChange={e => setInvF(p => ({ ...p, bill_to_gstin:e.target.value }))} placeholder="22AAAAA0000A1Z5" /></F>
                 <F label="Your GSTIN"><input style={I} value={invF.seller_gstin} onChange={e => setInvF(p => ({ ...p, seller_gstin:e.target.value }))} placeholder="Your GSTIN" /></F>
                 <F label="Place of Supply"><input style={I} value={invF.place_of_supply} onChange={e => setInvF(p => ({ ...p, place_of_supply:e.target.value }))} placeholder="Delhi" /></F>
@@ -907,12 +939,12 @@ export default function AdminLeadsPage() {
               {/* Line items */}
               <div>
                 <div style={{ fontSize:11, fontWeight:600, color:'#475569', letterSpacing:'.06em', textTransform:'uppercase', marginBottom:8 }}>Items</div>
-                <div style={{ border:'1px solid rgba(255,255,255,.08)', borderRadius:10, overflow:'hidden' }}>
-                  <div style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', background:'rgba(255,255,255,.04)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                <div className="al-item-wrap" style={{ border:'1px solid rgba(255,255,255,.08)', borderRadius:10, overflow:'hidden' }}>
+                  <div className="al-item-head" style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', background:'rgba(255,255,255,.04)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
                     {['Description','HSN/SAC','Qty','Rate (₹)','GST %',''].map((h,i) => <div key={i} style={{ fontSize:11, fontWeight:600, color:'#475569', textAlign:i>1?'right':'left' }}>{h}</div>)}
                   </div>
                   {invF.lines.map((line,li) => (
-                    <div key={li} style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', borderBottom:li<invF.lines.length-1?'1px solid rgba(255,255,255,.05)':'none', alignItems:'center', gap:4 }}>
+                    <div className="al-item-row" key={li} style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', borderBottom:li<invF.lines.length-1?'1px solid rgba(255,255,255,.05)':'none', alignItems:'center', gap:4 }}>
                       <input style={{ ...I, height:33, fontSize:13 }} placeholder="Item description" value={line.description} onChange={e => updateLine(li,'description',e.target.value)}/>
                       <input style={{ ...I, height:33, fontSize:13, marginLeft:6 }} placeholder="9983" value={line.hsn_sac || ''} onChange={e => updateLine(li,'hsn_sac',e.target.value)}/>
                       <input style={{ ...I, height:33, fontSize:13, textAlign:'right', marginLeft:6 }} type="number" min="1" value={line.qty} onChange={e => updateLine(li,'qty',Number(e.target.value||1))}/>
@@ -927,7 +959,7 @@ export default function AdminLeadsPage() {
                 <button onClick={addLine} style={{ ...G, marginTop:8, height:32, fontSize:12, padding:'0 10px' }}><Plus size={12}/> Add Item</button>
               </div>
 
-              <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+              <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
                 <F label="Discount"><input style={I} type="number" min="0" value={invF.discount_amount || 0} onChange={e => setInvF(p => ({ ...p, discount_amount:Number(e.target.value || 0) }))}/></F>
                 <F label="Shipping"><input style={I} type="number" min="0" value={invF.shipping_amount || 0} onChange={e => setInvF(p => ({ ...p, shipping_amount:Number(e.target.value || 0) }))}/></F>
               </div>
@@ -943,7 +975,7 @@ export default function AdminLeadsPage() {
                 <div style={{ display:'flex', justifyContent:'space-between', fontSize:16, fontWeight:700, color:'#fbbf24' }}><span>Total</span><span>{invF.currency} {invTotal.toLocaleString('en-IN',{minimumFractionDigits:2})}</span></div>
               </div>
 
-              <div style={{ display:'flex', gap:8 }}>
+              <div className="al-modal-actions" style={{ display:'flex', gap:8 }}>
                 <button onClick={() => setShowNewInvoice(false)} style={{ ...G, flex:1, justifyContent:'center' }}>Cancel</button>
                 <button onClick={() => void createInvoice()} style={{ ...P, flex:2, justifyContent:'center' }} className="pbtn" disabled={saving}>
                   {saving?'Creating…':<><FileText size={13}/> Create Invoice</>}
