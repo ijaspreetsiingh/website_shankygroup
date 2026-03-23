@@ -60,7 +60,7 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
     try {
       const res = await fetch(endpoint, { method: modalMode === 'add' ? 'POST' : 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
       const data = await res.json();
-      if (!res.ok || !data.success) throw new Error(data.message || 'Failed to save record.');
+      if (!res.ok || !(data.success ?? data.ok)) throw new Error(data.message || 'Failed to save record.');
       setSuccessMsg(`Record successfully ${modalMode === 'add' ? 'created' : 'updated'}!`);
       setTimeout(() => { setIsModalOpen(false); load(); }, 1000);
     } catch (err) { setError(err instanceof Error ? err.message : 'Action failed'); }
@@ -73,7 +73,7 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
     try {
       const res = await fetch(endpoint, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id }) });
       const data = await res.json();
-      if (!res.ok || !data.success) throw new Error(data.message || 'Failed to delete record.');
+      if (!res.ok || !(data.success ?? data.ok)) throw new Error(data.message || 'Failed to delete record.');
       await load();
     } catch (err) { setError(err instanceof Error ? err.message : 'Action failed'); }
     finally { setActionLoading(false); }
@@ -114,7 +114,7 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
           body: JSON.stringify({ id: row.id }),
         });
         const data = await res.json();
-        if (!res.ok || !data.success) throw new Error(data.message || `Failed to delete record ${id}.`);
+        if (!res.ok || !(data.success ?? data.ok)) throw new Error(data.message || `Failed to delete record ${id}.`);
       }
       setSelectedIds(new Set());
       await load();
@@ -127,6 +127,8 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
 
   const isTextarea = (col: string) => ['message','description','content','requirements'].includes(col);
   const isVendorPage = endpoint.includes('/vendors');
+  const isCareerPage = endpoint.includes('/careers');
+  const isJobsPage = endpoint.includes('/jobs');
   const visibleValue = (val: Row[string]) => {
     const str = val===null||val==='' ? '—' : String(val);
     if (showFullData) return str;
@@ -142,6 +144,28 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
     setDetailRow(row);
     setDetailTab('basic');
     setIsDetailsOpen(true);
+  };
+  const renderCellValue = (col: string, val: Row[string], isPrimary: boolean) => {
+    if (isCareerPage && col === 'resume_path') {
+      const raw = val===null || val==='' ? '' : String(val);
+      if (!raw) return <span className="atc-cell-val">—</span>;
+      const href = raw.startsWith('http://') || raw.startsWith('https://') || raw.startsWith('/') ? raw : `/${raw}`;
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          className="atc-btn atc-btn-ghost"
+          style={{ height:28, padding:'0 10px', fontSize:11, color:'#93c5fd', borderColor:'rgba(59,130,246,0.35)' }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          Download Resume
+        </a>
+      );
+    }
+    if (isPrimary) return <span className="atc-cell-primary">{val===null||val===''?'—':String(val)}</span>;
+    return <span className="atc-cell-val">{visibleValue(val)}</span>;
   };
   const renderDetailField = (key: string) => {
     if (!detailRow || !(key in detailRow)) return null;
@@ -384,10 +408,7 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
                       </td>
                       {columns.map((col, ci)=>(
                         <td key={col}>
-                          {ci === 0
-                            ? <span className="atc-cell-primary">{row[col]===null||row[col]===''?'—':String(row[col])}</span>
-                            : <span className="atc-cell-val">{visibleValue(row[col])}</span>
-                          }
+                          {renderCellValue(col, row[col], ci === 0)}
                         </td>
                       ))}
                       <td>
@@ -446,6 +467,16 @@ export default function AdminTableClient({ title, endpoint }: { title: string; e
                             value={String(formData[col]||'')}
                             onChange={e=>setFormData({...formData,[col]:e.target.value})}
                           />
+                        ) : (isJobsPage && col === 'status') ? (
+                          <select
+                            className="atc-input"
+                            value={String(formData[col] || 'draft')}
+                            onChange={e=>setFormData({...formData,[col]:e.target.value})}
+                          >
+                            <option value="draft">draft</option>
+                            <option value="published">published</option>
+                            <option value="closed">closed</option>
+                          </select>
                         ) : (
                           <input
                             className="atc-input"
