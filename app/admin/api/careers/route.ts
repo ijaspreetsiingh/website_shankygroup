@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { safeRows, handlePost, handlePut, handleDelete } from '../_utils';
-import { execute } from '@/app/lib/db';
+import { execute, query } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
 
@@ -14,6 +14,22 @@ type CareerRow = {
   resume_path: string | null;
   created_at: string | null;
 };
+
+type CountRow = { total: number };
+
+async function addColumnIfMissing(columnName: string, definitionSql: string) {
+  const rows = await query<CountRow[]>(
+    `SELECT COUNT(*) AS total
+     FROM INFORMATION_SCHEMA.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = 'career_applications'
+       AND COLUMN_NAME = ?`,
+    [columnName]
+  );
+  if (!rows?.[0]?.total) {
+    await execute(`ALTER TABLE career_applications ADD COLUMN ${definitionSql}`);
+  }
+}
 
 async function ensureCareersSchema() {
   await execute(
@@ -32,9 +48,9 @@ async function ensureCareersSchema() {
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )`
   );
-  await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_name VARCHAR(255) DEFAULT NULL`);
-  await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_mime VARCHAR(120) DEFAULT NULL`);
-  await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_blob LONGBLOB`);
+  await addColumnIfMissing('resume_name', 'resume_name VARCHAR(255) DEFAULT NULL');
+  await addColumnIfMissing('resume_mime', 'resume_mime VARCHAR(120) DEFAULT NULL');
+  await addColumnIfMissing('resume_blob', 'resume_blob LONGBLOB');
 }
 
 export async function GET() {

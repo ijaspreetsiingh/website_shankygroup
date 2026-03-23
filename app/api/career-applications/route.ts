@@ -1,7 +1,43 @@
 import { NextResponse } from 'next/server';
-import { execute } from '@/app/lib/db';
+import { execute, query } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
+
+type CountRow = { total: number };
+
+async function addColumnIfMissing(columnName: string, definitionSql: string) {
+  const rows = await query<CountRow[]>(
+    `SELECT COUNT(*) AS total
+     FROM INFORMATION_SCHEMA.COLUMNS
+     WHERE TABLE_SCHEMA = DATABASE()
+       AND TABLE_NAME = 'career_applications'
+       AND COLUMN_NAME = ?`,
+    [columnName]
+  );
+  if (!rows?.[0]?.total) {
+    await execute(`ALTER TABLE career_applications ADD COLUMN ${definitionSql}`);
+  }
+}
+
+async function ensureCareersSchema() {
+  await execute(
+    `CREATE TABLE IF NOT EXISTS career_applications (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL,
+      phone VARCHAR(100) DEFAULT NULL,
+      position VARCHAR(255) NOT NULL,
+      experience VARCHAR(100) DEFAULT NULL,
+      message TEXT,
+      resume_path VARCHAR(500) DEFAULT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`
+  );
+
+  await addColumnIfMissing('resume_name', 'resume_name VARCHAR(255) DEFAULT NULL');
+  await addColumnIfMissing('resume_mime', 'resume_mime VARCHAR(120) DEFAULT NULL');
+  await addColumnIfMissing('resume_blob', 'resume_blob LONGBLOB');
+}
 
 export async function POST(request: Request) {
   try {
@@ -35,25 +71,7 @@ export async function POST(request: Request) {
       resumeMime = resume.type || 'application/octet-stream';
     }
 
-    await execute(
-      `CREATE TABLE IF NOT EXISTS career_applications (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(100) DEFAULT NULL,
-        position VARCHAR(255) NOT NULL,
-        experience VARCHAR(100) DEFAULT NULL,
-        message TEXT,
-        resume_path VARCHAR(500) DEFAULT NULL,
-        resume_name VARCHAR(255) DEFAULT NULL,
-        resume_mime VARCHAR(120) DEFAULT NULL,
-        resume_blob LONGBLOB,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )`
-    );
-    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_name VARCHAR(255) DEFAULT NULL`);
-    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_mime VARCHAR(120) DEFAULT NULL`);
-    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_blob LONGBLOB`);
+    await ensureCareersSchema();
 
     await execute(
       `INSERT INTO career_applications (name, email, phone, position, experience, message, resume_path, resume_name, resume_mime, resume_blob)
