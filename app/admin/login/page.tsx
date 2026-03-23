@@ -6,9 +6,43 @@ import { Eye, EyeOff, Lock, Mail, ArrowRight, Sparkles } from 'lucide-react';
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [accessPin, setAccessPin] = useState('');
+  const [isPinVerified, setIsPinVerified] = useState(false);
+  const [pinAttempts, setPinAttempts] = useState(0);
+  const [isPinBlocked, setIsPinBlocked] = useState(false);
   const [showPwd, setShowPwd] = useState(false);
   const [error, setError] = useState('');
+  const [pinError, setPinError] = useState('');
   const [loading, setLoading] = useState(false);
+  const ACCESS_PIN = '12345678.';
+
+  const handlePinSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (isPinBlocked) {
+      setPinError('ID blocked after 3 invalid PIN attempts.');
+      return;
+    }
+    if (!accessPin) {
+      setPinError('Please enter access PIN');
+      return;
+    }
+    if (accessPin !== ACCESS_PIN) {
+      const nextAttempts = pinAttempts + 1;
+      setPinAttempts(nextAttempts);
+      if (nextAttempts >= 3) {
+        setIsPinBlocked(true);
+        setPinError('ID blocked after 3 invalid PIN attempts.');
+      } else {
+        setPinError(`Invalid access PIN. ${3 - nextAttempts} attempt(s) left.`);
+      }
+      return;
+    }
+    setPinAttempts(0);
+    setIsPinBlocked(false);
+    setPinError('');
+    setError('');
+    setIsPinVerified(true);
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -561,63 +595,111 @@ export default function AdminLoginPage() {
 
         {/* RIGHT PANEL */}
         <div className="right-panel">
-          <p className="form-eyebrow">Admin access</p>
-          <h2 className="form-title">Welcome back</h2>
-          <p className="form-sub">Enter your credentials to continue.</p>
+          {!isPinVerified ? (
+            <>
+              <p className="form-eyebrow">Admin access</p>
+              <h2 className="form-title">Security Check</h2>
+              <p className="form-sub">Enter access PIN to continue.</p>
 
-          <form onSubmit={handleLogin}>
-            <div className="field-group">
-
-              <div className="field-wrap">
-                <label className="field-label">Email Address</label>
-                <div className="input-shell">
-                  <span className="input-icon"><Mail size={16} /></span>
-                  <input
-                    type="email"
-                    className="field-input"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="admin@example.com"
-                    required
-                  />
+              <form onSubmit={handlePinSubmit}>
+                <div className="field-group">
+                  <div className="field-wrap">
+                    <label className="field-label">Access PIN</label>
+                    <div className="input-shell">
+                      <span className="input-icon"><Lock size={16} /></span>
+                      <input
+                        type={showPwd ? 'text' : 'password'}
+                        className="field-input"
+                        value={accessPin}
+                        onChange={(e) => {
+                          setAccessPin(e.target.value);
+                          if (!isPinBlocked && pinError) setPinError('');
+                        }}
+                        placeholder="Enter PIN"
+                        required
+                        disabled={isPinBlocked}
+                        style={{ paddingRight: '46px' }}
+                      />
+                      <button type="button" className="pwd-toggle" onClick={() => setShowPwd(!showPwd)}>
+                        {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              <div className="field-wrap">
-                <label className="field-label">Password</label>
-                <div className="input-shell">
-                  <span className="input-icon"><Lock size={16} /></span>
-                  <input
-                    type={showPwd ? 'text' : 'password'}
-                    className="field-input"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="••••••••••"
-                    required
-                    style={{ paddingRight: '46px' }}
-                  />
-                  <button type="button" className="pwd-toggle" onClick={() => setShowPwd(!showPwd)}>
-                    {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
-                  </button>
+                {pinError && (
+                  <div className="error-box">
+                    <div className="error-dot" />
+                    <span className="error-text">{pinError}</span>
+                  </div>
+                )}
+
+                <button type="submit" className="submit-btn" disabled={isPinBlocked}>
+                  {isPinBlocked ? 'Blocked' : <>Continue <ArrowRight size={16} /></>}
+                </button>
+              </form>
+            </>
+          ) : (
+            <>
+              <p className="form-eyebrow">Admin access</p>
+              <h2 className="form-title">Welcome back</h2>
+              <p className="form-sub">Enter your credentials to continue.</p>
+
+              <form onSubmit={handleLogin}>
+                <div className="field-group">
+
+                  <div className="field-wrap">
+                    <label className="field-label">Email Address</label>
+                    <div className="input-shell">
+                      <span className="input-icon"><Mail size={16} /></span>
+                      <input
+                        type="email"
+                        className="field-input"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="admin@example.com"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="field-wrap">
+                    <label className="field-label">Password</label>
+                    <div className="input-shell">
+                      <span className="input-icon"><Lock size={16} /></span>
+                      <input
+                        type={showPwd ? 'text' : 'password'}
+                        className="field-input"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        placeholder="••••••••••"
+                        required
+                        style={{ paddingRight: '46px' }}
+                      />
+                      <button type="button" className="pwd-toggle" onClick={() => setShowPwd(!showPwd)}>
+                        {showPwd ? <EyeOff size={16} /> : <Eye size={16} />}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
 
-            {error && (
-              <div className="error-box">
-                <div className="error-dot" />
-                <span className="error-text">{error}</span>
-              </div>
-            )}
+                {error && (
+                  <div className="error-box">
+                    <div className="error-dot" />
+                    <span className="error-text">{error}</span>
+                  </div>
+                )}
 
-            <button type="submit" className="submit-btn" disabled={loading}>
-              {loading ? (
-                <><div className="spinner" /> Signing in...</>
-              ) : (
-                <>Sign In <ArrowRight size={16} /></>
-              )}
-            </button>
-          </form>
+                <button type="submit" className="submit-btn" disabled={loading}>
+                  {loading ? (
+                    <><div className="spinner" /> Signing in...</>
+                  ) : (
+                    <>Sign In <ArrowRight size={16} /></>
+                  )}
+                </button>
+              </form>
+            </>
+          )}
 
 
           <p className="form-footer">
