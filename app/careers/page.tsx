@@ -30,7 +30,7 @@ const CareersPage = () => {
     resume: null as File | null
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
   // Auto-slide data
   const slides = [
@@ -106,14 +106,23 @@ const CareersPage = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const maxSizeBytes = 5 * 1024 * 1024;
+      if (file.size > maxSizeBytes) {
+        setSubmitStatus({ type: 'error', message: 'Resume file size must be 5MB or less.' });
+        e.target.value = '';
+        return;
+      }
       setFormData(prev => ({ ...prev, resume: file }));
+      if (submitStatus?.type === 'error') {
+        setSubmitStatus(null);
+      }
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('');
+    setSubmitStatus(null);
     try {
       const body = new FormData();
       body.append('name', formData.name);
@@ -126,7 +135,7 @@ const CareersPage = () => {
       const res = await fetch('/api/career-applications', { method: 'POST', body });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
-        setSubmitStatus('Thank you for your application! We will get back to you soon.');
+        setSubmitStatus({ type: 'success', message: 'Thank you for your application! We will get back to you soon.' });
         setFormData({
           name: '',
           email: '',
@@ -137,10 +146,10 @@ const CareersPage = () => {
           resume: null
         });
       } else {
-        setSubmitStatus(data?.message || 'Something went wrong. Please try again.');
+        setSubmitStatus({ type: 'error', message: data?.message || 'Something went wrong. Please try again.' });
       }
     } catch {
-      setSubmitStatus('Network error. Please try again.');
+      setSubmitStatus({ type: 'error', message: 'Network error. Please try again.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -412,7 +421,10 @@ const CareersPage = () => {
                     <div className="pt-3 sm:pt-2 border-t border-[var(--card-border)] mt-auto">
                       <button
                         type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, position: job.title }))}
+                        onClick={() => {
+                          setFormData(prev => ({ ...prev, position: job.title }));
+                          document.getElementById('apply-now')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 rounded-xl bg-[#e63a27] text-white text-sm font-semibold hover:bg-[#c93222] transition-all duration-200 shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] min-h-[44px] touch-manipulation"
                       >
                         Apply
@@ -480,8 +492,14 @@ const CareersPage = () => {
             
             <div className="bg-[var(--card-bg)] rounded-2xl p-5 sm:p-6 md:p-8 border border-[var(--card-border)]">
               {submitStatus && (
-                <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-sm sm:text-base">
-                  {submitStatus}
+                <div
+                  className={`mb-4 sm:mb-6 p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
+                    submitStatus.type === 'success'
+                      ? 'bg-green-50 border border-green-200 text-green-800'
+                      : 'bg-red-50 border border-red-200 text-red-800'
+                  }`}
+                >
+                  {submitStatus.message}
                 </div>
               )}
               

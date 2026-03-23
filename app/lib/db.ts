@@ -30,7 +30,7 @@ function getPool(): Pool {
 
 export async function query<T = any>(
   sql: string,
-  params: Array<string | number | boolean | null> = []
+  params: Array<string | number | boolean | null | Buffer> = []
 ): Promise<T> {
   const [rows] = await getPool().execute(sql, params);
   return rows as T;
@@ -38,7 +38,7 @@ export async function query<T = any>(
 
 export async function execute(
   sql: string,
-  params: Array<string | number | boolean | null> = []
+  params: Array<string | number | boolean | null | Buffer> = []
 ) {
   return getPool().execute(sql, params);
 }

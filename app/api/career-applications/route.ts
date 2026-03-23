@@ -1,6 +1,4 @@
 import { NextResponse } from 'next/server';
-import path from 'path';
-import { mkdir, writeFile } from 'fs/promises';
 import { execute } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
@@ -20,6 +18,9 @@ export async function POST(request: Request) {
     }
 
     let resumePath: string | null = null;
+    let resumeName: string | null = null;
+    let resumeMime: string | null = null;
+    let resumeBlob: Buffer | null = null;
     const resume = formData.get('resume');
     if (resume instanceof File && resume.size > 0) {
       const ext = (resume.name.split('.').pop() || '').toLowerCase();
@@ -27,14 +28,11 @@ export async function POST(request: Request) {
       if (!allowed.has(ext)) {
         return NextResponse.json({ status: 'error', message: 'Resume: PDF, DOC, DOCX or image only' }, { status: 400 });
       }
-      const uploadDir = path.join(process.cwd(), 'public', 'uploads', 'career-resumes');
-      await mkdir(uploadDir, { recursive: true });
-      const safeName = resume.name.replace(/[^a-zA-Z0-9.-]/g, '_').slice(-60) || `resume.${ext || 'pdf'}`;
-      const fileName = `${Date.now()}_${safeName}`;
-      const absFilePath = path.join(uploadDir, fileName);
+      const safeName = resume.name.replace(/[^a-zA-Z0-9._-]/g, '_').slice(-120) || `resume.${ext || 'pdf'}`;
       const arrayBuffer = await resume.arrayBuffer();
-      await writeFile(absFilePath, Buffer.from(arrayBuffer));
-      resumePath = `/uploads/career-resumes/${fileName}`;
+      resumeBlob = Buffer.from(arrayBuffer);
+      resumeName = safeName;
+      resumeMime = resume.type || 'application/octet-stream';
     }
 
     await execute(
@@ -47,14 +45,20 @@ export async function POST(request: Request) {
         experience VARCHAR(100) DEFAULT NULL,
         message TEXT,
         resume_path VARCHAR(500) DEFAULT NULL,
+        resume_name VARCHAR(255) DEFAULT NULL,
+        resume_mime VARCHAR(120) DEFAULT NULL,
+        resume_blob LONGBLOB,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`
     );
+    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_name VARCHAR(255) DEFAULT NULL`);
+    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_mime VARCHAR(120) DEFAULT NULL`);
+    await execute(`ALTER TABLE career_applications ADD COLUMN IF NOT EXISTS resume_blob LONGBLOB`);
 
     await execute(
-      `INSERT INTO career_applications (name, email, phone, position, experience, message, resume_path)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [name, email, phone || null, position, experience || null, message || null, resumePath]
+      `INSERT INTO career_applications (name, email, phone, position, experience, message, resume_path, resume_name, resume_mime, resume_blob)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [name, email, phone || null, position, experience || null, message || null, resumePath, resumeName, resumeMime, resumeBlob]
     );
 
     return NextResponse.json({ status: 'success', message: 'Application submitted successfully' });
