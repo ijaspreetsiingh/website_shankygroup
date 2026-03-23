@@ -1,15 +1,22 @@
 import { NextResponse } from 'next/server';
 
+type RssBlog = {
+  title: string;
+  excerpt?: string;
+  content: string;
+  slug: string;
+  author_name?: string;
+  published_at?: string;
+  created_at?: string;
+  featured_image?: string;
+  category?: string;
+  tags?: string;
+};
+
 export async function GET() {
   try {
-    // Fetch blogs from PHP API
-    const response = await fetch('http://localhost/contact_api.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ action: 'get_blogs' })
-    });
+    const origin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const response = await fetch(`${origin}/api/blogs`, { cache: 'no-store' });
 
     if (!response.ok) {
       return NextResponse.json(
@@ -39,7 +46,7 @@ export async function GET() {
   }
 }
 
-function generateRSSXML(blogs: any[]) {
+function generateRSSXML(blogs: RssBlog[]) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://shankygroup.com';
   const currentDate = new Date().toUTCString();
 

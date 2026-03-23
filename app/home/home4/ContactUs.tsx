@@ -93,9 +93,7 @@ const ContactUs = () => {
     console.log('Data to send:', dataToSend);
     
     try {
-      // Replace with your actual PHP server URL
-      // If using XAMPP/WAMP, place contact_api.php in htdocs and use http://localhost/contact_api.php
-      const response = await fetch('http://localhost/contact_api.php', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -123,7 +121,9 @@ const ContactUs = () => {
     setIsSubmitted(true);
     
     // Play success sound
-    const context = new (window.AudioContext || (window as any).webkitAudioContext)();
+    const AudioContextClass = window.AudioContext || (window as Window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const context = new AudioContextClass();
     const oscillator = context.createOscillator();
     const gainNode = context.createGain();
     
@@ -310,7 +310,7 @@ const ContactUs = () => {
               </svg>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Thank You!</h3>
-            <p className="text-sm sm:text-base text-green-100">Your message has been sent successfully. We'll get back to you soon.</p>
+            <p className="text-sm sm:text-base text-green-100">Your message has been sent successfully. We&apos;ll get back to you soon.</p>
           </div>
         </div>
       </div>

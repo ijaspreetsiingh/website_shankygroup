@@ -131,7 +131,7 @@ const VisitorTracker = () => {
         console.log('Prepared visitor data:', visitorData);
 
         // Send visitor data to backend
-        const backendResponse = await fetch('http://localhost/contact_api.php', {
+        const backendResponse = await fetch('/api/visitors', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -187,7 +187,7 @@ const VisitorTracker = () => {
             visitTime: new Date().toISOString()
           };
 
-          await fetch('http://localhost/contact_api.php', {
+          await fetch('/api/visitors', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

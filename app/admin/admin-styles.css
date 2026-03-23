@@ -1,0 +1,45 @@
+/* Admin Dashboard Specific Styles */
+
+/* Admin Section Custom Scrollbar */
+.admin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #3b82f6, #a855f7);
+  border-radius: 3px;
+  transition: background 0.3s ease;
+}
+
+.admin-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #2563eb, #9333ea);
+}
+
+.admin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3b82f6 #1f2937;
+}
+
+/* Admin specific animations */
+@keyframes adminGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes adminFloat {
+  0%, 100% { transform: translate(0, 0); opacity: 0.4; }
+  50% { transform: translate(6px, -8px); opacity: 0.8; }
+}
+
+.admin-glow {
+  animation: adminGlow 2s ease-in-out infinite;
+}
+
+.admin-float {
+  animation: adminFloat 3s ease-in-out infinite;
+}
