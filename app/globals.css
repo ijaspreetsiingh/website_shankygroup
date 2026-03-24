@@ -653,7 +653,9 @@ html {
 .footer-cta-bubble-4 { animation: float-bubble-4 16s ease-in-out infinite; }
 .footer-cta-bubble-5 { animation: float-bubble-5 11s ease-in-out infinite; }
  
-/* Force default zoom 80% — must win on Vercel/production (last rule) */
-html {
-  zoom: 1 !important;
+/* Keep desktop visual scale consistent across environments */
+@media (min-width: 1024px) {
+  html {
+    zoom: 1 !important;
+  }
 }
