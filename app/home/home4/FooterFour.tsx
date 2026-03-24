@@ -280,18 +280,30 @@ const GraphyFooter = () => {
         style={{ width: '100vw', marginRight: 'calc(50% - 50vw)', marginLeft: 'calc(50% - 50vw)' }}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-500/10 rounded-full blur-[8px]" style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }} />
-          <div className="absolute bottom-10 right-1/4 w-24 h-24 bg-green-500/10 rounded-full blur-[10px]" style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }} />
+          <div
+            className={`absolute top-10 left-10 w-20 h-20 rounded-full blur-[8px] ${
+              isDark ? 'bg-white/5' : 'bg-black/3'
+            }`}
+            style={{ animation: isVisible ? 'bounce 3s infinite' : 'none' }}
+          />
+          <div
+            className={`absolute bottom-10 right-1/4 w-24 h-24 rounded-full blur-[10px] ${
+              isDark ? 'bg-white/6' : 'bg-black/4'
+            }`}
+            style={{ animation: isVisible ? 'bounce 4s infinite 1s' : 'none' }}
+          />
         </div>
         <div className="relative z-10 w-full flex justify-center min-w-0">
           <span
             className={`section-heading font-bold select-none text-center ${
-              isDark ? 'text-gray-700/30' : 'text-[#e8e8ed]/50'
+              isDark ? 'text-white/16' : 'text-black/10'
             }`}
             style={{
               opacity: isVisible ? 1 : 0,
               transition: 'opacity 0.5s ease',
               transitionDelay: '300ms',
+              textShadow: 'none',
+              filter: isDark ? 'none' : 'grayscale(100%)',
             }}
           >
             {/* Mobile: big 2-line watermark, fills width better */}
