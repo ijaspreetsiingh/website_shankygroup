@@ -49,27 +49,27 @@ const HeroHomeFour = () => {
 
   const heroSlides = [
     {
-      backgroundImage: "/images/agro.png",
+      backgroundImage: "/images/agro.webp",
       sector: t('vms_hub')
     },
     {
-      backgroundImage: "/images/metal.png",
+      backgroundImage: "/images/metal.webp",
       sector: t('shanky_metals')
     },
     {
-      backgroundImage: "/images/contruction.png",
+      backgroundImage: "/images/contruction.webp",
       sector: t('shanky_buildtech')
     },
     {
-      backgroundImage: "/images/solar.png",
+      backgroundImage: "/images/solar.webp",
       sector: t('shanky_smart_tech')
     },
     {
-      backgroundImage: "/images/traning1.png",
+      backgroundImage: "/images/traning1.webp",
       sector: t('shanky_financial_services')
     },
     {
-      backgroundImage: "/images/traning.png",
+      backgroundImage: "/images/traning.webp",
       sector: t('shanky_corporate_training')
     }
   ];
