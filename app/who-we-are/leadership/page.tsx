@@ -242,7 +242,7 @@ const LeadershipPage = () => {
         style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
       >
         <section ref={heroRef} className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
-          <div className="relative w-full h-[58vh] min-h-[260px] sm:min-h-[300px] sm:h-[65vh] md:h-[72vh] lg:h-[75vh] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
+          <div className="about-hero-card relative w-full h-[58vh] min-h-[260px] sm:min-h-[300px] sm:h-[65vh] md:h-[72vh] lg:h-[75vh] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
             <Image
               src="/images/aboutus2.png"
               alt="Leadership - Shanky Group"
@@ -254,20 +254,20 @@ const LeadershipPage = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/30 to-transparent z-20 pointer-events-none" />
             <div className="absolute inset-0 flex flex-col z-30">
-              <div className="flex-1 flex items-center px-3 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-16">
+              <div className="about-hero-content flex-1 flex items-center px-3 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-8 md:py-10 lg:py-16">
                 <div className="w-full max-w-2xl lg:max-w-3xl text-left">
-                  <h1 className="section-heading text-[28px] min-[380px]:text-[32px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-3 sm:mb-4 lg:mb-5">
+                  <h1 className="about-hero-title section-heading text-[28px] min-[380px]:text-[32px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] mb-3 sm:mb-4 lg:mb-5">
                     <span className="text-[#e63a27]">LEADERSHIP</span>
                     <br />
                     <span className="text-neutral-800">Vision. Experience. Impact.</span>
                   </h1>
-                  <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-xl text-neutral-600 leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10">
+                  <p className="about-hero-desc text-sm sm:text-base md:text-lg lg:text-xl max-w-xl text-neutral-600 leading-relaxed mb-5 sm:mb-6 md:mb-8 lg:mb-10">
                     The strength of Shanky Group lies in its accomplished leadership team, whose collective expertise and strategic foresight shape our growth.
                   </p>
                   <div className="flex flex-wrap gap-2 sm:gap-3">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-lg sm:rounded-xl transition-all text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                      className="about-hero-cta inline-flex items-center gap-1.5 sm:gap-2 px-4 py-2.5 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-lg sm:rounded-xl transition-all text-xs sm:text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02]"
                     >
                       Get in Touch
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>

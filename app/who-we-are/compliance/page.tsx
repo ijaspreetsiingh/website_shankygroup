@@ -58,7 +58,7 @@ export default function CompliancePage() {
     >
       {/* Hero */}
       <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
-        <div className="relative min-h-[60vh] sm:h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
+        <div className="about-hero-card relative min-h-[60vh] sm:h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
           <Image
             src={mission2Image}
             alt="Compliance - Policy, Regulations, Transparency, Standards, Governance - Shanky Group"
@@ -69,23 +69,23 @@ export default function CompliancePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-20 pointer-events-none" />
           <div className="absolute inset-0 flex flex-col z-30">
-            <div className="flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16">
+            <div className="about-hero-content flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16">
               <div className="w-full max-w-2xl lg:max-w-3xl text-left">
                 <span className="inline-block px-3 py-1.5 sm:px-4 sm:py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-[10px] sm:text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-3 sm:mb-5 lg:mb-6">
                   Compliance & Governance
                 </span>
-                <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-3 sm:mb-4 lg:mb-5">
+                <h1 className="about-hero-title section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-3 sm:mb-4 lg:mb-5">
                   <span className="text-[#e63a27]">COMPLIANCE</span>
                   <br />
                   <span className="text-white/95">That Builds Trust</span>
                 </h1>
-                <p className="text-sm sm:text-base md:text-xl max-w-xl text-white/90 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
+                <p className="about-hero-desc text-sm sm:text-base md:text-xl max-w-xl text-white/90 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
                   Upholding the highest standards of regulatory compliance, ethics, and corporate governance across the Shanky Group.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[44px] px-5 py-3 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02] touch-manipulation"
+                    className="about-hero-cta inline-flex items-center justify-center gap-2 w-full sm:w-auto min-h-[44px] px-5 py-3 sm:px-6 sm:py-3.5 lg:px-8 lg:py-4 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg hover:shadow-xl hover:scale-[1.02] touch-manipulation"
                   >
                     Contact Compliance
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -93,14 +93,7 @@ export default function CompliancePage() {
                 </div>
               </div>
             </div>
-            <div className="shrink-0 px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
-              <nav className="flex items-center text-[10px] sm:text-xs md:text-sm text-white/90 flex-wrap gap-x-1.5 gap-y-1">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span className="opacity-70">/</span>
-                <Link href="/who-we-are/about-us" className="hover:text-white transition-colors">Who We Are</Link>
-                <span className="opacity-70">/</span>
-                <span className="text-white font-medium">Compliance</span>
-              </nav>
+            <div className="absolute bottom-0 left-0 right-0 z-40 px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
               {!isDark && (
                 <div className="mt-2 sm:mt-3">
                   <WhoWeAreNav />

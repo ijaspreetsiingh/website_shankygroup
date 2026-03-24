@@ -656,6 +656,35 @@ html {
 /* Keep desktop visual scale consistent across environments */
 @media (min-width: 1024px) {
   html {
-    zoom: 1 !important;
+    zoom: 1.0 !important;
+  }
+}
+
+/* About hero: keep CTA visible on short-height laptops */
+@media (min-width: 1024px) and (max-height: 860px) {
+  .about-hero-card {
+    min-height: 300px !important;
+    height: 68vh !important;
+  }
+
+  .about-hero-content {
+    padding-top: 2.25rem !important;
+    padding-bottom: 2.25rem !important;
+  }
+
+  .about-hero-title {
+    font-size: clamp(2.5rem, 4.4vw, 4.2rem) !important;
+    margin-bottom: 0.85rem !important;
+  }
+
+  .about-hero-desc {
+    font-size: clamp(1rem, 1.25vw, 1.18rem) !important;
+    margin-bottom: 1.25rem !important;
+    line-height: 1.45 !important;
+  }
+
+  .about-hero-cta {
+    font-size: 0.94rem !important;
+    padding: 0.72rem 1.45rem !important;
   }
 }

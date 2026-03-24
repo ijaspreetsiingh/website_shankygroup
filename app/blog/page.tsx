@@ -154,7 +154,7 @@ export default function BlogPage() {
 
       {/* Hero Section – reference: leadership + compliance style */}
       <section className="relative w-full pt-4 md:pt-6 lg:pt-8 px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
-        <div className="relative h-[58vh] min-h-[320px] md:h-[62vh] lg:h-[65vh] w-full rounded-2xl overflow-hidden shadow-2xl">
+        <div className="about-hero-card relative h-[58vh] min-h-[320px] md:h-[62vh] lg:h-[65vh] w-full rounded-2xl overflow-hidden shadow-2xl">
           <Image
             src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1920&q=80"
             alt="Blog insights and stories"
@@ -165,22 +165,17 @@ export default function BlogPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/50 to-transparent z-20 pointer-events-none" />
           <div className="absolute inset-0 flex flex-col z-30">
-            <div className="flex-1 flex items-center px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-10 lg:py-14">
+            <div className="about-hero-content flex-1 flex items-center px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-10 lg:py-14">
               <div className="w-full max-w-2xl lg:max-w-3xl text-left">
-                <nav className="flex items-center text-xs sm:text-sm text-white/90 mb-5 lg:mb-6 flex-wrap gap-x-2 gap-y-1">
-                  <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                  <span className="opacity-70">/</span>
-                  <span className="text-white font-medium">Blog</span>
-                </nav>
                 <span className="inline-block px-4 py-2 lg:px-5 lg:py-2.5 bg-[#e63a27] text-white text-xs lg:text-sm font-semibold tracking-widest rounded-full uppercase mb-4 lg:mb-5">
                   Insights & Updates
                 </span>
-                <h1 className="section-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4 lg:mb-5">
+                <h1 className="about-hero-title section-heading text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-4 lg:mb-5">
                   Our <span className="text-[#e63a27]">Blog</span>
                   <br />
                   <span className="text-white/95">Ideas That Matter</span>
                 </h1>
-                <p className="text-base sm:text-lg md:text-xl max-w-xl text-white/90 leading-relaxed mb-6 lg:mb-8">
+                <p className="about-hero-desc text-base sm:text-lg md:text-xl max-w-xl text-white/90 leading-relaxed mb-6 lg:mb-8">
                   Discover insights, industry trends, and stories from our team. Stay updated with thought leadership and innovations.
                 </p>
                 <div className="flex flex-wrap gap-3">
@@ -188,13 +183,20 @@ export default function BlogPage() {
                     href="/api/rss"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 lg:px-8 lg:py-3.5 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg hover:shadow-xl"
+                    className="about-hero-cta inline-flex items-center gap-2 px-6 py-3 lg:px-8 lg:py-3.5 bg-[#e63a27] hover:bg-[#c93222] text-white font-semibold rounded-xl transition-all text-sm lg:text-base shadow-lg hover:shadow-xl"
                   >
                     <Rss className="w-5 h-5" />
-                    Subscribe to RSS
+                    Get Blog Updates
                   </a>
                 </div>
               </div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
+              <nav className="inline-flex items-center text-[10px] sm:text-xs md:text-sm text-white/95 flex-wrap gap-x-1.5 gap-y-1 bg-black/35 backdrop-blur-[2px] rounded-md sm:rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2">
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                <span className="opacity-70">/</span>
+                <span className="text-white font-medium">Blog</span>
+              </nav>
             </div>
           </div>
         </div>

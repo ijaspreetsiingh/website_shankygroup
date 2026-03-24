@@ -46,7 +46,7 @@ const MissionVisionPage = () => {
       >
         {/* Hero - mission vision */}
         <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
-          <div className="relative min-h-[58vh] sm:min-h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
+          <div className="about-hero-card relative min-h-[58vh] sm:min-h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
             <Image
               src={mission1Image}
               alt="Mission & Vision - Ideas and innovation - Shanky Group"
@@ -57,13 +57,13 @@ const MissionVisionPage = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/50 to-black/25 z-20 pointer-events-none" />
             <div className="absolute inset-0 flex flex-col z-30">
-              <div className="flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16 pt-10 sm:pt-14 md:pt-20 lg:pt-24">
+              <div className="about-hero-content flex-1 flex items-center px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-6 sm:py-10 lg:py-16 pt-10 sm:pt-14 md:pt-20 lg:pt-24">
                 <div className="w-full max-w-3xl lg:max-w-4xl text-left">
                
-                  <h1 className="section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
+                  <h1 className="about-hero-title section-heading text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.08] text-white mb-3 sm:mb-4 lg:mb-5 drop-shadow-lg">
                     Mission & <span className="text-[#e63a27]">Vision</span>
                   </h1>
-                  <p className="text-sm sm:text-base md:text-xl max-w-2xl text-white/95 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
+                  <p className="about-hero-desc text-sm sm:text-base md:text-xl max-w-2xl text-white/95 leading-relaxed mb-5 sm:mb-8 lg:mb-10">
                     What drives us: clarity of purpose, excellence in execution, and lasting value for everyone we touch.
                   </p>
                   {!isDark && (
@@ -73,8 +73,8 @@ const MissionVisionPage = () => {
                   )}
                 </div>
               </div>
-              <div className="shrink-0 px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
-                <nav className="flex items-center text-[10px] sm:text-xs md:text-sm text-white/90 flex-wrap gap-x-1.5 gap-y-1">
+              <div className="absolute bottom-0 left-0 right-0 z-40 px-3 sm:px-4 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
+                <nav className="inline-flex items-center text-[10px] sm:text-xs md:text-sm text-white/95 flex-wrap gap-x-1.5 gap-y-1 bg-black/35 backdrop-blur-[2px] rounded-md sm:rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2">
                   <Link href="/" className="hover:text-white transition-colors">Home</Link>
                   <span className="opacity-70">/</span>
                   <Link href="/who-we-are" className="hover:text-white transition-colors">Who We Are</Link>
