@@ -6,58 +6,76 @@ import Link from 'next/link';
 const CompanyPage = () => {
   const companies = [
     {
-      id: 'shanky-financial-services',
-      name: 'Shanky Financial Services',
-      shortName: 'Financial Services through B2B',
-      category: 'Financial Services',
-      categoryColor: '#6B9F3E',
-      description: 'The Group\'s flagship entity in the financial services sector offering comprehensive financial intermediation services.',
-      image: 'https://happay.com/blog/wp-content/uploads/sites/12/2023/07/financial-assets-scaled.webp'
+      id: 1,
+      name: "SHANKY FINANCIAL SERVICES PVT LTD",
+      shortName: "SHANKY FINANCIAL SERVICES PVT LTD",
+      category: "Financial Services",
+      categoryColor: "#6B9F3E",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Operating alongside its namesake, Shanky Financial Services Pvt Ltd focuses on specialized financial intermediation activities, including investment in securities and proprietary trading. The company's operations are aligned with the Group's broader financial services strategy, enabling cross-selling opportunities and operational efficiencies.",
+      image: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-financial-pvt-ltd"
     },
     {
-      id: 'shanky-financial-pvt-ltd',
-      name: 'Shanky Financial Services Pvt Ltd',
-      shortName: 'Financial Advisory',
-      category: 'Financial Services',
-      categoryColor: '#6B9F3E',
-      description: 'Specialized financial intermediation activities including investment in securities and proprietary trading.',
-      image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1200&h=800&fit=crop'
+      id: 2,
+      name: "VMS HUB PVT LTD",
+      shortName: "VMS HUB PVT LTD",
+      category: "Agro Products",
+      categoryColor: "#9B59B6",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "VMS Hub Pvt Ltd is the Group's newest venture focused on food and agricultural products distribution with strong supply chain and quality assurance systems.",
+      image: "/images/agro.webp",
+      link: "/company/vms-hub"
     },
     {
-      id: 'vms-hub',
-      name: 'VMS Hub Pvt Ltd',
-      shortName: 'Food Distribution',
-      category: 'Food & Agribusiness',
-      categoryColor: '#9B59B6',
-      description: 'The Group\'s newest venture established to capitalize on the growing demand for food and agricultural products.',
-      image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1200&h=800&fit=crop'
+      id: 3,
+      name: "SHANKY SMART TECH PVT LTD",
+      shortName: "SHANKY SMART TECH PVT LTD",
+      category: "Solar EPC and Electronics",
+      categoryColor: "#9B59B6",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Shanky Smart Tech Pvt Ltd delivers solar EPC solutions and smart electronics integration using IoT and AI technologies.",
+      image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-smart-tech"
     },
     {
-      id: 'shanky-smart-tech',
-      name: 'Shanky Smart Tech Pvt Ltd',
-      shortName: 'Solar & Electronics',
-      category: 'Solar & Electronics',
-      categoryColor: '#9B59B6',
-      description: 'Operating at the intersection of renewable energy and electronics.',
-      image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1200&h=800&fit=crop'
+      id: 4,
+      name: "SHANKY CORPORATE TRAINING PVT LTD",
+      shortName: "SHANKY CORPORATE TRAINING PVT LTD",
+      category: "Corporate Trainings",
+      categoryColor: "#E67E22",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Provides corporate and educational training programs including leadership, soft skills, and technical development.",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-corporate-training"
     },
     {
-      id: 'shanky-electronics-hub',
-      name: 'Shanky Electronics Hub LLP',
-      shortName: 'Electronics Trading',
-      category: 'Electronics Trading',
-      categoryColor: '#E67E22',
-      description: 'Specializes in the trading and distribution of electronic products.',
-      image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1200&h=800&fit=crop'
+      id: 5,
+      name: "SHANKY BUILDTECH PVT LTD",
+      shortName: "SHANKY BUILDTECH PVT LTD",
+      category: "Infrastructure and Construction",
+      categoryColor: "#3498DB",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Focused on residential, commercial, and industrial construction with smart and sustainable building practices.",
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&h=500&fit=crop&q=80",
+      link: "/company/shanky-buildtech-pvt-ltd"
     },
     {
-      id: 'shanky-corporate-training',
-      name: 'Shanky Corporate Training Pvt Ltd',
-      shortName: 'Corporate Training',
-      category: 'Education & Training',
-      categoryColor: '#E67E22',
-      description: 'The Group\'s dedicated arm for educational services.',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&h=800&fit=crop'
+      id: 6,
+      name: "SHANKY METALS PVT LTD",
+      shortName: "SHANKY METALS PVT LTD",
+      category: "Metal Trade Services",
+      categoryColor: "#7F8C8D",
+      legalStructure: "Private Limited Company",
+      keyPeople: "Directors: Vipin Kumar, Manoj Kumar Mishra",
+      description: "Deals in procurement, processing, and trading of metals like aluminium, copper, steel with strong export operations.",
+      image: "/images/metal.webp",
+      link: "/company/shanky-metals-pvt-ltd"
     },
   ];
 
@@ -76,7 +94,7 @@ const CompanyPage = () => {
         {companies.map((company) => (
           <Link
             key={company.id}
-            href={`/company/${company.id}`}
+            href={company.link}
             className="group block bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
           >
             <div className="relative h-48 overflow-hidden">
@@ -98,9 +116,19 @@ const CompanyPage = () => {
               <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[#e63a27] transition-colors">
                 {company.shortName}
               </h3>
+
+              <p className="text-xs text-gray-500 mb-2">
+                {company.legalStructure}
+              </p>
+
+              <p className="text-xs text-gray-400 mb-3">
+                {company.keyPeople}
+              </p>
+
               <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
                 {company.description}
               </p>
+
               <div className="flex items-center text-[#e63a27] font-medium text-sm group-hover:translate-x-2 transition-transform">
                 Learn More
                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">

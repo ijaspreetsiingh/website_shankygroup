@@ -243,37 +243,37 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
     {
       name: 'Shanky Financial Service Pvt Ltd',
       description: 'Specialized financial intermediation and trading',
-      image: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=60&h=60&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-financial-pvt-ltd'
     },
     {
       name: 'VMS Hub Pvt Ltd',
       description: 'Agricultural innovation and supply chain management',
-      image: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=60&h=60&fit=crop&crop=center',
+      image: '/images/agro.webp',
       link: '/company/vms-hub'
     },
     {
       name: 'Shanky Corporate Training Pvt Ltd',
       description: 'Professional development and corporate training programs',
-      image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=60&h=60&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-corporate-training'
     },
     {
       name: 'Shanky Smart Tech Pvt Ltd',
       description: 'Renewable energy and sustainable technology solutions',
-      image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=60&h=60&fit=crop&crop=center',
+      image: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=60&h=60&fit=crop&crop=center',
       link: '/company/shanky-smart-tech'
     },
     {
       name: 'Shanky Buildtech Pvt Ltd',
       description: 'Infrastructure development, construction and EPC projects',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=60&h=60&fit=crop&crop=center',
+      image: '/images/contruction.webp',
       link: '/company/shanky-buildtech-pvt-ltd'
     },
     {
       name: 'Shanky Metals Pvt Ltd',
       description: 'Trading and distribution of ferrous and non-ferrous metals',
-      image: 'https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=60&h=60&fit=crop&crop=center',
+      image: '/images/metal.webp',
       link: '/company/shanky-metals-pvt-ltd'
     }
   ];
