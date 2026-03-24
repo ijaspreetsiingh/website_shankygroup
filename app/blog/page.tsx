@@ -191,13 +191,6 @@ export default function BlogPage() {
                 </div>
               </div>
             </div>
-            <div className="absolute bottom-0 left-0 right-0 z-40 px-4 sm:px-6 md:px-10 lg:px-14 xl:px-20 py-3 sm:py-4 lg:py-5">
-              <nav className="inline-flex items-center text-[10px] sm:text-xs md:text-sm text-white/95 flex-wrap gap-x-1.5 gap-y-1 bg-black/35 backdrop-blur-[2px] rounded-md sm:rounded-lg px-2.5 py-1.5 sm:px-3 sm:py-2">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span className="opacity-70">/</span>
-                <span className="text-white font-medium">Blog</span>
-              </nav>
-            </div>
           </div>
         </div>
       </section>
