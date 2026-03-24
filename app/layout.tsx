@@ -1,4 +1,4 @@
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { Syne, DM_Sans } from 'next/font/google';
 import './globals.css';
@@ -32,6 +32,10 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
+};
+
+export const metadata: Metadata = {
+  title: 'Shanky Group',
 };
 
 // Inline script: default = dark; only light when user has chosen 'light'
