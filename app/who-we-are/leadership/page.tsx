@@ -286,7 +286,7 @@ const LeadershipPage = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section>  
       </div>
 
       {/* Main Content Section - responsive */}

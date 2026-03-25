@@ -4,6 +4,30 @@ import { Syne, DM_Sans } from 'next/font/google';
 import './globals.css';
 import Chatbot from './components/Chatbot';
 import ThemeSync from './ThemeSync';
+import { getSiteUrl } from './lib/site-url';
+
+const siteUrl = getSiteUrl();
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Shanky Group',
+  url: siteUrl,
+  logo: `${siteUrl}/images/logo_icon.png`,
+  description:
+    'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth.',
+};
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Shanky Group',
+  url: siteUrl,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${siteUrl}/blog?query={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -35,7 +59,52 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Shanky Group',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Shanky Group | Empowering Businesses Across Industries',
+    template: '%s | Shanky Group',
+  },
+  description:
+    'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Shanky Group',
+    description:
+      'Discover Shanky Group companies, leadership, careers, and insights across finance, technology, and industrial sectors.',
+    url: '/',
+    siteName: 'Shanky Group',
+    locale: 'en_IN',
+    type: 'website',
+    images: [
+      {
+        url: '/images/logo_icon.png',
+        width: 512,
+        height: 512,
+        alt: 'Shanky Group',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shanky Group',
+    description:
+      'Explore Shanky Group businesses, leadership, and opportunities.',
+    images: ['/images/logo_icon.png'],
+  },
+  keywords: [
+    'Shanky Group',
+    'Shanky Group India',
+    'Shanky Financial',
+    'Shanky Corporate Training',
+    'Shanky Smart Tech',
+  ],
+  verification: {
+    google:
+      process.env.GOOGLE_SITE_VERIFICATION ||
+      'CB4LkkdQ_5A14uaJrrLJgiTeiT5zRv6HWk--TEzC7J4',
+  },
 };
 
 // Inline script: default = dark; only light when user has chosen 'light'
@@ -69,6 +138,18 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/images/logo_icon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/images/logo_icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&display=swap"
