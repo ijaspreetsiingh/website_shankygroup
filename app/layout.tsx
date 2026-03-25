@@ -7,12 +7,13 @@ import ThemeSync from './ThemeSync';
 import { getSiteUrl } from './lib/site-url';
 
 const siteUrl = getSiteUrl();
+const logoUrl = 'https://shankygroup.com/images/logo_icon.png';
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: 'Shanky Group',
   url: siteUrl,
-  logo: `${siteUrl}/images/new_logo_finalM.png`,
+  logo: logoUrl,
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth.',
 };
@@ -65,9 +66,9 @@ export const metadata: Metadata = {
     template: '%s | Shanky Group',
   },
   icons: {
-    icon: '/images/new_logo_finalM.png',
-    shortcut: '/images/new_logo_finalM.png',
-    apple: '/images/new_logo_finalM.png',
+    icon: logoUrl,
+    shortcut: logoUrl,
+    apple: logoUrl,
   },
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
@@ -84,7 +85,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/new_logo_finalM.png',
+        url: logoUrl,
         width: 512,
         height: 512,
         alt: 'Shanky Group',
@@ -96,7 +97,7 @@ export const metadata: Metadata = {
     title: 'Shanky Group',
     description:
       'Explore Shanky Group businesses, leadership, and opportunities.',
-    images: ['/images/new_logo_finalM.png'],
+    images: [logoUrl],
   },
   keywords: [
     'Shanky Group',
@@ -143,13 +144,13 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="/images/new_logo_finalM.png"
+          href={logoUrl}
           type="image/png"
           sizes="512x512"
         />
         <link
           rel="apple-touch-icon"
-          href="/images/new_logo_finalM.png"
+          href={logoUrl}
           sizes="512x512"
         />
         <script
