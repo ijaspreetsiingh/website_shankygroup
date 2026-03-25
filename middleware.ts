@@ -2,6 +2,20 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
+  // Canonical redirect: enforce a single version for SEO (`https://shankygroup.com`).
+  const canonicalHost = 'shankygroup.com';
+  const host = request.headers.get('host') || request.nextUrl.host;
+  const forwardedProto = request.headers.get('x-forwarded-proto');
+  const isHttps = forwardedProto ? forwardedProto === 'https' : request.nextUrl.protocol === 'https:';
+
+  if (host !== canonicalHost || !isHttps) {
+    const url = request.nextUrl.clone();
+    url.protocol = 'https:';
+    url.host = canonicalHost;
+    // Keep pathname + query intact.
+    return NextResponse.redirect(url);
+  }
+
   const { pathname } = request.nextUrl;
   
   // Protect all /admin routes
@@ -29,5 +43,6 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  // Run on most routes so robots/sitemap and all pages are canonicalized.
+  matcher: ['/((?!_next/static|_next/image|favicon.ico).*)'],
 };
