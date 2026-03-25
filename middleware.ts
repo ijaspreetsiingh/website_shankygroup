@@ -8,7 +8,11 @@ export function middleware(request: NextRequest) {
   const forwardedProto = request.headers.get('x-forwarded-proto');
   const isHttps = forwardedProto ? forwardedProto === 'https' : request.nextUrl.protocol === 'https:';
 
-  if (host !== canonicalHost || !isHttps) {
+  // Don't break local development. Only canonicalize when the request is for shankygroup.com hosts.
+  const isShankyHost =
+    host === canonicalHost || host === `www.${canonicalHost}` || host?.startsWith(`${canonicalHost}:`);
+
+  if (process.env.NODE_ENV === 'production' && isShankyHost && (host !== canonicalHost || !isHttps)) {
     const url = request.nextUrl.clone();
     url.protocol = 'https:';
     url.host = canonicalHost;

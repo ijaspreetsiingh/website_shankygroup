@@ -12,7 +12,7 @@ const organizationJsonLd = {
   '@type': 'Organization',
   name: 'Shanky Group',
   url: siteUrl,
-  logo: `${siteUrl}/images/logo_icon.png`,
+  logo: `${siteUrl}/images/new_logo_finalM.png`,
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth.',
 };
@@ -64,6 +64,11 @@ export const metadata: Metadata = {
     default: 'Shanky Group | Empowering Businesses Across Industries',
     template: '%s | Shanky Group',
   },
+  icons: {
+    icon: '/images/new_logo_finalM.png',
+    shortcut: '/images/new_logo_finalM.png',
+    apple: '/images/new_logo_finalM.png',
+  },
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
   alternates: {
@@ -79,7 +84,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/logo_icon.png',
+        url: '/images/new_logo_finalM.png',
         width: 512,
         height: 512,
         alt: 'Shanky Group',
@@ -91,7 +96,7 @@ export const metadata: Metadata = {
     title: 'Shanky Group',
     description:
       'Explore Shanky Group businesses, leadership, and opportunities.',
-    images: ['/images/logo_icon.png'],
+    images: ['/images/new_logo_finalM.png'],
   },
   keywords: [
     'Shanky Group',
@@ -136,8 +141,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/images/logo_icon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/images/logo_icon.png" />
+        <link
+          rel="icon"
+          href="/images/new_logo_finalM.png"
+          type="image/png"
+          sizes="512x512"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/images/new_logo_finalM.png"
+          sizes="512x512"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
