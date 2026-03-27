@@ -31,22 +31,31 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const { t, lang, setLang } = useI18n();
 
-  // Initialize dark mode: respect explicit 'light' / 'dark'; only use system when no choice saved
+  // Keep theme in sync with OS preference
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const applyTheme = () => {
       const saved = localStorage.getItem('theme');
-      const shouldBeDark = saved === 'dark' || (saved !== 'light' && saved !== 'dark');
+      const isDarkTheme =
+        saved === 'dark' || (saved !== 'light' && mediaQuery.matches);
+      setIsDark(isDarkTheme);
+      document.documentElement.classList.toggle('dark', isDarkTheme);
+    };
 
-      setIsDark(shouldBeDark);
-      if (shouldBeDark) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+    applyTheme();
+    const onSystemThemeChange = () => {
+      applyTheme();
+    };
+    mediaQuery.addEventListener('change', onSystemThemeChange);
 
-      // Set active path on mount
-      setActivePath(window.location.pathname);
-    }
+    // Set active path on mount
+    setActivePath(window.location.pathname);
+
+    return () => {
+      mediaQuery.removeEventListener('change', onSystemThemeChange);
+    };
   }, []);
 
   // Track route changes for active highlighting
@@ -217,20 +226,14 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
   const toggleTheme = () => {
     setIsThemeChanging(true);
-    
     const next = !isDark;
     setIsDark(next);
-    
+
     // Add animation class to body
     document.body.style.overflow = 'hidden';
-    
-    if (next) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
+
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
 
     // Remove animation after completion
     setTimeout(() => {

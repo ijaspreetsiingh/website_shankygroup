@@ -113,12 +113,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Inline script: default = dark; only light when user has chosen 'light'
+// Inline script: follow saved preference, fallback to OS theme
 const themeScript = `
 (function(){
   try {
-    var s = localStorage.getItem('theme');
-    var dark = s === 'dark' || (s !== 'light' && s !== 'dark');
+    var saved = localStorage.getItem('theme');
+    var dark = saved === 'dark' || (saved !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
     document.documentElement.classList.toggle('dark', !!dark);
   } catch (e) {}
 })();
