@@ -8,10 +8,20 @@ import { getSiteUrl } from './lib/site-url';
 
 const siteUrl = getSiteUrl();
 const logoUrl = 'https://shankygroup.com/images/logo_icon.png';
+const importantSiteLinks = [
+  `${siteUrl}/who-we-are/about-us`,
+  `${siteUrl}/who-we-are/mission-vision`,
+  `${siteUrl}/who-we-are/leadership`,
+  `${siteUrl}/company`,
+  `${siteUrl}/careers`,
+  `${siteUrl}/contact`,
+];
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${siteUrl}#organization`,
   name: 'Shanky Group',
+  alternateName: 'Shanky Group India',
   url: siteUrl,
   logo: logoUrl,
   description:
@@ -21,13 +31,39 @@ const organizationJsonLd = {
 const websiteJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
+  '@id': `${siteUrl}#website`,
   name: 'Shanky Group',
   url: siteUrl,
+  inLanguage: 'en-IN',
+  publisher: {
+    '@id': `${siteUrl}#organization`,
+  },
+  hasPart: importantSiteLinks.map((url) => ({
+    '@type': 'WebPage',
+    url,
+  })),
   potentialAction: {
     '@type': 'SearchAction',
     target: `${siteUrl}/blog?query={search_term_string}`,
     'query-input': 'required name=search_term_string',
   },
+};
+
+const homeWebPageJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteUrl}/#webpage`,
+  url: siteUrl,
+  name: 'Shanky Group | Empowering Businesses Across Industries',
+  description:
+    'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
+  isPartOf: {
+    '@id': `${siteUrl}#website`,
+  },
+  about: {
+    '@id': `${siteUrl}#organization`,
+  },
+  significantLink: importantSiteLinks,
 };
 
 const geistSans = Geist({
@@ -163,6 +199,12 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteJsonLd).replace(/</g, '\\u003c'),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(homeWebPageJsonLd).replace(/</g, '\\u003c'),
           }}
         />
         <link
