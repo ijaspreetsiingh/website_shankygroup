@@ -847,7 +847,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         </div>
       </div>
 
-      {/* Mobile Menu - Full width, full height, professional design */}
+      
       <div 
         className={`lg:hidden fixed inset-0 w-full h-screen min-h-[100dvh] shadow-2xl transform transition-all duration-300 ease-in-out z-[1001] flex flex-col ${
           isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
@@ -855,7 +855,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
         style={{ background: 'linear-gradient(180deg, var(--card-bg) 0%, var(--background) 100%)' }}
       >
         <div className="flex flex-col h-full min-h-0">
-          {/* Mobile Menu Header - Brand strip */}
+          
           <div className="sticky top-0 z-10 shrink-0 bg-[var(--card-bg)]/95 backdrop-blur-md border-b border-[var(--card-border)]">
             <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
               <Link href="/" className="flex items-center gap-3 group" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>

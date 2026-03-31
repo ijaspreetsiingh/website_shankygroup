@@ -7,7 +7,7 @@ import Link from 'next/link';
 const UNOPTIMIZED = true;
 
 const HERO_SLIDES = [
-  { src: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80', alt: 'Metals trading', objectPosition: 'center' as const },
+  { src: '/images/metal.png', alt: 'Metals trading', objectPosition: 'center' as const },
   { src: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1920&q=80', alt: 'Industrial metals', objectPosition: 'center' as const },
   { src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80', alt: 'Export and logistics', objectPosition: 'left' as const },
   { src: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=1920&q=80', alt: 'Metal supply chain', objectPosition: 'center' as const },
