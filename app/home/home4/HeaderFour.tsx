@@ -900,17 +900,17 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
               <div className={`grid transition-all duration-200 ease-out overflow-hidden ${whoWeAreMobileOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
                 <div className="min-h-0">
                   <div className="px-4 pb-4 pt-0 space-y-0.5 bg-[var(--background)]/50 border-t border-[var(--card-border)]">
-                    <Link href="/who-we-are/about-us" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
-                      activePath === '/who-we-are/about-us' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    <Link href="/who-we-are/about-us" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/who-we-are/about-us' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
                     }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>About Us</Link>
-                    <Link href="/who-we-are/leadership" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
-                      activePath === '/who-we-are/leadership' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    <Link href="/who-we-are/leadership" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/who-we-are/leadership' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
                     }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Leadership</Link>
-                    <Link href="/who-we-are/mission-vision" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
-                      activePath === '/who-we-are/mission-vision' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    <Link href="/who-we-are/mission-vision" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/who-we-are/mission-vision' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
                     }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Mission & Vision</Link>
-                    <Link href="/who-we-are/compliance" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all border-l-2 ${
-                      activePath === '/who-we-are/compliance' ? 'text-[#e63a27] bg-[#e63a27]/10 border-[#e63a27]' : 'text-[var(--text-secondary)] border-transparent hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    <Link href="/who-we-are/compliance" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/who-we-are/compliance' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
                     }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Compliance</Link>
                   </div>
                 </div>

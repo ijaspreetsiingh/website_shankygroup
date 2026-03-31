@@ -216,7 +216,7 @@ const WorkWithUs = () => {
             className={`section-heading text-[28px] sm:text-[34px] md:text-[42px] font-bold m-0 mb-3 tracking-[4px] md:tracking-[6px] uppercase transition-all duration-800 delay-1200 ${isDarkMode ? 'text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]' : 'text-[#1a1a1a] drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]'}`}
             style={{ opacity: isVisible ? 1 : 0, transform: isVisible ? 'translateY(0)' : 'translateY(40px)' }}
           >
-            WORK WITH US
+            WORK WITH US 
           </h1>
           <div 
             className="w-14 h-1 rounded-full bg-[#e63a27] mx-auto mb-10 sm:mb-12"
