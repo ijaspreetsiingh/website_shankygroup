@@ -49,7 +49,7 @@ export default function VMSHubPage() {
   const heroIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const HERO_SLIDES = [
-    { src: 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1920&q=80', alt: 'VMS Hub Food Distribution', objectPosition: 'center' as const },
+    { src: '/images/agro.png', alt: 'VMS Hub Food Distribution', objectPosition: 'center' as const },
     { src: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1920&q=80', alt: 'Agricultural Products', objectPosition: 'left' as const },
     { src: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1920&q=80', alt: 'Supply Chain Management', objectPosition: 'left' as const },
     { src: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=1920&q=80', alt: 'Food Distribution', objectPosition: 'left' as const },
