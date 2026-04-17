@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Head from 'next/head';
 import WhoWeAreNav from '../WhoWeAreNav';
 import shivani1Img from '../../images/team/shivani1.jpeg';
 
@@ -236,6 +237,48 @@ const LeadershipPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Leadership Team - Shanky Group | Meet Our 7 Team Members</title>
+        <meta name="description" content="Meet the complete leadership team at Shanky Group. Vipin Kumar is the owner and Managing Director of Shanky Group, leading alongside Manoj Kumar Mishra (Executive Director), Poonam Shah (VP Operations), Priyanka Girdhar (VP Admin), Rajeev Ranjan Jha (Finance Head), Shivani Bansal (Legal Advisor), and Shubh Gupta (Purchase Manager). Learn about our experienced leaders driving excellence across all departments." />
+        <meta name="keywords" content="Shanky Group leadership, owner of Shanky Group, Vipin Kumar owner, Manoj Kumar Mishra, Poonam Shah, Priyanka Girdhar, Rajeev Ranjan Jha, Shivani Bansal, Shubh Gupta, management team, executive team, board of directors, founder" />
+        <meta property="og:title" content="Leadership Team - Shanky Group | Complete Team Directory" />
+        <meta property="og:description" content="Meet all 7 members of Shanky Group's leadership team. From Vipin Kumar (Managing Director) to Shubh Gupta (Purchase Manager), discover the leaders driving our success." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/who-we-are/leadership" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Complete Leadership Team - Shanky Group" />
+        <meta name="twitter:description" content="Meet all 7 leaders at Shanky Group including Vipin Kumar, Manoj Kumar Mishra, and our complete executive team." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Group",
+              "url": "https://shankygroup.com",
+              "description": "Shanky Group is a diversified business conglomerate with interests in metals, buildtech, financial services, and corporate training.",
+              "employees": allLeaders.map(leader => ({
+                "@type": "Person",
+                "name": leader.name,
+                "jobTitle": leader.position,
+                "department": leader.department,
+                "description": leader.description,
+                "education": leader.education,
+                "workFor": {
+                  "@type": "Organization",
+                  "name": "Shanky Group"
+                },
+                ...(leader.name === "Vipin Kumar" && {
+                  "owns": {
+                    "@type": "Organization",
+                    "name": "Shanky Group"
+                  }
+                })
+              }))
+            })
+          }}
+        />
+      </Head>
       {/* Hero - same design as about-us */}
       <div
         className="relative w-full bg-[var(--background)] text-[var(--foreground)]"

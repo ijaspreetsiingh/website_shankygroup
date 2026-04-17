@@ -36,7 +36,7 @@ export async function GET() {
         port: parseInt(map.smtp_port) || 587,
         user: map.smtp_user,
         password: map.smtp_password,
-        secure: map.smtp_secure === 'true',
+        secure: map.smtp_secure === 'true' && parseInt(map.smtp_port) === 465,
         from_email: map.smtp_from_email,
         from_name: map.smtp_from_name || 'Business Management System'
       }

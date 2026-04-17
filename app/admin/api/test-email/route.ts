@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     const transporter = nodemailer.createTransport({
       host: map.smtp_host,
       port: parseInt(map.smtp_port) || 587,
-      secure: map.smtp_secure === 'true',
+      secure: map.smtp_secure === 'true' && parseInt(map.smtp_port) === 465,
       auth: {
         user: map.smtp_user,
         pass: map.smtp_password || ''
@@ -39,11 +39,21 @@ export async function POST(request: Request) {
 
     // Verify SMTP connection first
     try {
+      console.log('SMTP Config:', {
+        host: map.smtp_host,
+        port: parseInt(map.smtp_port),
+        secure: map.smtp_secure === 'true' && parseInt(map.smtp_port) === 465,
+        user: map.smtp_user,
+        passLength: map.smtp_password?.length || 0
+      });
       await transporter.verify();
-    } catch (verifyError) {
+    } catch (verifyError: any) {
       console.error('SMTP verification failed:', verifyError);
+      console.error('Full error details:', JSON.stringify(verifyError, null, 2));
       return NextResponse.json({ 
-        message: 'SMTP connection failed. Please check your credentials and try again.' 
+        message: 'SMTP connection failed. Please check your credentials and try again.',
+        debug: String(verifyError),
+        errorCode: verifyError.code
       }, { status: 500 });
     }
 
@@ -96,8 +106,9 @@ export async function POST(request: Request) {
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ message: 'Test email sent successfully!' });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Test email error:', error);
+    console.error('Full error:', JSON.stringify(error, null, 2));
     
     // Provide more detailed error message
     let errorMessage = 'Failed to send test email. Please check your SMTP configuration and try again.';
@@ -116,7 +127,8 @@ export async function POST(request: Request) {
     
     return NextResponse.json({ 
       message: errorMessage,
-      debug: process.env.NODE_ENV === 'development' ? String(error) : undefined
+      debug: String(error),
+      errorCode: error.code
     }, { status: 500 });
   }
 }

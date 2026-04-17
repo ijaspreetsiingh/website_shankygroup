@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Prioritize important pages
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://shankygroup.com/sitemap.xml
+
+# Important pages to crawl frequently
+User-agent: Googlebot
+Allow: /who-we-are/leadership
+Allow: /leadership
+Allow: /api/team
+Allow: /team-data.json
+Allow: /
+
+User-agent: Bingbot
+Allow: /who-we-are/leadership
+Allow: /leadership
+Allow: /api/team
+Allow: /team-data.json
+Allow: /
+
+User-agent: *
+Allow: /api/team
+Allow: /team-data.json
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /node_modules/

@@ -14,7 +14,7 @@ const STATIC_PATHS: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap
   { path: '/who-we-are', changeFrequency: 'monthly', priority: 0.85 },
   { path: '/who-we-are/about-us', changeFrequency: 'monthly', priority: 0.85 },
   { path: '/who-we-are/mission-vision', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/who-we-are/leadership', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/who-we-are/leadership', changeFrequency: 'weekly', priority: 0.95 },
   { path: '/who-we-are/compliance', changeFrequency: 'monthly', priority: 0.75 },
   { path: '/company/shanky-financial-pvt-ltd', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/company/vms-hub', changeFrequency: 'monthly', priority: 0.7 },
