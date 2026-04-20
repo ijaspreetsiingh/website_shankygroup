@@ -23,6 +23,8 @@ export async function GET() {
           education: "Master's Degree in Business Administrator",
           tenure: "From 2014-Present",
           is_owner: true,
+          image: "https://shankygroup.com/images/team/vipin_sir.jpg",
+          image_alt: "Vipin Kumar - Managing Director and Owner of Shanky Group",
           description: "Mr. Vipin Kumar has been at helm of Shanky Group since its inception. A Chartered Accountant and MBA (Finance) with over a decade of experience in diversified businesses, he has been instrumental in Group's expansion and diversification."
         },
         {
@@ -33,6 +35,8 @@ export async function GET() {
           category: "board",
           education: "Chartered Accountant / CPA / MBA",
           tenure: "From 2019-Present",
+          image: "https://shankygroup.com/images/team/manoj_sir.jpg",
+          image_alt: "Manoj Kumar Mishra - Executive Director of Shanky Group",
           description: "Mr. Mishra brings over 22 years of experience in finance, accounts, and commercial operations across manufacturing and retail sectors."
         },
         {
@@ -43,6 +47,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance",
           tenure: "From 2015-Present",
+          image: "https://shankygroup.com/images/team/poonam.jpg",
+          image_alt: "Poonam Shah - Vice President Operations at Shanky Group",
           description: "Ms. Shah oversees operational excellence and process optimization across Group's diverse businesses."
         },
         {
@@ -53,6 +59,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance",
           tenure: "From 2015-Present",
+          image: "https://shankygroup.com/images/team/priyanka.jpg",
+          image_alt: "Priyanka Girdhar - Vice President Admin at Shanky Group",
           description: "Ms. Girdhar is an accomplished administrative leader with a strong track record of designs, directs, and optimizes an organisation's administrative backbone."
         },
         {
@@ -63,6 +71,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance and Chartered Accountant (Intermediate)",
           tenure: "From 2020-Present",
+          image: "https://shankygroup.com/images/team/rajeev1.jpg",
+          image_alt: "Rajeev Ranjan Jha - Finance Head at Shanky Group",
           description: "Financial operations leader responsible for accounting, financial reporting, and compliance functions."
         },
         {
@@ -73,6 +83,8 @@ export async function GET() {
           category: "senior",
           education: "B.A.LL.B",
           tenure: "From 2022-Present",
+          image: "https://shankygroup.com/images/team/shivani1.jpeg",
+          image_alt: "Shivani Bansal - Legal Advisor at Shanky Group",
           description: "I am a legal advisor with experience in contract review, legal documentation, and dispute resolution."
         },
         {
@@ -83,6 +95,8 @@ export async function GET() {
           category: "senior",
           education: "Bachelor Degree in Science",
           tenure: "From 2021-Present",
+          image: "https://shankygroup.com/images/team/shubh.png",
+          image_alt: "Shubh Gupta - Purchase Manager at Shanky Group",
           description: "Key member of leadership team driving procurement, vendor management, and supply chain execution across Group."
         }
       ],

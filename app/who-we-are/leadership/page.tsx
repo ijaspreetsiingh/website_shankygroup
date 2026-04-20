@@ -264,6 +264,7 @@ const LeadershipPage = () => {
                 "department": leader.department,
                 "description": leader.description,
                 "education": leader.education,
+                "image": leader.image,
                 "workFor": {
                   "@type": "Organization",
                   "name": "Shanky Group"
@@ -452,7 +453,7 @@ const LeadershipPage = () => {
                   >
                     <img 
                       src={leader.image} 
-                      alt={leader.name}
+                      alt={`${leader.name} - ${leader.position} at Shanky Group`}
                       className="absolute inset-0 w-full h-full object-cover object-[center_18%] block size-full"
                       loading="lazy"
                       decoding="async"
