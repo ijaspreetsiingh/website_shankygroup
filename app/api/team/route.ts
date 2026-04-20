@@ -47,8 +47,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance",
           tenure: "From 2015-Present",
-          image: "https://shankygroup.com/images/team/poonam.jpg",
-          image_alt: "Poonam Shah - Vice President Operations at Shanky Group",
+          image: "",
+          image_alt: "",
           description: "Ms. Shah oversees operational excellence and process optimization across Group's diverse businesses."
         },
         {
@@ -59,8 +59,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance",
           tenure: "From 2015-Present",
-          image: "https://shankygroup.com/images/team/priyanka.jpg",
-          image_alt: "Priyanka Girdhar - Vice President Admin at Shanky Group",
+          image: "",
+          image_alt: "",
           description: "Ms. Girdhar is an accomplished administrative leader with a strong track record of designs, directs, and optimizes an organisation's administrative backbone."
         },
         {
@@ -71,8 +71,8 @@ export async function GET() {
           category: "senior",
           education: "Master's Degree in Finance and Chartered Accountant (Intermediate)",
           tenure: "From 2020-Present",
-          image: "https://shankygroup.com/images/team/rajeev1.jpg",
-          image_alt: "Rajeev Ranjan Jha - Finance Head at Shanky Group",
+          image: "",
+          image_alt: "",
           description: "Financial operations leader responsible for accounting, financial reporting, and compliance functions."
         },
         {
@@ -83,8 +83,8 @@ export async function GET() {
           category: "senior",
           education: "B.A.LL.B",
           tenure: "From 2022-Present",
-          image: "https://shankygroup.com/images/team/shivani1.jpeg",
-          image_alt: "Shivani Bansal - Legal Advisor at Shanky Group",
+          image: "",
+          image_alt: "",
           description: "I am a legal advisor with experience in contract review, legal documentation, and dispute resolution."
         },
         {
@@ -95,8 +95,8 @@ export async function GET() {
           category: "senior",
           education: "Bachelor Degree in Science",
           tenure: "From 2021-Present",
-          image: "https://shankygroup.com/images/team/shubh.png",
-          image_alt: "Shubh Gupta - Purchase Manager at Shanky Group",
+          image: "",
+          image_alt: "",
           description: "Key member of leadership team driving procurement, vendor management, and supply chain execution across Group."
         }
       ],
