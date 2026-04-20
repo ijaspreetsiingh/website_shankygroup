@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import ContactUs from '../../home/home4/vender';
 
 /** Scroll-triggered fade-in-up when element enters viewport */
@@ -70,11 +71,53 @@ export default function ShankySmartTechPage() {
   }, []);
 
   return (    
-    <div
-      ref={containerRef}
-      className="company-smart-tech-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky Smart Tech Pvt Ltd - Renewable Energy & Smart Electronics Solutions</title>
+        <meta name="description" content="Shanky Smart Tech Pvt Ltd operates as a B2B solutions provider at intersection of renewable energy and smart electronics, serving industrial, commercial, and institutional clients with integrated energy and smart technology solutions. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="Shanky Smart Tech, renewable energy, smart electronics, solar EPC, energy management systems, IoT monitoring, smart building electronics, corporate rooftops, energy optimization, AI-driven optimization" />
+        <meta property="og:title" content="Shanky Smart Tech Pvt Ltd - Renewable Energy Solutions" />
+        <meta property="og:description" content="B2B solutions provider at intersection of renewable energy and smart electronics, serving industrial, commercial, and institutional clients." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-smart-tech" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky Smart Tech Pvt Ltd - Smart Electronics" />
+        <meta name="twitter:description" content="B2B renewable energy and smart electronics solutions provider for industrial, commercial, and institutional clients." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Smart Tech Pvt Ltd",
+              "description": "B2B solutions provider at intersection of renewable energy and smart electronics, serving industrial, commercial, and institutional clients seeking integrated energy and smart technology solutions.",
+              "url": "https://shankygroup.com/company/shanky-smart-tech",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Solar EPC advisory",
+                "Energy management systems",
+                "IoT-enabled monitoring",
+                "Procurement and integration of smart building electronics",
+                "Turnkey project advisory",
+                "System integration",
+                "Performance contracts"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-smart-tech-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       <style dangerouslySetInnerHTML={{ __html: `
         .company-smart-tech-root .section-heading,
         .company-smart-tech-root h1, .company-smart-tech-root h2, .company-smart-tech-root h3, .company-smart-tech-root h4 {
@@ -607,5 +650,6 @@ export default function ShankySmartTechPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

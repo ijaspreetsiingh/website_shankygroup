@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import FooterFour from '../../home/home4/FooterFour';
 import ContactUs from '../../home/home4/vender';
 
@@ -73,11 +74,54 @@ export default function ShankyFinancialScrollPage() {
   }, []);
 
   return (    
-    <div
-      ref={containerRef}
-      className="company-financial-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky Financial Services Pvt Ltd - B2B Financial Intermediary & Institutional Trading</title>
+        <meta name="description" content="Shanky Financial Services Pvt Ltd is a private B2B financial intermediary delivering institutional-grade investment and trading services for corporate clients, asset managers, family offices, and financial institutions. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="Shanky Financial Services, B2B financial intermediary, institutional trading, investment in securities, proprietary trading, market making, corporate treasury solutions, structured financial solutions, portfolio structuring, liquidity management" />
+        <meta property="og:title" content="Shanky Financial Services Pvt Ltd - Institutional Financial Services" />
+        <meta property="og:description" content="Private B2B financial intermediary offering institutional-grade investment, trading, and structured financial solutions for corporate clients and financial institutions." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-financial-pvt-ltd" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky Financial Services Pvt Ltd - B2B Financial Intermediary" />
+        <meta name="twitter:description" content="Institutional-grade B2B financial intermediary providing investment, trading, and structured solutions for corporate clients and financial institutions." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Financial Services Pvt Ltd",
+              "description": "Private B2B financial intermediary delivering institutional-grade investment and trading services tailored for corporate clients, asset managers, family offices, and financial institutions.",
+              "url": "https://shankygroup.com/company/shanky-financial-pvt-ltd",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Investment in securities",
+                "Proprietary trading",
+                "Market-making support",
+                "Structured solutions for corporate treasuries",
+                "Bespoke portfolio structuring",
+                "Liquidity management",
+                "Execution services"
+              ],
+              "foundingDate": "2011",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-financial-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       {/* Careers jaisa heading font: Syne, bold, 0.04em tracking – isi page par force */}
       <style dangerouslySetInnerHTML={{ __html: `
         .company-financial-root .section-heading,
@@ -671,5 +715,6 @@ export default function ShankyFinancialScrollPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

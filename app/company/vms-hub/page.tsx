@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import ContactUs from '../../home/home4/vender';
 
 /** Scroll-triggered fade-in-up when element enters viewport */
@@ -71,11 +72,54 @@ export default function VMSHubPage() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="company-vms-hub-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>VMS Hub Pvt Ltd - B2B Wholesale Distribution & Food Supply Chain</title>
+        <meta name="description" content="VMS Hub Pvt Ltd is Group's B2B wholesale distribution specialist for food and agricultural products, connecting producers with retailers, food processors, institutional buyers, and large-scale foodservice operators. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="VMS Hub, B2B wholesale distribution, food supply chain, agricultural products, bulk sourcing, contract distribution, supply chain management, private-label procurement, demand forecasting, vendor aggregation" />
+        <meta property="og:title" content="VMS Hub Pvt Ltd - Food & Agricultural Distribution" />
+        <meta property="og:description" content="B2B wholesale distribution specialist for food and agricultural products, connecting producers with retailers, food processors, and institutional buyers." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/vms-hub" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="VMS Hub Pvt Ltd - Wholesale Distribution" />
+        <meta name="twitter:description" content="B2B wholesale distribution specialist for food and agricultural products with supply chain management and procurement solutions." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "VMS Hub Pvt Ltd",
+              "description": "Group's B2B wholesale distribution specialist for food and agricultural products, connecting producers and suppliers with retailers, food processors, institutional buyers, and large-scale foodservice operators.",
+              "url": "https://shankygroup.com/company/vms-hub",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Bulk sourcing",
+                "Contract distribution",
+                "Supply chain management",
+                "Private-label procurement",
+                "Demand forecasting",
+                "Consolidated procurement",
+                "Vendor aggregation",
+                "Logistics coordination"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-vms-hub-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       <style dangerouslySetInnerHTML={{ __html: `
         .company-vms-hub-root .section-heading,
         .company-vms-hub-root h1, .company-vms-hub-root h2, .company-vms-hub-root h3, .company-vms-hub-root h4 {
@@ -365,5 +409,6 @@ export default function VMSHubPage() {
         </div>
       </section>
     </div>
+    </>
   );
 }

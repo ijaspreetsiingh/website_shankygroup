@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const UNOPTIMIZED = true;
 
@@ -72,11 +73,51 @@ export default function ShankyMetalsPvtLtdPage() {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="company-metals-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky Metals Pvt Ltd - B2B Metals Trading & Distribution</title>
+        <meta name="description" content="Shanky Metals Pvt Ltd is a B2B metals trading and distribution specialist focusing on sourcing and supplying aluminium, copper, brass, iron, and steel to industrial buyers, traders, and export partners. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="Shanky Metals, B2B metals trading, metal distribution, aluminium trading, copper trading, brass trading, iron trading, steel trading, industrial buyers, export partners, bulk metal trading" />
+        <meta property="og:title" content="Shanky Metals Pvt Ltd - Metals Trading" />
+        <meta property="og:description" content="B2B metals trading and distribution specialist supplying aluminium, copper, brass, iron, and steel to industrial buyers and export partners." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-metals-pvt-ltd" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky Metals Pvt Ltd - Metal Distribution" />
+        <meta name="twitter:description" content="B2B metals trading specialist supplying industrial metals to manufacturers, distributors, and international trading partners." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Metals Pvt Ltd",
+              "description": "B2B metals trading and distribution specialist focusing on sourcing and supplying a broad range of metals to industrial buyers, traders, and export partners.",
+              "url": "https://shankygroup.com/company/shanky-metals-pvt-ltd",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Bulk metal trading",
+                "Procurement and supply contracts",
+                "Inventory management",
+                "Export facilitation",
+                "Aluminium, copper, brass, iron, steel supply"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-metals-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       <style dangerouslySetInnerHTML={{ __html: `
         .company-metals-root .section-heading,
         .company-metals-root h1, .company-metals-root h2, .company-metals-root h3, .company-metals-root h4 {
@@ -557,5 +598,6 @@ export default function ShankyMetalsPvtLtdPage() {
       </section>
 
     </div>
+    </>
   );
 }

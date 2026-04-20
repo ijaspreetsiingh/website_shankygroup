@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const UNOPTIMIZED = true;
 
@@ -53,11 +54,54 @@ export default function ShankyBuildTechPage() {
   }, []);
 
   return (    
-    <div
-      ref={containerRef}
-      className="company-buildtech-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky BuildTech Pvt Ltd - B2B Construction Services & Project Delivery</title>
+        <meta name="description" content="Shanky BuildTech Pvt Ltd is Group's B2B construction services and project delivery partner providing construction management, finishing works, and facility readiness services for developers and institutional clients. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="Shanky BuildTech, B2B construction services, project delivery, construction management, finishing works, facility readiness, MEP coordination, vendor management, commercial construction, industrial construction" />
+        <meta property="og:title" content="Shanky BuildTech Pvt Ltd - Construction Services" />
+        <meta property="og:description" content="Group's B2B construction services and project delivery partner providing construction management, finishing works, and facility readiness services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-buildtech-pvt-ltd" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky BuildTech Pvt Ltd - Project Delivery" />
+        <meta name="twitter:description" content="B2B construction services and project delivery partner for developers and institutional clients." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky BuildTech Pvt Ltd",
+              "description": "Group's B2B construction services and project delivery partner, managed by Directors Vipin Kumar and Manoj Kumar Mishra, providing construction management, finishing works, and facility readiness services for developers and institutional clients.",
+              "url": "https://shankygroup.com/company/shanky-buildtech-pvt-ltd",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Project management",
+                "Finishing and fit-out services",
+                "Repairs and refurbishment",
+                "MEP coordination",
+                "Vendor management",
+                "Turnkey delivery",
+                "Subcontractor management",
+                "Handover-ready facilities"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-buildtech-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       <style dangerouslySetInnerHTML={{ __html: `
         .company-buildtech-root .section-heading,
         .company-buildtech-root h1, .company-buildtech-root h2, .company-buildtech-root h3, .company-buildtech-root h4 {
@@ -534,5 +578,6 @@ export default function ShankyBuildTechPage() {
       </section>
 
     </div>
+    </>
   );
 }

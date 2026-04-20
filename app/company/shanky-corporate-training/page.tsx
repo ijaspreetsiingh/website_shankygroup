@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const UNOPTIMIZED = true;
 
@@ -73,11 +74,55 @@ export default function ShankyCorporateTrainingPage() {
   }, []);
 
   return (    
-    <div
-      ref={containerRef}
-      className="company-corporate-training-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky Corporate Training Pvt Ltd - B2B Talent Development & Corporate Learning</title>
+        <meta name="description" content="Shanky Corporate Training Pvt Ltd is Group's B2B talent development partner designing and delivering corporate learning programs that strengthen workforce capabilities across sectors. Led by Directors Vipin Kumar and Manoj Kumar Mishra." />
+        <meta name="keywords" content="Shanky Corporate Training, B2B talent development, corporate learning programs, leadership development, soft skills training, technical upskilling, organizational development, digital learning platforms, executive programs, workforce transformation" />
+        <meta property="og:title" content="Shanky Corporate Training Pvt Ltd - Talent Development" />
+        <meta property="og:description" content="Group's B2B talent development partner designing corporate learning programs that strengthen workforce capabilities across sectors." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-corporate-training" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky Corporate Training Pvt Ltd - Corporate Learning" />
+        <meta name="twitter:description" content="B2B talent development partner delivering measurable learning outcomes and scalable corporate learning programs." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Corporate Training Pvt Ltd",
+              "description": "Group's B2B talent development partner designing and delivering corporate learning programs that strengthen workforce capabilities across sectors.",
+              "url": "https://shankygroup.com/company/shanky-corporate-training",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Leadership development",
+                "Soft skills and behavioral training",
+                "Technical upskilling",
+                "Organizational development consulting",
+                "Digital learning platforms for enterprises",
+                "Customized curricula",
+                "Cohort-based executive programs",
+                "Blended learning journeys"
+              ],
+              "foundingDate": "2014",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="company-corporate-training-root relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       <style dangerouslySetInnerHTML={{ __html: `
         .company-corporate-training-root .section-heading,
         .company-corporate-training-root h1, .company-corporate-training-root h2, .company-corporate-training-root h3, .company-corporate-training-root h4 {
@@ -597,5 +642,6 @@ export default function ShankyCorporateTrainingPage() {
       </section>
 
     </div>
+    </>
   );
 }
