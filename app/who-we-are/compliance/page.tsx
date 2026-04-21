@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import WhoWeAreNav from '../WhoWeAreNav';
 import mission2Image from '../../images/mission2.png';
 
@@ -52,10 +53,57 @@ export default function CompliancePage() {
   const isVisible = (key: string) => visibleSections[key] ?? false;
 
   return (
-    <div
-      className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Compliance & Governance - Shanky Group | Corporate Ethics & Regulatory Standards</title>
+        <meta name="description" content="Shanky Group maintains comprehensive compliance and governance frameworks including board oversight, internal controls, ethical conduct, and regulatory compliance across all business operations." />
+        <meta name="keywords" content="Shanky Group compliance, corporate governance, regulatory compliance, ethical conduct, board oversight, internal controls, anti-bribery, data protection, AML KYC, whistleblower policy" />
+        <meta property="og:title" content="Compliance & Governance - Shanky Group" />
+        <meta property="og:description" content="Comprehensive compliance and governance frameworks ensuring ethical business practices, regulatory compliance, and stakeholder trust." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/who-we-are/compliance" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Compliance & Governance - Shanky Group" />
+        <meta name="twitter:description" content="Corporate compliance and governance frameworks ensuring ethical business practices and regulatory standards." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Group",
+              "description": "Shanky Group maintains comprehensive compliance and governance frameworks ensuring ethical business practices and regulatory compliance.",
+              "url": "https://shankygroup.com/who-we-are/compliance",
+              "mainEntity": {
+                "@type": "WebPage",
+                "name": "Compliance & Governance",
+                "description": "Comprehensive compliance and governance frameworks including board oversight, internal controls, ethical conduct, and regulatory compliance."
+              },
+              "hasPart": [
+                {
+                  "@type": "Service",
+                  "name": "Board Oversight",
+                  "description": "Each company has a board of directors responsible for strategic direction, oversight, and governance."
+                },
+                {
+                  "@type": "Service", 
+                  "name": "Internal Controls",
+                  "description": "Robust internal controls and audit mechanisms ensure financial integrity, risk management, and regulatory compliance."
+                },
+                {
+                  "@type": "Service",
+                  "name": "Ethical Conduct",
+                  "description": "The Group's code of conduct outlines expectations for ethical behavior, conflict of interest management, and stakeholder engagement."
+                }
+              ]
+            })
+          }}
+        />
+      </Head>
+      <div
+        className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       {/* Hero */}
       <section className="relative w-full pt-3 sm:pt-4 md:pt-6 lg:pt-8 px-3 sm:px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)]">
         <div className="about-hero-card relative min-h-[60vh] sm:h-[68vh] md:h-[72vh] lg:h-[75vh] w-full rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-[var(--card-border)]">
@@ -444,6 +492,7 @@ export default function CompliancePage() {
           </div>
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
