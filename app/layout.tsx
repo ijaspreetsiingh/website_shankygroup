@@ -54,7 +54,7 @@ const homeWebPageJsonLd = {
   '@type': 'WebPage',
   '@id': `${siteUrl}/#webpage`,
   url: siteUrl,
-  name: 'Shanky Group | Empowering Businesses Across Industries',
+  name: 'Shanky Group | Finance, Technology & Business Solutions',
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
   isPartOf: {
@@ -98,7 +98,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Shanky Group | Empowering Businesses Across Industries',
+    default: 'Shanky Group | Finance, Technology & Business Solutions',
     template: '%s | Shanky Group',
   },
   icons: {

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from "react";
+import Head from 'next/head';
 import WhoWeAreNav from '../WhoWeAreNav';
 
 type Leader = {
@@ -184,6 +185,44 @@ const LeadershipPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Leadership Team - Vipin Kumar & Manoj Kumar Mishra | Shanky Group</title>
+        <meta name="description" content="Meet the leadership team of Shanky Group led by Managing Director Vipin Kumar and Director Manoj Kumar Mishra. Our experienced leadership team drives innovation and growth across finance, technology, training, and industrial sectors." />
+        <meta name="keywords" content="Shanky Group leadership, Vipin Kumar, Manoj Kumar Mishra, Managing Director, leadership team, executive team, corporate leadership, business leaders" />
+        <meta property="og:title" content="Leadership Team - Shanky Group" />
+        <meta property="og:description" content="Meet the leadership team of Shanky Group led by Vipin Kumar and Manoj Kumar Mishra. Our experienced leadership drives innovation across multiple business sectors." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/who-we-are/leadership" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Leadership Team - Shanky Group" />
+        <meta name="twitter:description" content="Meet the leadership team of Shanky Group led by Vipin Kumar and Manoj Kumar Mishra. Our experienced leadership drives innovation across multiple business sectors." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Group",
+              "description": "Meet the leadership team of Shanky Group led by Managing Director Vipin Kumar and Director Manoj Kumar Mishra. Our experienced leadership team drives innovation and growth across finance, technology, training, and industrial sectors.",
+              "url": "https://shankygroup.com/who-we-are/leadership",
+              "leadership": [
+                {
+                  "@type": "Person",
+                  "name": "Vipin Kumar",
+                  "jobTitle": "Managing Director",
+                  "description": "Seasoned entrepreneur and business leader with over a decade of experience in managing diversified businesses with strategic vision and operational acumen."
+                },
+                {
+                  "@type": "Person", 
+                  "name": "Manoj Kumar Mishra",
+                  "jobTitle": "Director",
+                  "description": "Financial expert with 22 years of experience in finance, accounts, and commercial operations across manufacturing and retail sectors."
+                }
+              ]
+            })
+          }}
+        />
+      </Head>
       {/* Hero Section */}
       <section 
         ref={heroRef}
@@ -559,13 +598,16 @@ const LeadershipPage = () => {
                   background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
                 }}>
                   <img 
-                    src={leader.image} 
-                    alt={leader.name}
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face"
+                    alt="Vipin Kumar - Managing Director - Shanky Group Leadership"
+                    title="Vipin Kumar - Managing Director at Shanky Group"
                     style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                       filter: hoveredCard === leader.id ? 'grayscale(20%)' : 'grayscale(0)',
                       transform: hoveredCard === leader.id ? 'scale(1.1)' : 'scale(1)'
                     }}
