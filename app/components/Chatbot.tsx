@@ -599,7 +599,7 @@ export default function Chatbot() {
                 >
                   visit our Contact page
                 </Link>
-                {' '}· Shanky Group © 2025
+                {' '}· Shanky Group © 2026
               </p>
             </div>
           </div>
