@@ -8,6 +8,38 @@ import { getReplyFromKnowledge } from '../lib/chatbot-knowledge';
 const ACCENT = '#e63a27';
 const ACCENT_DARK = '#c42e1e';
 
+// Theme detection hook
+function useTheme() {
+  const [isDark, setIsDark] = useState(true);
+  
+  useEffect(() => {
+    const checkTheme = () => {
+      const html = document.documentElement;
+      const hasDarkClass = html.classList.contains('dark');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setIsDark(hasDarkClass || prefersDark);
+    };
+    
+    checkTheme();
+    
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', checkTheme);
+    
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener('change', checkTheme);
+    };
+  }, []);
+  
+  return isDark;
+}
+
 const QUICK_REPLIES = [
   { label: '📞 Contact us', text: 'I want to get in touch with your team.' },
   { label: '🏢 Our companies', text: 'Tell me about your companies and businesses.' },
@@ -39,25 +71,26 @@ function BotAvatar({ sm }: { sm?: boolean }) {
 
 function UserAvatar({ sm }: { sm?: boolean }) {
   const s = sm ? 28 : 38;
+  const isDark = useTheme();
   return (
     <div style={{
       width: s, height: s, borderRadius: '50%',
       flexShrink: 0, overflow: 'hidden',
-      background: 'rgba(255,255,255,0.08)',
+      background: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
       display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
       aspectRatio: '1/1',
     }}>
       <svg viewBox="0 0 40 46" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
-        <circle cx="20" cy="16" r="10" fill="rgba(255,255,255,0.25)" />
-        <ellipse cx="20" cy="45" rx="18" ry="13" fill="rgba(255,255,255,0.25)" />
+        <circle cx="20" cy="16" r="10" fill={isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)"} />
+        <ellipse cx="20" cy="45" rx="18" ry="13" fill={isDark ? "rgba(255,255,255,0.25)" : "rgba(0,0,0,0.25)"} />
       </svg>
     </div>
   );
 }
 
 /* ── Provider badge ─────────────────────────────────────────── */
-function ProviderBadge({ provider, fallbackReason, fromApi, apiError }: {
-  provider?: string; fallbackReason?: string; fromApi?: boolean; apiError?: string;
+function ProviderBadge({ provider, fallbackReason, fromApi, apiError, isDark }: {
+  provider?: string; fallbackReason?: string; fromApi?: boolean; apiError?: string; isDark: boolean;
 }) {
   const map: Record<string, string> = {
     gemini: '🟢 AI Engine 1',
@@ -66,7 +99,14 @@ function ProviderBadge({ provider, fallbackReason, fromApi, apiError }: {
     fallback: '⚪ Local',
   };
   return (
-    <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.25)', marginTop: 3, display: 'block', paddingLeft: 2 }}>
+    <span style={{ 
+      fontSize: 9, 
+      color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.35)', 
+      marginTop: 3, 
+      display: 'block', 
+      paddingLeft: 2,
+      opacity: isDark ? 0.7 : 0.8
+    }}>
       {provider ? map[provider] || provider : fromApi === false ? 'Offline' : ''}
       {fallbackReason && <span style={{ color: ACCENT }}> — {fallbackReason}</span>}
       {apiError && <span style={{ color: ACCENT, display: 'block' }}>{apiError}</span>}
@@ -96,6 +136,7 @@ function TypingDots() {
 ══════════════════════════════════════════════════════════════ */
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
+  const isDark = useTheme();
   const [messages, setMessages] = useState<{
     role: 'user' | 'bot'; text: string;
     fromApi?: boolean; apiError?: string;
@@ -352,9 +393,9 @@ export default function Chatbot() {
               borderRadius: 22,
               overflow: 'hidden',
               display: 'flex', flexDirection: 'column',
-              background: '#0f0f0f',
-              border: '1px solid rgba(255,255,255,0.07)',
-              boxShadow: '0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03)',
+              background: isDark ? '#0f0f0f' : '#ffffff',
+              border: isDark ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(0,0,0,0.08)',
+              boxShadow: isDark ? '0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03)' : '0 40px 100px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05)',
             }}
           >
             {/* Top red glow */}
@@ -368,9 +409,9 @@ export default function Chatbot() {
             <div style={{
               position: 'relative', zIndex: 1,
               padding: '14px 16px',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              borderBottom: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.08)',
               display: 'flex', alignItems: 'center', gap: 11,
-              background: 'rgba(255,255,255,0.025)',
+              background: isDark ? 'rgba(255,255,255,0.025)' : 'rgba(0,0,0,0.02)',
             }}>
               {/* Bot avatar */}
               <div style={{ position: 'relative', flexShrink: 0 }}>
@@ -385,8 +426,8 @@ export default function Chatbot() {
               </div>
 
               <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>Shanky Group</p>
-                <p style={{ margin: '2px 0 0', fontSize: 11, color: 'rgba(255,255,255,0.35)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: isDark ? '#fff' : '#1a1a1a', letterSpacing: '-0.01em' }}>Shanky Group</p>
+                <p style={{ margin: '2px 0 0', fontSize: 11, color: isDark ? 'rgba(255,255,255,0.35)' : 'rgba(0,0,0,0.45)', display: 'flex', alignItems: 'center', gap: 4 }}>
                   <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }} />
                   Online · Replies instantly
                 </p>
@@ -399,9 +440,9 @@ export default function Chatbot() {
                 aria-label="Close"
                 style={{
                   width: 30, height: 30, borderRadius: 9,
-                  border: '1px solid rgba(255,255,255,0.07)',
+                  border: isDark ? '1px solid rgba(255,255,255,0.07)' : '1px solid rgba(0,0,0,0.08)',
                   background: 'transparent', cursor: 'pointer',
-                  color: 'rgba(255,255,255,0.45)',
+                  color: isDark ? 'rgba(255,255,255,0.45)' : 'rgba(0,0,0,0.45)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   flexShrink: 0, transition: 'background .15s',
                 }}
@@ -441,9 +482,9 @@ export default function Chatbot() {
                         ? '16px 16px 16px 4px'
                         : '16px 16px 4px 16px',
                       ...(msg.role === 'bot' ? {
-                        background: 'rgba(255,255,255,0.07)',
-                        color: 'rgba(255,255,255,0.85)',
-                        border: '1px solid rgba(255,255,255,0.08)',
+                        background: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.04)',
+                        color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.85)',
+                        border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                       } : {
                         background: `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)`,
                         color: '#fff',
@@ -457,6 +498,7 @@ export default function Chatbot() {
                         fallbackReason={msg.fallbackReason}
                         fromApi={msg.fromApi}
                         apiError={msg.apiError}
+                        isDark={isDark}
                       />
                     )}
                   </div>
@@ -474,9 +516,9 @@ export default function Chatbot() {
                       padding: '9px 13px',
                       borderRadius: '16px 16px 16px 4px',
                       fontSize: 13, lineHeight: 1.55, whiteSpace: 'pre-wrap',
-                      background: 'rgba(255,255,255,0.07)',
-                      color: 'rgba(255,255,255,0.85)',
-                      border: '1px solid rgba(255,255,255,0.08)',
+                      background: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.04)',
+                      color: isDark ? 'rgba(255,255,255,0.85)' : 'rgba(0,0,0,0.85)',
+                      border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                     }}>
                       {streamingMessage.fullText.slice(0, streamingMessage.displayed)}
                       <span style={{
@@ -495,8 +537,8 @@ export default function Chatbot() {
                 <div className="sg-msg" style={{ display: 'flex', alignItems: 'flex-end', gap: 7 }}>
                   <BotAvatar sm />
                   <div style={{
-                    background: 'rgba(255,255,255,0.07)',
-                    border: '1px solid rgba(255,255,255,0.08)',
+                    background: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.04)',
+                    border: isDark ? '1px solid rgba(255,255,255,0.08)' : '1px solid rgba(0,0,0,0.08)',
                     borderRadius: '16px 16px 16px 4px',
                   }}>
                     <TypingDots />
@@ -516,9 +558,9 @@ export default function Chatbot() {
                       style={{
                         padding: '6px 12px',
                         borderRadius: 20,
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        background: 'rgba(255,255,255,0.04)',
-                        color: 'rgba(255,255,255,0.6)',
+                        border: isDark ? '1px solid rgba(255,255,255,0.1)' : '1px solid rgba(0,0,0,0.1)',
+                        background: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)',
+                        color: isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)',
                         fontSize: 12, fontWeight: 500,
                         cursor: 'pointer', transition: 'all .15s',
                       }}
@@ -534,20 +576,21 @@ export default function Chatbot() {
 
             {/* ── Input ─────────────────────────────────────── */}
             <div style={{
-              padding: '10px 12px 14px',
-              borderTop: '1px solid rgba(255,255,255,0.06)',
-              background: 'rgba(0,0,0,0.2)',
+              padding: '16px',
+              borderTop: isDark ? '1px solid rgba(255,255,255,0.06)' : '1px solid rgba(0,0,0,0.12)',
+              background: isDark ? 'rgba(0,0,0,0.3)' : 'rgba(248,248,248,0.8)',
               position: 'relative', zIndex: 1,
             }}>
               <div
                 className="sg-input-wrap"
                 style={{
                   display: 'flex', alignItems: 'center', gap: 8,
-                  background: 'rgba(255,255,255,0.055)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 14,
-                  padding: '4px 4px 4px 13px',
-                  transition: 'border-color .2s',
+                  background: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(255,255,255,0.9)',
+                  border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid rgba(0,0,0,0.15)',
+                  borderRadius: 12,
+                  padding: '8px 8px 8px 16px',
+                  transition: 'all .2s',
+                  boxShadow: isDark ? '0 2px 8px rgba(0,0,0,0.2)' : '0 2px 8px rgba(0,0,0,0.08)',
                 }}
               >
                 <input
@@ -560,8 +603,9 @@ export default function Chatbot() {
                   className="sg-input"
                   style={{
                     flex: 1, border: 'none', background: 'transparent',
-                    fontSize: 13, color: '#fff',
-                    padding: '7px 0',
+                    fontSize: 14, color: isDark ? '#fff' : '#1a1a1a',
+                    padding: '6px 0',
+                    fontWeight: 400,
                   }}
                 />
                 <button
@@ -570,16 +614,16 @@ export default function Chatbot() {
                   onClick={handleSend}
                   disabled={!inputValue.trim()}
                   style={{
-                    width: 34, height: 34, borderRadius: 10,
+                    width: 36, height: 36, borderRadius: 8,
                     border: 'none',
                     background: inputValue.trim()
                       ? `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)`
-                      : 'rgba(255,255,255,0.06)',
+                      : isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
                     color: '#fff',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                     cursor: inputValue.trim() ? 'pointer' : 'not-allowed',
-                    opacity: inputValue.trim() ? 1 : 0.35,
+                    opacity: inputValue.trim() ? 1 : isDark ? 0.5 : 0.4,
                     transition: 'all .15s',
                     boxShadow: inputValue.trim() ? '0 3px 12px rgba(230,58,39,0.35)' : 'none',
                   }}
@@ -590,7 +634,7 @@ export default function Chatbot() {
                 </button>
               </div>
 
-              <p style={{ textAlign: 'center', fontSize: 10, color: 'rgba(255,255,255,0.18)', marginTop: 9, marginBottom: 0 }}>
+              <p style={{ textAlign: 'center', fontSize: 11, color: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.4)', marginTop: 12, marginBottom: 0 }}>
                 Or{' '}
                 <Link
                   href="/contact"
