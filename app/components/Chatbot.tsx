@@ -116,12 +116,13 @@ function ProviderBadge({ provider, fallbackReason, fromApi, apiError, isDark }: 
 
 /* ── Typing dots ────────────────────────────────────────────── */
 function TypingDots() {
+  const isDark = useTheme();
   return (
     <div style={{ display: 'flex', gap: 4, padding: '10px 14px' }}>
       {[0, 160, 320].map((d) => (
         <span key={d} style={{
           width: 6, height: 6, borderRadius: '50%',
-          background: 'rgba(255,255,255,0.25)',
+          background: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(0,0,0,0.25)',
           display: 'inline-block',
           animation: 'sgBounce 1.2s ease-in-out infinite',
           animationDelay: `${d}ms`,
@@ -137,6 +138,26 @@ function TypingDots() {
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const isDark = useTheme();
+
+  // Update placeholder color based on theme
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.textContent = `
+      .sg-input::placeholder {
+        color: ${isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'} !important;
+      }
+      .sg-input:-ms-input-placeholder {
+        color: ${isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'} !important;
+      }
+      .sg-input::-ms-input-placeholder {
+        color: ${isDark ? 'rgba(255,255,255,0.4)' : 'rgba(0,0,0,0.4)'} !important;
+      }
+    `;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, [isDark]);
   const [messages, setMessages] = useState<{
     role: 'user' | 'bot'; text: string;
     fromApi?: boolean; apiError?: string;
@@ -615,17 +636,17 @@ export default function Chatbot() {
                   disabled={!inputValue.trim()}
                   style={{
                     width: 36, height: 36, borderRadius: 8,
-                    border: 'none',
+                    border: isDark ? 'none' : '1px solid rgba(0,0,0,0.1)',
                     background: inputValue.trim()
                       ? `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)`
                       : isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
-                    color: '#fff',
+                    color: inputValue.trim() ? '#fff' : isDark ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.6)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     flexShrink: 0,
                     cursor: inputValue.trim() ? 'pointer' : 'not-allowed',
                     opacity: inputValue.trim() ? 1 : isDark ? 0.5 : 0.4,
                     transition: 'all .15s',
-                    boxShadow: inputValue.trim() ? '0 3px 12px rgba(230,58,39,0.35)' : 'none',
+                    boxShadow: inputValue.trim() ? '0 3px 12px rgba(230,58,39,0.35)' : isDark ? 'none' : '0 1px 3px rgba(0,0,0,0.1)',
                   }}
                 >
                   <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
