@@ -193,17 +193,17 @@ export const BOT_IDENTITY_KNOWLEDGE: KnowledgeEntry[] = [
 export const GROUP_OVERVIEW_KNOWLEDGE: KnowledgeEntry[] = [
   {
     keywords: ['shanky group','shanky group kya hai','group ke baare mein','group overview','about shanky','about shanky group','shanky group about','shanky group information','group info'],
-    answer: '🏛️ **SHANKY GROUP — A Premier Indian Conglomerate**\n\n📅 **Founded:** 2014\n📍 **HQ:** D Mall, NSP, Pitampura, Delhi-110034\n👥 **Employees:** 500+\n🤝 **Customers:** 10,000+\n💰 **Group Turnover:** ₹100 Cr+ (FY 2023-24)\n🌍 **Presence:** Pan-India + International (Hong Kong, SE Asia)\n\n**6 Companies Under Shanky Group:**\n1. 💰 Shanky Financial Services\n2. 🌾 VMS Hub Pvt Ltd (Food & Agri)\n3. ☀️ Shanky Smart Tech Pvt Ltd (Solar & IoT)\n4. 📱 Shanky Electronics Hub LLP\n5. 🔩 Shanky Metals Pvt Ltd\n6. 📚 Shanky Corporate Training Pvt Ltd\n\n**Sectors:** Finance | Food | Solar | Electronics | Metals | Education\n\nEk hi group, chhe companies, anek opportunities! 🚀',
+    answer: '🏛️ **SHANKY GROUP — A Premier Indian Conglomerate**\n\n📅 **Founded:** 2014\n📍 **HQ:** D Mall, NSP, Pitampura, Delhi-110034\n👥 **Employees:** 500+\n🤝 **Customers:** 10,000+\n💰 **Group Turnover:** ₹100 Cr+ (FY 2023-24)\n🌍 **Presence:** Pan-India + International (Hong Kong, SE Asia)\n\n**6 Companies Under Shanky Group:**\n1. 💰 Shanky Financial Services Pvt Ltd\n2. 🌾 VMS Hub Pvt Ltd (Food & Agri)\n3. ☀️ Shanky Smart Tech Pvt Ltd (Solar & IoT)\n4. 🏗️ Shanky Buildtech Pvt Ltd (Construction)\n5. 🔩 Shanky Metals Pvt Ltd\n6. 📚 Shanky Corporate Training Pvt Ltd\n\n**Sectors:** Finance | Food | Solar | Construction | Metals | Education\n\nEk hi group, chhe companies, anek opportunities! 🚀',
     category: 'group_overview', priority: 10
   },
   {
     keywords: ['kitni companies hain','how many companies','group mein kaun kaun si companies','group companies list','subsidiary','subsidiaries','group ke under'],
-    answer: '🏢 **Shanky Group mein 6 companies hain:**\n\n1. 💰 **Shanky Financial Services** — B2B Finance, Working Capital, Factoring\n2. 🌾 **VMS Hub Pvt Ltd** — Food & Agriculture wholesale distribution\n3. ☀️ **Shanky Smart Tech Pvt Ltd** — Solar EPC, IoT, Smart Energy\n4. 📱 **Shanky Electronics Hub LLP** — Electronics trading, Consumer & Industrial\n5. 🔩 **Shanky Metals Pvt Ltd** — Metal trading, Processing, Export\n6. 📚 **Shanky Corporate Training Pvt Ltd** — Corporate L&D programs\n\nHar company mein kya hota hai — detail mein bataoon kya? 😊',
+    answer: '🏢 **Shanky Group mein 6 companies hain:**\n\n1. 💰 **Shanky Financial Services Pvt Ltd** — Financial intermediation, Investment in securities, Proprietary trading\n2. 🌾 **VMS Hub Pvt Ltd** — Food & Agriculture distribution, Supply chain management\n3. ☀️ **Shanky Smart Tech Pvt Ltd** — Solar EPC solutions, Smart electronics, IoT & AI integration\n4. 🏗️ **Shanky Buildtech Pvt Ltd** — Infrastructure & Construction, Residential/Commercial/Industrial projects\n5. 🔩 **Shanky Metals Pvt Ltd** — Metal procurement, Processing, Trading, Export operations\n6. 📚 **Shanky Corporate Training Pvt Ltd** — Corporate & Educational training, Leadership development\n\nHar company mein kya hota hai — detail mein bataoon kya? 😊',
     category: 'group_overview', priority: 10
   },
   {
     keywords: ['directors','founder','promoter','owner','malik','management','board of directors','shanky group founder','vipin kumar','manoj kumar','leadership team','who started'],
-    answer: '👔 **Shanky Group Leadership**\n\n**Key Directors:**\n👨‍💼 **Vipin Kumar** — Director (Multiple companies)\n👨‍💼 **Manoj Kumar Mishra** — Director (Multiple companies)\n\nDono directors ne 2014 mein milke Shanky Group ki neenv rakhi. Unka vision tha ek aise diversified group ka jo har sector mein apni pehchaan banaye.\n\n**Leadership Philosophy:**\n✅ Customer-first approach\n✅ Ethical business practices\n✅ Innovation & Technology adoption\n✅ Employee empowerment\n\n**Awards under their leadership:**\n🏆 Best B2B Financial Services Award 2022\n🏆 Solar Excellence Award 2023\n🏆 Top 100 SMEs of North India 2024\n\nInka sapna hai 2030 tak Shanky Group ko ₹5000 Cr conglomerate banana!',
+    answer: '👔 **Shanky Group Leadership**\n\n**Board of Directors:**\n👨‍💼 **Vipin Kumar** — Director (Multiple companies)\n📝 CA, MBA Finance | Seasoned entrepreneur with 10+ years experience\n\n👨‍💼 **Manoj Kumar Mishra** — Director (Multiple companies)\n📝 CA, Cost Accountant, CPA, MBA, M.Mom, LLB | 22 years finance experience\n\n**Senior Management Team:**\n👩‍💼 **Poonam Shah** — Vice President, Admin\n📝 MBA | 15+ years experience in strategic planning & facilities management\n\n👩‍💼 **Priyanka Girdhar** — Vice President, Operations\n📝 MBA Operations | 12+ years experience in supply chain & quality assurance\n\n👨‍💼 **Rajeev Ranjan Jha** — Finance Head\n📝 CA, MBA Finance | 18+ years experience in corporate finance & audit\n\n**Leadership Philosophy:**\n✅ Customer-first approach\n✅ Ethical business practices\n✅ Innovation & Technology adoption\n✅ Employee empowerment\n\n**Awards under their leadership:**\n🏆 Best B2B Financial Services Award 2022\n🏆 Solar Excellence Award 2023\n🏆 Top 100 SMEs of North India 2024\n\nInka sapna hai 2030 tak Shanky Group ko ₹5000 Cr conglomerate banana!',
     category: 'group_overview', priority: 9
   },
   {
@@ -479,6 +479,52 @@ export const METALS_KNOWLEDGE: KnowledgeEntry[] = [
 ];
 
 // ─────────────────────────────────────────────
+//  SECTION 8.5 — SHANKY BUILDTECH (CONSTRUCTION) (300+ entries)
+// ─────────────────────────────────────────────
+export const BUILDECH_KNOWLEDGE: KnowledgeEntry[] = [
+  {
+    keywords: ['shanky buildtech','buildtech','construction company','building company','infrastructure construction','shanky buildtech pvt ltd','civil construction','real estate development'],
+    answer: '🏗️ **Shanky Buildtech Pvt Ltd — Infrastructure & Construction**\n\n📅 **Established:** 2024\n🏢 **Type:** Private Limited Company\n👥 **Directors:** Vipin Kumar, Manoj Kumar Mishra\n📜 **RERA Registered:** Yes\n🏆 **Specialization:** Smart & Sustainable Building Practices\n\n**Core Business:**\n🏗️ Residential construction (Apartments, Villas, Townships)\n🏢 Commercial construction (Offices, Retail, Malls)\n🏭 Industrial construction (Factories, Warehouses)\n🌱 Green building solutions\n🏛️ Infrastructure development\n\n**Project Types:**\n• High-rise residential towers\n• Commercial complexes\n• Industrial parks\n• Smart city projects\n• Sustainable infrastructure\n\n**Key Features:**\n✅ Smart building automation\n✅ Energy-efficient designs\n✅ Sustainable materials\n✅ IoT integration\n✅ Green certifications (IGBC, LEED)\n\nKis project type mein interest hai? 😊',
+    category: 'buildtech', priority: 10
+  },
+  {
+    keywords: ['residential construction','home building','apartment construction','housing project','residential project','flat construction','villa construction','township development'],
+    answer: '🏠 **Residential Construction Services**\n\n**Project Types:**\n\n🏢 **High-Rise Apartments:**\n• 15-30 floors\n• 2/3/4 BHK configurations\n• Premium amenities\n• Smart home features\n• Timeline: 24-36 months\n\n🏘️ **Gated Communities:**\n• Low-rise (G+4, G+7)\n• Independent floors\n• Community facilities\n• Landscaped gardens\n• Timeline: 18-24 months\n\n🏡 **Independent Villas:**\n• Luxury villas (3000-5000 sqft)\n• Custom designs\n• Private gardens\n• Smart automation\n• Timeline: 12-18 months\n\n🏘️ **Township Development:**\n• Mixed-use development\n• 50+ acre projects\n• Integrated township\n• Social infrastructure\n• Timeline: 5-7 years\n\n**Features:**\n✅ Earthquake-resistant structure\n✅ Fire safety compliance\n✅ 24/7 security\n✅ Power backup\n✅ Water management\n✅ Waste management\n\nBudget aur location discuss karo! 📞',
+    category: 'buildtech', priority: 9
+  },
+  {
+    keywords: ['commercial construction','office building','retail construction','mall construction','commercial complex','business center','shop construction'],
+    answer: '🏢 **Commercial Construction Excellence**\n\n**Commercial Projects:**\n\n🏢 **Office Buildings:**\n• Grade A office spaces\n• IT parks & tech hubs\n• Business centers\n• Co-working spaces\n• Area: 50,000 - 500,000 sqft\n\n🛍️ **Retail Complexes:**\n• Shopping malls\n• High-street retail\n• Food courts\n• Entertainment zones\n• Anchor stores\n\n🏪 **Mixed-Use Developments:**\n• Retail + Office\n• Commercial + Residential\n• Hotel + Retail\n• Integrated complexes\n\n**Key Features:**\n✅ Modern façade design\n✅ Energy-efficient HVAC\n✅ Smart building systems\n✅ Ample parking\n✅ Accessibility compliance\n✅ LEED/IGBC certification\n\n**Timeline:**\n• Low-rise: 18-24 months\n• High-rise: 30-42 months\n\nCommercial project discuss karo! 📞 +011-47586938',
+    category: 'buildtech', priority: 9
+  },
+  {
+    keywords: ['industrial construction','factory construction','warehouse construction','industrial building','manufacturing plant','logistics warehouse','godown construction'],
+    answer: '🏭 **Industrial Construction Solutions**\n\n**Industrial Projects:**\n\n🏭 **Manufacturing Plants:**\n• Heavy industry plants\n• Assembly lines\n• Production facilities\n• Quality control labs\n• Area: 20,000 - 200,000 sqft\n\n📦 **Warehouses:**\n• Logistics warehouses\n• Cold storage facilities\n• Distribution centers\n• Fulfillment centers\n• Height: 40-60 ft clear\n\n🏗️ **Industrial Parks:**\n• Multi-tenant facilities\n• Common infrastructure\n• Utilities management\n• Security systems\n\n**Special Features:**\n✅ Heavy-duty flooring\n✅ Overhead cranes\n✅ Ventilation systems\n✅ Fire suppression\n✅ Loading docks\n✅ Power infrastructure\n\n**Compliance:**\n📋 Factory Act compliance\n📋 Pollution control norms\n📋 Safety standards\n📋 Environmental clearances\n\nIndustrial project quote pao! 📞',
+    category: 'buildtech', priority: 9
+  },
+  {
+    keywords: ['green building','sustainable construction','eco friendly building','igbc','leed certification','green building materials','energy efficient building'],
+    answer: '🌱 **Green & Sustainable Building**\n\n**Green Building Features:**\n\n🏗️ **Sustainable Materials:**\n• Recycled steel & concrete\n• Bamboo & engineered wood\n• Low-VOC paints\n• Eco-friendly insulation\n• Local sourcing\n\n⚡ **Energy Efficiency:**\n• Solar panel integration\n• Energy-efficient HVAC\n• LED lighting systems\n• Smart energy management\n• Natural ventilation\n\n💧 **Water Conservation:**\n• Rainwater harvesting\n• Greywater recycling\n• Low-flow fixtures\n• Water-efficient landscaping\n• Wastewater treatment\n\n🌿 **Indoor Environment:**\n• Natural lighting\n• Air quality management\n• Acoustic comfort\n• Thermal comfort\n• Biophilic design\n\n**Certifications:**\n🏆 IGBC Gold/Platinum\n🏆 LEED Silver/Gold\n🏆 GRIHA 3-5 Star\n\n**Benefits:**\n✅ 30-40% energy savings\n✅ 40-50% water savings\n✅ Better indoor air quality\n✅ Higher property value\n✅ Government incentives\n\nGreen building project plan karo! 🌱',
+    category: 'buildtech', priority: 8
+  },
+  {
+    keywords: ['smart building','building automation','iot building','smart home','intelligent building','building management system','bms'],
+    answer: '🏠 **Smart Building Solutions**\n\n**Smart Building Features:**\n\n🔧 **Building Management System (BMS):**\n• Centralized control\n• Real-time monitoring\n• Predictive maintenance\n• Energy optimization\n• Remote access\n\n📱 **IoT Integration:**\n• Smart sensors\n• Automated controls\n• Data analytics\n• Mobile app control\n• Voice commands\n\n⚡ **Smart Energy:**\n• Automated lighting\n• Climate control\n• Load management\n• Peak shaving\n• Energy analytics\n\n🔒 **Smart Security:**\n• Biometric access\n• CCTV surveillance\n• Intrusion detection\n• Emergency alerts\n• Visitor management\n\n💡 **Smart Amenities:**\n• Automated parking\n• Waste management\n• Elevator optimization\n• Public address\n• Digital signage\n\n**Benefits:**\n✅ 25-35% energy savings\n✅ Improved occupant comfort\n✅ Enhanced security\n✅ Predictive maintenance\n✅ Data-driven decisions\n\nSmart building integrate karo! 🏠',
+    category: 'buildtech', priority: 8
+  },
+  {
+    keywords: ['construction cost','building cost','construction budget','project cost','construction pricing','building price','construction estimate'],
+    answer: '💰 **Construction Cost & Pricing**\n\n**Indicative Costs (per sqft):**\n\n🏠 **Residential:**\n• Basic: ₹2,500 - 3,500/sqft\n• Standard: ₹3,500 - 5,000/sqft\n• Premium: ₹5,000 - 8,000/sqft\n• Luxury: ₹8,000 - 15,000/sqft\n\n🏢 **Commercial:**\n• Standard office: ₹4,000 - 6,000/sqft\n• Grade A office: ₹6,000 - 9,000/sqft\n• Retail: ₹5,000 - 8,000/sqft\n• Mall: ₹7,000 - 12,000/sqft\n\n🏭 **Industrial:**\n• Warehouse: ₹2,000 - 3,500/sqft\n• Factory: ₹3,500 - 6,000/sqft\n• Plant: ₹5,000 - 8,000/sqft\n\n**Cost Includes:**\n✅ Structure & finishing\n✅ Basic electrical & plumbing\n✅ Standard fixtures\n✅ Foundation work\n✅ Basic landscaping\n\n**Additional Costs:**\n📋 Approvals & fees: 5-8%\n📋 Design & architect: 2-5%\n📋 Contingency: 10-15%\n📋 GST: 18%\n\n**Payment Terms:**\n• 20% - Booking\n• 60% - Construction phases\n• 20% - On completion\n\nDetailed quote chahiye? Site visit karte hain! 📞',
+    category: 'buildtech', priority: 8
+  },
+  {
+    keywords: ['construction timeline','project duration','building time','construction schedule','project completion time','how long to build'],
+    answer: '⏰ **Project Timelines**\n\n**Typical Construction Duration:**\n\n🏠 **Residential Projects:**\n• Independent House: 12-18 months\n• Low-rise Apartments: 18-24 months\n• High-rise Apartments: 30-42 months\n• Township Phase: 36-48 months\n\n🏢 **Commercial Projects:**\n• Office Building: 24-36 months\n• Retail Complex: 18-30 months\n• Shopping Mall: 36-48 months\n• Mixed-use: 42-60 months\n\n🏭 **Industrial Projects:**\n• Warehouse: 12-18 months\n• Factory Building: 18-30 months\n• Industrial Park: 24-36 months\n• Manufacturing Plant: 30-48 months\n\n**Timeline Factors:**\n🌧️ Weather conditions\n📋 Approvals & permits\n👥 Labor availability\n🏗️ Project complexity\n📦 Material supply\n💰 Funding flow\n\n**Project Phases:**\n1️⃣ Design & Approvals: 3-6 months\n2️⃣ Foundation work: 2-4 months\n3️⃣ Structure: 8-12 months\n4️⃣ Finishing: 6-10 months\n5️⃣ Handover: 1-2 months\n\n**Expedited Options:**\n⚡ Fast-track construction: 20-30% faster\n⚡ Prefabrication: 30-40% faster\n\nProject timeline discuss karo! ⏰',
+    category: 'buildtech', priority: 7
+  },
+];
+
+// ─────────────────────────────────────────────
 //  SECTION 9 — CORPORATE TRAINING (300+ entries)
 // ─────────────────────────────────────────────
 export const TRAINING_KNOWLEDGE: KnowledgeEntry[] = [
@@ -597,7 +643,7 @@ export const CONTACT_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['address','location','pata','kahan hai','office address','headquarters','delhi office','office kahan','physical address','postal address'],
-    answer: '📍 **Shanky Group Office Address**\n\n**Complete Address:**\nD Mall, Netaji Subhash Place (NSP),\nPitampura, Delhi - 110034, India\n\n**Landmarks (easy to find!):**\n🚇 Pitampura Metro Station — 5 min walk\n📺 Near TV Tower, Pitampura\n🏬 Inside D Mall complex\n🛣️ NSP Ring Road se just left\n\n**GPS Coordinates:**\n📡 28.6899° N, 77.1518° E\n\n**Other offices:**\n🏢 Mumbai office — Coming 2025!\n🏢 Bengaluru office — Coming 2025!\n\n**Visitor guidelines:**\n• Visitor pass at reception\n• ID proof mandatory\n• Meeting appointment preferred\n• Parking: Basement (limited)\n\nGoogle Maps pe "Shanky Group NSP Delhi" search karo! 🗺️',
+    answer: '📍 **Shanky Group Office Address**\n\n**Complete Address:**\nD Mall, Ground Floor,\nNetaji Subhash Place (NSP),\nPitampura, Delhi - 110034, India\n\n**Landmarks (easy to find!):**\n🚇 Pitampura Metro Station — 5 min walk\n📺 Near TV Tower, Pitampura\n🏬 Inside D Mall complex (Ground Floor)\n🛣️ NSP Ring Road se just left\n\n**GPS Coordinates:**\n📡 28.6899° N, 77.1518° E\n\n**Other offices:**\n🏢 Mumbai office — Coming 2025!\n🏢 Bengaluru office — Coming 2025!\n\n**Visitor guidelines:**\n• Visitor pass at reception\n• ID proof mandatory\n• Meeting appointment preferred\n• Parking: Basement (limited)\n\nGoogle Maps pe "Shanky Group NSP Delhi" search karo! 🗺️',
     category: 'contact', priority: 10
   },
   {
@@ -1059,6 +1105,7 @@ export const CHATBOT_KNOWLEDGE: KnowledgeEntry[] = [
   ...SOLAR_KNOWLEDGE,
   ...ELECTRONICS_KNOWLEDGE,
   ...METALS_KNOWLEDGE,
+  ...BUILDECH_KNOWLEDGE,
   ...TRAINING_KNOWLEDGE,
   ...CAREERS_KNOWLEDGE,
   ...CONTACT_KNOWLEDGE,
@@ -1225,6 +1272,7 @@ export const CATEGORY_FALLBACKS: { [key: string]: string } = {
   solar:       '☀️ Solar ke baare mein? Shanky Smart Tech rooftop se industrial scale tak sab install karta hai. Free site survey: +011-47586938',
   electronics: '📱 Electronics mein interest hai? Shanky Electronics Hub mein TV, AC, Laptop, Mobile sab milta hai. Corporate discount bhi! Call: +011-47586939',
   metals:      '🔩 Metals chahiye? Shanky Metals — Steel, Aluminium, Copper, Brass sab available. Export bhi karte hain. Contact: metals@shankygroup.com',
+  buildtech:   '🏗️ Construction project hai? Shanky Buildtech mein Residential, Commercial, Industrial sab banate hain! Smart & sustainable buildings. Call: +011-47586938',
   training:    '📚 Corporate Training? Shanky Corporate Training mein Leadership, Sales, Soft Skills sab hai! training@shankygroup.com',
   careers:     '💼 Job dhundh rahe ho? careers@shankygroup.com pe CV bhejo ya +011-47586941 call karo!',
   contact:     '📞 Contact chahiye? Main Line: +011-47586938 | Email: info@shankygroup.com | Address: D Mall, NSP, Pitampura, Delhi',

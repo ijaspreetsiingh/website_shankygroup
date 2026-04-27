@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Head from 'next/head';
 import FooterFour from '../../home/home4/FooterFour';
 import ContactUs from '../../home/home4/vender';
 
@@ -34,11 +35,52 @@ export default function ShankyElectronicsHubPage() {
     'z-30 translate-y-full scale-95 opacity-0';
 
   return (
-    <div
-      ref={containerRef}
-      className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
-      style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
-    >
+    <>
+      <Head>
+        <title>Shanky Electronics Hub LLP - Electronics Trading & Distribution</title>
+        <meta name="description" content="Shanky Electronics Hub LLP specializes in trading and distribution of consumer and industrial electronics products across India. The company offers a wide range of electronic components, devices, and accessories sourced from leading manufacturers with advanced inventory management systems." />
+        <meta name="keywords" content="Shanky Electronics Hub, electronics trading, electronic components, consumer electronics, industrial electronics, electronic devices, electronic accessories, inventory management, distribution, India electronics market" />
+        <meta property="og:title" content="Shanky Electronics Hub LLP - Electronics Trading" />
+        <meta property="og:description" content="Specializes in trading and distribution of consumer and industrial electronics products across India with advanced inventory management." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://shankygroup.com/company/shanky-electronics-hub" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Shanky Electronics Hub LLP - Electronics Distribution" />
+        <meta name="twitter:description" content="Trading and distribution specialist for consumer and industrial electronics with advanced inventory management." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Shanky Electronics Hub LLP",
+              "description": "Specializes in trading and distribution of consumer and industrial electronics products across India. The company offers a wide range of electronic components, devices, and accessories sourced from leading manufacturers with advanced inventory management systems.",
+              "url": "https://shankygroup.com/company/shanky-electronics-hub",
+              "parentOrganization": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "services": [
+                "Consumer electronics trading",
+                "Industrial electronics distribution",
+                "Electronic components supply",
+                "Inventory management systems",
+                "Customer-centric delivery",
+                "Quality assurance"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IN"
+              }
+            })
+          }}
+        />
+      </Head>
+      <div
+        ref={containerRef}
+        className="relative w-full min-h-screen bg-[var(--background)] text-[var(--foreground)]"
+        style={{ ['--accent' as string]: '#e63a27', ['--accent-hover' as string]: '#c93222' }}
+      >
       {/* Section 1/3 - Hero */}
       <section
         className={`fixed top-0 left-0 w-full h-screen transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)] pt-32 md:pt-40 lg:pt-44 px-4 md:px-8 lg:px-12 pb-0 bg-[var(--background)] ${
@@ -155,5 +197,6 @@ export default function ShankyElectronicsHubPage() {
 
       <div className="h-screen" aria-hidden="true" />
     </div>
+    </>
   );
 }
