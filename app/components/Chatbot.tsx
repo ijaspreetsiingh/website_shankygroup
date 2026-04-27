@@ -6,365 +6,604 @@ import Image from 'next/image';
 import { getReplyFromKnowledge } from '../lib/chatbot-knowledge';
 
 const ACCENT = '#e63a27';
+const ACCENT_DARK = '#c42e1e';
 
 const QUICK_REPLIES = [
-  { label: 'Contact us', text: 'I want to get in touch with your team.' },
-  { label: 'Our companies', text: 'Tell me about your companies and businesses.' },
-  { label: 'Careers', text: 'I am interested in career opportunities.' },
+  { label: '📞 Contact us', text: 'I want to get in touch with your team.' },
+  { label: '🏢 Our companies', text: 'Tell me about your companies and businesses.' },
+  { label: '💼 Careers', text: 'I am interested in career opportunities.' },
 ];
 
+/* ── Avatars ──────────────────────────────────────────────────── */
+function BotAvatar({ sm }: { sm?: boolean }) {
+  const s = sm ? 28 : 38;
+  return (
+    <div style={{
+      width: s, height: s, borderRadius: '50%',
+      flexShrink: 0, position: 'relative', overflow: 'hidden',
+      boxShadow: '0 0 0 2px rgba(230,58,39,0.4)',
+      aspectRatio: '1/1',
+    }}>
+      <Image
+        src="/images/logo_icon.png"
+        alt="Shanky Group"
+        fill
+        className="object-contain"
+        sizes={`${s}px`}
+        style={{ padding: '4px' }}
+        unoptimized
+      />
+    </div>
+  );
+}
+
+function UserAvatar({ sm }: { sm?: boolean }) {
+  const s = sm ? 28 : 38;
+  return (
+    <div style={{
+      width: s, height: s, borderRadius: '50%',
+      flexShrink: 0, overflow: 'hidden',
+      background: 'rgba(255,255,255,0.08)',
+      display: 'flex', alignItems: 'flex-end', justifyContent: 'center',
+      aspectRatio: '1/1',
+    }}>
+      <svg viewBox="0 0 40 46" width={s} height={s} xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="16" r="10" fill="rgba(255,255,255,0.25)" />
+        <ellipse cx="20" cy="45" rx="18" ry="13" fill="rgba(255,255,255,0.25)" />
+      </svg>
+    </div>
+  );
+}
+
+/* ── Provider badge ─────────────────────────────────────────── */
+function ProviderBadge({ provider, fallbackReason, fromApi, apiError }: {
+  provider?: string; fallbackReason?: string; fromApi?: boolean; apiError?: string;
+}) {
+  const map: Record<string, string> = {
+    gemini: '🟢 AI Engine 1',
+    openrouter: '🟡 AI Engine 2',
+    groq: '🔵 AI Engine 3',
+    fallback: '⚪ Local',
+  };
+  return (
+    <span style={{ fontSize: 9, color: 'rgba(255,255,255,0.25)', marginTop: 3, display: 'block', paddingLeft: 2 }}>
+      {provider ? map[provider] || provider : fromApi === false ? 'Offline' : ''}
+      {fallbackReason && <span style={{ color: ACCENT }}> — {fallbackReason}</span>}
+      {apiError && <span style={{ color: ACCENT, display: 'block' }}>{apiError}</span>}
+    </span>
+  );
+}
+
+/* ── Typing dots ────────────────────────────────────────────── */
+function TypingDots() {
+  return (
+    <div style={{ display: 'flex', gap: 4, padding: '10px 14px' }}>
+      {[0, 160, 320].map((d) => (
+        <span key={d} style={{
+          width: 6, height: 6, borderRadius: '50%',
+          background: 'rgba(255,255,255,0.25)',
+          display: 'inline-block',
+          animation: 'sgBounce 1.2s ease-in-out infinite',
+          animationDelay: `${d}ms`,
+        }} />
+      ))}
+    </div>
+  );
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAIN COMPONENT
+══════════════════════════════════════════════════════════════ */
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ role: 'user' | 'bot'; text: string; fromApi?: boolean; apiError?: string; provider?: 'gemini' | 'openrouter' | 'groq' | 'fallback'; fallbackReason?: string }[]>([
-    { role: 'bot', text: 'Hello! Welcome to Shanky Group. How can we help you today?', fromApi: true, provider: 'fallback' }
+  const [messages, setMessages] = useState<{
+    role: 'user' | 'bot'; text: string;
+    fromApi?: boolean; apiError?: string;
+    provider?: 'gemini' | 'openrouter' | 'groq' | 'fallback';
+    fallbackReason?: string;
+  }[]>([
+    { role: 'bot', text: 'Hello! 👋 Welcome to Shanky Group.\nHow can I help you today?', fromApi: true, provider: 'fallback' },
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [streamingMessage, setStreamingMessage] = useState<{
-    fullText: string;
-    displayed: number;
-    fromApi?: boolean;
-    apiError?: string;
+    fullText: string; displayed: number;
+    fromApi?: boolean; apiError?: string;
     provider?: 'gemini' | 'openrouter' | 'groq' | 'fallback';
     fallbackReason?: string;
   } | null>(null);
   const [showQuickReplies, setShowQuickReplies] = useState(true);
   const [hiVisible, setHiVisible] = useState(false);
   const [hiBubbleKey, setHiBubbleKey] = useState(0);
+  const [panelReady, setPanelReady] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const TYPING_SPEED_MS = 18;
-  const TYPING_CHUNK = 2;
+  /* streaming */
   useEffect(() => {
     if (!streamingMessage) return;
     const { fullText, displayed } = streamingMessage;
     if (displayed >= fullText.length) {
-      setMessages((prev) => [
-        ...prev,
-        {
-          role: 'bot',
-          text: fullText,
-          fromApi: streamingMessage.fromApi,
-          apiError: streamingMessage.apiError,
-          provider: streamingMessage.provider,
-          fallbackReason: streamingMessage.fallbackReason,
-        },
-      ]);
+      setMessages((p) => [...p, {
+        role: 'bot', text: fullText,
+        fromApi: streamingMessage.fromApi,
+        apiError: streamingMessage.apiError,
+        provider: streamingMessage.provider,
+        fallbackReason: streamingMessage.fallbackReason,
+      }]);
       setStreamingMessage(null);
       return;
     }
     const id = setInterval(() => {
-      setStreamingMessage((prev) => {
-        if (!prev) return null;
-        const next = Math.min(prev.displayed + TYPING_CHUNK, prev.fullText.length);
-        return { ...prev, displayed: next };
-      });
-    }, TYPING_SPEED_MS);
+      setStreamingMessage((p) => p ? { ...p, displayed: Math.min(p.displayed + 2, p.fullText.length) } : null);
+    }, 16);
     return () => clearInterval(id);
   }, [streamingMessage]);
 
-  // 5 sec baad show, show hone ke 3 sec baad hide, phir 5 sec baad dubara show (cycle)
+  /* hi bubble cycle */
   useEffect(() => {
     if (isOpen) return;
-    let showTimer: ReturnType<typeof setTimeout>;
-    let hideTimer: ReturnType<typeof setTimeout>;
-    const show = () => {
-      setHiVisible(true);
-      setHiBubbleKey((k) => k + 1);
-      hideTimer = setTimeout(hide, 3000);
-    };
-    const hide = () => {
-      setHiVisible(false);
-      showTimer = setTimeout(show, 5000);
-    };
-    showTimer = setTimeout(show, 5000);
-    return () => {
-      clearTimeout(showTimer);
-      clearTimeout(hideTimer);
-    };
+    let s: ReturnType<typeof setTimeout>;
+    let h: ReturnType<typeof setTimeout>;
+    const doShow = () => { setHiVisible(true); setHiBubbleKey((k) => k + 1); h = setTimeout(doHide, 3000); };
+    const doHide = () => { setHiVisible(false); s = setTimeout(doShow, 5000); };
+    s = setTimeout(doShow, 4000);
+    return () => { clearTimeout(s); clearTimeout(h); };
   }, [isOpen]);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
+  /* panel animation trigger */
   useEffect(() => {
-    scrollToBottom();
+    if (isOpen) {
+      const t = setTimeout(() => { setPanelReady(true); inputRef.current?.focus(); }, 10);
+      return () => clearTimeout(t);
+    } else {
+      setPanelReady(false);
+    }
+  }, [isOpen]);
+
+  /* scroll */
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, isTyping, streamingMessage]);
 
+  /* send */
   const sendMessage = async (text: string) => {
     const trimmed = text.trim();
     if (!trimmed) return;
     setShowQuickReplies(false);
-    setMessages((prev) => [...prev, { role: 'user', text: trimmed }]);
+    setMessages((p) => [...p, { role: 'user', text: trimmed }]);
     setInputValue('');
     setIsTyping(true);
-
-    const history = messages.map((m) => ({
-      role: m.role === 'bot' ? 'assistant' : 'user',
-      content: m.text,
-    }));
-
+    const history = messages.map((m) => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.text }));
     try {
       const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: history, message: trimmed }),
       });
       const data = await res.json().catch(() => ({}));
       const fromApi = res.ok && typeof data.reply === 'string';
-      const knowledgeResult = getReplyFromKnowledge(trimmed);
-      const answerText = fromApi ? data.reply : (typeof knowledgeResult === 'string' ? knowledgeResult : knowledgeResult.answer);
-      const apiError = !res.ok ? (typeof data.error === 'string' ? data.error : data.details || 'API error') : undefined;
-      const provider = fromApi && data.provider ? data.provider : undefined;
-      const fallbackReason = typeof data.fallbackReason === 'string' ? data.fallbackReason : undefined;
+      const kr = getReplyFromKnowledge(trimmed);
+      const answerText = fromApi ? data.reply : (typeof kr === 'string' ? kr : kr.answer);
+      const apiError = !res.ok ? (data.error || data.details || 'API error') : undefined;
       setIsTyping(false);
-      setStreamingMessage({ fullText: answerText, displayed: 0, fromApi, apiError, provider, fallbackReason });
+      setStreamingMessage({ fullText: answerText, displayed: 0, fromApi, apiError, provider: fromApi ? data.provider : undefined, fallbackReason: data.fallbackReason });
     } catch {
-      const knowledgeResult = getReplyFromKnowledge(trimmed);
-      const answerText = typeof knowledgeResult === 'string' ? knowledgeResult : knowledgeResult.answer;
+      const kr = getReplyFromKnowledge(trimmed);
       setIsTyping(false);
-      setStreamingMessage({ fullText: answerText, displayed: 0, fromApi: false, apiError: 'Network error' });
-    } finally {
-      setIsTyping(false);
+      setStreamingMessage({ fullText: typeof kr === 'string' ? kr : kr.answer, displayed: 0, fromApi: false, apiError: 'Network error' });
     }
   };
 
   const handleSend = () => sendMessage(inputValue);
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      handleSend();
-    }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); }
   };
+  const closeChat = () => { (document.activeElement as HTMLElement)?.blur(); setIsOpen(false); };
 
-  const handleQuickReply = (text: string) => sendMessage(text);
-
+  /* ── Render ─────────────────────────────────────────────── */
   return (
     <>
-      {/* "Hi" speech bubble keyframes - boy saying Hi */}
-      <style jsx>{`
-        @keyframes hiPop {
-          0% {
-            opacity: 0;
-            transform: translate(-50%, 10px) scale(0.7);
-          }
-          50% {
-            transform: translate(-50%, -4px) scale(1.05);
-          }
-          100% {
-            opacity: 1;
-            transform: translate(-50%, 0) scale(1);
-          }
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
+
+        .sg-root * { box-sizing: border-box; font-family: 'DM Sans', sans-serif; }
+
+        @keyframes sgPop {
+          0%   { opacity:0; transform:translate(-50%,12px) scale(.6); }
+          65%  { transform:translate(-50%,-4px) scale(1.05); }
+          100% { opacity:1; transform:translate(-50%,0) scale(1); }
         }
-        .hi-bubble {
-          animation: hiPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        @keyframes sgBounce {
+          0%,80%,100% { transform:translateY(0); }
+          40%          { transform:translateY(-5px); }
         }
+        @keyframes sgFadeUp {
+          from { opacity:0; transform:translateY(7px); }
+          to   { opacity:1; transform:translateY(0); }
+        }
+        @keyframes sgPanelIn {
+          from { opacity:0; transform:translateY(18px) scale(.97); }
+          to   { opacity:1; transform:translateY(0) scale(1); }
+        }
+        @keyframes sgGlow {
+          0%,100% { opacity:.5; transform:scale(1); }
+          50%      { opacity:1; transform:scale(1.12); }
+        }
+        @keyframes sgPing {
+          0%   { transform:scale(1); opacity:1; }
+          80%  { transform:scale(2.4); opacity:0; }
+          100% { opacity:0; }
+        }
+        @keyframes sgFloat {
+          0%,100% { transform:translateY(0px); }
+          50%      { transform:translateY(-7px); }
+        }
+
+        .sg-fab        { animation: sgFloat 3.2s ease-in-out infinite; transition: transform .2s; }
+        .sg-fab:hover  { animation: none; transform: scale(1.1) !important; }
+        .sg-hi         { animation: sgPop .48s cubic-bezier(.34,1.56,.64,1) both; }
+        .sg-panel      { animation: sgPanelIn .3s cubic-bezier(.22,1,.36,1) both; }
+        .sg-msg        { animation: sgFadeUp .2s ease both; }
+
+        .sg-input::placeholder { color:rgba(255,255,255,0.28); }
+        .sg-input:focus        { outline:none; }
+
+        .sg-scroll::-webkit-scrollbar       { width:3px; }
+        .sg-scroll::-webkit-scrollbar-track { background:transparent; }
+        .sg-scroll::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.08); border-radius:10px; }
+
+        .sg-chip:hover  { background:rgba(230,58,39,0.14) !important; border-color:rgba(230,58,39,0.45) !important; color:#e63a27 !important; }
+        .sg-send:hover:not(:disabled) { background:#c42e1e !important; transform:scale(1.06); }
+        .sg-send:active:not(:disabled) { transform:scale(.95); }
+        .sg-close:hover { background:rgba(255,255,255,0.09) !important; }
+        .sg-input-wrap:focus-within { border-color:rgba(230,58,39,0.35) !important; }
       `}</style>
 
-      {/* Floating button - hide when chat is open */}
-      {!isOpen && (
-        <button
-          type="button"
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 z-[9998] w-20 h-20 sm:w-32 sm:h-32 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none focus:ring-4 focus:ring-[#e63a27]/30 overflow-visible bg-transparent group animate-bounce hover:animate-pulse"
-          aria-label="Open chat"
-        >
-          <span className="block w-full h-full rounded-full overflow-hidden relative">
-            <Image
-              src="/images/cartoon1.png"
-              alt="Chat with us"
-              fill
-              className="object-cover rounded-full"
-              sizes="(max-width: 640px) 80px, 128px"
-              unoptimized={true}
-            />
-          </span>
-          {/* Speech bubble - 5 sec baad show, 3 sec baad hide */}
-          {hiVisible && (
-            <span
-              key={hiBubbleKey}
-              className="hi-bubble absolute left-1/2 -top-8 sm:-top-11 -translate-x-1/2 whitespace-nowrap rounded-2xl bg-white px-2.5 py-1.5 sm:px-3.5 sm:py-2 text-xs sm:text-sm font-bold shadow-lg border border-[#e63a27]/20"
-              style={{ color: ACCENT }}
-            >
-              Hi!
-              <span
-                className="absolute left-1/2 -translate-x-1/2 -bottom-2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[10px] border-t-white"
-                aria-hidden
-              />
-            </span>
-          )}
-          <div className="absolute -top-1 -right-1 w-4 h-4 sm:w-6 sm:h-6 bg-red-500 rounded-full flex items-center justify-center animate-ping">
-            <div className="w-2 h-2 sm:w-3 sm:h-3 bg-white rounded-full"></div>
-          </div>
-        </button>
-      )}
+      <div className="sg-root">
 
-      {/* Backdrop + Chat panel */}
-      <div
-        className={`fixed inset-0 z-[9997] transition-opacity duration-300 ${
-          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        aria-hidden={!isOpen}
-      >
-        {/* Backdrop - click to close; blur first to avoid aria-hidden + focused descendant */}
-        <button
-          type="button"
-          onClick={() => {
-            (document.activeElement as HTMLElement)?.blur();
-            setIsOpen(false);
-          }}
-          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-          aria-label="Close chat"
-        />
-
-        {/* Panel - slide up + fade */}
-        <div
-          className={`absolute bottom-0 right-0 left-0 sm:left-auto sm:right-4 sm:bottom-4 w-full sm:max-w-md sm:h-[min(80vh,560px)] h-[75vh] sm:h-[85vh] rounded-t-2xl sm:rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-2xl flex flex-col overflow-hidden transition-all duration-300 ease-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
-          }`}
-          role="dialog"
-          aria-label="Chat"
-          onClick={(e) => e.stopPropagation()}
-        >
-          {/* Header */}
-          <div
-            className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 sm:py-3.5 border-b border-white/10"
-            style={{ backgroundColor: ACCENT }}
+        {/* ── FAB ────────────────────────────────────────────── */}
+        {!isOpen && (
+          <button
+            type="button"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open chat"
+            className="sg-fab"
+            style={{
+              position: 'fixed', bottom: 22, right: 22, zIndex: 9998,
+              width: 64, height: 64, borderRadius: '50%',
+              border: 'none', background: 'transparent',
+              padding: 0, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              overflow: 'visible',
+            }}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-              </svg>
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white font-semibold text-xs sm:text-sm truncate">Shanky Group</p>
-              <p className="text-white/80 text-xs truncate hidden sm:block">We typically reply within 24 hours</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                (document.activeElement as HTMLElement)?.blur();
-                setIsOpen(false);
-              }}
-              className="p-1.5 sm:p-2 rounded-xl text-white/90 hover:bg-white/20 transition-colors flex-shrink-0"
-              aria-label="Close"
-            >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4 min-h-0 bg-[var(--background)]/30">
-            {messages.map((msg, i) => {
-              return (
-                <div
-                  key={i}
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in duration-200`}
-                >
-                  <div className="max-w-[85%] sm:max-w-[88%]">
-                    <div
-                      className={`rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm leading-relaxed ${
-                        msg.role === 'user'
-                          ? 'text-white rounded-br-md shadow-md'
-                          : 'bg-[var(--card-bg)] text-[var(--text-primary)] border border-[var(--card-border)] rounded-bl-md shadow-sm'
-                      } ${msg.role === 'bot' ? 'whitespace-pre-wrap' : ''}`}
-                      style={msg.role === 'user' ? { backgroundColor: ACCENT } : undefined}
-                    >
-                      {msg.text}
-                    </div>
-                    {msg.role === 'bot' && (
-                      <span className="text-[9px] sm:text-[10px] text-[var(--text-secondary)] mt-1 block px-1">
-                        {msg.provider === 'gemini' && '🟢 Chatbot 1'}
-                        {msg.provider === 'openrouter' && '🟡 Chatbot 2'}
-                        {msg.provider === 'groq' && '🔵 Chatbot 3'}
-                        {msg.provider === 'fallback' && (
-                          <>⚪ Fallback {msg.fallbackReason && <span className="text-[#e63a27]">— {msg.fallbackReason}</span>}</>
-                        )}
-                        {msg.fromApi === false && !msg.provider && 'Offline'}
-                        {msg.apiError && <span className="block mt-0.5 text-[#e63a27]">{msg.apiError}</span>}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Streaming typing effect — AI reply appears character by character */}
-            {streamingMessage && (
-              <div className="flex justify-start animate-in fade-in duration-200">
-                <div className="max-w-[85%] sm:max-w-[88%]">
-                  <div className="rounded-2xl px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap bg-[var(--card-bg)] text-[var(--text-primary)] border border-[var(--card-border)] rounded-bl-md shadow-sm">
-                    {streamingMessage.fullText.slice(0, streamingMessage.displayed)}
-                    <span className="inline-block w-0.5 h-3 sm:h-4 align-middle bg-[var(--text-primary)] animate-pulse ml-0.5" aria-hidden />
-                  </div>
-                </div>
-              </div>
+            {/* Soft glow ring */}
+            <span style={{
+              position: 'absolute', inset: -8, borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(230,58,39,0.22) 30%, transparent 70%)',
+              animation: 'sgGlow 2.5s ease-in-out infinite',
+            }} />
+            {/* Image */}
+            <span style={{ width: 62, height: 62, borderRadius: '50%', overflow: 'hidden', display: 'block', position: 'relative', aspectRatio: '1/1' }}>
+              <Image src="/images/cartoon1.png" alt="Chat" fill className="object-cover" sizes="62px" unoptimized />
+            </span>
+            {/* Online ping */}
+            <span style={{ position: 'absolute', top: 3, right: 3, width: 14, height: 14 }}>
+              <span style={{
+                position: 'absolute', inset: 0, borderRadius: '50%',
+                background: '#22c55e', animation: 'sgPing 1.8s ease-out infinite',
+              }} />
+              <span style={{
+                position: 'absolute', inset: 2, borderRadius: '50%',
+                background: '#22c55e', border: '2px solid #0f0f0f',
+              }} />
+            </span>
+            {/* Hi bubble */}
+            {hiVisible && (
+              <span key={hiBubbleKey} className="sg-hi" style={{
+                position: 'absolute', left: '50%', top: -42,
+                transform: 'translateX(-50%)',
+                background: '#1c1c1c',
+                border: '1px solid rgba(230,58,39,0.35)',
+                color: '#e63a27',
+                fontSize: 12, fontWeight: 600,
+                padding: '5px 13px',
+                borderRadius: 20, whiteSpace: 'nowrap',
+                boxShadow: '0 6px 20px rgba(0,0,0,0.5)',
+              }}>
+                Hi there! 👋
+                <span style={{
+                  position: 'absolute', bottom: -6, left: '50%', transform: 'translateX(-50%)',
+                  width: 0, height: 0,
+                  borderLeft: '6px solid transparent', borderRight: '6px solid transparent',
+                  borderTop: '7px solid #1c1c1c',
+                }} />
+              </span>
             )}
+          </button>
+        )}
 
-            {/* Typing indicator */}
-            {isTyping && (
-              <div className="flex justify-start animate-in fade-in duration-200">
-                <div className="rounded-2xl rounded-bl-md px-3 py-2.5 sm:px-4 sm:py-3 bg-[var(--card-bg)] border border-[var(--card-border)] shadow-sm">
-                  <div className="flex gap-1 sm:gap-1.5">
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '0ms' }} />
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '150ms' }} />
-                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[var(--text-secondary)] animate-bounce" style={{ animationDelay: '300ms' }} />
-                  </div>
+        {/* ── Backdrop ───────────────────────────────────────── */}
+        {isOpen && (
+          <div
+            onClick={closeChat}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 9997,
+              background: 'rgba(0,0,0,0.6)',
+              backdropFilter: 'blur(5px)',
+              WebkitBackdropFilter: 'blur(5px)',
+            }}
+          />
+        )}
+
+        {/* ── Panel ──────────────────────────────────────────── */}
+        {isOpen && (
+          <div
+            className={panelReady ? 'sg-panel' : ''}
+            role="dialog"
+            aria-label="Chat with Shanky Group"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: 'fixed',
+              bottom: 22, right: 22,
+              zIndex: 9998,
+              width: 'min(400px, calc(100vw - 28px))',
+              height: 'min(600px, calc(100vh - 44px))',
+              borderRadius: 22,
+              overflow: 'hidden',
+              display: 'flex', flexDirection: 'column',
+              background: '#0f0f0f',
+              border: '1px solid rgba(255,255,255,0.07)',
+              boxShadow: '0 40px 100px rgba(0,0,0,0.75), 0 0 0 1px rgba(255,255,255,0.03)',
+            }}
+          >
+            {/* Top red glow */}
+            <div style={{
+              position: 'absolute', top: 0, left: 0, right: 0,
+              height: 220, pointerEvents: 'none', zIndex: 0,
+              background: 'radial-gradient(ellipse 80% 55% at 50% 0%, rgba(230,58,39,0.16) 0%, transparent 70%)',
+            }} />
+
+            {/* ── Header ────────────────────────────────────── */}
+            <div style={{
+              position: 'relative', zIndex: 1,
+              padding: '14px 16px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              display: 'flex', alignItems: 'center', gap: 11,
+              background: 'rgba(255,255,255,0.025)',
+            }}>
+              {/* Bot avatar */}
+              <div style={{ position: 'relative', flexShrink: 0 }}>
+                <div style={{ width: 40, height: 40, borderRadius: '50%', overflow: 'hidden', position: 'relative', boxShadow: '0 0 0 2px rgba(230,58,39,0.45)', aspectRatio: '1/1' }}>
+                  <Image src="/images/logo_icon.png" alt="Bot" fill className="object-contain" sizes="40px" style={{ padding: '4px' }} unoptimized />
                 </div>
+                <span style={{
+                  position: 'absolute', bottom: 0, right: 0,
+                  width: 11, height: 11, borderRadius: '50%',
+                  background: '#22c55e', border: '2px solid #0f0f0f',
+                }} />
               </div>
-            )}
 
-            {/* Quick reply chips - only when no user messages yet */}
-            {showQuickReplies && messages.length <= 1 && (
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-1">
-                {QUICK_REPLIES.map((qr) => (
-                  <button
-                    key={qr.label}
-                    type="button"
-                    onClick={() => handleQuickReply(qr.text)}
-                    className="rounded-full px-2.5 py-1 sm:px-3.5 sm:py-1.5 text-xs font-medium border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-primary)] hover:border-[#e63a27]/50 hover:bg-[#e63a27]/10 transition-colors"
-                  >
-                    {qr.label}
-                  </button>
-                ))}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: '#fff', letterSpacing: '-0.01em' }}>Shanky Group</p>
+                <p style={{ margin: '2px 0 0', fontSize: 11, color: 'rgba(255,255,255,0.35)', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ width: 5, height: 5, borderRadius: '50%', background: '#22c55e', display: 'inline-block', flexShrink: 0 }} />
+                  Online · Replies instantly
+                </p>
               </div>
-            )}
 
-            <div ref={messagesEndRef} />
-          </div>
-
-          {/* Input area */}
-          <div className="p-2.5 sm:p-3 border-t border-[var(--card-border)] bg-[var(--card-bg)]">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Type your message..."
-                className="flex-1 rounded-xl border border-[var(--card-border)] bg-[var(--background)] px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:border-transparent transition-shadow"
-              />
               <button
                 type="button"
-                onClick={handleSend}
-                disabled={!inputValue.trim()}
-                className="rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 text-white text-xs sm:text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#e63a27]/40 focus:ring-offset-2 focus:ring-offset-[var(--card-bg)]"
-                style={{ backgroundColor: ACCENT }}
+                className="sg-close"
+                onClick={closeChat}
+                aria-label="Close"
+                style={{
+                  width: 30, height: 30, borderRadius: 9,
+                  border: '1px solid rgba(255,255,255,0.07)',
+                  background: 'transparent', cursor: 'pointer',
+                  color: 'rgba(255,255,255,0.45)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  flexShrink: 0, transition: 'background .15s',
+                }}
               >
-                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <p className="text-[9px] sm:text-[10px] text-[var(--text-secondary)] mt-1.5 sm:mt-2 text-center">
-              Or <Link href="/contact" className="text-[#e63a27] hover:underline font-medium" onClick={() => setIsOpen(false)}>visit Contact page</Link>
-            </p>
+
+            {/* ── Messages ──────────────────────────────────── */}
+            <div
+              className="sg-scroll"
+              style={{
+                flex: 1, overflowY: 'auto',
+                padding: '14px 12px',
+                display: 'flex', flexDirection: 'column', gap: 10,
+                position: 'relative', zIndex: 1,
+              }}
+            >
+              {messages.map((msg, i) => (
+                <div
+                  key={i}
+                  className="sg-msg"
+                  style={{
+                    display: 'flex', alignItems: 'flex-end', gap: 7,
+                    justifyContent: msg.role === 'user' ? 'flex-end' : 'flex-start',
+                  }}
+                >
+                  {msg.role === 'bot' && <BotAvatar sm />}
+
+                  <div style={{ maxWidth: '76%' }}>
+                    <div style={{
+                      padding: '9px 13px',
+                      fontSize: 13, lineHeight: 1.55, whiteSpace: 'pre-wrap',
+                      borderRadius: msg.role === 'bot'
+                        ? '16px 16px 16px 4px'
+                        : '16px 16px 4px 16px',
+                      ...(msg.role === 'bot' ? {
+                        background: 'rgba(255,255,255,0.07)',
+                        color: 'rgba(255,255,255,0.85)',
+                        border: '1px solid rgba(255,255,255,0.08)',
+                      } : {
+                        background: `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)`,
+                        color: '#fff',
+                      }),
+                    }}>
+                      {msg.text}
+                    </div>
+                    {msg.role === 'bot' && (
+                      <ProviderBadge
+                        provider={msg.provider}
+                        fallbackReason={msg.fallbackReason}
+                        fromApi={msg.fromApi}
+                        apiError={msg.apiError}
+                      />
+                    )}
+                  </div>
+
+                  {msg.role === 'user' && <UserAvatar sm />}
+                </div>
+              ))}
+
+              {/* Streaming */}
+              {streamingMessage && (
+                <div className="sg-msg" style={{ display: 'flex', alignItems: 'flex-end', gap: 7 }}>
+                  <BotAvatar sm />
+                  <div style={{ maxWidth: '76%' }}>
+                    <div style={{
+                      padding: '9px 13px',
+                      borderRadius: '16px 16px 16px 4px',
+                      fontSize: 13, lineHeight: 1.55, whiteSpace: 'pre-wrap',
+                      background: 'rgba(255,255,255,0.07)',
+                      color: 'rgba(255,255,255,0.85)',
+                      border: '1px solid rgba(255,255,255,0.08)',
+                    }}>
+                      {streamingMessage.fullText.slice(0, streamingMessage.displayed)}
+                      <span style={{
+                        display: 'inline-block', width: 1.5, height: 12,
+                        background: 'rgba(255,255,255,0.6)',
+                        marginLeft: 2, verticalAlign: 'middle',
+                        animation: 'sgBounce .7s ease-in-out infinite',
+                      }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Typing dots */}
+              {isTyping && (
+                <div className="sg-msg" style={{ display: 'flex', alignItems: 'flex-end', gap: 7 }}>
+                  <BotAvatar sm />
+                  <div style={{
+                    background: 'rgba(255,255,255,0.07)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '16px 16px 16px 4px',
+                  }}>
+                    <TypingDots />
+                  </div>
+                </div>
+              )}
+
+              {/* Quick replies */}
+              {showQuickReplies && messages.length <= 1 && (
+                <div className="sg-msg" style={{ display: 'flex', flexWrap: 'wrap', gap: 6, paddingLeft: 35, paddingTop: 2 }}>
+                  {QUICK_REPLIES.map((qr) => (
+                    <button
+                      key={qr.label}
+                      type="button"
+                      className="sg-chip"
+                      onClick={() => sendMessage(qr.text)}
+                      style={{
+                        padding: '6px 12px',
+                        borderRadius: 20,
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        background: 'rgba(255,255,255,0.04)',
+                        color: 'rgba(255,255,255,0.6)',
+                        fontSize: 12, fontWeight: 500,
+                        cursor: 'pointer', transition: 'all .15s',
+                      }}
+                    >
+                      {qr.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+
+            {/* ── Input ─────────────────────────────────────── */}
+            <div style={{
+              padding: '10px 12px 14px',
+              borderTop: '1px solid rgba(255,255,255,0.06)',
+              background: 'rgba(0,0,0,0.2)',
+              position: 'relative', zIndex: 1,
+            }}>
+              <div
+                className="sg-input-wrap"
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 8,
+                  background: 'rgba(255,255,255,0.055)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: 14,
+                  padding: '4px 4px 4px 13px',
+                  transition: 'border-color .2s',
+                }}
+              >
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Message Shanky Group…"
+                  className="sg-input"
+                  style={{
+                    flex: 1, border: 'none', background: 'transparent',
+                    fontSize: 13, color: '#fff',
+                    padding: '7px 0',
+                  }}
+                />
+                <button
+                  type="button"
+                  className="sg-send"
+                  onClick={handleSend}
+                  disabled={!inputValue.trim()}
+                  style={{
+                    width: 34, height: 34, borderRadius: 10,
+                    border: 'none',
+                    background: inputValue.trim()
+                      ? `linear-gradient(135deg, ${ACCENT} 0%, ${ACCENT_DARK} 100%)`
+                      : 'rgba(255,255,255,0.06)',
+                    color: '#fff',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                    cursor: inputValue.trim() ? 'pointer' : 'not-allowed',
+                    opacity: inputValue.trim() ? 1 : 0.35,
+                    transition: 'all .15s',
+                    boxShadow: inputValue.trim() ? '0 3px 12px rgba(230,58,39,0.35)' : 'none',
+                  }}
+                >
+                  <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </button>
+              </div>
+
+              <p style={{ textAlign: 'center', fontSize: 10, color: 'rgba(255,255,255,0.18)', marginTop: 9, marginBottom: 0 }}>
+                Or{' '}
+                <Link
+                  href="/contact"
+                  onClick={() => setIsOpen(false)}
+                  style={{ color: ACCENT, textDecoration: 'none', fontWeight: 500 }}
+                >
+                  visit our Contact page
+                </Link>
+                {' '}· Shanky Group © 2025
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

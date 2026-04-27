@@ -167,7 +167,7 @@ export const BOT_IDENTITY_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['human','insaan','real person','real human','live agent','live support','customer support human','koi real banda','actual person','real man se baat karni'],
-    answer: '🙋 Main abhi bot hoon, lekin **real human se baat** karni hai?\n\nKoi baat nahi!\n\n📞 **Direct Call:** +011-47586938\n📧 **Email:** info@shankygroup.com\n⏰ **Timing:** Mon-Sat, 10AM-6PM\n\nYa **Contact page** par form bhar do — team member 24 ghante mein contact karega!\n\nMain tab tak aapki help karta hoon! 😊',
+    answer: '🙋 Main abhi bot hoon, lekin **real human se baat** karni hai?\n\nKoi baat nahi!\n\n📞 **Direct Call:** +011-47586938\n📧 **Email:** info@shankygroup.com\n⏰ **Timing:** Mon-Fri, 10AM-8PM | Sat, 10AM-6PM\n\nYa **Contact page** par form bhar do — team member 24 ghante mein contact karega!\n\nMain tab tak aapki help karta hoon! 😊',
     category: 'bot_identity', priority: 8
   },
   {
@@ -182,7 +182,7 @@ export const BOT_IDENTITY_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['24 ghante available','24x7','always available','kabhi bhi pooch','raat ko bhi','sunday ko bhi','holiday pe bhi'],
-    answer: '⏰ **Main 24/7/365 available hoon!** 🎉\n\nRaat ke 3 baje bhi, Sunday ko bhi, Diwali pe bhi — main hoon!\n\nHaan, agar office se direct baat karni ho toh:\n📅 Mon-Sat: 10AM-6PM\n📞 +011-47586938\n\nLekin sawaal poochne ke liye? Main hamesha ready! 🤖💙',
+    answer: '⏰ **Main 24/7/365 available hoon!** 🎉\n\nRaat ke 3 baje bhi, Sunday ko bhi, Diwali pe bhi — main hoon!\n\nHaan, agar office se direct baat karni ho toh:\n📅 Mon-Fri: 10AM-8PM | Sat: 10AM-6PM\n📞 +011-47586938\n\nLekin sawaal poochne ke liye? Main hamesha ready! 🤖💙',
     category: 'bot_identity', priority: 8
   },
 ];
@@ -653,12 +653,12 @@ export const CONTACT_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['office timings','office hours','working hours','kab khulta','kab band hota','open time','close time','saturday timing','sunday closed','holiday','lunch break'],
-    answer: '⏰ **Shanky Group Office Timings**\n\n**Regular Working Hours:**\n📅 Monday — Friday: 10:00 AM - 6:00 PM\n📅 Saturday: 10:00 AM - 6:00 PM\n🚫 Sunday: CLOSED\n\n**Lunch Break:** 1:30 PM - 2:30 PM\n(Staff available, slight delay possible)\n\n**Public Holidays:** (All national holidays)\n• Republic Day (26 Jan)\n• Independence Day (15 Aug)\n• Gandhi Jayanti (2 Oct)\n• All major festivals (Diwali, Holi, Eid, Christmas)\n\n**2nd Saturday:** Off (every 2nd Saturday of month)\n\n**Best time to call:**\n✅ 11:00 AM - 1:00 PM (most available)\n✅ 3:00 PM - 5:30 PM (best for quick queries)\n⚠️ After 5:30 PM (office closing time, staff leaving)\n\n**Emergency Contact (after hours):**\n📞 +011-47586938 → Press 9 (24x7 emergency line)\n\n**Chat support (this bot):**\n⏰ Available 24x7 — anytime poocho! 🤖',
+    answer: '⏰ **Shanky Group Office Timings**\n\n**Regular Working Hours:**\n📅 Monday — Friday: 10:00 AM - 8:00 PM\n📅 Saturday: 10:00 AM - 6:00 PM\n🚫 Sunday: CLOSED\n\n**Lunch Break:** 1:30 PM - 2:30 PM\n(Staff available, slight delay possible)\n\n**Public Holidays:** (All national holidays)\n• Republic Day (26 Jan)\n• Independence Day (15 Aug)\n• Gandhi Jayanti (2 Oct)\n• All major festivals (Diwali, Holi, Eid, Christmas)\n\n**2nd Saturday:** Off (every 2nd Saturday of month)\n\n**Best time to call:**\n✅ 11:00 AM - 1:00 PM (most available)\n✅ 3:00 PM - 6:00 PM (best for quick queries)\n⚠️ 6:00 PM - 8:00 PM (busy, slight wait possible)\n\n**Emergency Contact (after hours):**\n📞 +011-47586938 → Press 9 (24x7 emergency line)\n\n**Chat support (this bot):**\n⏰ Available 24x7 — anytime poocho! 🤖',
     category: 'contact', priority: 10
   },
   {
     keywords: ['phone number','call number','contact number','helpline number','toll free','mobile number','whatsapp number','shanky phone'],
-    answer: '📞 **Shanky Group Phone Numbers**\n\n**Main Lines:**\n📱 Main Helpline: **+011-47586938**\n📱 Sales: **+011-47586939**\n📱 Support: **+011-47586940**\n📱 Careers/HR: **+011-47586941**\n\n**Department Direct Lines:**\n💰 Finance queries: +011-47586938 (Press 1)\n☀️ Solar enquiry: +011-47586938 (Press 2)\n🔩 Metals trading: +011-47586938 (Press 3)\n📱 Electronics: +011-47586938 (Press 4)\n🌾 Food/VMS: +011-47586938 (Press 5)\n📚 Training: +011-47586938 (Press 6)\n\n**IVR Menu:**\n1 — Finance\n2 — Solar\n3 — Metals\n4 — Electronics\n5 — VMS / Food\n6 — Training\n7 — HR/Careers\n8 — General enquiry\n9 — Emergency (24x7)\n0 — Operator\n\n⏰ Phone support: Mon-Sat, 10AM-6PM\n📧 Alternatively: info@shankygroup.com',
+    answer: '📞 **Shanky Group Phone Numbers**\n\n**Main Lines:**\n📱 Main Helpline: **+011-47586938**\n📱 Sales: **+011-47586939**\n📱 Support: **+011-47586940**\n📱 Careers/HR: **+011-47586941**\n\n**Department Direct Lines:**\n💰 Finance queries: +011-47586938 (Press 1)\n☀️ Solar enquiry: +011-47586938 (Press 2)\n🔩 Metals trading: +011-47586938 (Press 3)\n📱 Electronics: +011-47586938 (Press 4)\n🌾 Food/VMS: +011-47586938 (Press 5)\n📚 Training: +011-47586938 (Press 6)\n\n**IVR Menu:**\n1 — Finance\n2 — Solar\n3 — Metals\n4 — Electronics\n5 — VMS / Food\n6 — Training\n7 — HR/Careers\n8 — General enquiry\n9 — Emergency (24x7)\n0 — Operator\n\n⏰ Phone support: Mon-Fri, 10AM-8PM | Sat, 10AM-6PM\n📧 Alternatively: info@shankygroup.com',
     category: 'contact', priority: 9
   },
   {
