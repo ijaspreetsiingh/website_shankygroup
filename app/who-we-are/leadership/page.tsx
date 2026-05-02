@@ -67,7 +67,7 @@ const LeadershipPage = () => {
         category: "board",
         education: "Master's Degree in Business Administrator",
         tenure: "From 2014-Present",
-        social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com", email: "mailto:contact@shankygroup.com" }
+        social: { linkedin: "https://linkedin.com", twitter: "https://x.com/ShankyGroup", email: "mailto:info@shankygroup.com" }
       },
       {
         id: 2,
@@ -79,7 +79,7 @@ const LeadershipPage = () => {
         category: "board",
         education: "Chartered Accountant / CPA / MBA",
         tenure: "From 2019-Present",
-        social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
+        social: { linkedin: "https://linkedin.com", email: "mailto:info@shankygroup.com" }
       }
     ],
     seniorManagement: [
@@ -93,7 +93,7 @@ const LeadershipPage = () => {
         category: "senior",
         education: "Master's Degree in Finance",
         tenure: "From 2015-Present",
-        social: { linkedin: "https://linkedin.com", twitter: "https://twitter.com" }
+        social: { linkedin: "https://linkedin.com", twitter: "https://x.com/ShankyGroup" }
       },
       {
         id: 4,
@@ -118,7 +118,7 @@ const LeadershipPage = () => {
         education: "Master's Degree in Finance and Chartered Accountant (Intermediate)",
         tenure: "From 2020-Present",
         bio: "Extensive experience in corporate finance, audit, and regulatory compliance ensuring transparency and integrity.",
-        social: { linkedin: "https://linkedin.com", email: "mailto:contact@shankygroup.com" }
+        social: { linkedin: "https://linkedin.com", email: "mailto:info@shankygroup.com" }
       },
       {
         id: 6,
