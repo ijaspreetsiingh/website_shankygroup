@@ -80,66 +80,84 @@ const CompanyPage = () => {
   ];
 
   return (
-    <div className="max-w-[1200px] mx-auto px-4 py-16">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6">
-          Our Companies
-        </h1>
-        <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
-          Explore our diverse portfolio of companies spanning multiple industries
-        </p>
+    <>
+      <div className="company-root max-w-[1200px] mx-auto px-4 py-16">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-6">
+            Our Companies
+          </h1>
+          <p className="text-xl text-[var(--text-secondary)] max-w-3xl mx-auto">
+            Explore our diverse portfolio of companies spanning multiple industries
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {companies.map((company) => (
+            <Link
+              key={company.id}
+              href={company.link}
+              className="group block bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
+            >
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={company.image}
+                  alt={company.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div 
+                  className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-semibold"
+                  style={{ backgroundColor: company.categoryColor }}
+                >
+                  {company.category}
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[#e63a27] transition-colors">
+                  {company.shortName}
+                </h3>
+
+                <p className="text-xs text-gray-500 mb-2">
+                  {company.legalStructure}
+                </p>
+
+                <p className="text-xs text-gray-400 mb-3">
+                  {company.keyPeople}
+                </p>
+
+                <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
+                  {company.description}
+                </p>
+
+                <div className="flex items-center text-[#e63a27] font-medium text-sm group-hover:translate-x-2 transition-transform">
+                  Learn More
+                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {companies.map((company) => (
-          <Link
-            key={company.id}
-            href={company.link}
-            className="group block bg-[var(--card-bg)] rounded-xl overflow-hidden border border-[var(--card-border)] hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
-          >
-            <div className="relative h-48 overflow-hidden">
-              <img
-                src={company.image}
-                alt={company.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div 
-                className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-semibold"
-                style={{ backgroundColor: company.categoryColor }}
-              >
-                {company.category}
-              </div>
-            </div>
-            
-            <div className="p-6">
-              <h3 className="text-xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[#e63a27] transition-colors">
-                {company.shortName}
-              </h3>
-
-              <p className="text-xs text-gray-500 mb-2">
-                {company.legalStructure}
-              </p>
-
-              <p className="text-xs text-gray-400 mb-3">
-                {company.keyPeople}
-              </p>
-
-              <p className="text-[var(--text-secondary)] text-sm mb-4 line-clamp-3">
-                {company.description}
-              </p>
-
-              <div className="flex items-center text-[#e63a27] font-medium text-sm group-hover:translate-x-2 transition-transform">
-                Learn More
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
+      <style jsx>{`
+        /* Company page headings - Same as "Legacy & Leadership" headline */
+        .company-root h1,
+        .company-root h2,
+        .company-root h3,
+        .company-root h4,
+        .company-root h5,
+        .company-root h6 {
+          font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+          font-weight: 700 !important;
+          letter-spacing: 0.04em !important;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+      `}</style>
+    </>
   );
 };
 
