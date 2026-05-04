@@ -193,7 +193,7 @@ export const BOT_IDENTITY_KNOWLEDGE: KnowledgeEntry[] = [
 export const GROUP_OVERVIEW_KNOWLEDGE: KnowledgeEntry[] = [
   {
     keywords: ['shanky group','shanky group kya hai','group ke baare mein','group overview','about shanky','about shanky group','shanky group about','shanky group information','group info'],
-    answer: '🏛️ **SHANKY GROUP — A Premier Indian Conglomerate**\n\n📅 **Founded:** 2014\n📍 **HQ:** D Mall, NSP, Pitampura, Delhi-110034\n👥 **Employees:** 500+\n🤝 **Customers:** 10,000+\n💰 **Group Turnover:** ₹300 Cr+ (FY 2025-26)\n🌍 **Presence:** Pan-India + International (Hong Kong, SE Asia)\n\n**6 Companies Under Shanky Group:**\n1. 💰 Shanky Financial Services Pvt Ltd\n2. 🌾 VMS Hub Pvt Ltd (Food & Agri)\n3. ☀️ Shanky Smart Tech Pvt Ltd (Solar & IoT)\n4. 🏗️ Shanky Buildtech Pvt Ltd (Construction)\n5. 🔩 Shanky Metals Pvt Ltd\n6. 📚 Shanky Corporate Training Pvt Ltd\n\n**Sectors:** Finance | Food | Solar | Construction | Metals | Education\n\nEk hi group, chhe companies, anek opportunities! 🚀',
+    answer: '🏛️ **SHANKY GROUP — A Premier Indian Conglomerate**\n\n📅 **Founded:** 2011\n📍 **HQ:** D Mall, NSP, Pitampura, Delhi-110034\n👥 **Employees:** 50+\n🤝 **Customers:** 1,000+\n💰 **Group Turnover:** ₹300 Cr+ (FY 2025-26)\n🌍 **Presence:** Pan-India + International (Hong Kong, SE Asia)\n\n**6 Companies Under Shanky Group:**\n1. 💰 Shanky Financial Services Pvt Ltd\n2. 🌾 VMS Hub Pvt Ltd (Food & Agri)\n3. ☀️ Shanky Smart Tech Pvt Ltd (Solar & IoT)\n4. 🏗️ Shanky Buildtech Pvt Ltd (Construction)\n5. 🔩 Shanky Metals Pvt Ltd\n6. 📚 Shanky Corporate Training Pvt Ltd\n\n**Sectors:** Finance | Food | Solar | Construction | Metals | Education\n\nEk hi group, chhe companies, anek opportunities! 🚀',
     category: 'group_overview', priority: 10
   },
   {
@@ -213,7 +213,7 @@ export const GROUP_OVERVIEW_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['awards','achievements','recognition','prize','trophy','honour','accolades','best company award','shanky awards'],
-    answer: '🏆 **Shanky Group Achievements & Awards**\n\n**National Awards:**\n🥇 Best B2B Financial Services Company 2022\n🥇 Solar Excellence Award 2023 — MNRE recognized\n🥇 Top 100 SMEs of North India 2024\n🥇 Excellence in Metal Trading 2023\n🥇 Best Corporate Training Provider — Delhi NCR 2023\n\n**Certifications:**\n📜 ISO 9001:2015 — Quality Management\n📜 ISO 14001:2015 — Environmental Management\n📜 ISO 45001:2018 — Occupational Health & Safety\n📜 FSSAI Licensed — VMS Hub\n📜 MCA Registered — All companies\n\n**Milestones:**\n✅ ₹300 Cr+ Group Turnover 2025-26\n✅ 10,000+ satisfied customers\n✅ 500+ employees pan-India\n✅ Export to 5+ countries\n\nHum kaam aur result pe believe karte hain! 💪',
+    answer: '🏆 **Shanky Group Achievements & Awards**\n\n**National Awards:**\n🥇 Best B2B Financial Services Company 2022\n🥇 Solar Excellence Award 2023 — MNRE recognized\n🥇 Top 100 SMEs of North India 2024\n🥇 Excellence in Metal Trading 2023\n🥇 Best Corporate Training Provider — Delhi NCR 2023\n\n**Certifications:**\n📜 ISO 9001:2015 — Quality Management\n📜 ISO 14001:2015 — Environmental Management\n📜 ISO 45001:2018 — Occupational Health & Safety\n📜 FSSAI Licensed — VMS Hub\n📜 MCA Registered — All companies\n\n**Milestones:**\n✅ ₹300 Cr+ Group Turnover 2025-26\n✅ 1,000+ satisfied customers\n✅ 50+ employees pan-India\n✅ Export to 5+ countries\n\nHum kaam aur result pe believe karte hain! 💪',
     category: 'group_overview', priority: 8
   },
   {
@@ -923,12 +923,12 @@ export const SMALLTALK_KNOWLEDGE: KnowledgeEntry[] = [
   },
   {
     keywords: ['how old are you','tumhari umar','bot ki age','kab bana','kitne saal','age kya hai'],
-    answer: '🤖 Meri umar? Interesting sawaal!\n\nMain Shanky Group ke saath hi grow kiya hoon — company 2014 mein shuru hui, aur main tab se evolve ho raha hoon!\n\n**Bot ki age:** Technically koi nahi — main lines of code hoon! 😄\n\n**Shanky Group ki age:** 10+ years (2014 se)\n\nAur aap? Kitne saal ke ho? Batao — career discussion karein! 😊',
+    answer: '🤖 Meri umar? Interesting sawaal!\n\nMain Shanky Group ke saath hi grow kiya hoon — company 2011 mein shuru hui, aur main tab se evolve ho raha hoon!\n\n**Bot ki age:** Technically koi nahi — main lines of code hoon! 😄\n\n**Shanky Group ki age:** 14+ years (2011 se)\n\nAur aap? Kitne saal ke ho? Batao — career discussion karein! 😊',
     category: 'fun', priority: 4
   },
   {
     keywords: ['sing a song','gana gao','song sunao','music','bollywood song','rap','poetry','shayari','doha'],
-    answer: '🎵 Shanky Bot ka special song! 🎵\n\n*"Ek company thi chhoti si,\nShanky naam se jaani thi,\n2014 mein aayi thi yeh,\nAaj 6 companies ki rani hai! 👑\n\nFinance, Solar, Metal, Food,\nElectronics aur Training mood,\nShanky Group mein sab milta hai,\nShanky Bot ka ye hi tune hai!"* 🎶😄\n\nKuch aur chahiye? Ya ab serious sawaal? 😄',
+    answer: '🎵 Shanky Bot ka special song! 🎵\n\n*"Ek company thi chhoti si,\nShanky naam se jaani thi,\n2011 mein aayi thi yeh,\nAaj 6 companies ki rani hai! 👑\n\nFinance, Solar, Metal, Food,\nElectronics aur Training mood,\nShanky Group mein sab milta hai,\nShanky Bot ka ye hi tune hai!"* 🎶😄\n\nKuch aur chahiye? Ya ab serious sawaal? 😄',
     category: 'fun', priority: 4
   },
   {
