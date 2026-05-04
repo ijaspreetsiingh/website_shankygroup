@@ -1283,7 +1283,7 @@ export const CATEGORY_FALLBACKS: { [key: string]: string } = {
   fun:         '😄 Kuch mazedaar poochh rahe ho! Shanky Bot ke saath timepass welcome hai — ya phir koi business sawaal bhi poocho!',
   compliance:  '📋 Compliance aur governance ke baare mein? legal@shankygroup.com pe contact karo ya website pe policies section dekho.',
   industry:    '📊 Industry knowledge chahiye? Main bata sakta hoon — finance, solar, metals, food — kaunsa sector?',
-  group_overview: '🏛️ Shanky Group ke baare mein — 2014 se, 6 companies, 500+ employees, ₹300 Cr+ turnover (FY 2025-26). Kisi specific cheez ke baare mein poochho!',
+  group_overview: '🏛️ Shanky Group ke baare mein — 2011 se, 6 companies, 50+ employees, ₹300 Cr+ turnover (FY 2025-26). Kisi specific cheez ke baare mein poochho!',
   blog:        '📰 Latest news aur events ke liye: www.shankygroup.com/blog | Ya events@shankygroup.com',
   mission:     '🎯 Mission, Vision, Values ke baare mein? Shanky Group believes in Integrity, Excellence, Innovation, Customer Focus, Teamwork & Sustainability!',
   partnerships:'🤝 Partnership ke liye: partnership@shankygroup.com | Vendor registration: vendor@shankygroup.com',

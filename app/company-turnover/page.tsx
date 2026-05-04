@@ -154,7 +154,7 @@ export default function CompanyDataPage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Shanky Group",
-    "description": "Shanky Group is a diversified conglomerate with 6 companies across multiple sectors including financial services, agro products, solar EPC, corporate training, construction, and metal trading with projected turnover of ₹308 Cr for FY 2025-26.",
+    "description": "Shanky Group is a diversified conglomerate with 6 companies across multiple sectors including financial services, agro products, solar EPC, corporate training, construction, and metal trading with projected turnover of ₹300 Cr for FY 2025-26.",
     "url": "https://shankygroup.com/company-turnover",
     "logo": "https://shankygroup.com/images/new_logo_finalM.png",
     "sameAs": [
@@ -179,7 +179,7 @@ export default function CompanyDataPage() {
     "aggregateTurnover": {
       "@type": "QuantitativeValue",
       "name": "Total Group Turnover FY 2025-26",
-      "value": "308",
+      "value": "300",
       "unitText": "Crore INR",
       "currency": "INR"
     },

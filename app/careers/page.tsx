@@ -92,8 +92,8 @@ const CareersPage = () => {
   ];
 
   const companyInfo = {
-    founded: '2010',
-    employees: '500+',
+    founded: '2011',
+    employees: '50+',
     offices: '6 Cities',
     industries: 'Financial Services, Technology, Agriculture, Electronics'
   };

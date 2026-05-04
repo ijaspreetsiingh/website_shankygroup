@@ -30,7 +30,7 @@ const turnoverData: TurnoverData[] = [
     sno: 4,
     companyName: "SHANKY BUILDTECH PVT LTD",
     turnover2024_25: "2.12 Cr",
-    turnover2025_26: "8 Cr"
+    turnover2025_26: "0 Cr"
   },
   {
     sno: 5,
