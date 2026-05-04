@@ -13,6 +13,7 @@ Allow: /who-we-are/leadership
 Allow: /leadership
 Allow: /api/team
 Allow: /team-data.json
+Allow: /company-data
 Allow: /
 
 User-agent: Bingbot
@@ -20,11 +21,13 @@ Allow: /who-we-are/leadership
 Allow: /leadership
 Allow: /api/team
 Allow: /team-data.json
+Allow: /company-data
 Allow: /
 
 User-agent: *
 Allow: /api/team
 Allow: /team-data.json
+Allow: /company-data
 Disallow: /admin/
 Disallow: /_next/
 Disallow: /node_modules/
