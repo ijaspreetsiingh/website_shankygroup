@@ -193,7 +193,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   }, []);
 
   useEffect(() => {
-    const paths = ['/who-we-are/about-us','/who-we-are/leadership','/who-we-are/mission-vision','/who-we-are/compliance','/company-turnover'];
+    const paths = ['/who-we-are/about-us','/who-we-are/leadership','/who-we-are/mission-vision','/who-we-are/compliance'];
     paths.forEach(p => {
       try { router.prefetch(p); } catch {}
     });
@@ -611,6 +611,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                     >
                       Compliance
                     </Link>
+                    {/* 
                     <Link 
                       href="/company-turnover" 
                       className={`block px-5 py-3.5 text-[13px] transition-all duration-300 hover:pl-7 ${
@@ -618,9 +619,11 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                           ? 'text-[#e63a27] font-black bg-[#e63a27]/5' 
                           : 'text-[var(--text-primary)] font-medium hover:bg-[var(--card-border)] hover:text-[#e63a27]'
                       }`}
+                      onClick={() => { setIsBusinessOpen(false); }}
                     >
                       Company Portfolio
                     </Link>
+                    */}
                   </div>
                 </div>
 
@@ -922,9 +925,9 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                     <Link href="/who-we-are/compliance" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
                       activePath === '/who-we-are/compliance' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
                     }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Compliance</Link>
-                    <Link href="/company-turnover" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                    {/* <Link href="/company-turnover" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
                       activePath === '/company-turnover' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
-                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Company Portfolio</Link>
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); }}>Company Portfolio</Link> */}
                   </div>
                 </div>
               </div>
