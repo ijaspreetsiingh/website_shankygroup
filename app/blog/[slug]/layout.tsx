@@ -11,7 +11,7 @@ type BlogMetaRow = {
 };
 
 type MetadataParams = {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 function normalizeImageUrl(imagePath: string | null, base: string): string | undefined {
