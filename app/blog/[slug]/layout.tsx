@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
   const slug = decodeURIComponent(resolved.slug || '');
   const base = getSiteUrl();
 
+  
   if (!slug) {
     return {
       title: 'Blog',
