@@ -88,7 +88,7 @@ const HeroHomeFour = () => {
     <>
       
       
-      <section className="mt-0 h-[70vh] md:h-[75vh] lg:h-[80vh] relative overflow-hidden px-4 md:px-8 lg:px-12 bg-[var(--background)]">
+      <section className="mt-0 h-[58vh] min-h-[260px] sm:h-[65vh] sm:min-h-[300px] md:h-[75vh] lg:h-[80vh] relative overflow-hidden px-4 md:px-8 lg:px-12 bg-[var(--background)]">
 
         {/* Background Image Slider */}
         <Swiper

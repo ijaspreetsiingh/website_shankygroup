@@ -9,6 +9,9 @@ interface HeaderFourProps {
   isScrolled: boolean;
 }
 
+const LIGHT_LOGO = '/images/new_logo_shanky_group.png';
+const DARK_LOGO = '/images/shanky-group-logo-dark.png';
+
 const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
@@ -426,7 +429,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
 
             {/* Social Icons - desktop only */}
             <div className="hidden md:flex items-center gap-3">
-              <a href="https://www.facebook.com/share/1Hcjvg7fAr/" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#1877F2] hover:scale-110" aria-label="Facebook">
+              <a href="https://www.facebook.com/shankygroup" className="text-[var(--text-secondary)] flex items-center justify-center w-3 h-3 sm:w-4 sm:h-4 transition-all duration-300 opacity-80 hover:opacity-100 hover:text-[#1877F2] hover:scale-110" aria-label="Facebook">
                 <svg className="w-full h-full" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                 </svg>
@@ -502,19 +505,19 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
             : 'bg-[var(--background)] backdrop-blur-md'
         }`}
       >
-        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12 pt-2 sm:pt-0">
-          <div className="flex items-center justify-between h-[76px] sm:h-[88px] lg:h-[104px]">
-            {/* Logo - Left Side - larger size */}
-            <div className="flex items-center flex-shrink-0 min-w-0" style={{ transform: `scale(${uiScale})`, transformOrigin: 'top left' }}>
-              <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
-                <div className="p-0.5 sm:p-0 rounded-xl sm:rounded-none bg-[var(--card-bg)]/50 sm:bg-transparent border-0 sm:border-none shrink-0 transition-all flex items-center justify-center h-[68px] sm:h-auto">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-12">
+          <div className="flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[112px]">
+            {/* Logo - Left Side - vertically centered */}
+            <div className="flex items-center self-stretch flex-shrink-0 min-w-0">
+              <Link href="/" className="flex items-center h-full gap-2 sm:gap-3 group">
+                <div className="shrink-0 flex items-center justify-center h-full">
                   <img 
-                    src="/images/new_logo_finalM.png" 
+                    src={isDark ? DARK_LOGO : LIGHT_LOGO} 
                     alt="Shanky Group Logo"
-                    className="h-[64px] sm:h-[68px] md:h-[80px] lg:h-[96px] w-auto object-contain object-center transition-all duration-500 group-hover:scale-105"
+                    className="h-[84px] max-h-full sm:h-[88px] md:h-[96px] lg:h-[110px] w-auto object-contain object-center transition-all duration-500 group-hover:scale-105"
                   />
                 </div>
-                <span className="hidden sm:block lg:hidden text-[var(--text-primary)] font-bold text-xs sm:text-sm tracking-[0.12em] uppercase truncate">Shanky Group</span>
+                <span className="hidden sm:block lg:hidden te xt-[var(--text-primary)] font-bold text-xs sm:text-sm tracking-[0.12em] uppercase truncate">Shanky Group</span>
               </Link>
             </div>
 
@@ -871,11 +874,13 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
           
           <div className="sticky top-0 z-10 shrink-0 bg-[var(--card-bg)]/95 backdrop-blur-md border-b border-[var(--card-border)]">
             <div className="px-4 sm:px-6 py-4 flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3 group" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>
-                <div className="p-1.5 rounded-xl bg-[var(--background)] border border-[var(--card-border)] group-hover:border-[#e63a27]/40 transition-colors">
-                  <img src="/images/new_logo_finalM.png" alt="Shanky Group" className="h-12 w-auto object-contain" />
-                </div>
-                <div>
+              <Link href="/" className="flex items-center gap-3 group min-w-0" onClick={() => { setIsMobileMenuOpen(false); setWhoWeAreMobileOpen(false); setBusinessMobileOpen(false); }}>
+                <img
+                  src={isDark ? DARK_LOGO : LIGHT_LOGO}
+                  alt="Shanky Group"
+                  className="h-[76px] sm:h-20 w-auto object-contain object-center shrink-0 transition-transform duration-200 group-hover:scale-[1.02]"
+                />
+                <div className="min-w-0">
                   <span className="block text-[var(--text-primary)] font-bold text-sm tracking-[0.15em] uppercase">Shanky</span>
                   <span className="block text-[var(--text-secondary)] text-[11px] font-medium tracking-widest uppercase">Group</span>
                 </div>
@@ -1007,7 +1012,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 +011-47586938
               </a>
               <div className="flex items-center gap-3 pt-1">
-                <a href="https://www.facebook.com/share/1Hcjvg7fAr/" className="text-[var(--text-secondary)] hover:text-[#1877F2] transition-colors" aria-label="Facebook">
+                <a href="https://www.facebook.com/shankygroup" className="text-[var(--text-secondary)] hover:text-[#1877F2] transition-colors" aria-label="Facebook">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 </a>
                 <a href="https://x.com/ShankyGroup" className="text-[var(--text-secondary)] hover:text-[#1DA1F2] transition-colors" aria-label="X">
@@ -1123,7 +1128,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
       )}
 
       {/* Spacer for fixed header - matches header height per breakpoint */}
-      <div className="h-[76px] sm:h-[88px] md:h-[142px] lg:h-[142px] mb-3 sm:mb-4" />
+      <div className="h-[84px] sm:h-[96px] md:h-[134px] lg:h-[150px] mb-3 sm:mb-4" />
 
       {/* Add Custom CSS for Animations */}
       <style dangerouslySetInnerHTML={{

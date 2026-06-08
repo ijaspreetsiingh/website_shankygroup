@@ -4,10 +4,18 @@ import { Syne, DM_Sans } from 'next/font/google';
 import './globals.css';
 import Chatbot from './components/Chatbot';
 import ThemeSync from './ThemeSync';
+import {
+  getBrandLogoImageObjects,
+  getBrandLogoUrl,
+  getBrandOpenGraphImages,
+} from './lib/brand-logos';
 import { getSiteUrl } from './lib/site-url';
 
 const siteUrl = getSiteUrl();
-const logoUrl = 'https://shankygroup.com/images/logo_icon.png';
+// Browser tab / bookmark favicon only — keep logo_icon.png; do NOT swap with brand logos.
+const SITE_FAVICON_URL = 'https://shankygroup.com/images/logo_icon.png';
+const primaryLogoUrl = getBrandLogoUrl('light');
+const brandLogoImages = getBrandLogoImageObjects(siteUrl);
 const importantSiteLinks = [
   `${siteUrl}/who-we-are/about-us`,
   `${siteUrl}/who-we-are/mission-vision`,
@@ -23,9 +31,16 @@ const organizationJsonLd = {
   name: 'Shanky Group',
   alternateName: 'Shanky Group India',
   url: siteUrl,
-  logo: logoUrl,
+  logo: brandLogoImages[0],
+  image: brandLogoImages,
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth.',
+  sameAs: [
+    'https://www.facebook.com/share/1Hcjvg7fAr/',
+    'https://x.com/ShankyGroup',
+    'https://www.linkedin.com/company/shankygroup',
+    'https://www.instagram.com/shankygroup',
+  ],
 };
 
 const websiteJsonLd = {
@@ -102,9 +117,9 @@ export const metadata: Metadata = {
     template: '%s | Shanky Group',
   },
   icons: {
-    icon: logoUrl,
-    shortcut: logoUrl,
-    apple: logoUrl,
+    icon: SITE_FAVICON_URL,
+    shortcut: SITE_FAVICON_URL,
+    apple: SITE_FAVICON_URL,
   },
   description:
     'Shanky Group is a multi-business organization focused on finance, technology, training, and industrial growth with a strong people-first vision.',
@@ -119,24 +134,19 @@ export const metadata: Metadata = {
     siteName: 'Shanky Group',
     locale: 'en_IN',
     type: 'website',
-    images: [
-      {
-        url: logoUrl,
-        width: 512,
-        height: 512,
-        alt: 'Shanky Group',
-      },
-    ],
+    images: getBrandOpenGraphImages(),
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Shanky Group',
     description:
       'Explore Shanky Group businesses, leadership, and opportunities.',
-    images: [logoUrl],
+    images: brandLogoImages.map((image) => image.url),
   },
   keywords: [
     'Shanky Group',
+    'Shanky Group logo',
+    'Shanky Group official logo',
     'Shanky Group India',
     'Shanky Financial',
     'Shanky Corporate Training',
@@ -178,17 +188,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link
-          rel="icon"
-          href={logoUrl}
-          type="image/png"
-          sizes="512x512"
-        />
-        <link
-          rel="apple-touch-icon"
-          href={logoUrl}
-          sizes="512x512"
-        />
+        {/* Favicon: logo_icon.png only — not brand logos */}
+        <link rel="icon" href={SITE_FAVICON_URL} type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href={SITE_FAVICON_URL} sizes="512x512" />
+        <meta itemProp="logo" content={primaryLogoUrl} />
+        <meta itemProp="image" content={primaryLogoUrl} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

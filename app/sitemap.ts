@@ -1,8 +1,10 @@
 import type { MetadataRoute } from 'next';
+import { getBrandLogoUrl } from './lib/brand-logos';
 import { getSiteUrl } from './lib/site-url';
 
 const STATIC_PATHS: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap[0]['changeFrequency']; priority: number }> = [
   { path: '/', changeFrequency: 'weekly', priority: 1 },
+  { path: '/brand', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/blog', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/careers', changeFrequency: 'weekly', priority: 0.85 },
   { path: '/contact', changeFrequency: 'monthly', priority: 0.85 },
@@ -49,11 +51,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl();
   const now = new Date();
 
+  const brandLogoImages = [getBrandLogoUrl('light'), getBrandLogoUrl('dark')];
+
   const staticEntries: MetadataRoute.Sitemap = STATIC_PATHS.map(({ path, changeFrequency, priority }) => ({
     url: `${base}${path === '/' ? '' : path}`,
     lastModified: now,
     changeFrequency,
     priority,
+    images: path === '/' || path === '/brand' ? brandLogoImages : undefined,
   }));
 
   const blogEntries = await publishedBlogEntries(base);

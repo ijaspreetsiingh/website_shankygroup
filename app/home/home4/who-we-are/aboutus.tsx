@@ -111,9 +111,9 @@ const WhatWeDo = () => {
             transition: 'font-weight 0.15s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1)',
             color: 'var(--text-primary)'
           }}
-          className="inline-block mr-1"
+          className="inline"
         >
-          {word}
+          {word}{index < totalWords - 1 ? ' ' : ''}
         </span>
       );
     });
@@ -561,19 +561,32 @@ const WhatWeDo = () => {
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] bg-[radial-gradient(circle_at_50%_50%,var(--text-primary)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"></div>
       
       {/* Header Section */}
-      <div className="max-w-[1600px] mx-auto px-4 py-8 sm:px-6 sm:py-12 md:p-[100px_60px_80px]">
+      <div className="max-w-[1600px] mx-auto px-5 sm:px-6 py-8 sm:py-12 md:p-[100px_60px_80px]">
         <div 
-          className="text-center mb-6 sm:mb-8 md:mb-[60px] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200"
+          className="text-left md:text-center mb-6 sm:mb-8 md:mb-[60px] transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] delay-200"
           style={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0) translateX(0)' : 'translateY(50px) translateX(-30px)',
           }}
         >
-          <h2 className="section-heading hero-legacy-heading text-[28px] sm:text-[32px] md:text-[56px] font-bold text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[3px] sm:tracking-[5px] md:tracking-[10px] leading-[1.1] uppercase px-1">
+          <h2 className="section-heading hero-legacy-heading text-[28px] sm:text-[32px] md:text-[56px] font-bold text-[var(--text-primary)] m-0 mb-4 sm:mb-[30px] tracking-[0.5px] sm:tracking-[3px] md:tracking-[10px] leading-[1.15] uppercase max-w-[360px] sm:max-w-[500px] md:max-w-none mx-0 md:mx-auto">
             {(() => {
               const full = t('group_of_companies');
               const words = full.split(/\s+/);
               const firstWord = words[0] || '';
+              if (words.length >= 3) {
+                const lastWord = words[words.length - 1];
+                const middle = words.slice(1, -1).join(' ');
+                return (
+                  <>
+                    <span className="block md:inline">
+                      <span style={{ color: '#e63a27' }}>{firstWord}</span>
+                      {middle ? ` ${middle}` : ''}
+                    </span>
+                    <span className="block md:inline">{` ${lastWord}`}</span>
+                  </>
+                );
+              }
               const rest = words.slice(1).join(' ');
               return (
                 <>
@@ -583,11 +596,11 @@ const WhatWeDo = () => {
               );
             })()}
           </h2>
-          <p className="section-subheading text-[19px] sm:text-[20px] md:text-[22px] leading-[1.6] sm:leading-[1.7] text-[var(--text-primary)] max-w-[1100px] mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.3px] px-0 sm:px-2">
+          <p className="section-subheading text-[15px] sm:text-[19px] md:text-[22px] leading-[1.65] sm:leading-[1.7] text-[var(--text-primary)] max-w-[360px] sm:max-w-[500px] md:max-w-[1100px] mx-0 md:mx-auto mb-6 sm:mb-[40px] font-normal tracking-[0.2px] text-pretty md:text-center">
            {renderProgressiveBoldText(t('group_description'))}
           </p>
           
-          <div className="text-center mt-6 sm:mt-[40px]">
+          <div className="text-left md:text-center mt-6 sm:mt-[40px]">
             <button
               type="button"
               onClick={() => setShowReadMoreContent(prev => !prev)}

@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -46,6 +48,22 @@
 
   --accent: #6fa3ff;
   --accent-hover: #89b4ff;
+}
+
+.loader-logo-light {
+  display: block;
+}
+
+.loader-logo-dark {
+  display: none;
+}
+
+:root.dark .loader-logo-light {
+  display: none;
+}
+
+:root.dark .loader-logo-dark {
+  display: block;
 }
 
 

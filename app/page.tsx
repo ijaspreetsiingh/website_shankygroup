@@ -85,18 +85,26 @@ const VisitorTracker = () => {
   return null; // This component doesn't render anything
 };
 
+const LIGHT_LOGO = '/images/new_logo_shanky_group.png';
+const DARK_LOGO = '/images/shanky-group-logo-dark.png';
+
 // Original Branded Loader Component
 const BarLoader = () => {
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-[var(--background)] z-[9999] flex flex-col items-center justify-center">
       {/* Logo/Brand Container */}
       <div className="text-center animate-[fadeIn_1s_ease-out]">
-        {/* Company Logo */}
+        {/* Company Logo — CSS toggles by html.dark (set before paint by theme script) */}
         <div className="mb-[30px] opacity-0 animate-[slideUp_1s_ease-out_0.1s_forwards,fadeIn_1s_ease-out_0.1s_forwards] flex items-center justify-center">
           <img 
-            src="/images/new_logo_finalM.png" 
+            src={LIGHT_LOGO}
             alt="Shanky Group Logo"
-            className="w-[clamp(80px,12vw,160px)] h-auto object-contain drop-shadow-[0_4px_20px_rgba(0,0,0,0.1)] rounded-2xl"
+            className="loader-logo-light w-[clamp(140px,20vw,260px)] h-auto object-contain object-top drop-shadow-[0_4px_20px_rgba(0,0,0,0.1)]"
+          />
+          <img 
+            src={DARK_LOGO}
+            alt="Shanky Group Logo"
+            className="loader-logo-dark w-[clamp(140px,20vw,260px)] h-auto object-contain object-top drop-shadow-[0_4px_20px_rgba(0,0,0,0.25)]"
           />
         </div>
         
