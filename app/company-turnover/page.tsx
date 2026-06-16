@@ -161,7 +161,7 @@ export default function CompanyDataPage() {
       "https://www.facebook.com/share/1Hcjvg7fAr/",
       "https://x.com/ShankyGroup",
       "https://www.linkedin.com/company/shankygroup",
-      "https://www.instagram.com/shankygroup?igsh=eTVseG9leGRqcHF6"
+      "https://www.instagram.com/shankygroup.in/"
     ],
     "foundingDate": "2011",
     "address": {

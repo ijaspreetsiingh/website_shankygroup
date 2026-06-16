@@ -39,7 +39,7 @@ const organizationJsonLd = {
     'https://www.facebook.com/share/1Hcjvg7fAr/',
     'https://x.com/ShankyGroup',
     'https://www.linkedin.com/company/shankygroup',
-    'https://www.instagram.com/shankygroup',
+    'https://www.instagram.com/shankygroup.in/',
   ],
 };
 
