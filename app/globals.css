@@ -363,6 +363,27 @@ html {
   letter-spacing: 0.04em !important;
 }
 
+/* Privacy Policy page – same heading font as /who-we-are/about-us (Syne) */
+.privacy-policy-root h1,
+.privacy-policy-root h2,
+.privacy-policy-root h3,
+.privacy-policy-root h4,
+.privacy-policy-root h5,
+.privacy-policy-root h6 {
+  font-family: var(--heading-font) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.privacy-policy-root .section-heading,
+.privacy-policy-root .hero-legacy-heading,
+.privacy-policy-root .heading {
+  font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
 /* Specific procedure section scrollbar hide */
 .procedure-scrollbar-hide::-webkit-scrollbar {
   display: none;

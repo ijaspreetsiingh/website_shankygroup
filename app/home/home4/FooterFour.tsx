@@ -263,7 +263,7 @@ const GraphyFooter = () => {
                 © {currentYear} {t('shanky_group')}. {t('all_rights_reserved')}
               </p>
               <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 gap-y-1 order-1 sm:order-2">
-                <Link href="#" className="text-[11px] sm:text-[13px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:underline transition-colors duration-200">
+                <Link href="/privacy-policy" className="text-[11px] sm:text-[13px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:underline transition-colors duration-200">
                   {t('privacy_policy')}
                 </Link>
                 <Link href="#" className="text-[11px] sm:text-[13px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:underline transition-colors duration-200">
