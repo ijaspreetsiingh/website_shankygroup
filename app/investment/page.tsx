@@ -4,7 +4,7 @@ import InvestmentClient from './page-client';
 // Strong SEO Metadata - Server Component
 export const metadata: Metadata = {
   title: "Invest in NCD | 14% Fixed Annual Returns | Shanky Group",
-  description: "Earn 14% guaranteed annual returns with Shanky Group's secured NCD investment. Fixed annual income, asset-backed security, minimum investment ₹5 Crore. Trusted by HNI investors across India.",
+  description: "Earn 14% guaranteed annual returns with Shanky Group's secured NCD investment. Fixed annual income, asset-backed security, minimum investment ₹5 Crore.",
   keywords: [
     "NCD investment India",
     "14% fixed returns",
