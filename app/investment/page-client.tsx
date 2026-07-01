@@ -381,9 +381,8 @@ export default function InvestmentClient() {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
-              <StatCounter value={500} prefix="₹" suffix="Cr+" label="Assets Under Management" shouldStart={statsVisible} />
-              <StatCounter value={5000} suffix="+" label="HNI Investors" shouldStart={statsVisible} />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12">
+              <StatCounter value={0} suffix="%" label="Risk" shouldStart={statsVisible} />
               <StatCounter value={14} suffix="%" label="Fixed Annual Returns" shouldStart={statsVisible} />
               <StatCounter value={15} suffix="+ Yrs" label="Industry Experience" shouldStart={statsVisible} />
             </div>
