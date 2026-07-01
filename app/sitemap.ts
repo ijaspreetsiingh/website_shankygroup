@@ -27,6 +27,8 @@ const STATIC_PATHS: Array<{ path: string; changeFrequency: MetadataRoute.Sitemap
   { path: '/company/shanky-financial-services', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/company/shanky-electronics-hub', changeFrequency: 'monthly', priority: 0.7 },
   { path: '/company-turnover', changeFrequency: 'daily', priority: 1.0 },
+  { path: '/investment', changeFrequency: 'daily', priority: 1.0 },
+  { path: '/privacy-policy', changeFrequency: 'monthly', priority: 0.6 },
 ];
 
 async function publishedBlogEntries(base: string): Promise<MetadataRoute.Sitemap> {

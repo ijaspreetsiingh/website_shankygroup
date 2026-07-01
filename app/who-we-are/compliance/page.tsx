@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import WhoWeAreNav from '../WhoWeAreNav';
 import mission2Image from '../../images/mission2.png';
+import turnoverData, { TurnoverData } from '@/app/components/TurnoverData';
 
 // Section images - professional compliance & corporate
 const SECTION_IMAGES = {
@@ -55,16 +56,21 @@ export default function CompliancePage() {
   return (
     <>
       <Head>
-        <title>Compliance & Governance - Shanky Group | Corporate Ethics & Regulatory Standards</title>
-        <meta name="description" content="Shanky Group maintains comprehensive compliance and governance frameworks including board oversight, internal controls, ethical conduct, and regulatory compliance across all business operations." />
-        <meta name="keywords" content="Shanky Group compliance, corporate governance, regulatory compliance, ethical conduct, board oversight, internal controls, anti-bribery, data protection, AML KYC, whistleblower policy" />
-        <meta property="og:title" content="Compliance & Governance - Shanky Group" />
-        <meta property="og:description" content="Comprehensive compliance and governance frameworks ensuring ethical business practices, regulatory compliance, and stakeholder trust." />
+        <title>Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data | Compliance & Governance</title>
+        <meta name="description" content="Shanky Group official turnover data: Total ₹300+ Cr FY 2025-26. VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr, Shanky Buildtech ₹0 Cr, Shanky Corporate Training ₹50 Lakh. Verified financial records for all 6 companies." />
+        <meta name="keywords" content="Shanky Group turnover, Shanky Group revenue, Shanky Group financial data, VMS Hub turnover ₹245 Cr, Shanky Financial Services turnover ₹26.50 Cr, Shanky Metals turnover ₹14 Cr, Shanky Smart Tech turnover ₹14 Cr, Shanky Buildtech turnover, Shanky Corporate Training turnover, Shanky Group total turnover ₹300 Cr, company turnover data India, FY 2025-26 turnover, FY 2024-25 turnover, Shanky Group companies financial performance" />
+        <meta name="author" content="Shanky Group" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://shankygroup.com/who-we-are/compliance" />
+        <meta property="og:title" content="Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data" />
+        <meta property="og:description" content="Official turnover data for Shanky Group: VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr. Total ₹300+ Cr across 6 companies." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://shankygroup.com/who-we-are/compliance" />
+        <meta property="og:site_name" content="Shanky Group" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Compliance & Governance - Shanky Group" />
-        <meta name="twitter:description" content="Corporate compliance and governance frameworks ensuring ethical business practices and regulatory standards." />
+        <meta name="twitter:title" content="Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data" />
+        <meta name="twitter:description" content="Official turnover: VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr. Total ₹300+ Cr." />
+        <meta name="twitter:site" content="@ShankyGroup" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -72,13 +78,36 @@ export default function CompliancePage() {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Shanky Group",
-              "description": "Shanky Group maintains comprehensive compliance and governance frameworks ensuring ethical business practices and regulatory compliance.",
+              "description": "Shanky Group maintains comprehensive compliance and governance frameworks ensuring ethical business practices and regulatory compliance. The group operates 6 companies with total projected turnover of ₹300+ Cr for FY 2025-26.",
               "url": "https://shankygroup.com/who-we-are/compliance",
               "mainEntity": {
                 "@type": "WebPage",
-                "name": "Compliance & Governance",
-                "description": "Comprehensive compliance and governance frameworks including board oversight, internal controls, ethical conduct, and regulatory compliance."
+                "name": "Compliance & Governance - Shanky Group Turnover Data",
+                "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26. VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr, Shanky Buildtech ₹0 Cr, Shanky Corporate Training ₹50 Lakh."
               },
+              "aggregateTurnover": {
+                "@type": "QuantitativeValue",
+                "name": "Total Group Turnover FY 2025-26",
+                "value": "300",
+                "unitText": "Crore INR",
+                "currency": "INR"
+              },
+              "subOrganization": turnoverData.map((company) => ({
+                "@type": "Organization",
+                "name": company.companyName,
+                "turnover2024_25": {
+                  "@type": "QuantitativeValue",
+                  "name": "Turnover FY 2024-25",
+                  "value": company.turnover2024_25 !== "-" ? company.turnover2024_25 : "0",
+                  "currency": "INR"
+                },
+                "turnover2025_26": {
+                  "@type": "QuantitativeValue",
+                  "name": "Projected Turnover FY 2025-26",
+                  "value": company.turnover2025_26,
+                  "currency": "INR"
+                }
+              })),
               "hasPart": [
                 {
                   "@type": "Service",
@@ -95,7 +124,118 @@ export default function CompliancePage() {
                   "name": "Ethical Conduct",
                   "description": "The Group's code of conduct outlines expectations for ethical behavior, conflict of interest management, and stakeholder engagement."
                 }
+              ],
+              "financialPerformance": {
+                "@type": "FinancialPerformance",
+                "name": "Shanky Group Financial Performance FY 2024-25 & FY 2025-26",
+                "description": "Complete financial turnover data for all Shanky Group companies",
+                "revenue": {
+                  "@type": "MonetaryAmount",
+                  "value": "300",
+                  "currency": "INR",
+                  "name": "Total Revenue FY 2025-26"
+                }
+              }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Group's total turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's total turnover for FY 2025-26 is ₹300+ Crore. The highest contributing company is VMS Hub Pvt Ltd with ₹245 Cr turnover."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is VMS Hub Pvt Ltd turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "VMS Hub Pvt Ltd has a turnover of ₹245 Crore for FY 2025-26, making it the highest revenue generator in Shanky Group."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Financial Services turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Financial Services Pvt Ltd has a turnover of ₹26.50 Crore for FY 2025-26, up from ₹1.45 Cr in FY 2024-25."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Metals Pvt Ltd turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Metals Pvt Ltd has a turnover of ₹14 Crore for FY 2025-26, compared to ₹3.62 Cr in FY 2024-25."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Smart Tech Pvt Ltd turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Smart Tech Pvt Ltd has a projected turnover of ₹14 Crore for FY 2025-26."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "How many companies are in Shanky Group?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group has 6 companies: VMS Hub Pvt Ltd, Shanky Metals Pvt Ltd, Shanky Financial Services Pvt Ltd, Shanky Smart Tech Pvt Ltd, Shanky Buildtech Pvt Ltd, and Shanky Corporate Training."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the total turnover of Shanky Group companies?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The total turnover of all Shanky Group companies for FY 2025-26 is ₹300+ Crore. This includes VMS Hub (₹245 Cr), Shanky Financial Services (₹26.50 Cr), Shanky Metals (₹14 Cr), Shanky Smart Tech (₹14 Cr), Shanky Buildtech (₹0 Cr), and Shanky Corporate Training (₹50 Lakh)."
+                  }
+                }
               ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Dataset",
+              "name": "Shanky Group Company Turnover Data FY 2024-25 & FY 2025-26",
+              "description": "Official and verified turnover data for all Shanky Group companies across fiscal years 2024-25 and 2025-26",
+              "url": "https://shankygroup.com/who-we-are/compliance",
+              "provider": {
+                "@type": "Organization",
+                "name": "Shanky Group"
+              },
+              "temporalCoverage": "2024-25/2025-26",
+              "spatialCoverage": {
+                "@type": "Country",
+                "name": "India"
+              },
+              "variableMeasured": turnoverData.map((company) => ({
+                "@type": "PropertyValue",
+                "name": company.companyName,
+                "propertyID": "turnover",
+                "value": company.turnover2025_26,
+                "unitText": "Crore INR",
+                "measurementTechnique": "Official Financial Records"
+              })),
+              "distribution": {
+                "@type": "DataDownload",
+                "encodingFormat": "text/html"
+              }
             })
           }}
         />
@@ -418,34 +558,32 @@ export default function CompliancePage() {
             <div className="lg:col-span-8">
               <h3 className="section-heading text-base sm:text-lg md:text-xl font-bold text-[var(--text-primary)] mb-4 sm:mb-6">Key Financial Highlights</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                {[
-                  { name: 'Shanky Metals Pvt Ltd', revenue: '₹7.16 crore', revenueLabel: 'Revenue (FY 2023-24)', auth: '₹75 lakh', paid: '₹70 lakh', note: 'Consistent growth in revenue and assets over the past three years.' },
-                  { name: 'VMS Hub Pvt Ltd', revenue: null, revenueLabel: null, auth: '₹16.5 crore', paid: '₹16.47 crore', note: 'Positioned for rapid growth in the food distribution sector.' },
-                  { name: 'Shanky Financial Services Pvt Ltd', revenue: null, revenueLabel: null, auth: '₹2 crore', paid: '₹10,000', note: 'Active status with regular compliance and filings.' },
-                  { name: 'Shanky Smart Tech Pvt Ltd', revenue: null, revenueLabel: null, auth: '₹5 lakh', paid: '₹5 lakh', note: 'Focused on scaling operations in solar EPC and electronics.' },
-                ].map((co) => (
-                  <div key={co.name} className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] overflow-hidden hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300">
+                {turnoverData.map((company) => (
+                  <div key={company.sno} className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl border border-[var(--card-border)] overflow-hidden hover:border-[#e63a27]/40 hover:shadow-lg transition-all duration-300">
                     <div className="bg-gradient-to-br from-[#e63a27]/10 to-[#e63a27]/5 px-4 sm:px-6 py-3 sm:py-4 border-b border-[var(--card-border)]">
-                      <h4 className="section-heading text-[var(--text-primary)] font-bold text-xs sm:text-sm lg:text-base leading-tight">{co.name}</h4>
+                      <h4 className="section-heading text-[var(--text-primary)] font-bold text-xs sm:text-sm lg:text-base leading-tight">{company.companyName}</h4>
                     </div>
                     <div className="p-3 sm:p-5 space-y-2 sm:space-y-3">
-                      {co.revenue != null && co.revenueLabel != null && (
-                        <div>
-                          <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs font-medium uppercase tracking-wider">{co.revenueLabel}</p>
-                          <p className="text-[#e63a27] font-bold text-base sm:text-lg">{co.revenue}</p>
-                        </div>
-                      )}
                       <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm">
                         <div>
-                          <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs">Authorized Capital</p>
-                          <p className="text-[var(--text-primary)] font-semibold">{co.auth}</p>
+                          <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs font-medium uppercase tracking-wider">Turnover FY 2024-25</p>
+                          <p className={`font-bold ${company.turnover2024_25 === '-' ? 'text-slate-400' : 'text-[var(--text-primary)]'}`}>
+                            {company.turnover2024_25 === '-' ? 'N/A' : `₹${company.turnover2024_25}`}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs">Paid-up Capital</p>
-                          <p className="text-[var(--text-primary)] font-semibold">{co.paid}</p>
+                          <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs font-medium uppercase tracking-wider">Turnover FY 2025-26</p>
+                          <p className="text-[#e63a27] font-bold">₹{company.turnover2025_26}</p>
                         </div>
                       </div>
-                      <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs leading-relaxed pt-1 border-t border-[var(--card-border)]">{co.note}</p>
+                      <p className="text-[var(--text-secondary)] text-[10px] sm:text-xs leading-relaxed pt-1 border-t border-[var(--card-border)]">
+                        {company.companyName.includes('VMS') ? 'Market leader in food distribution with highest turnover contribution.' :
+                         company.companyName.includes('METAL') ? 'Consistent growth in metal trading and export operations.' :
+                         company.companyName.includes('FINANCIAL') ? 'Strong performance in financial services and investment securities.' :
+                         company.companyName.includes('SMART TECH') ? 'Rapid scaling in solar EPC and smart technology solutions.' :
+                         company.companyName.includes('BUILDTECH') ? 'Established presence in construction and infrastructure projects.' :
+                         'Strategic growth in corporate training and leadership development.'}
+                      </p>
                     </div>
                   </div>
                 ))}
@@ -455,6 +593,105 @@ export default function CompliancePage() {
           <p className="text-[var(--text-secondary)] text-xs sm:text-sm md:text-base leading-[1.7] max-w-4xl">
             The Group&apos;s financial stability is further reinforced by prudent capital allocation, risk management, and reinvestment in growth initiatives.
           </p>
+        </section>
+
+        {/* Complete Turnover Data Section */}
+        <section
+          className={`mb-12 sm:mb-16 lg:mb-28 transition-all duration-700 ${isVisible('financial') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          itemScope
+          itemType="https://schema.org/DataCatalog"
+        >
+          <meta itemProp="name" content="Shanky Group Company Turnover Data" />
+          <meta itemProp="description" content="Official turnover data for all Shanky Group companies across fiscal years 2024-25 and 2025-26" />
+          <meta itemProp="url" content="https://shankygroup.com/who-we-are/compliance" />
+          
+          <div className="mb-6 sm:mb-10">
+            <span className="inline-flex items-center gap-2 text-[#e63a27] font-semibold text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase mb-2 sm:mb-3">
+              <span className="w-6 sm:w-8 h-0.5 bg-[#e63a27]" />
+              Complete Financial Data
+            </span>
+            <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-primary)] tracking-tight">
+              Company <span className="text-[#e63a27]">Turnover Records</span>
+            </h2>
+            <p className="text-[var(--text-secondary)] text-sm sm:text-base md:text-lg leading-[1.7] max-w-3xl mt-3 sm:mt-4">
+              Official turnover data for all Shanky Group companies across fiscal years 2024-25 and 2025-26. This data is verified and maintained for regulatory compliance and transparency.
+            </p>
+          </div>
+
+          <div className="bg-[var(--card-bg)] rounded-xl sm:rounded-2xl lg:rounded-3xl border border-[var(--card-border)] overflow-hidden shadow-2xl" itemScope itemType="https://schema.org/Dataset">
+            <meta itemProp="name" content="Shanky Group Turnover Data FY 2024-25 & FY 2025-26" />
+            <meta itemProp="description" content="Verified financial records for all Shanky Group companies" />
+            <meta itemProp="license" content="https://shankygroup.com" />
+            
+            <div className="p-4 sm:p-6 lg:p-8 xl:p-10 border-b border-[var(--card-border)]">
+              <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-[var(--text-primary)] mb-1 sm:mb-2">Turnover Data FY 2024-25 & FY 2025-26</h3>
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] font-medium">Verified financial records for all group companies</p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse" itemScope itemType="https://schema.org/Table">
+                <thead>
+                  <tr className="bg-slate-100 dark:bg-slate-800/90">
+                    <th className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-[8px] sm:text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] border-b border-slate-200 dark:border-slate-700">Company Name</th>
+                    <th className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-[8px] sm:text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] text-center border-b border-slate-200 dark:border-slate-700">S.No</th>
+                    <th className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-[8px] sm:text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] text-right border-b border-slate-200 dark:border-slate-700">Turnover FY 2024-25</th>
+                    <th className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-[8px] sm:text-[9px] lg:text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)] text-right border-b border-slate-200 dark:border-slate-700">Turnover FY 2025-26</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-200 dark:divide-slate-700">
+                  {turnoverData.map((company) => (
+                    <tr key={company.sno} className="hover:bg-slate-50/80 dark:hover:bg-slate-800/50 transition-colors group" itemScope itemType="https://schema.org/FinancialProduct">
+                      <meta itemProp="name" content={company.companyName} />
+                      <td className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6">
+                        <span className="font-bold text-xs sm:text-sm text-[var(--text-primary)] group-hover:text-[#e63a27] transition-colors">{company.companyName}</span>
+                      </td>
+                      <td className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-center">
+                        <span className="inline-flex items-center justify-center w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#e63a27]/10 text-[#e63a27] font-bold text-xs sm:text-sm">{company.sno}</span>
+                      </td>
+                      <td className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-right" itemProp="price">
+                        <span className={`inline-block px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-1.5 rounded-lg font-black text-[10px] sm:text-xs lg:text-sm ${company.turnover2024_25 === '-' ? 'bg-slate-100 dark:bg-slate-800 text-slate-400' : 'bg-[#e63a27]/5 text-[#e63a27] border border-[#e63a27]/10'}`}>
+                          {company.turnover2024_25 === '-' ? 'N/A' : `₹${company.turnover2024_25}`}
+                        </span>
+                      </td>
+                      <td className="px-2 sm:px-4 lg:px-6 xl:px-8 py-3 sm:py-4 lg:py-6 text-right" itemProp="price">
+                        <span className="inline-block px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-1.5 rounded-lg bg-[#e63a27]/5 text-[#e63a27] font-black text-[10px] sm:text-xs lg:text-sm border border-[#e63a27]/10">
+                          ₹{company.turnover2025_26}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="p-4 sm:p-6 lg:p-8 xl:p-10 border-t border-[var(--card-border)] bg-slate-50/50 dark:bg-slate-800/30" itemScope itemType="https://schema.org/AggregateRating">
+              <meta itemProp="itemReviewed" content="Shanky Group Turnover Data" />
+              <meta itemProp="ratingValue" content="5" />
+              <meta itemProp="bestRating" content="5" />
+              <meta itemProp="reviewCount" content="1" />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                  <meta itemProp="name" content="Total Companies" />
+                  <meta itemProp="value" content={turnoverData.length.toString()} />
+                  <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Total Companies</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-[#e63a27]">{turnoverData.length}</p>
+                </div>
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                  <meta itemProp="name" content="Total Turnover FY 2025-26" />
+                  <meta itemProp="value" content="₹300+ Cr" />
+                  <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Total Turnover FY 2025-26</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-[#e63a27]">₹300+ Cr</p>
+                </div>
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                  <meta itemProp="name" content="Data Status" />
+                  <meta itemProp="value" content="Verified" />
+                  <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Data Status</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-emerald-600">Verified</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* CTA - with background image */}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -359,6 +360,27 @@ html {
 .blog-root .hero-legacy-heading,
 .blog-root .heading {
   font-family: var(--font-syne), 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Investment page – same heading font as /who-we-are/about-us (Syne) */
+.investment-root h1,
+.investment-root h2,
+.investment-root h3,
+.investment-root h4,
+.investment-root h5,
+.investment-root h6 {
+  font-family: 'Syne', 'Inter', Arial, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.investment-root .section-heading,
+.investment-root .hero-legacy-heading,
+.investment-root .heading {
+  font-family: 'Syne', 'Inter', Arial, sans-serif !important;
   font-weight: 700 !important;
   letter-spacing: 0.04em !important;
 }
