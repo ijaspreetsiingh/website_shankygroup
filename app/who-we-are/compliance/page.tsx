@@ -231,6 +231,11 @@ export default function CompliancePage() {
               "name": "Shanky Group Company Turnover Data FY 2024-25 & FY 2025-26",
               "description": "Official and verified turnover data for all Shanky Group companies across fiscal years 2024-25 and 2025-26",
               "url": "https://shankygroup.com/who-we-are/compliance",
+              "creator": {
+                "@type": "Organization",
+                "name": "Shanky Group",
+                "url": "https://shankygroup.com"
+              },
               "provider": {
                 "@type": "Organization",
                 "name": "Shanky Group"
