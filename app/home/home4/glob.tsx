@@ -501,7 +501,7 @@ export function GlobeDemo() {
                 <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">India</div>
               </div>
               <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-emerald-500/10 to-emerald-600/10 rounded-lg sm:rounded-[12px] border border-emerald-500/20">
-                <div className="text-[12px] sm:text-[14px] md:text-[20px] font-bold text-emerald-500">$12.9M</div>
+                <div className="text-[12px] sm:text-[14px] md:text-[20px] font-bold text-emerald-500">₹300 Cr</div>
                 <div className="text-[9px] sm:text-[10px] md:text-[11px] text-[var(--text-secondary)]">Total Sales</div>
               </div>
               <div className="text-center p-2 sm:p-2.5 md:p-[12px] bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-lg sm:rounded-[12px] border border-amber-500/20">

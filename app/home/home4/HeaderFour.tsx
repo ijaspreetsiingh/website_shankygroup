@@ -614,19 +614,17 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                     >
                       Compliance
                     </Link>
-                    {/* 
                     <Link 
                       href="/company-turnover" 
-                      className={`block px-5 py-3.5 text-[13px] transition-all duration-300 hover:pl-7 ${
+                      className={`block px-5 py-3.5 text-[13px] border-b border-[var(--card-border)] transition-all duration-300 hover:pl-7 ${
                         activePath === '/company-turnover'
                           ? 'text-[#e63a27] font-black bg-[#e63a27]/5' 
                           : 'text-[var(--text-primary)] font-medium hover:bg-[var(--card-border)] hover:text-[#e63a27]'
                       }`}
-                      onClick={() => { setIsBusinessOpen(false); }}
+                      onClick={() => { setWhoWeAreDropdown(false); }}
                     >
                       Company Portfolio
                     </Link>
-                    */}
                   </div>
                 </div>
 

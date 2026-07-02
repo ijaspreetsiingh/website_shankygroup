@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import HeaderFour from '../home/home4/HeaderFour';
-import FooterFour from '../home/home4/FooterFour';
-import ContactUs from '../home/home4/ContactUs';
+
+import I18nProvider from '../i18n/I18nProvider';
 
 // ============ DESIGN TOKENS ============
 // Premium Financial Palette: Deep Navy + Gold + Off-white
@@ -42,6 +42,203 @@ function useCounter(end: number, duration = 2000, start = 0, shouldStart = false
   return count;
 }
 
+// ============ INVESTMENT INQUIRY FORM COMPONENT ============
+function InvestmentForm() {
+  const [formData, setFormData] = useState<{
+    name: string;
+    phone: string;
+    email: string;
+    investmentAmount: string;
+    city: string;
+    source: string;
+    campaign: string;
+  }>({
+    name: "",
+    phone: "",
+    email: "",
+    investmentAmount: "500000",
+    city: "",
+    source: "Website",
+    campaign: "Investment NCD"
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
+  const formatCurrency = (amount: string) => {
+    return new Intl.NumberFormat('en-IN').format(Number(amount));
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitSuccess(false);
+    setSubmitError(false);
+
+    const payload = {
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      investmentAmount: formData.investmentAmount,
+      city: formData.city,
+      source: "Website",
+      campaign: "Investment Page"
+    };
+
+    console.log("Submitting form with payload:", payload);
+
+    try {
+      const response = await fetch("/api/investment-form", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+
+      const result = await response.json();
+      console.log("Result:", result);
+
+      setSubmitSuccess(true);
+      setFormData({ name: "", phone: "", email: "", investmentAmount: "500000", city: "", source: "Website", campaign: "Investment NCD" });
+      setTimeout(() => setSubmitSuccess(false), 5000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitError(true);
+      setTimeout(() => setSubmitError(false), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {submitSuccess && (
+        <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-xl text-center">
+          <div className="font-bold text-lg mb-1">Thank you for your inquiry!</div>
+          <div>Our team will contact you shortly.</div>
+        </div>
+      )}
+
+      {submitError && (
+        <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl text-center">
+          <div className="font-bold text-lg mb-1">Something went wrong!</div>
+          <div>Please try again or call us directly.</div>
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-semibold text-[#0A2540] mb-2">
+            Full Name <span className="text-[#C8A55B]">*</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+            className="w-full px-5 py-4 rounded-xl border-2 border-[#0A2540]/10 bg-[#FAF7F2] text-[#0A2540] focus:outline-none focus:border-[#C8A55B] focus:ring-4 focus:ring-[#C8A55B]/10 transition-all text-base"
+            placeholder="Enter your full name"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-[#0A2540] mb-2">
+            Phone Number <span className="text-[#C8A55B]">*</span>
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            required
+            className="w-full px-5 py-4 rounded-xl border-2 border-[#0A2540]/10 bg-[#FAF7F2] text-[#0A2540] focus:outline-none focus:border-[#C8A55B] focus:ring-4 focus:ring-[#C8A55B]/10 transition-all text-base"
+            placeholder="Enter your phone number"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-sm font-semibold text-[#0A2540] mb-2">
+            Email Address <span className="text-[#C8A55B]">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+            className="w-full px-5 py-4 rounded-xl border-2 border-[#0A2540]/10 bg-[#FAF7F2] text-[#0A2540] focus:outline-none focus:border-[#C8A55B] focus:ring-4 focus:ring-[#C8A55B]/10 transition-all text-base"
+            placeholder="Enter your email"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-[#0A2540] mb-2">
+            City <span className="text-[#C8A55B]">*</span>
+          </label>
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleInputChange}
+            required
+            className="w-full px-5 py-4 rounded-xl border-2 border-[#0A2540]/10 bg-[#FAF7F2] text-[#0A2540] focus:outline-none focus:border-[#C8A55B] focus:ring-4 focus:ring-[#C8A55B]/10 transition-all text-base"
+            placeholder="Enter your city"
+          />
+        </div>
+      </div>
+
+      <div>
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-3 gap-2">
+          <label className="block text-sm font-semibold text-[#0A2540]">
+            Investment Amount
+          </label>
+          <div className="text-xl sm:text-2xl font-bold font-serif text-[#C8A55B]">
+            ₹{formatCurrency(formData.investmentAmount)}
+          </div>
+        </div>
+        
+        <input
+          type="range"
+          name="investmentAmount"
+          min="500000"
+          max="50000000"
+          step="100000"
+          value={formData.investmentAmount}
+          onChange={handleInputChange}
+          className="w-full h-3 bg-[#0A2540]/10 rounded-full appearance-none cursor-pointer accent-[#C8A55B]"
+          style={{
+            background: `linear-gradient(to right, #C8A55B 0%, #C8A55B ${((Number(formData.investmentAmount) - 500000) / (50000000 - 500000)) * 100}%, #E5E7EB ${((Number(formData.investmentAmount) - 500000) / (50000000 - 500000)) * 100}%, #E5E7EB 100%)`
+          }}
+        />
+
+        <div className="flex justify-between text-xs text-[#5A6B7F] mt-2 font-semibold">
+          <span>₹5,00,000 (Min)</span>
+          <span>₹5,00,00,000 (Max)</span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-gradient-to-r from-[#C8A55B] to-[#E5C97F] hover:from-[#E5C97F] hover:to-[#C8A55B] text-[#0A2540] font-bold py-5 rounded-xl shadow-lg hover:shadow-xl transition-all hover:scale-[1.01] text-lg disabled:opacity-70 disabled:cursor-not-allowed"
+      >
+        {isSubmitting ? "Submitting..." : "Submit Investment Inquiry"}
+      </button>
+    </form>
+  );
+}
+
 // ============ STAT COUNTER COMPONENT ============
 function StatCounter({
   value,
@@ -72,7 +269,7 @@ function StatCounter({
 }
 
 // ============ RETURNS CALCULATOR ============
-function ReturnsCalculator() {
+function ReturnsCalculator({ onCTAClick }: { onCTAClick: () => void }) {
   const [amount, setAmount] = useState(5); // in Crores
   const annualRate = 0.14;
   const annualReturn = amount * annualRate;
@@ -156,12 +353,12 @@ function ReturnsCalculator() {
         </p>
 
         {/* CTA */}
-        <Link
-          href="/contact"
-          className="block w-full text-center bg-gradient-to-r from-[#0A2540] to-[#1A3A5C] hover:from-[#061A30] hover:to-[#0A2540] text-white font-semibold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl"
+        <button
+          onClick={onCTAClick}
+          className="block w-full text-center bg-gradient-to-r from-[#C8A55B] to-[#E5C97F] hover:from-[#E5C97F] hover:to-[#C8A55B] text-[#0A2540] font-semibold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl"
         >
           Get Investment Proposal →
-        </Link>
+        </button>
       </div>
     </div>
   );
@@ -176,6 +373,11 @@ export default function InvestmentClient() {
   const [contentVisible, setContentVisible] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
+  const formSectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToForm = () => {
+    formSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   useEffect(() => {
     const statsObserver = new IntersectionObserver(
@@ -187,18 +389,28 @@ export default function InvestmentClient() {
       { threshold: 0.1 }
     );
     
-    // Video auto-play/pause on scroll
+    // Video auto-play/pause on scroll with sound
     const videoObserver = new IntersectionObserver(
       ([entry]) => {
         if (videoRef.current) {
           if (entry.isIntersecting) {
-            videoRef.current.play().catch(err => console.log('Auto-play prevented:', err));
+            console.log('Video section visible, playing with sound');
+            videoRef.current.muted = false;
+            videoRef.current.play().catch(err => {
+              console.warn('Auto-play with sound failed:', err);
+              // Fallback: play muted if needed, but user can interact to unmute
+              if (videoRef.current) {
+                videoRef.current.muted = true;
+                videoRef.current.play().catch(console.warn);
+              }
+            });
           } else {
+            console.log('Video section hidden, pausing');
             videoRef.current.pause();
           }
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
     
     if (statsRef.current) statsObserver.observe(statsRef.current);
@@ -218,13 +430,14 @@ export default function InvestmentClient() {
 
   return (
     <>
-      <HeaderFour isScrolled={isScrolled} />
+      <I18nProvider>
+        <HeaderFour isScrolled={isScrolled} />
 
-      <main className="bg-[#FAF7F2] text-[#0A2540] investment-root">
+        <main className="bg-[#FAF7F2] text-[#0A2540] investment-root">
 
-        {/* ═══════════════════════════════════════════════════════════════════
-            1. HERO SECTION — Premium banking-grade banner
-           ═══════════════════════════════════════════════════════════════════ */}
+          {/* ═══════════════════════════════════════════════════════════════════
+              1. HERO SECTION — Premium banking-grade banner
+             ═══════════════════════════════════════════════════════════════════ */}
         <section className="relative w-full overflow-hidden bg-[#0A2540]">
           {/* Background Image with overlay */}
           <div className="absolute inset-0 z-0">
@@ -300,23 +513,23 @@ export default function InvestmentClient() {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-wrap gap-3 sm:gap-4 mb-10">
-                  <Link
-                    href="/contact"
+                  <button
+                    onClick={scrollToForm}
                     className="group inline-flex items-center gap-2 px-7 sm:px-8 py-4 bg-[#C8A55B] hover:bg-[#E5C97F] text-[#0A2540] font-bold rounded-lg transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 text-sm sm:text-base"
                   >
-                    Request Investment Proposal
+                    Submit Investment Inquiry
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </button>
                   <Link
-                    href="tel:01147586938"
+                    href="/contact"
                     className="inline-flex items-center gap-2 px-7 sm:px-8 py-4 bg-transparent border-2 border-white/30 hover:border-[#C8A55B] hover:bg-[#C8A55B]/10 text-white font-semibold rounded-lg transition-all text-sm sm:text-base"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    011-47586938
+                    Contact Us
                   </Link>
                 </div>
 
@@ -345,7 +558,7 @@ export default function InvestmentClient() {
 
               {/* Right - Returns Calculator (Hero Side Card) */}
               <div className="lg:col-span-5">
-                <ReturnsCalculator />
+                <ReturnsCalculator onCTAClick={scrollToForm} />
               </div>
 
             </div>
@@ -575,6 +788,8 @@ export default function InvestmentClient() {
                       ref={videoRef}
                       src="/investment/WhatsApp Video 2026-06-26 at 2.36.19 PM.mp4"
                       className="w-full h-full object-cover"
+                      playsInline
+                      loop
                     >
                       Your browser does not support the video tag.
                     </video>
@@ -804,6 +1019,34 @@ export default function InvestmentClient() {
         </section>
 
         {/* ═══════════════════════════════════════════════════════════════════
+            7.5. CUSTOM INVESTMENT INQUIRY FORM - Google Apps Script Integration
+           ═══════════════════════════════════════════════════════════════════ */}
+        <section
+          ref={formSectionRef}
+          className="py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12 bg-[#FAF7F2]"
+        >
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12 sm:mb-16">
+              <div className="inline-block px-4 py-1.5 bg-[#C8A55B]/10 border border-[#C8A55B]/40 rounded-full mb-4">
+                <span className="text-[#9E8244] text-xs font-semibold uppercase tracking-[0.2em]">
+                  Get Started Now
+                </span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#0A2540] mb-4">
+                Investment Inquiry
+              </h2>
+              <p className="text-[#5A6B7F] text-base sm:text-lg max-w-2xl mx-auto">
+                Fill out this form to get started with your investment journey with Shanky Group
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-12 border border-[#C8A55B]/20 shadow-xl">
+              <InvestmentForm />
+            </div>
+          </div>
+        </section>
+
+        {/* ═══════════════════════════════════════════════════════════════════
             8. CTA BANNER - Promotional banner image
            ═══════════════════════════════════════════════════════════════════ */}
         <section className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-12 bg-[#FAF7F2]">
@@ -899,7 +1142,6 @@ export default function InvestmentClient() {
         {/* ═══════════════════════════════════════════════════════════════════
             10. FINAL CTA - Premium dark section
            ═══════════════════════════════════════════════════════════════════ */}
-       <ContactUs />
         <section className="relative py-16 sm:py-20 md:py-28 px-4 sm:px-6 lg:px-12 bg-gradient-to-br from-[#0A2540] via-[#061A30] to-[#0A2540] overflow-hidden">
           {/* Decorative elements */}
           <div className="absolute top-0 left-0 w-72 h-72 bg-[#C8A55B]/10 rounded-full blur-3xl" />
@@ -985,42 +1227,42 @@ export default function InvestmentClient() {
            ═══════════════════════════════════════════════════════════════════ */}
         
 
-      </main>
+        </main>
 
-      {/* <FooterFour /> */}
+     
+        {/* Premium slider styles */}
+        <style jsx global>{`
+          .slider-premium::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #C8A55B;
+            border: 3px solid #FAF7F2;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(200, 165, 91, 0.5);
+            transition: all 0.2s ease;
+          }
+          .slider-premium::-webkit-slider-thumb:hover {
+            background: #E5C97F;
+            transform: scale(1.15);
+          }
+          .slider-premium::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #C8A55B;
+            border: 3px solid #FAF7F2;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(200, 165, 91, 0.5);
+          }
 
-      {/* Premium slider styles */}
-      <style jsx global>{`
-        .slider-premium::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #C8A55B;
-          border: 3px solid #FAF7F2;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(200, 165, 91, 0.5);
-          transition: all 0.2s ease;
-        }
-        .slider-premium::-webkit-slider-thumb:hover {
-          background: #E5C97F;
-          transform: scale(1.15);
-        }
-        .slider-premium::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #C8A55B;
-          border: 3px solid #FAF7F2;
-          cursor: pointer;
-          box-shadow: 0 4px 12px rgba(200, 165, 91, 0.5);
-        }
-
-        .font-serif {
-          font-family: 'Playfair Display', 'Georgia', serif;
-        }
-      `}</style>
+          .font-serif {
+            font-family: 'Playfair Display', 'Georgia', serif;
+          }
+        `}</style>
+      </I18nProvider>
     </>
   );
 }
