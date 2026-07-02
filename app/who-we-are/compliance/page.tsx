@@ -680,26 +680,21 @@ export default function CompliancePage() {
               </table>
             </div>
 
-            <div className="p-4 sm:p-6 lg:p-8 xl:p-10 border-t border-[var(--card-border)] bg-slate-50/50 dark:bg-slate-800/30" itemScope itemType="https://schema.org/AggregateRating">
-              <meta itemProp="itemReviewed" content="Shanky Group Turnover Data" />
-              <meta itemProp="ratingValue" content="5" />
-              <meta itemProp="bestRating" content="5" />
-              <meta itemProp="reviewCount" content="1" />
-              
+            <div className="p-4 sm:p-6 lg:p-8 xl:p-10 border-t border-[var(--card-border)] bg-slate-50/50 dark:bg-slate-800/30">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemScope itemType="https://schema.org/PropertyValue">
                   <meta itemProp="name" content="Total Companies" />
                   <meta itemProp="value" content={turnoverData.length.toString()} />
                   <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Total Companies</p>
                   <p className="text-2xl sm:text-3xl font-bold text-[#e63a27]">{turnoverData.length}</p>
                 </div>
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemScope itemType="https://schema.org/PropertyValue">
                   <meta itemProp="name" content="Total Turnover FY 2025-26" />
                   <meta itemProp="value" content="₹300+ Cr" />
                   <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Total Turnover FY 2025-26</p>
                   <p className="text-2xl sm:text-3xl font-bold text-[#e63a27]">₹300+ Cr</p>
                 </div>
-                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemProp="additionalProperty" itemScope itemType="https://schema.org/PropertyValue">
+                <div className="text-center p-3 sm:p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]" itemScope itemType="https://schema.org/PropertyValue">
                   <meta itemProp="name" content="Data Status" />
                   <meta itemProp="value" content="Verified" />
                   <p className="text-[10px] sm:text-xs uppercase font-bold text-[var(--text-secondary)] tracking-widest mb-1">Data Status</p>
