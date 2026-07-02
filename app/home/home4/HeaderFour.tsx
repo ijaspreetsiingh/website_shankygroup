@@ -19,8 +19,10 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const [isThemeChanging, setIsThemeChanging] = useState(false);
   const [whoWeAreDropdown, setWhoWeAreDropdown] = useState(false);
   const [businessDropdown, setBusinessDropdown] = useState(false);
+  const [investmentDropdown, setInvestmentDropdown] = useState(false);
   const [whoWeAreMobileOpen, setWhoWeAreMobileOpen] = useState(false);
   const [businessMobileOpen, setBusinessMobileOpen] = useState(false);
+  const [investmentMobileOpen, setInvestmentMobileOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [activePath, setActivePath] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -31,6 +33,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
   const [uiScale, setUiScale] = useState(1);
   const whoWeAreTimeout = useRef<NodeJS.Timeout | null>(null);
   const businessTimeout = useRef<NodeJS.Timeout | null>(null);
+  const investmentTimeout = useRef<NodeJS.Timeout | null>(null);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const { t, lang, setLang } = useI18n();
 
@@ -206,6 +209,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
     return () => {
       if (whoWeAreTimeout.current) clearTimeout(whoWeAreTimeout.current);
       if (businessTimeout.current) clearTimeout(businessTimeout.current);
+      if (investmentTimeout.current) clearTimeout(investmentTimeout.current);
     };
   }, []);
 
@@ -760,21 +764,79 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                       : 'w-0 group-hover:w-full'
                   }`}></span>
                 </Link>
-                                <Link 
-                  href="/blog" 
-                  className={`text-[13px] tracking-[1.3px] uppercase transition-all duration-300 no-underline hover:scale-105 relative group ${
-                    activePath === '/blog' 
-                      ? 'text-[#e63a27] font-black' 
-                      : 'text-[var(--text-primary)] font-semibold hover:text-[#e63a27]'
-                  }`}
+                {/* INVESTMENT Dropdown */}
+                <div 
+                  className="relative"
+                  onMouseEnter={() => {
+                    if (investmentTimeout.current) {
+                      clearTimeout(investmentTimeout.current);
+                      investmentTimeout.current = null;
+                    }
+                    setInvestmentDropdown(true);
+                  }}
+                  onMouseLeave={() => {
+                    investmentTimeout.current = setTimeout(() => {
+                      setInvestmentDropdown(false);
+                    }, 300);
+                  }}
                 >
-                  {t('blog')}
-                  <span className={`absolute bottom-[-2px] left-0 h-[2px] bg-[#e63a27] transition-all duration-300 ease-out ${
-                    activePath === '/blog' 
-                      ? 'w-full' 
-                      : 'w-0 group-hover:w-full'
-                  }`}></span>
-                </Link>
+                  <button className="text-[13px] font-semibold tracking-[1.3px] uppercase transition-all duration-300 flex items-center gap-2 hover:text-[#e63a27] bg-transparent border-none cursor-pointer">
+                    INVESTMENT
+                    <svg 
+                      className={`transition-transform duration-300 ${investmentDropdown ? 'rotate-180' : ''} w-[9px] h-[9px]`}
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2.5" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                    >
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  
+                  {/* Dropdown Menu */}
+                  <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-3 bg-[var(--card-bg)] shadow-xl rounded-xl overflow-hidden min-w-[220px] transition-all duration-300 z-[1002] border border-[var(--card-border)] ${
+                    investmentDropdown 
+                      ? 'opacity-100 visible translate-y-0 pointer-events-auto' 
+                      : 'opacity-0 invisible -translate-y-2 pointer-events-none'
+                  }`}
+                  onMouseEnter={() => {
+                    if (investmentTimeout.current) {
+                      clearTimeout(investmentTimeout.current);
+                      investmentTimeout.current = null;
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    investmentTimeout.current = setTimeout(() => {
+                      setInvestmentDropdown(false);
+                    }, 300);
+                  }}
+                  >
+                    <Link 
+                      href="/investment" 
+                      className={`block px-5 py-3.5 text-[13px] border-b border-[var(--card-border)] transition-all duration-300 hover:pl-7 ${
+                        activePath === '/investment'
+                          ? 'text-[#e63a27] font-black bg-[#e63a27]/5' 
+                          : 'text-[var(--text-primary)] font-medium hover:bg-[var(--card-border)] hover:text-[#e63a27]'
+                      }`}
+                      onClick={() => setInvestmentDropdown(false)}
+                    >
+                      Invest in NCD
+                    </Link>
+                    <Link 
+                      href="/blog" 
+                      className={`block px-5 py-3.5 text-[13px] transition-all duration-300 hover:pl-7 ${
+                        activePath === '/blog'
+                          ? 'text-[#e63a27] font-black bg-[#e63a27]/5' 
+                          : 'text-[var(--text-primary)] font-medium hover:bg-[var(--card-border)] hover:text-[#e63a27]'
+                      }`}
+                      onClick={() => setInvestmentDropdown(false)}
+                    >
+                      {t('blog')}
+                    </Link>
+                  </div>
+                </div>
               </nav>
 
               {/* Right Side Controls - Search on all screens, Theme + Menu by breakpoint */}
@@ -837,6 +899,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                     if (isMobileMenuOpen) {
                       setWhoWeAreMobileOpen(false);
                       setBusinessMobileOpen(false);
+                      setInvestmentMobileOpen(false);
                     }
                   }}
                   className="lg:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--text-primary)] transition-all duration-300 hover:bg-[#e63a27]/10 hover:border-[#e63a27]/40 hover:scale-105 active:scale-95"
@@ -975,6 +1038,34 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
               </div>
             </div>
 
+            {/* INVESTMENT - Card-style dropdown */}
+            <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm">
+              <button
+                onClick={() => setInvestmentMobileOpen(!investmentMobileOpen)}
+                className="w-full flex items-center gap-4 py-4 px-4 text-left active:bg-[var(--card-border)]/30 transition-colors"
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#e63a27]/10 text-[#e63a27] shrink-0">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2l3 7h7l-5.5 4 2 7-6.5-4.5L5.5 20l2-7L2 9h7l3-7z"/>
+                  </svg>
+                </div>
+                <span className="flex-1 text-[var(--text-primary)] font-semibold text-[15px] tracking-wide">INVESTMENT</span>
+                <svg className={`w-5 h-5 text-[var(--text-secondary)] transition-transform duration-200 ${investmentMobileOpen ? 'rotate-180 text-[#e63a27]' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div className={`grid transition-all duration-200 ease-out overflow-hidden ${investmentMobileOpen ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'}`}>
+                <div className="min-h-0">
+                  <div className="px-4 pb-4 pt-0 space-y-0.5 bg-[var(--background)]/50 border-t border-[var(--card-border)]">
+                    <Link href="/investment" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/investment' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setInvestmentMobileOpen(false); }}>Invest in NCD</Link>
+                    <Link href="/blog" className={`flex items-center gap-3 py-3 px-4 rounded-xl text-[14px] font-medium transition-all ${
+                      activePath === '/blog' ? 'text-[#e63a27] bg-[#e63a27]/10' : 'text-[var(--text-secondary)] hover:bg-[var(--card-border)]/50 hover:text-[var(--text-primary)]'
+                    }`} onClick={() => { setIsMobileMenuOpen(false); setInvestmentMobileOpen(false); }}>{t('blog')}</Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Quick links - Card style with icons */}
             <div className="rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]/80 overflow-hidden shadow-sm divide-y divide-[var(--card-border)]">
               <Link href="/careers" className={`flex items-center gap-4 py-4 px-4 transition-colors ${activePath === '/careers' ? 'bg-[#e63a27]/10 text-[#e63a27]' : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]/30'}`} onClick={() => setIsMobileMenuOpen(false)}>
@@ -987,11 +1078,7 @@ const HeaderFour = ({ isScrolled }: HeaderFourProps) => {
                 <span className="flex-1 font-semibold text-[15px] tracking-wide">{t('contact_us')}</span>
                 <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
               </Link>
-              <Link href="/blog" className={`flex items-center gap-4 py-4 px-4 transition-colors ${activePath === '/blog' ? 'bg-[#e63a27]/10 text-[#e63a27]' : 'text-[var(--text-primary)] hover:bg-[var(--card-border)]/30'}`} onClick={() => setIsMobileMenuOpen(false)}>
-                <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[var(--card-border)]/60 text-[var(--text-primary)] shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
-                <span className="flex-1 font-semibold text-[15px] tracking-wide">{t('blog')}</span>
-                <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
-              </Link>
+
             </div>
 
             {/* Contact & Info - right under menu options (Blog ke niche) */}
