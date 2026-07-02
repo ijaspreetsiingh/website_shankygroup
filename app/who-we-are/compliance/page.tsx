@@ -57,19 +57,19 @@ export default function CompliancePage() {
     <>
       <Head>
         <title>Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data | Compliance & Governance</title>
-        <meta name="description" content="Shanky Group official turnover data: Total ₹300+ Cr FY 2025-26. VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr, Shanky Buildtech ₹0 Cr, Shanky Corporate Training ₹50 Lakh. Verified financial records for all 6 companies." />
+        <meta name="description" content="Shanky Group official turnover data: Total ₹300+ Cr FY 2025-26. VMS Hub ₹245 Cr (FY 2024-25: N/A), Shanky Financial Services ₹26.50 Cr (FY 2024-25: ₹1.45 Cr), Shanky Metals ₹14 Cr (FY 2024-25: ₹3.62 Cr), Shanky Smart Tech ₹14 Cr (FY 2024-25: N/A), Shanky Buildtech ₹0 Cr (FY 2024-25: ₹2.12 Cr), Shanky Corporate Training ₹50 Lakh (FY 2024-25: ₹0). Verified financial records for all 6 companies." />
         <meta name="keywords" content="Shanky Group turnover, Shanky Group revenue, Shanky Group financial data, VMS Hub turnover ₹245 Cr, Shanky Financial Services turnover ₹26.50 Cr, Shanky Metals turnover ₹14 Cr, Shanky Smart Tech turnover ₹14 Cr, Shanky Buildtech turnover, Shanky Corporate Training turnover, Shanky Group total turnover ₹300 Cr, company turnover data India, FY 2025-26 turnover, FY 2024-25 turnover, Shanky Group companies financial performance" />
         <meta name="author" content="Shanky Group" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://shankygroup.com/who-we-are/compliance" />
         <meta property="og:title" content="Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data" />
-        <meta property="og:description" content="Official turnover data for Shanky Group: VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr. Total ₹300+ Cr across 6 companies." />
+        <meta property="og:description" content="Official turnover data for Shanky Group: VMS Hub ₹245 Cr (FY 2024-25: N/A), Shanky Financial Services ₹26.50 Cr (FY 2024-25: ₹1.45 Cr), Shanky Metals ₹14 Cr (FY 2024-25: ₹3.62 Cr), Shanky Smart Tech ₹14 Cr (FY 2024-25: N/A), Shanky Buildtech ₹0 Cr (FY 2024-25: ₹2.12 Cr), Shanky Corporate Training ₹50 Lakh (FY 2024-25: ₹0). Total ₹300+ Cr across 6 companies." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://shankygroup.com/who-we-are/compliance" />
         <meta property="og:site_name" content="Shanky Group" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Shanky Group Turnover ₹300+ Cr FY 2025-26 | Official Financial Data" />
-        <meta name="twitter:description" content="Official turnover: VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr. Total ₹300+ Cr." />
+        <meta name="twitter:description" content="Official turnover: VMS Hub ₹245 Cr (FY 2024-25: N/A), Shanky Financial Services ₹26.50 Cr (FY 2024-25: ₹1.45 Cr), Shanky Metals ₹14 Cr (FY 2024-25: ₹3.62 Cr), Shanky Smart Tech ₹14 Cr (FY 2024-25: N/A), Shanky Buildtech ₹0 Cr (FY 2024-25: ₹2.12 Cr), Shanky Corporate Training ₹50 Lakh (FY 2024-25: ₹0). Total ₹300+ Cr." />
         <meta name="twitter:site" content="@ShankyGroup" />
         <script
           type="application/ld+json"
@@ -83,7 +83,7 @@ export default function CompliancePage() {
               "mainEntity": {
                 "@type": "WebPage",
                 "name": "Compliance & Governance - Shanky Group Turnover Data",
-                "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26. VMS Hub ₹245 Cr, Shanky Financial Services ₹26.50 Cr, Shanky Metals ₹14 Cr, Shanky Smart Tech ₹14 Cr, Shanky Buildtech ₹0 Cr, Shanky Corporate Training ₹50 Lakh."
+                "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26. VMS Hub ₹245 Cr (FY 2024-25: N/A), Shanky Financial Services ₹26.50 Cr (FY 2024-25: ₹1.45 Cr), Shanky Metals ₹14 Cr (FY 2024-25: ₹3.62 Cr), Shanky Smart Tech ₹14 Cr (FY 2024-25: N/A), Shanky Buildtech ₹0 Cr (FY 2024-25: ₹2.12 Cr), Shanky Corporate Training ₹50 Lakh (FY 2024-25: ₹0)."
               },
               "aggregateTurnover": {
                 "@type": "QuantitativeValue",
@@ -159,7 +159,7 @@ export default function CompliancePage() {
                   "name": "What is VMS Hub Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "VMS Hub Pvt Ltd has a turnover of ₹245 Crore for FY 2025-26, making it the highest revenue generator in Shanky Group."
+                    "text": "VMS Hub Pvt Ltd has a turnover of ₹245 Crore for FY 2025-26. FY 2024-25 data is not available (N/A). It is the highest revenue generator in Shanky Group."
                   }
                 },
                 {
@@ -183,7 +183,23 @@ export default function CompliancePage() {
                   "name": "What is Shanky Smart Tech Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Smart Tech Pvt Ltd has a projected turnover of ₹14 Crore for FY 2025-26."
+                    "text": "Shanky Smart Tech Pvt Ltd has a projected turnover of ₹14 Crore for FY 2025-26. FY 2024-25 data is not available (N/A)."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Buildtech Pvt Ltd turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Buildtech Pvt Ltd has a turnover of ₹0 Cr for FY 2025-26, down from ₹2.12 Cr in FY 2024-25."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is Shanky Corporate Training turnover?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Corporate Training has a turnover of ₹50 Lakh for FY 2025-26, compared to ₹0 in FY 2024-25."
                   }
                 },
                 {
