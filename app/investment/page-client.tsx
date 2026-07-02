@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Volume2, VolumeX } from 'lucide-react';
 import HeaderFour from '../home/home4/HeaderFour';
 
 import I18nProvider from '../i18n/I18nProvider';
@@ -374,6 +375,7 @@ export default function InvestmentClient() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const videoSectionRef = useRef<HTMLDivElement>(null);
   const formSectionRef = useRef<HTMLDivElement>(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   const scrollToForm = () => {
     formSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -389,21 +391,14 @@ export default function InvestmentClient() {
       { threshold: 0.1 }
     );
     
-    // Video auto-play/pause on scroll with sound
+    // Video auto-play/pause on scroll
     const videoObserver = new IntersectionObserver(
       ([entry]) => {
         if (videoRef.current) {
           if (entry.isIntersecting) {
-            console.log('Video section visible, playing with sound');
-            videoRef.current.muted = false;
-            videoRef.current.play().catch(err => {
-              console.warn('Auto-play with sound failed:', err);
-              // Fallback: play muted if needed, but user can interact to unmute
-              if (videoRef.current) {
-                videoRef.current.muted = true;
-                videoRef.current.play().catch(console.warn);
-              }
-            });
+            console.log('Video section visible, playing');
+            videoRef.current.muted = isMuted;
+            videoRef.current.play().catch(console.warn);
           } else {
             console.log('Video section hidden, pausing');
             videoRef.current.pause();
@@ -426,7 +421,14 @@ export default function InvestmentClient() {
       videoObserver.disconnect();
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMuted]);
+  
+  // Update video muted state when isMuted changes
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   return (
     <>
@@ -773,7 +775,7 @@ export default function InvestmentClient() {
                 Understanding the <span className="text-[#C8A55B]">NCD Program</span>
               </h2>
               <p className="text-[#5A6B7F] text-base sm:text-lg mb-10 max-w-2xl mx-auto">
-                A detailed walkthrough of how Shanky Group's secured NCD generates consistent returns with institutional-grade security.
+                Watch how Shanky Group's secured NCD program delivers 14% fixed annual returns with 100% asset-backed security.
               </p>
             </div>
 
@@ -793,6 +795,17 @@ export default function InvestmentClient() {
                     >
                       Your browser does not support the video tag.
                     </video>
+                    {/* Unmute Button */}
+                    <button
+                      onClick={() => setIsMuted(!isMuted)}
+                      className="absolute bottom-4 right-4 z-20 w-12 h-12 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center transition-all hover:scale-110 shadow-lg"
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-6 h-6" />
+                      ) : (
+                        <Volume2 className="w-6 h-6" />
+                      )}
+                    </button>
                   </div>
                 </div>
                 
@@ -822,44 +835,44 @@ export default function InvestmentClient() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    What You'll Learn
+                    Invest in Shanky Group
                   </h3>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-3 text-[#5A6B7F] text-sm">
                       <svg className="w-5 h-5 text-[#C8A55B] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span>How secured NCDs work and why they're considered safe investments</span>
+                      <span>14% Fixed Annual Returns</span>
                     </li>
                     <li className="flex items-start gap-3 text-[#5A6B7F] text-sm">
                       <svg className="w-5 h-5 text-[#C8A55B] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span>The asset-backing process and collateral security details</span>
+                      <span>0% Risk - 100% Asset-Backed Security</span>
                     </li>
                     <li className="flex items-start gap-3 text-[#5A6B7F] text-sm">
                       <svg className="w-5 h-5 text-[#C8A55B] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span>Step-by-step investment process and documentation requirements</span>
+                      <span>Quarterly Payouts - Guaranteed Income</span>
                     </li>
                     <li className="flex items-start gap-3 text-[#5A6B7F] text-sm">
                       <svg className="w-5 h-5 text-[#C8A55B] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span>Risk management framework and legal protections</span>
+                      <span>Minimum Investment - ₹5 Crore</span>
                     </li>
                   </ul>
                 </div>
 
                 <div className="bg-gradient-to-br from-[#0A2540] to-[#1A3A5C] rounded-xl p-5 text-white">
-                  <h4 className="text-lg font-bold text-[#E5C97F] mb-2">Need Personal Guidance?</h4>
-                  <p className="text-white/80 text-sm mb-3">Our investment advisors are available for one-on-one consultations to explain the NCD program in detail.</p>
+                  <h4 className="text-lg font-bold text-[#E5C97F] mb-2">Ready to Earn 14% Returns?</h4>
+                  <p className="text-white/80 text-sm mb-3">Connect with our investment advisors today and start your secure investment journey.</p>
                   <Link
                     href="/contact"
                     className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#C8A55B] hover:bg-[#E5C97F] text-[#0A2540] font-semibold rounded-lg transition-all text-sm"
                   >
-                    Schedule a Call
+                    Invest Now
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
