@@ -41,11 +41,6 @@ const organizationJsonLd = {
     'https://www.linkedin.com/company/shankygroup',
     'https://www.instagram.com/shankygroup.in/',
   ],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.8',
-    reviewCount: '120',
-  },
   aggregateTurnover: {
     '@type': 'QuantitativeValue',
     name: 'Total Group Turnover FY 2025-26',
