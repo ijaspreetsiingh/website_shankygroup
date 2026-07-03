@@ -81,16 +81,7 @@ export default function CompliancePage() {
               "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26.",
               "url": "https://shankygroup.com/who-we-are/compliance",
               "about": {
-                "@type": "Organization",
-                "@id": "https://shankygroup.com/#organization",
-                "name": "Shanky Group",
-                "aggregateTurnover": {
-                  "@type": "QuantitativeValue",
-                  "name": "Total Group Turnover FY 2025-26",
-                  "value": "300",
-                  "unitText": "Crore INR",
-                  "currency": "INR"
-                }
+                "@id": "https://shankygroup.com/#organization"
               }
             })
           }}
