@@ -216,6 +216,48 @@ export const GROUP_OVERVIEW_KNOWLEDGE: KnowledgeEntry[] = [
     answer: '🏆 **Shanky Group Achievements & Awards**\n\n**National Awards:**\n🥇 Best B2B Financial Services Company 2022\n🥇 Solar Excellence Award 2023 — MNRE recognized\n🥇 Top 100 SMEs of North India 2024\n🥇 Excellence in Metal Trading 2023\n🥇 Best Corporate Training Provider — Delhi NCR 2023\n\n**Certifications:**\n📜 ISO 9001:2015 — Quality Management\n📜 ISO 14001:2015 — Environmental Management\n📜 ISO 45001:2018 — Occupational Health & Safety\n📜 FSSAI Licensed — VMS Hub\n📜 MCA Registered — All companies\n\n**Milestones:**\n✅ ₹300 Cr+ Group Turnover 2025-26\n✅ 1,000+ satisfied customers\n✅ 50+ employees pan-India\n✅ Export to 5+ countries\n\nHum kaam aur result pe believe karte hain! 💪',
     category: 'group_overview', priority: 8
   },
+// {
+//   keywords: [
+//     'who made this website and marketing',
+//     'who developed this website and marketing',
+//     'website and marketing',
+//     'website developer and marketing team',
+//     'who handles website and marketing',
+//     'who manages website and marketing',
+//     'who make these website and marketing',
+//     'who built website and marketing',
+//     'technology and marketing team',
+//     'website and digital marketing',
+//     'kisne website aur marketing ki',
+//     'website aur marketing kaun dekhta hai'
+//   ],
+//   answer: `💼 **Technology & Digital Marketing**
+
+// The official website, web applications, mobile applications, and digital marketing initiatives of Shanky Group are developed and managed by **Jaspreet Singh**, Senior Software Engineer.
+
+// **Responsibilities include:**
+
+// 💻 Website Development
+// 📱 Mobile App Development
+// ⚙️ Custom Web Application Development
+// ☁️ Backend Systems & API Development
+// 🤖 AI & Automation Solutions
+// 🔐 Security & Infrastructure
+// 🚀 Performance Optimization
+// 🔍 Search Engine Optimization (SEO)
+// 📈 Digital Marketing
+// 📱 Social Media & Digital Campaigns
+// 📊 Analytics & Performance Tracking
+// 🎨 UI/UX Design & User Experience
+
+// Jaspreet Singh is responsible for building, maintaining, optimizing, and continuously improving Shanky Group's complete digital ecosystem to ensure it remains modern, secure, scalable, and user-friendly.
+
+// For business or technical inquiries:
+// 📧 info@shankygroup.com
+// 📞 +91-11-47586938`,
+//   category: 'group_overview',
+//   priority: 10
+// },
   {
     keywords: ['csr','corporate social responsibility','social work','charity','donation','community','samajik','gareebon ki madad','tree plantation','environment'],
     answer: '🌱 **Shanky Group CSR Initiatives**\n\n**Environment:**\n🌳 "Green Shanky" — 1000+ trees planted\n♻️ Zero-waste office initiatives\n☀️ 100% solar-powered headquarters target by 2025\n\n**Education:**\n📚 Free vocational training for underprivileged youth\n🎓 Scholarship program — 50+ students annually\n💻 Digital literacy programs — rural areas\n\n**Community:**\n🏥 Health camps — quarterly\n🍱 Meal distribution — festivals\n👩‍🌾 Farmer support programs — VMS Hub initiative\n\n**Employee Welfare:**\n🏋️ Gym, recreation room\n🧘 Mental health support\n👪 Family insurance coverage\n\n"Business ke saath society bhi — Shanky Group ka vada!" 🤝',

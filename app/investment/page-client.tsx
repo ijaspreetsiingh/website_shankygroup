@@ -1227,11 +1227,6 @@ export default function InvestmentClient() {
                 </div>
               </div>
             </div>
-
-            {/* Compliance disclaimer */}
-            <p className="text-white/40 text-xs mt-10 max-w-3xl mx-auto leading-relaxed">
-              Investments in NCDs are subject to terms and conditions specified in the offer document. Past performance is not indicative of future returns. Please read all scheme-related documents carefully before investing.
-            </p>
           </div>
         </section>
 
