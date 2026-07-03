@@ -58,7 +58,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'FinancialProduct',
   name: 'Shanky Group Secured NCD',
-  description: '14% fixed annual returns with asset-backed security and monthly payouts',
+  description: '14% fixed annual returns with asset-backed security and quarterly payouts',
   provider: {
     '@type': 'Organization',
     name: 'Shanky Group',
@@ -74,12 +74,80 @@ const jsonLd = {
   feesAndCommissionsSpecification: 'No hidden charges. Transparent documentation.',
 };
 
+// FAQ Schema for NCD Investment
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Shanky Group NCD returns',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Shanky Group NCD offers 14% fixed annual returns with quarterly payouts. Minimum investment is ₹5 Crore with asset-backed security.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'NCD investment minimum amount',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Minimum investment for Shanky Group NCD is ₹5 Crore. Maximum investment can go up to ₹100 Crore.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is NCD investment safe',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, Shanky Group NCD is asset-backed secured investment with legal documentation. Every NCD is collateralized with tangible assets ensuring capital protection.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'NCD payout frequency',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Shanky Group NCD offers quarterly payouts. Returns are credited directly to your bank account every quarter.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How to invest in NCD',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'To invest in Shanky Group NCD, submit the investment inquiry form on our website or contact us at +91-11-47586938. Our team will guide you through the documentation process.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'NCD vs fixed deposit',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'NCD offers higher returns (14%) compared to fixed deposits (6-7%). Shanky Group NCD is asset-backed with quarterly payouts, making it a better alternative for HNI investors.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Shanky Group NCD documents required',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Documents required for NCD investment include PAN card, Aadhaar card, bank account details, and KYC documents. Our team will guide you through the complete process.',
+      },
+    },
+  ],
+};
+
 export default function InvestmentPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <InvestmentClient />
     </>
