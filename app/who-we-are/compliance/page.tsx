@@ -76,74 +76,6 @@ export default function CompliancePage() {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Shanky Group",
-              "description": "Shanky Group maintains comprehensive compliance and governance frameworks ensuring ethical business practices and regulatory compliance. The group operates 6 companies with total projected turnover of ₹300+ Cr for FY 2025-26.",
-              "url": "https://shankygroup.com/who-we-are/compliance",
-              "mainEntity": {
-                "@type": "WebPage",
-                "name": "Compliance & Governance - Shanky Group Turnover Data",
-                "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26. VMS Hub ₹245 Cr (FY 2024-25: N/A), Shanky Financial Services ₹26.50 Cr (FY 2024-25: ₹1.45 Cr), Shanky Metals ₹14 Cr (FY 2024-25: ₹3.62 Cr), Shanky Smart Tech ₹14 Cr (FY 2024-25: N/A), Shanky Buildtech ₹0 Cr (FY 2024-25: ₹2.12 Cr), Shanky Corporate Training ₹50 Lakh (FY 2024-25: ₹0)."
-              },
-              "aggregateTurnover": {
-                "@type": "QuantitativeValue",
-                "name": "Total Group Turnover FY 2025-26",
-                "value": "300",
-                "unitText": "Crore INR",
-                "currency": "INR"
-              },
-              "subOrganization": turnoverData.map((company) => ({
-                "@type": "Organization",
-                "name": company.companyName,
-                "turnover2024_25": {
-                  "@type": "QuantitativeValue",
-                  "name": "Turnover FY 2024-25",
-                  "value": company.turnover2024_25 !== "-" ? company.turnover2024_25 : "0",
-                  "currency": "INR"
-                },
-                "turnover2025_26": {
-                  "@type": "QuantitativeValue",
-                  "name": "Projected Turnover FY 2025-26",
-                  "value": company.turnover2025_26,
-                  "currency": "INR"
-                }
-              })),
-              "hasPart": [
-                {
-                  "@type": "Service",
-                  "name": "Board Oversight",
-                  "description": "Each company has a board of directors responsible for strategic direction, oversight, and governance."
-                },
-                {
-                  "@type": "Service", 
-                  "name": "Internal Controls",
-                  "description": "Robust internal controls and audit mechanisms ensure financial integrity, risk management, and regulatory compliance."
-                },
-                {
-                  "@type": "Service",
-                  "name": "Ethical Conduct",
-                  "description": "The Group's code of conduct outlines expectations for ethical behavior, conflict of interest management, and stakeholder engagement."
-                }
-              ],
-              "financialPerformance": {
-                "@type": "FinancialPerformance",
-                "name": "Shanky Group Financial Performance FY 2024-25 & FY 2025-26",
-                "description": "Complete financial turnover data for all Shanky Group companies",
-                "revenue": {
-                  "@type": "MonetaryAmount",
-                  "value": "300",
-                  "currency": "INR",
-                  "name": "Total Revenue FY 2025-26"
-                }
-              }
-            })
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
               "@type": "FAQPage",
               "mainEntity": [
                 {
@@ -252,7 +184,7 @@ export default function CompliancePage() {
                 },
                 {
                   "@type": "Question",
-                  "name": "How many companies are in Shanky Group?",
+                  "name": "Shanky Group company count",
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Shanky Group has 6 companies: VMS Hub Pvt Ltd, Shanky Metals Pvt Ltd, Shanky Financial Services Pvt Ltd, Shanky Smart Tech Pvt Ltd, Shanky Buildtech Pvt Ltd, and Shanky Corporate Training."

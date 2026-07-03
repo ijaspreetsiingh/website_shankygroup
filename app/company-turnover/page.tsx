@@ -152,51 +152,34 @@ export default function CompanyDataPage() {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Shanky Group",
-    "description": "Shanky Group is a diversified conglomerate with 6 companies across multiple sectors including financial services, agro products, solar EPC, corporate training, construction, and metal trading with projected turnover of ₹300 Cr for FY 2025-26.",
+    "@type": "WebPage",
+    "name": "Shanky Group Company Turnover - Official Financial Data",
+    "description": "Official turnover data for all Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26 across 6 companies.",
     "url": "https://shankygroup.com/company-turnover",
-    "logo": "https://shankygroup.com/images/new_logo_finalM.png",
-    "sameAs": [
-      "https://www.facebook.com/share/1Hcjvg7fAr/",
-      "https://x.com/ShankyGroup",
-      "https://www.linkedin.com/company/shankygroup",
-      "https://www.instagram.com/shankygroup.in/"
-    ],
-    "foundingDate": "2011",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "D Mall, NSP, Pitampura",
-      "addressLocality": "Delhi",
-      "postalCode": "110034",
-      "addressCountry": "IN"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+011-47586938",
-      "contactType": "customer service"
-    },
-    "aggregateTurnover": {
-      "@type": "QuantitativeValue",
-      "name": "Total Group Turnover FY 2025-26",
-      "value": "300",
-      "unitText": "Crore INR",
-      "currency": "INR"
-    },
-    "subOrganization": companyData.map(company => ({
+    "about": {
       "@type": "Organization",
-      "name": company.name,
-      "foundingDate": company.establishmentDate,
-      "description": company.description,
-      "industry": company.sector,
-      "turnover": {
-        "@type": "QuantitativeValue",
-        "name": `Projected Turnover FY 2025-26`,
-        "value": company.turnover.replace(/[^0-9.]/g, ''),
-        "unitText": company.turnover.includes('Lakh') ? 'Lakh INR' : 'Crore INR',
-        "currency": "INR"
-      }
-    }))
+      "@id": "https://shankygroup.com/#organization",
+      "name": "Shanky Group"
+    },
+    "mainEntity": {
+      "@type": "Organization",
+      "@id": "https://shankygroup.com/#organization",
+      "name": "Shanky Group",
+      "subOrganization": companyData.map(company => ({
+        "@type": "Organization",
+        "name": company.name,
+        "foundingDate": company.establishmentDate,
+        "description": company.description,
+        "industry": company.sector,
+        "turnover": {
+          "@type": "QuantitativeValue",
+          "name": `Projected Turnover FY 2025-26`,
+          "value": company.turnover.replace(/[^0-9.]/g, ''),
+          "unitText": company.turnover.includes('Lakh') ? 'Lakh INR' : 'Crore INR',
+          "currency": "INR"
+        }
+      }))
+    }
   };
 
   return (
