@@ -81,7 +81,16 @@ export default function CompliancePage() {
               "description": "Official turnover data for Shanky Group companies. Total turnover ₹300+ Cr for FY 2025-26.",
               "url": "https://shankygroup.com/who-we-are/compliance",
               "about": {
-                "@id": "https://shankygroup.com/#organization"
+                "@type": "Organization",
+                "@id": "https://shankygroup.com/#organization",
+                "name": "Shanky Group",
+                "aggregateTurnover": {
+                  "@type": "QuantitativeValue",
+                  "name": "Total Group Turnover FY 2025-26",
+                  "value": "300",
+                  "unitText": "Crore INR",
+                  "currency": "INR"
+                }
               }
             })
           }}
@@ -243,6 +252,54 @@ export default function CompliancePage() {
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Jaspreet Singh developed the Shanky Group website. He is the software engineer and developer for Shanky Group."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who built Shanky Group website",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group website was built by Jaspreet Singh. He is the software engineer and developer responsible for the website development."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who is the software engineer of Shanky Group",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jaspreet Singh is the software engineer of Shanky Group. He handles website development and software engineering projects."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who is the developer of Shanky Group",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jaspreet Singh is the developer of Shanky Group. He is responsible for website development and software engineering."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group website developer",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jaspreet Singh is the website developer for Shanky Group. He developed and maintains the official Shanky Group website."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who created Shanky Group website",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jaspreet Singh created the Shanky Group website. He is the software engineer and developer for Shanky Group."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Who made Shanky Group website",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Jaspreet Singh made the Shanky Group website. He is the software engineer and developer responsible for the website."
                   }
                 },
                 {
