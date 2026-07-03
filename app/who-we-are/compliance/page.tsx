@@ -156,10 +156,58 @@ export default function CompliancePage() {
                 },
                 {
                   "@type": "Question",
+                  "name": "Shanky Group turnover",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's total turnover is ₹300+ Crore for FY 2025-26 across all 6 companies. This includes VMS Hub (₹245 Cr), Shanky Financial Services (₹26.50 Cr), Shanky Metals (₹14 Cr), Shanky Smart Tech (₹14 Cr), Shanky Buildtech (₹0 Cr), and Shanky Corporate Training (₹50 Lakh)."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group revenue",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's total revenue is ₹300+ Crore for FY 2025-26. The group operates 6 companies across financial services, food & agriculture, solar technology, construction, metals trading, and corporate training sectors."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group annual turnover",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's annual turnover for FY 2025-26 is ₹300+ Crore. This represents the combined revenue from all 6 group companies operating in India and international markets."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group total revenue",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's total revenue is ₹300+ Crore for the financial year 2025-26. VMS Hub contributes the highest at ₹245 Cr, followed by Shanky Financial Services at ₹26.50 Cr."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group turnover amount",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's turnover is ₹300+ Crore for FY 2025-26. This is the combined turnover of all 6 companies in the group."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Shanky Group yearly turnover",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Shanky Group's yearly turnover for FY 2025-26 is ₹300+ Crore. The group has shown significant growth with VMS Hub being the largest contributor at ₹245 Cr."
+                  }
+                },
+                {
+                  "@type": "Question",
                   "name": "What is VMS Hub Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "VMS Hub Pvt Ltd has a turnover of ₹245 Crore for FY 2025-26. FY 2024-25 data is not available (N/A). It is the highest revenue generator in Shanky Group."
+                    "text": "VMS Hub Pvt Ltd has a turnover of ₹245 Crore for FY 2025-26. FY 2024-25 data is not available (N/A). It is the highest revenue generator in Shanky Group. Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
@@ -167,7 +215,7 @@ export default function CompliancePage() {
                   "name": "What is Shanky Financial Services turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Financial Services Pvt Ltd has a turnover of ₹26.50 Crore for FY 2025-26, up from ₹1.45 Cr in FY 2024-25."
+                    "text": "Shanky Financial Services Pvt Ltd has a turnover of ₹26.50 Crore for FY 2025-26, up from ₹1.45 Cr in FY 2024-25. Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
@@ -175,7 +223,7 @@ export default function CompliancePage() {
                   "name": "What is Shanky Metals Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Metals Pvt Ltd has a turnover of ₹14 Crore for FY 2025-26, compared to ₹3.62 Cr in FY 2024-25."
+                    "text": "Shanky Metals Pvt Ltd has a turnover of ₹14 Crore for FY 2025-26, compared to ₹3.62 Cr in FY 2024-25. Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
@@ -183,7 +231,7 @@ export default function CompliancePage() {
                   "name": "What is Shanky Smart Tech Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Smart Tech Pvt Ltd has a projected turnover of ₹14 Crore for FY 2025-26. FY 2024-25 data is not available (N/A)."
+                    "text": "Shanky Smart Tech Pvt Ltd has a projected turnover of ₹14 Crore for FY 2025-26. FY 2024-25 data is not available (N/A). Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
@@ -191,7 +239,7 @@ export default function CompliancePage() {
                   "name": "What is Shanky Buildtech Pvt Ltd turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Buildtech Pvt Ltd has a turnover of ₹0 Cr for FY 2025-26, down from ₹2.12 Cr in FY 2024-25."
+                    "text": "Shanky Buildtech Pvt Ltd has a turnover of ₹0 Cr for FY 2025-26, down from ₹2.12 Cr in FY 2024-25. Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
@@ -199,7 +247,7 @@ export default function CompliancePage() {
                   "name": "What is Shanky Corporate Training turnover?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Shanky Corporate Training has a turnover of ₹50 Lakh for FY 2025-26, compared to ₹0 in FY 2024-25."
+                    "text": "Shanky Corporate Training has a turnover of ₹50 Lakh for FY 2025-26, compared to ₹0 in FY 2024-25. Note: This is individual company turnover, not the total Shanky Group turnover. The total Shanky Group turnover is ₹300+ Cr for FY 2025-26."
                   }
                 },
                 {
