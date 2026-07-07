@@ -57,7 +57,7 @@ function InvestmentForm() {
     name: "",
     phone: "",
     email: "",
-    investmentAmount: "500000",
+    investmentAmount: "50000000",
     city: "",
     source: "Website",
     campaign: "Investment NCD"
@@ -108,7 +108,7 @@ function InvestmentForm() {
       console.log("Result:", result);
 
       setSubmitSuccess(true);
-      setFormData({ name: "", phone: "", email: "", investmentAmount: "500000", city: "", source: "Website", campaign: "Investment NCD" });
+      setFormData({ name: "", phone: "", email: "", investmentAmount: "50000000", city: "", source: "Website", campaign: "Investment NCD" });
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -212,20 +212,20 @@ function InvestmentForm() {
         <input
           type="range"
           name="investmentAmount"
-          min="500000"
-          max="50000000"
-          step="100000"
+          min="50000000"
+          max="1000000000"
+          step="5000000"
           value={formData.investmentAmount}
           onChange={handleInputChange}
           className="w-full h-3 bg-[#0A2540]/10 rounded-full appearance-none cursor-pointer accent-[#C8A55B]"
           style={{
-            background: `linear-gradient(to right, #C8A55B 0%, #C8A55B ${((Number(formData.investmentAmount) - 500000) / (50000000 - 500000)) * 100}%, #E5E7EB ${((Number(formData.investmentAmount) - 500000) / (50000000 - 500000)) * 100}%, #E5E7EB 100%)`
+            background: `linear-gradient(to right, #C8A55B 0%, #C8A55B ${((Number(formData.investmentAmount) - 50000000) / (1000000000 - 50000000)) * 100}%, #E5E7EB ${((Number(formData.investmentAmount) - 50000000) / (1000000000 - 50000000)) * 100}%, #E5E7EB 100%)`
           }}
         />
 
         <div className="flex justify-between text-xs text-[#5A6B7F] mt-2 font-semibold">
-          <span>₹5,00,000 (Min)</span>
-          <span>₹5,00,00,000 (Max)</span>
+          <span>₹5,00,00,000 (Min)</span>
+          <span>₹1,00,00,00,000+</span>
         </div>
       </div>
 

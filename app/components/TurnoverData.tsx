@@ -11,8 +11,8 @@ const turnoverData: TurnoverData[] = [
   {
     sno: 1,
     companyName: "VMS HUB PVT LTD",
-    turnover2024_25: "-",
-    turnover2025_26: "245 Cr"
+    turnover2024_25: "118.64 Cr",
+    turnover2025_26: "240.28 Cr"
   },
   {
     sno: 2,
