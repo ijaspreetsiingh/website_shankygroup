@@ -1,15 +1,22 @@
 import { NextResponse } from 'next/server';
 import { execute, query } from '@/app/lib/db';
 import bcrypt from 'bcryptjs';
+import { checkRateLimit } from '@/app/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 10 login attempts per minute per IP
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
+    const { allowed } = checkRateLimit(`login:${ip}`, 10, 60000);
+    if (!allowed) {
+      return NextResponse.json({ success: false, message: 'Too many login attempts. Please try again later.' }, { status: 429 });
+    }
+
     console.log('=== LOGIN API START ===');
     
     const body = await request.json();
-    console.log('Request body:', body);
     
     const { email, password } = body;
 

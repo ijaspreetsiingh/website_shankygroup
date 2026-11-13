@@ -44,13 +44,13 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
   };
 
   return (
-    <div className="border border-gray-700/50 rounded-lg overflow-hidden bg-gray-800/50">
+    <div className="border border-gray-200 rounded-lg overflow-hidden bg-gray-50">
       {/* Toolbar */}
-      <div className="bg-gray-900/50 border-b border-gray-700/50 p-2 flex flex-wrap gap-1">
+      <div className="bg-white border-b border-gray-200 p-2 flex flex-wrap gap-1">
         <button
           type="button"
           onClick={() => execCommand('bold')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Bold"
         >
           <Bold className="w-4 h-4" />
@@ -58,7 +58,7 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={() => execCommand('italic')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Italic"
         >
           <Italic className="w-4 h-4" />
@@ -66,16 +66,16 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={() => execCommand('underline')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Underline"
         >
           <u className="w-4 h-4 font-bold">U</u>
         </button>
-        <div className="w-px bg-gray-600/50" />
+        <div className="w-px bg-gray-300" />
         <button
           type="button"
           onClick={() => execCommand('justifyLeft')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Align Left"
         >
           <AlignLeft className="w-4 h-4" />
@@ -83,7 +83,7 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={() => execCommand('justifyCenter')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Align Center"
         >
           <AlignCenter className="w-4 h-4" />
@@ -91,16 +91,16 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={() => execCommand('justifyRight')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Align Right"
         >
           <AlignRight className="w-4 h-4" />
         </button>
-        <div className="w-px bg-gray-600/50" />
+        <div className="w-px bg-gray-300" />
         <button
           type="button"
           onClick={() => execCommand('insertUnorderedList')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Bullet List"
         >
           •
@@ -108,19 +108,19 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={() => execCommand('insertOrderedList')}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Numbered List"
         >
           1.
         </button>
-        <div className="w-px bg-gray-600/50" />
+        <div className="w-px bg-gray-300" />
         <button
           type="button"
           onClick={() => {
             const url = prompt('Enter URL:');
             if (url) execCommand('createLink', url);
           }}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Insert Link"
         >
           <Link className="w-4 h-4" />
@@ -128,7 +128,7 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         <button
           type="button"
           onClick={onImageUpload}
-          className="p-2 hover:bg-gray-700/50 rounded border border-gray-600/50 text-gray-300 hover:text-white transition-colors"
+          className="p-2 hover:bg-gray-100 rounded border border-gray-300 text-gray-600 hover:text-gray-900 transition-colors"
           title="Insert Image"
         >
           <Image className="w-4 h-4" />
@@ -141,7 +141,7 @@ const RichTextEditor = ({ value, onChange, placeholder, onImageUpload }: any) =>
         contentEditable
         onInput={handleInput}
         onPaste={handlePaste}
-        className="min-h-[400px] p-4 focus:outline-none text-white text-left"
+        className="min-h-[400px] p-4 focus:outline-none text-gray-900 text-left"
         style={{ minHeight: '400px', direction: 'ltr', unicodeBidi: 'plaintext' }}
         dir="ltr"
         suppressContentEditableWarning
@@ -528,7 +528,7 @@ export default function BlogManager() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 p-6 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 text-gray-800 p-6 max-w-7xl mx-auto">
       {/* Dynamic Background Effects */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 rounded-full blur-[120px] pointer-events-none" />
@@ -537,8 +537,8 @@ export default function BlogManager() {
       {/* Header */}
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-6">
         <div>
-          <h1 className="text-3xl font-bold text-white mb-2">Professional Blog Manager</h1>
-          <p className="text-gray-400">Create, manage, and optimize your blog content with advanced tools</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Professional Blog Manager</h1>
+          <p className="text-gray-500">Create, manage, and optimize your blog content with advanced tools</p>
         </div>
         <div className="flex gap-3">
           <button
@@ -573,46 +573,46 @@ export default function BlogManager() {
       {/* Analytics Section */}
       {showAnalytics && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 ring-1 ring-gray-700/50">
+          <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 ring-1 ring-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Total Blogs</p>
-                <p className="text-2xl font-bold text-white">{stats.total}</p>
+                <p className="text-sm text-gray-500">Total Blogs</p>
+                <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
               </div>
               <FileText className="w-8 h-8 text-blue-400" />
             </div>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 ring-1 ring-gray-700/50">
+          <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 ring-1 ring-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Published</p>
+                <p className="text-sm text-gray-500">Published</p>
                 <p className="text-2xl font-bold text-green-400">{stats.published}</p>
               </div>
               <CheckCircle className="w-8 h-8 text-green-400" />
             </div>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 ring-1 ring-gray-700/50">
+          <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 ring-1 ring-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Drafts</p>
+                <p className="text-sm text-gray-500">Drafts</p>
                 <p className="text-2xl font-bold text-yellow-400">{stats.drafts}</p>
               </div>
               <Clock className="w-8 h-8 text-yellow-400" />
             </div>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 ring-1 ring-gray-700/50">
+          <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 ring-1 ring-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Featured</p>
+                <p className="text-sm text-gray-500">Featured</p>
                 <p className="text-2xl font-bold text-purple-400">{stats.featured}</p>
               </div>
               <Star className="w-8 h-8 text-purple-400" />
             </div>
           </div>
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 ring-1 ring-gray-700/50">
+          <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 ring-1 ring-gray-200">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-400">Total Views</p>
+                <p className="text-sm text-gray-500">Total Views</p>
                 <p className="text-2xl font-bold text-indigo-400">{stats.totalViews.toLocaleString()}</p>
               </div>
               <TrendingUp className="w-8 h-8 text-indigo-400" />
@@ -623,9 +623,9 @@ export default function BlogManager() {
 
       {/* Comments Management Section */}
       {showComments && (
-        <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 mb-6 ring-1 ring-gray-700/50">
+        <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 mb-6 ring-1 ring-gray-200">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-bold text-white">Comments Management</h2>
+            <h2 className="text-xl font-bold text-gray-900">Comments Management</h2>
             <button
               onClick={fetchComments}
               className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg shadow-blue-500/25 ring-1 ring-blue-500/20"
@@ -637,38 +637,38 @@ export default function BlogManager() {
 
           {/* Comment Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50">
+            <div className="bg-gray-50 rounded-lg p-4 border border-gray-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-400">Total Comments</p>
-                  <p className="text-2xl font-bold text-white">{commentStats.totalComments}</p>
+                  <p className="text-sm text-gray-500">Total Comments</p>
+                  <p className="text-2xl font-bold text-gray-900">{commentStats.totalComments}</p>
                 </div>
                 <MessageCircle className="w-8 h-8 text-gray-400" />
               </div>
             </div>
-            <div className="bg-yellow-900/20 rounded-lg p-4 border border-yellow-700/30">
+            <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-yellow-400">Pending</p>
-                  <p className="text-2xl font-bold text-yellow-400">{commentStats.pendingComments}</p>
+                  <p className="text-sm text-yellow-600">Pending</p>
+                  <p className="text-2xl font-bold text-yellow-600">{commentStats.pendingComments}</p>
                 </div>
                 <Clock className="w-8 h-8 text-yellow-400" />
               </div>
             </div>
-            <div className="bg-green-900/20 rounded-lg p-4 border border-green-700/30">
+            <div className="bg-green-50 rounded-lg p-4 border border-green-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-green-400">Approved</p>
-                  <p className="text-2xl font-bold text-green-400">{commentStats.approvedComments}</p>
+                  <p className="text-sm text-green-600">Approved</p>
+                  <p className="text-2xl font-bold text-green-600">{commentStats.approvedComments}</p>
                 </div>
                 <CheckCircle className="w-8 h-8 text-green-400" />
               </div>
             </div>
-            <div className="bg-red-900/20 rounded-lg p-4 border border-red-700/30">
+            <div className="bg-red-50 rounded-lg p-4 border border-red-200">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-red-400">Rejected</p>
-                  <p className="text-2xl font-bold text-red-400">{commentStats.rejectedComments}</p>
+                  <p className="text-sm text-red-600">Rejected</p>
+                  <p className="text-2xl font-bold text-red-600">{commentStats.rejectedComments}</p>
                 </div>
                 <X className="w-8 h-8 text-red-400" />
               </div>
@@ -683,33 +683,33 @@ export default function BlogManager() {
           ) : comments.length === 0 ? (
             <div className="text-center py-8">
               <MessageCircle className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-white mb-2">No comments found</h3>
-              <p className="text-gray-400">No comments have been posted yet.</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No comments found</h3>
+              <p className="text-gray-500">No comments have been posted yet.</p>
             </div>
           ) : (
             <div className="space-y-4">
               {comments.map((comment) => (
-                <div key={comment.id} className="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50">
+                <div key={comment.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 bg-blue-900/50 rounded-full flex items-center justify-center ring-1 ring-blue-700/50">
+                        <div className="w-8 h-8 bg-blue-50 rounded-full flex items-center justify-center ring-1 ring-blue-200">
                           <User className="w-4 h-4 text-blue-400" />
                         </div>
                         <div>
-                          <h4 className="font-semibold text-white">{comment.name}</h4>
-                          <p className="text-sm text-gray-400">{comment.email}</p>
+                          <h4 className="font-semibold text-gray-900">{comment.name}</h4>
+                          <p className="text-sm text-gray-500">{comment.email}</p>
                         </div>
                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${
-                          comment.status === 'approved' ? 'bg-green-900/30 text-green-400 border border-green-700/30' :
-                          comment.status === 'pending' ? 'bg-yellow-900/30 text-yellow-400 border border-yellow-700/30' :
-                          'bg-red-900/30 text-red-400 border border-red-700/30'
+                          comment.status === 'approved' ? 'bg-green-100 text-green-700 border border-green-200' :
+                          comment.status === 'pending' ? 'bg-yellow-100 text-yellow-700 border border-yellow-200' :
+                          'bg-red-100 text-red-700 border border-red-200'
                         }`}>
                           {comment.status}
                         </span>
                       </div>
-                      <p className="text-gray-300 mb-2">{comment.content}</p>
-                      <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <p className="text-gray-600 mb-2">{comment.content}</p>
+                      <div className="flex items-center gap-4 text-sm text-gray-500">
                         <span>On: <a href={`/blog/${comment.blog_slug}`} className="text-blue-400 hover:text-blue-300">{comment.blog_title}</a></span>
                         <span>{new Date(comment.created_at).toLocaleDateString()}</span>
                       </div>
@@ -719,14 +719,14 @@ export default function BlogManager() {
                         <>
                           <button
                             onClick={() => updateCommentStatus(comment.id, 'approved')}
-                            className="p-2 text-green-400 hover:bg-green-900/30 rounded-lg transition-colors border border-green-700/30"
+                            className="p-2 text-green-500 hover:bg-green-50 rounded-lg transition-colors border border-green-200"
                             title="Approve"
                           >
                             <CheckCircle className="w-4 h-4" />
                           </button>
                           <button
                             onClick={() => updateCommentStatus(comment.id, 'rejected')}
-                            className="p-2 text-red-400 hover:bg-red-900/30 rounded-lg transition-colors border border-red-700/30"
+                            className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors border border-red-200"
                             title="Reject"
                           >
                             <X className="w-4 h-4" />
@@ -735,7 +735,7 @@ export default function BlogManager() {
                       )}
                       <button
                         onClick={() => deleteComment(comment.id)}
-                        className="p-2 text-gray-400 hover:bg-gray-700/50 rounded-lg transition-colors border border-gray-600/50"
+                        className="p-2 text-gray-500 hover:bg-gray-100 rounded-lg transition-colors border border-gray-200"
                         title="Delete"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -750,7 +750,7 @@ export default function BlogManager() {
       )}
 
       {/* Advanced Filters */}
-      <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 p-6 mb-6 ring-1 ring-gray-700/50">
+      <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 p-6 mb-6 ring-1 ring-gray-200">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
             <div className="relative">
@@ -760,7 +760,7 @@ export default function BlogManager() {
                 placeholder="Search blogs by title, content, or tags..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                className="w-full pl-10 pr-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
               />
             </div>
           </div>
@@ -768,7 +768,7 @@ export default function BlogManager() {
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white"
+              className="px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900"
             >
               <option value="all">All Categories</option>
               {categories.map(category => (
@@ -780,7 +780,7 @@ export default function BlogManager() {
             <select
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="px-4 py-3 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white"
+              className="px-4 py-3 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900"
             >
               <option value="all">All Status</option>
               {statusOptions.map(status => (
@@ -794,37 +794,37 @@ export default function BlogManager() {
       </div>
 
       {/* Blog List */}
-      <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl shadow-sm border border-gray-800/50 overflow-hidden ring-1 ring-gray-700/50">
+      <div className="bg-white backdrop-blur-sm rounded-xl shadow-sm border border-gray-200 overflow-hidden ring-1 ring-gray-200">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-700/50">
-            <thead className="bg-gray-800/50">
+            <thead className="bg-gray-50">
               <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Blog Post
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Author
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Category
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Engagement
                 </th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Date
                 </th>
-                <th className="px-6 py-4 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">
+                <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-gray-900/30 divide-y divide-gray-700/50">
+            <tbody className="bg-white divide-y divide-gray-100">
               {blogs.map((blog) => (
-                <tr key={blog.id} className="hover:bg-gray-800/30 transition-colors">
+                <tr key={blog.id} className="hover:bg-gray-50 transition-colors">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       {blog.featured_image && (
@@ -835,7 +835,7 @@ export default function BlogManager() {
                         />
                       )}
                       <div>
-                        <div className="text-sm font-medium text-white truncate max-w-xs">
+                        <div className="text-sm font-medium text-gray-900 truncate max-w-xs">
                           {blog.title}
                           {blog.is_featured && (
                             <Star className="inline w-3 h-3 text-yellow-400 ml-1" fill="currentColor" />
@@ -850,7 +850,7 @@ export default function BlogManager() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center text-sm text-gray-300">
+                    <div className="flex items-center text-sm text-gray-600">
                       <User className="w-4 h-4 mr-1 text-gray-500" />
                       {blog.author_name || 'Unknown'}
                     </div>
@@ -884,7 +884,7 @@ export default function BlogManager() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-300">
+                    <div className="text-sm text-gray-600">
                       <div className="flex items-center gap-1">
                         <Eye className="w-4 h-4 text-gray-500" />
                         {blog.view_count || 0}
@@ -894,7 +894,7 @@ export default function BlogManager() {
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                     {new Date(blog.created_at).toLocaleDateString()}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -928,8 +928,8 @@ export default function BlogManager() {
         {blogs.length === 0 && (
           <div className="text-center py-12">
             <FileText className="w-12 h-12 text-gray-600 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-white mb-2">No blogs found</h3>
-            <p className="text-gray-400 mb-4">Get started by creating your first blog post</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No blogs found</h3>
+            <p className="text-gray-500 mb-4">Get started by creating your first blog post</p>
             <button
               onClick={() => setShowCreateModal(true)}
               className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg shadow-blue-500/25 ring-1 ring-blue-500/20"
@@ -942,11 +942,11 @@ export default function BlogManager() {
 
       {/* Create/Edit Modal */}
       {(showCreateModal || showEditModal) && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-800/50 shadow-2xl ring-1 ring-gray-700/50">
-            <div className="p-6 border-b border-gray-800/50">
+        <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-xl max-w-6xl w-full max-h-[90vh] overflow-y-auto border border-gray-200 shadow-2xl ring-1 ring-gray-200">
+            <div className="p-6 border-b border-gray-200">
               <div className="flex items-center justify-between">
-                <h2 className="text-xl font-semibold text-white">
+                <h2 className="text-xl font-semibold text-gray-900">
                   {showCreateModal ? 'Create Blog' : 'Edit Blog'}
                 </h2>
                 <button
@@ -956,7 +956,7 @@ export default function BlogManager() {
                     resetForm();
                     setSelectedBlog(null);
                   }}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-500 hover:text-gray-900 transition-colors"
                 >
                   <X className="w-6 h-6" />
                 </button>
@@ -967,20 +967,20 @@ export default function BlogManager() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className="lg:col-span-2 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Title *
                     </label>
                     <input
                       type="text"
                       value={formData.title}
                       onChange={(e) => setFormData({...formData, title: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="Enter blog title"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Content *
                     </label>
                     <RichTextEditor
@@ -992,14 +992,14 @@ export default function BlogManager() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Excerpt
                     </label>
                     <textarea
                       value={formData.excerpt}
                       onChange={(e) => setFormData({...formData, excerpt: e.target.value})}
                       rows={3}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="Brief description of your blog"
                     />
                   </div>
@@ -1007,13 +1007,13 @@ export default function BlogManager() {
 
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Category
                     </label>
                     <select
                       value={formData.category}
                       onChange={(e) => setFormData({...formData, category: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900"
                     >
                       {categories.map(category => (
                         <option key={category.value} value={category.value}>
@@ -1024,14 +1024,14 @@ export default function BlogManager() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Tags
                     </label>
                     <input
                       type="text"
                       value={formData.tags}
                       onChange={(e) => setFormData({...formData, tags: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="tag1, tag2, tag3"
                     />
                     <div className="mt-2 flex flex-wrap gap-1">
@@ -1044,7 +1044,7 @@ export default function BlogManager() {
                               setFormData({...formData, tags: [...currentTags, tag].join(', ')});
                             }
                           }}
-                          className="px-2 py-1 text-xs bg-gray-800/50 text-gray-300 rounded hover:bg-gray-700/50 border border-gray-600/50"
+                          className="px-2 py-1 text-xs bg-gray-100 text-gray-600 rounded hover:bg-gray-200 border border-gray-300"
                         >
                           +{tag}
                         </button>
@@ -1053,13 +1053,13 @@ export default function BlogManager() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Status
                     </label>
                     <select
                       value={formData.status}
                       onChange={(e) => setFormData({...formData, status: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900"
                     >
                       {statusOptions.map(status => (
                         <option key={status.value} value={status.value}>
@@ -1070,14 +1070,14 @@ export default function BlogManager() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Featured Image URL
                     </label>
                     <input
                       type="text"
                       value={formData.featured_image}
                       onChange={(e) => setFormData({...formData, featured_image: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="https://example.com/image.jpg"
                     />
                   </div>
@@ -1088,55 +1088,55 @@ export default function BlogManager() {
                       id="featured"
                       checked={formData.is_featured}
                       onChange={(e) => setFormData({...formData, is_featured: e.target.checked})}
-                      className="w-4 h-4 text-blue-600 bg-gray-800/50 border-gray-600/50 rounded focus:ring-2 focus:ring-blue-500/50"
+                      className="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-2 focus:ring-blue-500/50"
                     />
-                    <label htmlFor="featured" className="ml-2 text-sm text-gray-300">
+                    <label htmlFor="featured" className="ml-2 text-sm text-gray-700">
                       Featured Blog
                     </label>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Meta Title
                     </label>
                     <input
                       type="text"
                       value={formData.meta_title}
                       onChange={(e) => setFormData({...formData, meta_title: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="SEO title"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       Meta Description
                     </label>
                     <textarea
                       value={formData.meta_description}
                       onChange={(e) => setFormData({...formData, meta_description: e.target.value})}
                       rows={3}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="SEO description"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
                       URL Slug
                     </label>
                     <input
                       type="text"
                       value={formData.slug}
                       onChange={(e) => setFormData({...formData, slug: e.target.value})}
-                      className="w-full px-3 py-2 bg-gray-800/50 border border-gray-700/50 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-white placeholder-gray-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-900 placeholder-gray-400"
                       placeholder="url-friendly-slug"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="flex justify-end gap-3 mt-6 pt-6 border-t border-gray-800/50">
+              <div className="flex justify-end gap-3 mt-6 pt-6 border-t border-gray-200">
                 <button
                   onClick={() => {
                     setShowCreateModal(false);
@@ -1144,7 +1144,7 @@ export default function BlogManager() {
                     resetForm();
                     setSelectedBlog(null);
                   }}
-                  className="px-4 py-2 text-gray-300 bg-gray-800/50 rounded-lg hover:bg-gray-700/50 transition-colors border border-gray-600/50"
+                  className="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors border border-gray-300"
                 >
                   Cancel
                 </button>

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { execute, query } from '@/app/lib/db';
+import { checkRateLimit } from '@/app/lib/rate-limit';
 
 export const runtime = 'nodejs';
 
@@ -41,6 +42,13 @@ async function ensureCareersSchema() {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 10 requests per minute per IP
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
+    const { allowed } = checkRateLimit(`career:${ip}`, 10, 60000);
+    if (!allowed) {
+      return NextResponse.json({ status: 'error', message: 'Too many requests. Please try again later.' }, { status: 429 });
+    }
+
     const formData = await request.formData();
     const name = String(formData.get('name') || '').trim();
     const email = String(formData.get('email') || '').trim();

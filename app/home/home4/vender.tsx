@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from '../../i18n/I18nProvider';
+import SecurityCaptcha from '../../components/SecurityCaptcha';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +27,11 @@ const ContactUs = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [honeypotVal, setHoneypotVal] = useState('');
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [refreshCaptchaTrigger, setRefreshCaptchaTrigger] = useState(0);
   const [isDark, setIsDark] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -104,6 +110,12 @@ const ContactUs = () => {
       return;
     }
     
+    setCaptchaError(null);
+    if (!captchaAnswer || !captchaAnswer.trim()) {
+      setCaptchaError('Please solve the security calculation to proceed.');
+      return;
+    }
+
     setIsSubmitting(true);
     
     console.log('Vendor form data being sent:', formData);
@@ -111,7 +123,10 @@ const ContactUs = () => {
     // Create a copy to ensure we're sending the right data
     const dataToSend = { 
       ...formData,
-      action: 'submit_vendor_registration' // Important: specify vendor registration action
+      action: 'submit_vendor_registration', // Important: specify vendor registration action
+      captchaToken,
+      captchaAnswer: captchaAnswer.trim(),
+      hp_shield: honeypotVal,
     };
     console.log('Vendor data to send:', dataToSend);
     
@@ -127,14 +142,23 @@ const ContactUs = () => {
       const data = await response.json();
 
       if (data.status !== 'success') {
-        throw new Error(data.message || 'Submission failed');
+        setCaptchaError(data.message || 'Security verification failed. Please try again.');
+        setRefreshCaptchaTrigger(prev => prev + 1);
+        setCaptchaAnswer('');
+        setIsSubmitting(false);
+        return;
       }
     } catch (error) {
       console.error('Vendor submission error:', error);
-      // Optional: Show error to user, but for now we'll proceed to show success for UX demo
-      // or return here to stop success animation:
-      // setIsSubmitting(false);
-      // return; 
+      const errMsg = error instanceof Error ? error.message : 'Submission failed';
+      setCaptchaError(errMsg || 'Submission failed. Please try again.');
+      setRefreshCaptchaTrigger(prev => prev + 1);
+      setCaptchaAnswer('');
+      setIsSubmitting(false);
+      return;
+
+
+ 
     }
     
     // Continue with success animation
@@ -168,6 +192,9 @@ const ContactUs = () => {
     
     setTimeout(() => {
       setIsSubmitted(false);
+      setCaptchaAnswer('');
+      setCaptchaError(null);
+      setRefreshCaptchaTrigger(prev => prev + 1);
       setFormData({
         firstName: '',
         lastName: '',
@@ -311,6 +338,17 @@ const ContactUs = () => {
                   <input type="checkbox" name="exclusiveOffers" checked={formData.exclusiveOffers} onChange={handleInputChange} className="mt-1.5 w-4 h-4 accent-[#e63a27] cursor-pointer rounded" id="offers" />
                   <label htmlFor="offers" className="text-sm text-white/80 leading-snug cursor-pointer">{t('exclusive_offers')}</label>
                 </div>
+
+                {/* Math Security Captcha verification */}
+                <SecurityCaptcha
+                  onTokenChange={setCaptchaToken}
+                  onAnswerChange={setCaptchaAnswer}
+                  onHoneypotChange={setHoneypotVal}
+                  answerValue={captchaAnswer}
+                  errorMessage={captchaError}
+                  refreshKey={refreshCaptchaTrigger}
+                  disabled={isSubmitting}
+                />
 
                 <button
                   type="submit"

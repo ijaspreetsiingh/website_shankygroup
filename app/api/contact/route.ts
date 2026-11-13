@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { execute, query } from '@/app/lib/db';
 import { RowDataPacket } from 'mysql2';
 import nodemailer from 'nodemailer';
+import { checkRateLimit } from '@/app/lib/rate-limit';
+import { verifyCaptchaChallenge } from '@/app/lib/security-challenge';
 
 export const runtime = 'nodejs';
 
@@ -109,16 +111,38 @@ async function getVendorEmailTemplate() {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 20 requests per minute per IP
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
+    const { allowed } = checkRateLimit(`contact:${ip}`, 20, 60000);
+    if (!allowed) {
+      return NextResponse.json({ status: 'error', message: 'Too many requests. Please try again later.' }, { status: 429 });
+    }
+
     const body = await request.json();
     const action = String(body?.action || '').trim();
+
+    // 1. Honeypot check (hidden field to trap automated bots)
+    if (body?.hp_shield) {
+      console.warn('Bot submission blocked via honeypot field:', ip);
+      return NextResponse.json(
+        { status: 'error', message: 'Bot activity detected.' },
+        { status: 400 }
+      );
+    }
+
+    // 2. Math Captcha security verification
+    const captchaResult = verifyCaptchaChallenge(body?.captchaToken, body?.captchaAnswer);
+    if (!captchaResult.valid) {
+      return NextResponse.json(
+        { status: 'error', message: captchaResult.message || 'Security verification failed. Please try again.' },
+        { status: 400 }
+      );
+    }
 
     if (action === 'submit_vendor_registration') {
       const email = String(body?.email || '').trim();
       if (!email) return NextResponse.json({ status: 'error', message: 'Email is required' }, { status: 400 });
 
-      console.log('=== VENDOR REGISTRATION DEBUG ===');
-      console.log('Received body:', JSON.stringify(body, null, 2));
-      
       await execute(
         `CREATE TABLE IF NOT EXISTS vendor_registrations (
           id INT AUTO_INCREMENT PRIMARY KEY,
@@ -152,25 +176,6 @@ export async function POST(request: Request) {
       const firstName = String(body?.firstName || '').trim() || String(body?.contactPerson || '').trim() || String(body?.companyName || '').trim() || null;
       const lastName = String(body?.lastName || '').trim() || String(body?.designation || '').trim() || null;
 
-      console.log('Processed values:', {
-        firstName,
-        lastName,
-        companyName: String(body?.companyName || '').trim() || null,
-        email: String(body?.email || '').trim() || null,
-        mobile: String(body?.mobile || '').trim() || null,
-        state: String(body?.state || '').trim() || null,
-        city: String(body?.city || '').trim() || null,
-        country: String(body?.country || '').trim() || null,
-        gstNo: String(body?.gstNo || '').trim() || null,
-        contactPerson: String(body?.contactPerson || '').trim() || null,
-        designation: String(body?.designation || '').trim() || null,
-        landline: String(body?.landline || '').trim() || null,
-        website: String(body?.website || '').trim() || null,
-        message: String(body?.message || '').trim() || null,
-        exclusiveOffers: body?.exclusiveOffers ? 1 : 0,
-        status: String(body?.status || '').trim() || null,
-      });
-
       const result = await execute(
         `INSERT INTO vendor_registrations
           (first_name, last_name, company_name, email, phone, landline, address, state, city, country, gst_no, contact_person, designation, website, message, exclusive_offers, source, vendor_status)
@@ -195,9 +200,6 @@ export async function POST(request: Request) {
           String(body?.status || '').trim() || null,
         ]
       );
-
-      console.log('Database insert result:', result);
-      console.log('=== END VENDOR REGISTRATION DEBUG ===');
 
       // Send emails after successful submission
       const adminEmail = await getAdminEmail();

@@ -34,7 +34,7 @@ const emailTemplates: Template[] = [
     description: 'Premium professional design with corporate branding',
     preview: 'Executive-level professional template',
     color: 'blue',
-    subject: 'Thank You for Your Inquiry — Reference #{{ticketId}}',
+    subject: 'Thank You for Your Inquiry',
     body: `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Thank You</title></head><body style="margin:0;padding:0;background:#f1f5f9;font-family:'Georgia',serif;"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:48px 16px;"><tr><td align="center"><table width="620" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:2px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.08);"><tr><td style="background:#1e3a5f;height:6px;font-size:0;">&nbsp;</td></tr><tr><td style="padding:44px 56px 36px;border-bottom:1px solid #e8ecf0;"><table width="100%" cellpadding="0" cellspacing="0"><tr><td><p style="margin:0;font-size:22px;color:#1e3a5f;">Shanky Group</p><p style="margin:4px 0 0;font-size:11px;color:#8a97a5;letter-spacing:2px;text-transform:uppercase;">Professional Business Solutions</p></td><td align="right" valign="top"><p style="margin:0;font-size:11px;color:#8a97a5;letter-spacing:1.5px;text-transform:uppercase;">Reference</p><p style="margin:4px 0 0;font-size:14px;font-weight:600;color:#1e3a5f;">#{{ticketId}}</p></td></tr></table></td></tr><tr><td style="padding:44px 56px;"><p style="margin:0 0 28px;font-size:17px;color:#1e3a5f;">Dear {{firstName}},</p><p style="margin:0 0 24px;font-size:15px;line-height:1.85;color:#3d4f60;">Thank you for contacting <strong>Shanky Group</strong>. We have received your inquiry and will respond within 24 business hours.</p><p style="margin:0;font-size:15px;color:#3d4f60;">Yours sincerely,<br><strong style="color:#1e3a5f;">Shanky Group</strong><br><span style="font-size:13px;color:#8a97a5;">Client Relations Team</span></p></td></tr><tr><td style="padding:28px 56px;background:#f8fafc;border-top:1px solid #e8ecf0;"><p style="margin:0;font-size:11px;color:#b0bac4;">&copy; 2026 Shanky Group. All Rights Reserved.</p></td></tr></table></td></tr></table></body></html>`,
   },
   {
@@ -42,7 +42,7 @@ const emailTemplates: Template[] = [
     description: 'Contemporary luxury design with modern aesthetics',
     preview: 'Premium modern template with elegant styling',
     color: 'purple',
-    subject: 'We Have Received Your Message — #{{ticketId}}',
+    subject: 'We Have Received Your Message',
     body: `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#0f0f14;font-family:'Helvetica Neue',Arial,sans-serif;"><table width="100%" cellpadding="0" cellspacing="0" style="background:#0f0f14;padding:56px 16px;"><tr><td align="center"><table width="600" cellpadding="0" cellspacing="0" style="background:#18181f;border-radius:4px;overflow:hidden;border:1px solid #2a2a35;"><tr><td style="background:linear-gradient(90deg,#6c47ff,#a78bfa);height:4px;font-size:0;">&nbsp;</td></tr><tr><td style="padding:44px 52px 36px;"><p style="margin:0;font-size:24px;font-weight:300;color:#e8e0ff;letter-spacing:1px;">Shanky Group</p></td></tr><tr><td style="padding:0 52px 44px;"><p style="margin:0 0 22px;font-size:17px;color:#c8c0f0;">Hello, <strong>{{firstName}}</strong></p><p style="margin:0;font-size:15px;line-height:1.9;color:#8a8aaa;">Thank you for reaching out to Shanky Group. Your message has been received and will be responded to within 24 business hours.</p></td></tr><tr><td style="padding:28px 52px;background:#0f0f14;border-top:1px solid #2a2a35;"><p style="margin:0;font-size:11px;color:#44445a;">&copy; 2026 Shanky Group</p></td></tr></table></td></tr></table></body></html>`,
   },
   {
@@ -58,7 +58,7 @@ const emailTemplates: Template[] = [
     description: 'Premium corporate design with professional branding',
     preview: 'Executive-level professional template',
     color: 'emerald',
-    subject: 'Acknowledgment of Your Inquiry — Reference #{{ticketId}}',
+    subject: 'Acknowledgment of Your Inquiry',
     body: `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#f0f4f0;font-family:'Georgia',Times,serif;"><table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f4f0;padding:48px 16px;"><tr><td align="center"><table width="660" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:2px;overflow:hidden;"><tr><td style="background:#1a3d2b;padding:52px 64px;"><p style="margin:0;font-size:26px;color:#ffffff;">Shanky Group</p><p style="margin:8px 0 0;font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:3px;text-transform:uppercase;">Executive Business Solutions</p></td></tr><tr><td style="padding:56px 64px;"><p style="margin:0 0 26px;font-size:18px;color:#1a3d2b;">Dear {{firstName}},</p><p style="margin:0 0 28px;font-size:15px;line-height:1.9;color:#3d5248;">This is formal confirmation that your message has been received by <strong>Shanky Group</strong>. Our executive team will respond within 24 business hours.</p><p style="margin:0;font-size:15px;color:#3d5248;">Yours sincerely,<br><strong style="color:#1a3d2b;">Shanky Group</strong></p></td></tr><tr><td style="background:#1a3d2b;padding:16px 64px;text-align:center;"><p style="margin:0;font-size:11px;color:rgba(255,255,255,0.5);">&copy; 2026 Shanky Group. All Rights Reserved.</p></td></tr></table></td></tr></table></body></html>`,
   },
 ];
@@ -77,7 +77,7 @@ const vendorEmailTemplates: Template[] = [
     description: 'Formal corporate style for vendor registration confirmation',
     preview: 'Executive-style vendor acknowledgment with reference',
     color: 'amber',
-    subject: 'Vendor Registration Acknowledged — Reference #{ticketId}',
+    subject: 'Vendor Registration Acknowledged',
     body: `<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body style="margin:0;padding:0;background:#fdf8ef;font-family:'Georgia',Times,serif;"><table width="100%" cellpadding="0" cellspacing="0" style="background:#fdf8ef;padding:48px 16px;"><tr><td align="center"><table width="620" cellpadding="0" cellspacing="0" style="background:#ffffff;border:1px solid #e8d8b0;border-radius:2px;overflow:hidden;"><tr><td style="background:#7c4f1a;height:5px;font-size:0;">&nbsp;</td></tr><tr><td style="background:#7c4f1a;padding:44px 56px;"><p style="margin:0;font-size:24px;color:#ffffff;">Shanky Group</p></td></tr><tr><td style="padding:52px 56px;"><p style="margin:0 0 26px;font-size:17px;color:#3a2410;">Dear <strong>{firstName} {lastName}</strong>,</p><p style="margin:0 0 28px;font-size:15px;line-height:1.9;color:#5a4030;">This letter confirms receipt of your vendor registration. Your submission is currently under review and you will receive a formal response within 3 to 5 business days.</p><p style="margin:0;font-size:15px;color:#5a4030;">Yours sincerely,<br><strong style="color:#7c4f1a;">Shanky Group</strong></p></td></tr><tr><td style="background:#7c4f1a;height:3px;font-size:0;">&nbsp;</td></tr></table></td></tr></table></body></html>`,
   },
 ];
@@ -243,57 +243,57 @@ export default function SettingsPage() {
   const css = `
     @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
-    .sp-root { font-family:'DM Sans',sans-serif; color:#e2e8f0; }
+    .sp-root { font-family:'DM Sans',sans-serif; color:#334155; }
 
     /* PAGE HEADER */
     .sp-page-header {
       margin-bottom:28px;
       display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap;
     }
-    .sp-page-eyebrow { font-size:11px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:6px; }
-    .sp-page-title { font-family:'Syne',sans-serif; font-weight:800; font-size:26px; color:#fff; letter-spacing:-0.7px; margin-bottom:4px; }
-    .sp-page-sub { font-size:14px; color:rgba(255,255,255,0.36); font-weight:300; }
+    .sp-page-eyebrow { font-size:11px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:#6339ff; margin-bottom:6px; }
+    .sp-page-title { font-family:'Syne',sans-serif; font-weight:800; font-size:26px; color:#0f172a; letter-spacing:-0.7px; margin-bottom:4px; }
+    .sp-page-sub { font-size:14px; color:#64748b; font-weight:300; }
 
     /* TABS */
-    .sp-tabs { display:flex; gap:4px; margin-bottom:24px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:11px; padding:4px; }
+    .sp-tabs { display:flex; gap:4px; margin-bottom:24px; background:#ffffff; border:1px solid #e5e7eb; border-radius:11px; padding:4px; }
     .sp-tab {
       flex:1; display:flex; align-items:center; justify-content:center; gap:7px;
       padding:8px 14px; border-radius:8px; border:none; background:none;
       font-family:'DM Sans',sans-serif; font-size:13px; font-weight:500;
-      color:rgba(255,255,255,0.4); cursor:pointer; transition:all 0.18s;
+      color:#64748b; cursor:pointer; transition:all 0.18s;
       white-space:nowrap;
     }
-    .sp-tab:hover { color:rgba(255,255,255,0.7); background:rgba(255,255,255,0.04); }
-    .sp-tab.active { background:#0d0d1a; color:#fff; border:1px solid rgba(255,255,255,0.1); box-shadow:0 2px 8px rgba(0,0,0,0.3); }
+    .sp-tab:hover { color:#334155; background:#f8f9fc; }
+    .sp-tab.active { background:#ffffff; color:#6339ff; border:1px solid #e5e7eb; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
     .sp-tab.active .sp-tab-icon { color:#a78bfa; }
     .sp-tab-icon { width:14px; height:14px; }
     @media(max-width:640px){ .sp-tabs { flex-wrap:wrap; } .sp-tab { flex:none; } }
 
     /* ALERT */
     .sp-alert { display:flex; align-items:flex-start; gap:10px; border-radius:10px; border:1px solid; padding:12px 14px; font-size:13px; margin-bottom:18px; }
-    .sp-alert.success { border-color:rgba(20,184,166,0.25); background:rgba(20,184,166,0.08); color:#5eead4; }
-    .sp-alert.error   { border-color:rgba(239,68,68,0.25);  background:rgba(239,68,68,0.08);  color:#fca5a5; }
+    .sp-alert.success { border-color:#99f6e4; background:#f0fdfa; color:#5eead4; }
+    .sp-alert.error   { border-color:#fecaca;  background:#fef2f2;  color:#fca5a5; }
     .sp-alert-close { margin-left:auto; background:none; border:none; color:inherit; opacity:0.5; cursor:pointer; padding:0; display:flex; align-items:center; }
     .sp-alert-close:hover { opacity:1; }
 
     /* CARD */
-    .sp-card { background:#0d0d1a; border:1px solid rgba(255,255,255,0.07); border-radius:14px; overflow:hidden; margin-bottom:14px; }
-    .sp-card-header { padding:18px 20px 16px; border-bottom:1px solid rgba(255,255,255,0.06); display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
-    .sp-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:14px; color:#fff; letter-spacing:-0.2px; margin-bottom:3px; }
-    .sp-card-sub { font-size:12px; color:rgba(255,255,255,0.3); font-weight:400; }
+    .sp-card { background:#ffffff; border:1px solid #e5e7eb; border-radius:14px; overflow:hidden; margin-bottom:14px; }
+    .sp-card-header { padding:18px 20px 16px; border-bottom:1px solid #f1f5f9; display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .sp-card-title { font-family:'Syne',sans-serif; font-weight:700; font-size:14px; color:#0f172a; letter-spacing:-0.2px; margin-bottom:3px; }
+    .sp-card-sub { font-size:12px; color:#64748b; font-weight:400; }
     .sp-card-body { padding:18px 20px; }
 
     /* FIELD */
     .sp-field { margin-bottom:14px; }
-    .sp-label { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:7px; }
+    .sp-label { display:flex; align-items:center; gap:6px; font-size:11px; font-weight:600; letter-spacing:0.8px; text-transform:uppercase; color:#64748b; margin-bottom:7px; }
     .sp-input {
       width:100%; height:42px; padding:0 14px;
-      background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09);
-      border-radius:9px; color:#fff; font-size:13.5px; font-family:'DM Sans',sans-serif;
+      background:#ffffff; border:1px solid #d1d5db;
+      border-radius:9px; color:#0f172a; font-size:13.5px; font-family:'DM Sans',sans-serif;
       outline:none; transition:border-color 0.18s, background 0.18s, box-shadow 0.18s;
     }
-    .sp-input::placeholder { color:rgba(255,255,255,0.2); }
-    .sp-input:focus { border-color:rgba(99,57,255,0.45); background:rgba(99,57,255,0.06); box-shadow:0 0 0 3px rgba(99,57,255,0.08); }
+    .sp-input::placeholder { color:#94a3b8; }
+    .sp-input:focus { border-color:#6339ff; background:rgba(99,57,255,0.04); box-shadow:0 0 0 3px rgba(99,57,255,0.08); }
     .sp-textarea { height:auto; padding:12px 14px; resize:vertical; line-height:1.5; }
 
     /* GRID */
@@ -308,7 +308,7 @@ export default function SettingsPage() {
     .sp-preset-card {
       border-radius:10px; border:1px solid; padding:14px 16px;
       text-align:left; cursor:pointer; transition:all 0.18s;
-      background:rgba(255,255,255,0.03);
+      background:#f8fafc;
       font-family:'DM Sans',sans-serif;
     }
     .sp-preset-card:hover { transform:translateY(-1px); }
@@ -317,17 +317,17 @@ export default function SettingsPage() {
     .sp-preset-host { font-size:10.5px; opacity:0.4; font-family:monospace; }
 
     .sp-tpl-card {
-      border-radius:10px; border:1px solid rgba(255,255,255,0.07);
+      border-radius:10px; border:1px solid #e5e7eb;
       padding:14px 16px; text-align:left; cursor:pointer;
-      transition:all 0.18s; background:rgba(255,255,255,0.03);
+      transition:all 0.18s; background:#f8fafc;
       font-family:'DM Sans',sans-serif;
     }
-    .sp-tpl-card:hover { border-color:rgba(255,255,255,0.14); background:rgba(255,255,255,0.05); }
+    .sp-tpl-card:hover { border-color:#cbd5e1; background:#f1f5f9; }
     .sp-tpl-card.active { border-color:rgba(99,57,255,0.4); background:rgba(99,57,255,0.08); }
-    .sp-tpl-card-name { font-size:13px; font-weight:600; color:#fff; display:flex; align-items:center; gap:7px; margin-bottom:4px; }
-    .sp-tpl-card-desc { font-size:11.5px; color:rgba(255,255,255,0.38); margin-bottom:3px; }
-    .sp-tpl-card-sub { font-size:11px; color:rgba(255,255,255,0.22); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-    .sp-radio { width:16px; height:16px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.18s; }
+    .sp-tpl-card-name { font-size:13px; font-weight:600; color:#0f172a; display:flex; align-items:center; gap:7px; margin-bottom:4px; }
+    .sp-tpl-card-desc { font-size:11.5px; color:#64748b; margin-bottom:3px; }
+    .sp-tpl-card-sub { font-size:11px; color:#94a3b8; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .sp-radio { width:16px; height:16px; border-radius:50%; border:1.5px solid #d1d5db; display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all 0.18s; }
     .sp-radio.active { background:#6339ff; border-color:#6339ff; }
 
     /* BUTTONS */
@@ -342,10 +342,10 @@ export default function SettingsPage() {
     .sp-btn-primary:hover:not(:disabled) { box-shadow:0 6px 20px rgba(99,57,255,0.35); transform:translateY(-1px); }
     .sp-btn-emerald { background:rgba(20,184,166,0.15); border:1px solid rgba(20,184,166,0.3); color:#5eead4; }
     .sp-btn-emerald:hover:not(:disabled) { background:rgba(20,184,166,0.22); }
-    .sp-btn-ghost { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.55); }
-    .sp-btn-ghost:hover:not(:disabled) { background:rgba(255,255,255,0.08); color:rgba(255,255,255,0.8); }
+    .sp-btn-ghost { background:#ffffff; border:1px solid #e2e8f0; color:#64748b; }
+    .sp-btn-ghost:hover:not(:disabled) { background:#f8f9fc; color:#0f172a; }
     .sp-btn-sm { height:32px; padding:0 12px; font-size:12px; border-radius:8px; }
-    .sp-spinner { width:14px; height:14px; border-radius:50%; border:2px solid rgba(255,255,255,0.25); border-top-color:currentColor; animation:sp-spin 0.7s linear infinite; }
+    .sp-spinner { width:14px; height:14px; border-radius:50%; border:2px solid #e2e8f0; border-top-color:currentColor; animation:sp-spin 0.7s linear infinite; }
     @keyframes sp-spin { to { transform:rotate(360deg); } }
 
     /* INFO BOX */
@@ -354,15 +354,15 @@ export default function SettingsPage() {
     .sp-info.blue  { border-color:rgba(59,130,246,0.2);  background:rgba(59,130,246,0.06);  color:#93c5fd; }
 
     /* CHECKBOX */
-    .sp-checkbox-row { display:flex; align-items:center; gap:10px; font-size:13px; color:rgba(255,255,255,0.65); cursor:pointer; }
-    .sp-checkbox { width:16px; height:16px; border-radius:4px; border:1.5px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.04); accent-color:#6339ff; cursor:pointer; }
+    .sp-checkbox-row { display:flex; align-items:center; gap:10px; font-size:13px; color:#475569; cursor:pointer; }
+    .sp-checkbox { width:16px; height:16px; border-radius:4px; border:1.5px solid #d1d5db; background:#ffffff; accent-color:#6339ff; cursor:pointer; }
 
     /* VAR HINT */
-    .sp-var-hint { display:flex; align-items:center; gap:9px; border-radius:9px; border:1px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.03); padding:10px 14px; font-size:11.5px; color:rgba(255,255,255,0.4); }
+    .sp-var-hint { display:flex; align-items:center; gap:9px; border-radius:9px; border:1px solid #e5e7eb; background:#f8fafc; padding:10px 14px; font-size:11.5px; color:#64748b; }
     .sp-var-code { background:rgba(99,57,255,0.15); border:1px solid rgba(99,57,255,0.25); border-radius:4px; padding:2px 7px; color:#c4b5fd; font-family:monospace; font-size:11px; }
 
     /* PREVIEW */
-    .sp-preview-subject { border-radius:8px; border:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.04); padding:10px 14px; font-size:13px; color:rgba(255,255,255,0.7); margin-bottom:12px; }
+    .sp-preview-subject { border-radius:8px; border:1px solid #e5e7eb; background:#f8fafc; padding:10px 14px; font-size:13px; color:#334155; margin-bottom:12px; }
 
     /* FOOTER ROW */
     .sp-row-end { display:flex; justify-content:flex-end; gap:8px; padding-top:4px; }
@@ -373,8 +373,8 @@ export default function SettingsPage() {
 
     /* PWD WRAPPER */
     .sp-pwd-wrap { position:relative; }
-    .sp-pwd-toggle { position:absolute; top:50%; right:12px; transform:translateY(-50%); background:none; border:none; color:rgba(255,255,255,0.25); cursor:pointer; display:flex; align-items:center; transition:color 0.18s; padding:0; }
-    .sp-pwd-toggle:hover { color:rgba(255,255,255,0.6); }
+    .sp-pwd-toggle { position:absolute; top:50%; right:12px; transform:translateY(-50%); background:none; border:none; color:#94a3b8; cursor:pointer; display:flex; align-items:center; transition:color 0.18s; padding:0; }
+    .sp-pwd-toggle:hover { color:#334155; }
   `;
 
   if (pageLoading) return (
@@ -465,7 +465,7 @@ export default function SettingsPage() {
                   <label className="sp-label"><Mail size={13} /> Admin Email</label>
                   <input className="sp-input" type="email" placeholder="admin@yourcompany.com" value={form.admin_notification_email} onChange={e => setForm(p => ({ ...p, admin_notification_email: e.target.value }))} />
                 </div>
-                <p style={{fontSize:12,color:'rgba(255,255,255,0.3)',marginBottom:14}}>You'll receive notifications for Contact Us and Vendor Registration submissions.</p>
+                <p style={{fontSize:12,color:'#94a3b8',marginBottom:14}}>You'll receive notifications for Contact Us and Vendor Registration submissions.</p>
                 <div className="sp-row-end">
                   <button className="sp-btn sp-btn-primary" disabled={loading} onClick={handleSaveAdminEmail} type="button">
                     {loading ? <span className="sp-spinner"/> : <Save size={13}/>} Save Admin Email
@@ -619,7 +619,7 @@ export default function SettingsPage() {
                   return (
                     <>
                       <div className="sp-preview-subject">{customTemplate.subject || t.subject}</div>
-                      <div style={{borderRadius:9,border:'1px solid rgba(255,255,255,0.08)',background:'#fff',overflow:'hidden',marginBottom:12}}>
+                      <div style={{borderRadius:9,border:'1px solid #e5e7eb',background:'#fff',overflow:'hidden',marginBottom:12}}>
                         <iframe srcDoc={customTemplate.body || t.body} style={{width:'100%',height:260,border:'none',display:'block'}} title="Preview" sandbox=""/>
                       </div>
                       <VarHint />
@@ -702,7 +702,7 @@ export default function SettingsPage() {
                   return (
                     <>
                       <div className="sp-preview-subject">{vendorContent.subject || t.subject}</div>
-                      <div style={{borderRadius:9,border:'1px solid rgba(255,255,255,0.08)',background:'#fff',overflow:'hidden',marginBottom:12}}>
+                      <div style={{borderRadius:9,border:'1px solid #e5e7eb',background:'#fff',overflow:'hidden',marginBottom:12}}>
                         <iframe srcDoc={vendorContent.body || t.body} style={{width:'100%',height:260,border:'none',display:'block'}} title="Vendor Preview" sandbox=""/>
                       </div>
                       <VarHint />
@@ -757,7 +757,7 @@ export default function SettingsPage() {
                   return (
                     <>
                       <div className="sp-preview-subject" style={{marginBottom:10}}>{t.name}</div>
-                      <div style={{borderRadius:9,border:'1px solid rgba(255,255,255,0.08)',background:'#fff',overflow:'hidden',marginBottom:12}}>
+                      <div style={{borderRadius:9,border:'1px solid #e5e7eb',background:'#fff',overflow:'hidden',marginBottom:12}}>
                         <iframe srcDoc={invoiceTemplateHtml || t.previewHtml} style={{width:'100%',height:240,border:'none',display:'block'}} title="Invoice Template Preview" sandbox=""/>
                       </div>
                       <div className="sp-field">

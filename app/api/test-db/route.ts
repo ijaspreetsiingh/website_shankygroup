@@ -3,85 +3,27 @@ import { execute, query } from '@/app/lib/db';
 
 export const runtime = 'nodejs';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    console.log('=== DATABASE TEST START ===');
-    
-    // Check environment variables first
-    console.log('Environment variables check:');
-    console.log('DB_HOST:', process.env.DB_HOST ? 'SET' : 'MISSING');
-    console.log('DB_USER:', process.env.DB_USER ? 'SET' : 'MISSING');
-    console.log('DB_NAME:', process.env.DB_NAME ? 'SET' : 'MISSING');
-    console.log('DB_PORT:', process.env.DB_PORT || '3306');
-    console.log('DB_PASSWORD:', process.env.DB_PASSWORD ? 'SET' : 'MISSING');
-    
-    // Test basic database connection
-    console.log('Testing database connection...');
+    // Only allow in development or from admin
+    if (process.env.NODE_ENV === 'production') {
+      return NextResponse.json({ error: 'Not available in production' }, { status: 404 });
+    }
+
     const result = await execute('SELECT 1 as test');
-    console.log('Database connection successful:', result);
-    
-    // Test users table
-    console.log('Testing users table...');
-    await execute(`
-      CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) DEFAULT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        password VARCHAR(255) NOT NULL,
-        role ENUM('admin', 'user') DEFAULT 'user',
-        profile_type ENUM('personal', 'business') DEFAULT 'personal',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    `);
-    console.log('Users table created/verified');
-    
-    // Check existing users
-    console.log('Checking existing users...');
     const users = await query<Array<{ count: number }>>('SELECT COUNT(*) as count FROM users');
-    console.log('Users count result:', users);
-    
     const count = users[0]?.count || 0;
-    console.log('Total users:', count);
-    
-    console.log('=== DATABASE TEST END ===');
     
     return NextResponse.json({ 
       success: true, 
       message: 'Database connection successful',
-      userCount: count,
-      envCheck: {
-        DB_HOST: process.env.DB_HOST ? 'SET' : 'MISSING',
-        DB_USER: process.env.DB_USER ? 'SET' : 'MISSING',
-        DB_NAME: process.env.DB_NAME ? 'SET' : 'MISSING',
-        DB_PORT: process.env.DB_PORT || '3306',
-        DB_PASSWORD: process.env.DB_PASSWORD ? 'SET' : 'MISSING'
-      },
-      details: {
-        connection: 'OK',
-        usersTable: 'OK',
-        userCount: count
-      }
+      userCount: count
     });
     
   } catch (error) {
-    console.error('Database test error:', error);
-    console.error('Error type:', typeof error);
-    console.error('Error message:', error instanceof Error ? error.message : 'Unknown error');
-    console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
-    
     return NextResponse.json({ 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Database connection failed',
-      type: typeof error,
-      stack: error instanceof Error ? error.stack : 'No stack trace',
-      envCheck: {
-        DB_HOST: process.env.DB_HOST ? 'SET' : 'MISSING',
-        DB_USER: process.env.DB_USER ? 'SET' : 'MISSING',
-        DB_NAME: process.env.DB_NAME ? 'SET' : 'MISSING',
-        DB_PORT: process.env.DB_PORT || '3306',
-        DB_PASSWORD: process.env.DB_PASSWORD ? 'SET' : 'MISSING'
-      }
+      success: false,
+      error: 'Database connection failed'
     }, { status: 500 });
   }
 }

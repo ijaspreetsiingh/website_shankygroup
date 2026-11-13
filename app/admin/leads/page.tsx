@@ -387,20 +387,19 @@ export default function AdminLeadsPage() {
   const sc = selectedLead ? (STATUSES[selectedLead.status] || STATUSES.new) : null;
 
   return (
-    <div style={{ fontFamily:'Inter,system-ui,sans-serif', color:'#e2e8f0', minHeight:'100vh' }}>
+    <div style={{ fontFamily:'Inter,system-ui,sans-serif', color:'#334155', background:'#f5f5f7', minHeight:'100vh' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box}
         ::-webkit-scrollbar{width:5px;height:5px}
         ::-webkit-scrollbar-track{background:transparent}
         ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:99px}
-        input::placeholder,textarea::placeholder{color:#475569!important}
-        select option{background:#1e293b;color:#e2e8f0}
+        select option{background:#fff;color:#0f172a}
         input[type=date]::-webkit-calendar-picker-indicator,
-        input[type=datetime-local]::-webkit-calendar-picker-indicator{filter:invert(.5)}
+        input[type=datetime-local]::-webkit-calendar-picker-indicator{filter:none}
         .lead-row{transition:background .12s,border-color .12s;cursor:pointer;border-left:2px solid transparent}
-        .lead-row:hover{background:rgba(255,255,255,.04)!important}
-        .lead-row.active{background:rgba(99,102,241,.1)!important;border-left-color:#6366f1!important}
+        .lead-row:hover{background:#f8f9fc!important}
+        .lead-row.active{background:rgba(99,57,255,0.06)!important;border-left-color:#6339ff!important}
         .spill{cursor:pointer;transition:all .15s}
         .spill:hover{opacity:.75;transform:translateY(-1px)}
         .pbtn{transition:opacity .12s,transform .12s}
@@ -413,16 +412,16 @@ export default function AdminLeadsPage() {
         @keyframes mi{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
         .tab{background:none;border:none;cursor:pointer;transition:color .12s,border-color .12s;font-family:Inter,system-ui,sans-serif}
         .icb{transition:background .12s;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif}
-        .icb:hover{background:rgba(255,255,255,.1)!important}
+        .icb:hover{background:#f1f5f9!important}
         @keyframes spin{to{transform:rotate(360deg)}}
         @media (max-width: 980px){
           .al-header{padding:12px !important;align-items:flex-start !important;gap:10px !important;flex-direction:column !important}
           .al-actions{width:100% !important;display:flex !important;flex-wrap:wrap !important}
           .al-actions button{flex:1 1 calc(50% - 6px) !important;min-width:0 !important}
           .al-stats{grid-template-columns:repeat(2,1fr) !important}
-          .al-stat{padding:12px !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06) !important}
+          .al-stat{padding:12px !important;border-right:none !important;border-bottom:1px solid #e2e8f0 !important}
           .al-layout{grid-template-columns:1fr !important;height:auto !important;min-height:calc(100vh - 162px) !important}
-          .al-left{max-height:42vh !important;border-right:none !important;border-bottom:1px solid rgba(255,255,255,.06) !important}
+          .al-left{max-height:42vh !important;border-right:none !important;border-bottom:1px solid #e2e8f0 !important}
           .al-right{min-height:58vh !important}
           .al-lead-head{padding:12px !important;flex-direction:column !important;align-items:flex-start !important}
           .al-tabs{padding:0 12px !important;overflow-x:auto !important}
@@ -451,18 +450,18 @@ export default function AdminLeadsPage() {
 
       {/* Toast */}
       {toast && (
-        <div className="ov" style={{ position:'fixed', top:20, right:20, zIndex:999, display:'flex', alignItems:'center', gap:10, padding:'12px 16px', borderRadius:12, background:toast.type==='ok'?'#052e16':'#450a0a', border:`1px solid ${toast.type==='ok'?'#16a34a':'#b91c1c'}`, boxShadow:'0 8px 32px rgba(0,0,0,.6)' }}>
+        <div className="ov" style={{ position:'fixed', top:20, right:20, zIndex:999, display:'flex', alignItems:'center', gap:10, padding:'12px 16px', borderRadius:12, background:toast.type==='ok'?'#f0fdf4':'#fef2f2', border:`1px solid ${toast.type==='ok'?'#86efac':'#fca5a5'}`, boxShadow:'0 8px 32px rgba(0,0,0,0.1)' }}>
           {toast.type==='ok' ? <CheckCircle size={15} color="#4ade80"/> : <AlertCircle size={15} color="#f87171"/>}
-          <span style={{ fontSize:13, fontWeight:500, color:toast.type==='ok'?'#bbf7d0':'#fecaca' }}>{toast.text}</span>
-          <button onClick={() => setToast(null)} className="icb" style={{ background:'transparent', borderRadius:6, padding:2, color:'rgba(255,255,255,.4)', marginLeft:6 }}><X size={13}/></button>
+          <span style={{ fontSize:13, fontWeight:500, color:toast.type==='ok'?'#166534':'#991b1b' }}>{toast.text}</span>
+          <button onClick={() => setToast(null)} className="icb" style={{ background:'transparent', borderRadius:6, padding:2, color:'rgba(0,0,0,.3)', marginLeft:6 }}><X size={13}/></button>
         </div>
       )}
 
       {/* Header */}
-      <div className="al-header" style={{ padding:'18px 24px 14px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
+      <div className="al-header" style={{ padding:'18px 24px 14px', borderBottom:'1px solid #e2e8f0', display:'flex', alignItems:'center', justifyContent:'space-between' }}>
         <div>
-          <div style={{ fontSize:11, fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#6366f1', marginBottom:3 }}>CRM</div>
-          <h1 style={{ fontSize:22, fontWeight:700, color:'#f1f5f9', margin:0 }}>Leads</h1>
+          <div style={{ fontSize:11, fontWeight:600, letterSpacing:'.08em', textTransform:'uppercase', color:'#6339ff', marginBottom:3 }}>CRM</div>
+          <h1 style={{ fontSize:22, fontWeight:700, color:'#0f172a', margin:0 }}>Leads</h1>
         </div>
         <div className="al-actions" style={{ display:'flex', gap:8 }}>
           <button onClick={() => void importFrom('contacts')} style={G} disabled={saving}><Download size={13}/> Import Contacts</button>
@@ -473,18 +472,18 @@ export default function AdminLeadsPage() {
       </div>
 
       {/* Stats */}
-      <div className="al-stats" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+      <div className="al-stats" style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', borderBottom:'1px solid #e2e8f0' }}>
         {[
           { label:'Total Leads', value:stats.total,    icon:<User size={13}/>,        color:'#818cf8' },
           { label:'Active',      value:stats.active,   icon:<Zap size={13}/>,         color:'#34d399' },
           { label:'Won',         value:stats.won,      icon:<CheckCircle size={13}/>, color:'#4ade80' },
           { label:'Pipeline',    value:fmt(stats.pipeline), icon:<TrendingUp size={13}/>, color:'#fbbf24' },
         ].map((s,i) => (
-          <div key={i} className="al-stat" style={{ padding:'14px 20px', borderRight:i<3?'1px solid rgba(255,255,255,.06)':'none' }}>
+          <div key={i} className="al-stat" style={{ padding:'14px 20px', borderRight:i<3?'1px solid #e2e8f0':'none' }}>
             <div style={{ display:'flex', alignItems:'center', gap:6, color:s.color, marginBottom:5 }}>
               {s.icon}<span style={{ fontSize:11, fontWeight:600 }}>{s.label}</span>
             </div>
-            <div style={{ fontSize:22, fontWeight:700, color:'#f1f5f9' }}>{s.value}</div>
+            <div style={{ fontSize:22, fontWeight:700, color:'#0f172a' }}>{s.value}</div>
           </div>
         ))}
       </div>
@@ -493,7 +492,7 @@ export default function AdminLeadsPage() {
       <div className="al-layout" style={{ display:'grid', gridTemplateColumns:'310px 1fr', height:'calc(100vh - 162px)' }}>
 
         {/* LEFT – Lead list */}
-        <div className="al-left" style={{ borderRight:'1px solid rgba(255,255,255,.06)', display:'flex', flexDirection:'column', overflow:'hidden' }}>
+        <div className="al-left" style={{ borderRight:'1px solid #e2e8f0', display:'flex', flexDirection:'column', overflow:'hidden' }}>
           {/* Search + filter chips */}
           <div style={{ padding:'10px 12px 8px' }}>
             <div style={{ position:'relative', marginBottom:8 }}>
@@ -506,7 +505,7 @@ export default function AdminLeadsPage() {
                 const sv = STATUSES[s];
                 return (
                   <button key={s} onClick={() => setFilter(s)}
-                    style={{ flexShrink:0, fontSize:11, fontWeight:600, padding:'4px 10px', borderRadius:99, cursor:'pointer', transition:'all .12s', background:active?(s==='all'?'#4f46e5':sv?.bg):'rgba(255,255,255,.04)', color:active?(s==='all'?'#fff':sv?.color):'#64748b', border:`1px solid ${active?(s==='all'?'#6366f1':sv?.dot+'70'):'transparent'}` }}>
+                    style={{ flexShrink:0, fontSize:11, fontWeight:600, padding:'4px 10px', borderRadius:99, cursor:'pointer', transition:'all .12s', background:active?(s==='all'?'#4f46e5':sv?.bg):'#f1f5f9', color:active?(s==='all'?'#fff':sv?.color):'#64748b', border:`1px solid ${active?(s==='all'?'#6339ff':sv?.dot+'70'):'transparent'}` }}>
                     {s==='all'?'All':sv.label}
                   </button>
                 );
@@ -518,16 +517,16 @@ export default function AdminLeadsPage() {
           {/* List */}
           <div style={{ overflowY:'auto', flex:1 }}>
             {loading && [...Array(5)].map((_,i) => (
-              <div key={i} style={{ padding:'14px', borderBottom:'1px solid rgba(255,255,255,.05)', display:'flex', gap:10, alignItems:'center' }}>
-                <div style={{ width:36, height:36, borderRadius:10, background:'rgba(255,255,255,.06)' }}/>
+              <div key={i} style={{ padding:'14px', borderBottom:'1px solid #f1f5f9', display:'flex', gap:10, alignItems:'center' }}>
+                <div style={{ width:36, height:36, borderRadius:10, background:'#f1f5f9' }}/>
                 <div style={{ flex:1 }}>
-                  <div style={{ height:12, width:'60%', borderRadius:4, background:'rgba(255,255,255,.06)', marginBottom:6 }}/>
-                  <div style={{ height:10, width:'40%', borderRadius:4, background:'rgba(255,255,255,.04)' }}/>
+                  <div style={{ height:12, width:'60%', borderRadius:4, background:'#f1f5f9', marginBottom:6 }}/>
+                  <div style={{ height:10, width:'40%', borderRadius:4, background:'#f1f5f9' }}/>
                 </div>
               </div>
             ))}
             {!loading && filtered.length===0 && (
-              <div style={{ padding:40, textAlign:'center', color:'#334155' }}>
+              <div style={{ padding:40, textAlign:'center', color:'#64748b' }}>
                 <User size={28} style={{ margin:'0 auto 8px', display:'block' }}/>
                 <div style={{ fontSize:13 }}>No leads found</div>
               </div>
@@ -538,7 +537,7 @@ export default function AdminLeadsPage() {
               const isA = selectedId===lead.id;
               return (
                 <div key={lead.id} onClick={() => setSelectedId(lead.id)}
-                  style={{ padding:'11px 13px', borderBottom:'1px solid rgba(255,255,255,.05)' }}
+                  style={{ padding:'11px 13px', borderBottom:'1px solid #f1f5f9' }}
                   className={`lead-row${isA?' active':''}`}>
                   <div style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
                     <div style={{ width:34, height:34, borderRadius:9, background:lsc.bg, border:`1px solid ${lsc.dot}40`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:13, fontWeight:700, color:lsc.color, flexShrink:0 }}>
@@ -546,10 +545,10 @@ export default function AdminLeadsPage() {
                     </div>
                     <div style={{ flex:1, minWidth:0 }}>
                       <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', gap:4, marginBottom:2 }}>
-                        <div style={{ fontSize:13, fontWeight:600, color:'#f1f5f9', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{lead.name||'Unnamed'}</div>
+                        <div style={{ fontSize:13, fontWeight:600, color:'#0f172a', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis' }}>{lead.name||'Unnamed'}</div>
                         <div style={{ display:'flex', alignItems:'center', gap:4, flexShrink:0 }}>
                           {Number(lead.value_amount)>0 && <span style={{ fontSize:11, fontWeight:600, color:'#fbbf24' }}>{fmt(Number(lead.value_amount))}</span>}
-                          <button className="icb" style={{ width:22, height:22, borderRadius:6, background:'rgba(239,68,68,.1)', color:'#f87171', padding:0 }}
+                          <button className="icb" style={{ width:22, height:22, borderRadius:6, background:'rgba(239,68,68,0.08)', color:'#f87171', padding:0 }}
                             onClick={e => { e.stopPropagation(); void deleteLead(lead.id); }}>
                             <Trash2 size={11}/>
                           </button>
@@ -563,7 +562,7 @@ export default function AdminLeadsPage() {
                         <span style={{ fontSize:10, fontWeight:600, padding:'2px 7px', borderRadius:99, background:lpc.bg, color:lpc.color }}>{lead.priority}</span>
                       </div>
                     </div>
-                    <ChevronRight size={13} color={isA?'#6366f1':'#1e293b'} style={{ flexShrink:0, marginTop:10 }}/>
+                    <ChevronRight size={13} color={isA?'#6339ff':'#cbd5e1'} style={{ flexShrink:0, marginTop:10 }}/>
                   </div>
                 </div>
               );
@@ -574,22 +573,22 @@ export default function AdminLeadsPage() {
         {/* RIGHT – Detail panel */}
         <div className="al-right" style={{ display:'flex', flexDirection:'column', overflow:'hidden' }}>
           {!selectedLead ? (
-            <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', color:'#1e293b' }}>
+            <div style={{ flex:1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', color:'#64748b' }}>
               <User size={44} style={{ marginBottom:14, opacity:.4 }}/>
               <div style={{ fontSize:15, fontWeight:600, color:'#334155' }}>Select a lead</div>
-              <div style={{ fontSize:13, marginTop:5, color:'#1e293b' }}>Click any lead on the left</div>
+              <div style={{ fontSize:13, marginTop:5, color:'#64748b' }}>Click any lead on the left</div>
             </div>
           ) : (
             <div style={{ display:'flex', flexDirection:'column', height:'100%' }} className="fade">
 
               {/* Lead header */}
-              <div className="al-lead-head" style={{ padding:'14px 20px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+              <div className="al-lead-head" style={{ padding:'14px 20px', borderBottom:'1px solid #e2e8f0', display:'flex', alignItems:'center', justifyContent:'space-between', gap:12 }}>
                 <div style={{ display:'flex', alignItems:'center', gap:12 }}>
                   <div style={{ width:42, height:42, borderRadius:11, background:sc?.bg, border:`1px solid ${sc?.dot}55`, display:'flex', alignItems:'center', justifyContent:'center', fontSize:17, fontWeight:700, color:sc?.color }}>
                     {(selectedLead.name||'?')[0].toUpperCase()}
                   </div>
                   <div>
-                    <div style={{ fontSize:16, fontWeight:700, color:'#f1f5f9' }}>{selectedLead.name}</div>
+                    <div style={{ fontSize:16, fontWeight:700, color:'#0f172a' }}>{selectedLead.name}</div>
                     <div style={{ fontSize:12, color:'#64748b', display:'flex', gap:10, marginTop:2, flexWrap:'wrap' }}>
                       <span>{selectedLead.email}</span>
                       {selectedLead.company && <span>· {selectedLead.company}</span>}
@@ -611,10 +610,10 @@ export default function AdminLeadsPage() {
               </div>
 
               {/* Quick status pills */}
-              <div style={{ padding:'9px 20px', borderBottom:'1px solid rgba(255,255,255,.06)', display:'flex', gap:5, flexWrap:'wrap' }}>
+              <div style={{ padding:'9px 20px', borderBottom:'1px solid #e2e8f0', display:'flex', gap:5, flexWrap:'wrap' }}>
                 {Object.entries(STATUSES).map(([k,v]) => (
                   <button key={k} onClick={() => void changeStatus(selectedLead.id, k)} className="spill"
-                    style={{ fontSize:11, fontWeight:600, padding:'5px 12px', borderRadius:99, cursor:'pointer', background:selectedLead.status===k?v.bg:'rgba(255,255,255,.04)', color:selectedLead.status===k?v.color:'#475569', border:`1px solid ${selectedLead.status===k?v.dot+'75':'rgba(255,255,255,.08)'}` }}>
+                    style={{ fontSize:11, fontWeight:600, padding:'5px 12px', borderRadius:99, cursor:'pointer', background:selectedLead.status===k?v.bg:'#f1f5f9', color:selectedLead.status===k?v.color:'#475569', border:`1px solid ${selectedLead.status===k?v.dot+'75':'#e2e8f0'}` }}>
                     {selectedLead.status===k && <span style={{ display:'inline-block', width:6, height:6, borderRadius:99, background:v.dot, marginRight:5, verticalAlign:'middle' }}/>}
                     {v.label}
                   </button>
@@ -622,14 +621,14 @@ export default function AdminLeadsPage() {
               </div>
 
               {/* Tabs */}
-              <div className="al-tabs" style={{ display:'flex', borderBottom:'1px solid rgba(255,255,255,.06)', padding:'0 20px' }}>
+              <div className="al-tabs" style={{ display:'flex', borderBottom:'1px solid #e2e8f0', padding:'0 20px' }}>
                 {([
                   ['details', 'Details',                   <Edit2 size={12}/>],
                   ['notes',   `Notes (${activities.length})`, <StickyNote size={12}/>],
                   ['invoices',`Invoices (${invoices.length})`, <FileText size={12}/>],
                 ] as [RightTab,string,React.ReactNode][]).map(([key,label,icon]) => (
                   <button key={key} onClick={() => setRightTab(key)} className="tab"
-                    style={{ padding:'10px 14px', fontSize:12, fontWeight:500, display:'flex', alignItems:'center', gap:5, color:rightTab===key?'#818cf8':'#475569', borderBottom:`2px solid ${rightTab===key?'#6366f1':'transparent'}` }}>
+                    style={{ padding:'10px 14px', fontSize:12, fontWeight:500, display:'flex', alignItems:'center', gap:5, color:rightTab===key?'#6339ff':'#475569', borderBottom:`2px solid ${rightTab===key?'#6339ff':'transparent'}` }}>
                     {icon}{label}
                   </button>
                 ))}
@@ -695,9 +694,9 @@ export default function AdminLeadsPage() {
                         { label:'Created',  val:new Date(selectedLead.created_at).toLocaleDateString('en-IN') },
                         { label:'Updated',  val:new Date(selectedLead.updated_at).toLocaleDateString('en-IN') },
                       ].map((m,i) => (
-                        <div key={i} style={{ background:'rgba(255,255,255,.03)', borderRadius:8, padding:'9px 12px', border:'1px solid rgba(255,255,255,.06)' }}>
+                        <div key={i} style={{ background:'#f8fafc', borderRadius:8, padding:'9px 12px', border:'1px solid #e2e8f0' }}>
                           <div style={{ fontSize:10, color:'#475569', marginBottom:2 }}>{m.label}</div>
-                          <div style={{ fontSize:12, fontWeight:600, color:'#94a3b8' }}>{m.val}</div>
+                          <div style={{ fontSize:12, fontWeight:600, color:'#334155' }}>{m.val}</div>
                         </div>
                       ))}
                     </div>
@@ -717,22 +716,22 @@ export default function AdminLeadsPage() {
                         <Plus size={14}/> Add
                       </button>
                     </div>
-                    <div style={{ fontSize:11, color:'#334155', marginBottom:16 }}>Ctrl+Enter to add quickly</div>
+                    <div style={{ fontSize:11, color:'#64748b', marginBottom:16 }}>Ctrl+Enter to add quickly</div>
                     {activities.length===0 ? (
-                      <div style={{ textAlign:'center', padding:36, color:'#334155' }}>
+                      <div style={{ textAlign:'center', padding:36, color:'#64748b' }}>
                         <MessageSquare size={28} style={{ margin:'0 auto 8px', display:'block' }}/>
                         <div style={{ fontSize:13 }}>No notes yet</div>
                       </div>
                     ) : (
                       <div style={{ display:'flex', flexDirection:'column', gap:7 }}>
                         {activities.map(a => {
-                          const tc: Record<string,string> = { note:'#818cf8', lead_created:'#34d399', lead_updated:'#60a5fa', invoice_created:'#fbbf24', invoice_sent:'#4ade80', stage_changed:'#f87171', imported_contact:'#6366f1', imported_vendor:'#a855f7' };
+                          const tc: Record<string,string> = { note:'#818cf8', lead_created:'#34d399', lead_updated:'#60a5fa', invoice_created:'#fbbf24', invoice_sent:'#4ade80', stage_changed:'#f87171', imported_contact:'#6339ff', imported_vendor:'#a855f7' };
                           const c = tc[a.activity_type]||'#64748b';
                           return (
-                            <div key={a.id} style={{ display:'flex', gap:10, padding:'11px 13px', background:'rgba(255,255,255,.03)', borderRadius:9, border:'1px solid rgba(255,255,255,.06)' }}>
+                            <div key={a.id} style={{ display:'flex', gap:10, padding:'11px 13px', background:'#f8fafc', borderRadius:9, border:'1px solid #e2e8f0' }}>
                               <div style={{ width:7, height:7, borderRadius:99, background:c, flexShrink:0, marginTop:5 }}/>
                               <div style={{ flex:1 }}>
-                                <div style={{ fontSize:13, color:'#cbd5e1', lineHeight:1.6 }}>{a.message}</div>
+                                <div style={{ fontSize:13, color:'#334155', lineHeight:1.6 }}>{a.message}</div>
                                 <div style={{ fontSize:11, color:'#475569', marginTop:4 }}>
                                   {a.activity_type.replace(/_/g,' ')} · {new Date(a.created_at).toLocaleString('en-IN')}
                                 </div>
@@ -759,7 +758,7 @@ export default function AdminLeadsPage() {
                     </div>
 
                     {invoices.length===0 ? (
-                      <div style={{ textAlign:'center', padding:44, color:'#334155', border:'2px dashed rgba(255,255,255,.07)', borderRadius:14 }}>
+                      <div style={{ textAlign:'center', padding:44, color:'#64748b', border:'2px dashed #e2e8f0', borderRadius:14 }}>
                         <FileText size={32} style={{ margin:'0 auto 10px', display:'block' }}/>
                         <div style={{ fontSize:14, fontWeight:600, color:'#475569', marginBottom:5 }}>No invoices yet</div>
                         <div style={{ fontSize:12, marginBottom:16 }}>Create your first invoice for this client</div>
@@ -773,11 +772,11 @@ export default function AdminLeadsPage() {
                           const lines: InvoiceLine[] = (() => { try { return JSON.parse(inv.line_items_json||'[]'); } catch { return []; } })();
                           const isc = ({ draft:{c:'#94a3b8',bg:'rgba(148,163,184,.1)',bd:'rgba(148,163,184,.2)'}, sent:{c:'#34d399',bg:'rgba(52,211,153,.1)',bd:'rgba(52,211,153,.25)'}, paid:{c:'#4ade80',bg:'rgba(74,222,128,.1)',bd:'rgba(74,222,128,.25)'} } as Record<string,{c:string;bg:string;bd:string}>)[inv.status] || {c:'#94a3b8',bg:'rgba(148,163,184,.1)',bd:'rgba(148,163,184,.2)'};
                           return (
-                            <div key={inv.id} style={{ borderRadius:12, border:'1px solid rgba(255,255,255,.08)', overflow:'hidden', background:'rgba(255,255,255,.02)' }}>
+                            <div key={inv.id} style={{ borderRadius:12, border:'1px solid #e2e8f0', overflow:'hidden', background:'#ffffff' }}>
                               {/* Invoice top */}
-                              <div className="al-invoice-top" style={{ padding:'13px 15px', display:'flex', justifyContent:'space-between', alignItems:'flex-start', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                              <div className="al-invoice-top" style={{ padding:'13px 15px', display:'flex', justifyContent:'space-between', alignItems:'flex-start', borderBottom:'1px solid #e2e8f0' }}>
                                 <div>
-                                  <div style={{ fontSize:14, fontWeight:700, color:'#f1f5f9', marginBottom:2 }}>{inv.invoice_number}</div>
+                                  <div style={{ fontSize:14, fontWeight:700, color:'#0f172a', marginBottom:2 }}>{inv.invoice_number}</div>
                                   <div style={{ fontSize:11, color:'#64748b' }}>{inv.invoice_date}{inv.due_date?` · Due ${inv.due_date}`:''}</div>
                                 </div>
                                 <div style={{ textAlign:'right' }}>
@@ -787,7 +786,7 @@ export default function AdminLeadsPage() {
                               </div>
                               {/* Line items table */}
                               {lines.length>0 && (
-                                <div className="al-invoice-table-wrap" style={{ padding:'10px 15px', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                                <div className="al-invoice-table-wrap" style={{ padding:'10px 15px', borderBottom:'1px solid #e2e8f0' }}>
                                   <table style={{ width:'100%', borderCollapse:'collapse', fontSize:12 }}>
                                     <thead>
                                       <tr>
@@ -798,16 +797,16 @@ export default function AdminLeadsPage() {
                                     </thead>
                                     <tbody>
                                       {lines.map((l,li) => (
-                                        <tr key={li} style={{ borderTop:'1px solid rgba(255,255,255,.04)' }}>
-                                          <td style={{ padding:'5px 0', color:'#cbd5e1' }}>{l.description}</td>
-                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#94a3b8' }}>{l.qty}</td>
-                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#94a3b8' }}>{Number(l.rate).toLocaleString()}</td>
-                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#e2e8f0', fontWeight:500 }}>{Number(l.amount||l.qty*l.rate).toLocaleString()}</td>
+                                        <tr key={li} style={{ borderTop:'1px solid #f1f5f9' }}>
+                                          <td style={{ padding:'5px 0', color:'#334155' }}>{l.description}</td>
+                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#64748b' }}>{l.qty}</td>
+                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#64748b' }}>{Number(l.rate).toLocaleString()}</td>
+                                          <td style={{ padding:'5px 0', textAlign:'right', color:'#0f172a', fontWeight:500 }}>{Number(l.amount||l.qty*l.rate).toLocaleString()}</td>
                                         </tr>
                                       ))}
                                     </tbody>
                                   </table>
-                                  <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:2, marginTop:8, paddingTop:8, borderTop:'1px solid rgba(255,255,255,.08)' }}>
+                                  <div style={{ display:'flex', flexDirection:'column', alignItems:'flex-end', gap:2, marginTop:8, paddingTop:8, borderTop:'1px solid #e2e8f0' }}>
                                     <div style={{ display:'flex', gap:20, fontSize:12, color:'#64748b' }}><span>Subtotal</span><span>{Number(inv.subtotal).toLocaleString()}</span></div>
                                     <div style={{ display:'flex', gap:20, fontSize:12, color:'#64748b' }}><span>Tax ({inv.tax_percent}%)</span><span>{Number(inv.tax_amount).toLocaleString()}</span></div>
                                     <div style={{ display:'flex', gap:20, fontSize:13, fontWeight:700, color:'#fbbf24' }}><span>Total</span><span>{inv.currency} {Number(inv.total_amount).toLocaleString()}</span></div>
@@ -818,7 +817,7 @@ export default function AdminLeadsPage() {
                               <div className="al-invoice-footer" style={{ padding:'9px 15px', display:'flex', alignItems:'center', justifyContent:'space-between', gap:8, flexWrap:'wrap' }}>
                                 {inv.sent_to_email
                                   ? <span style={{ fontSize:11, color:'#475569', display:'flex', alignItems:'center', gap:4 }}><Mail size={11}/> Sent to {inv.sent_to_email}</span>
-                                  : <span style={{ fontSize:11, color:'#334155' }}>Not sent yet</span>
+                                  : <span style={{ fontSize:11, color:'#64748b' }}>Not sent yet</span>
                                 }
                                 <div className="al-invoice-footer-actions" style={{ display:'flex', alignItems:'center', gap:6 }}>
                                   <button style={{ ...G, height:32, fontSize:12 }} onClick={() => printInvoice(inv)}><Printer size={11}/> Print</button>
@@ -846,15 +845,15 @@ export default function AdminLeadsPage() {
 
       {/* MODAL – New Lead */}
       {showNewLead && (
-        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
+        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.3)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
           onClick={e => e.target===e.currentTarget && setShowNewLead(false)}>
-          <div className="mod al-modal-card" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:500, maxHeight:'90vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
+          <div className="mod al-modal-card" style={{ background:'#ffffff', border:'1px solid #e2e8f0', borderRadius:16, padding:24, width:'100%', maxWidth:500, maxHeight:'90vh', overflowY:'auto', boxShadow:'0 24px 64px rgba(0,0,0,0.12)' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:18 }}>
               <div>
-                <div style={{ fontSize:15, fontWeight:700, color:'#f1f5f9' }}>New Lead</div>
+                <div style={{ fontSize:15, fontWeight:700, color:'#0f172a' }}>New Lead</div>
                 <div style={{ fontSize:12, color:'#475569', marginTop:2 }}>Add a lead to your pipeline</div>
               </div>
-              <button onClick={() => setShowNewLead(false)} className="icb" style={{ width:28, height:28, borderRadius:8, background:'rgba(255,255,255,.06)', color:'#64748b', padding:0 }}><X size={14}/></button>
+              <button onClick={() => setShowNewLead(false)} className="icb" style={{ width:28, height:28, borderRadius:8, background:'#f1f5f9', color:'#64748b', padding:0 }}><X size={14}/></button>
             </div>
             <form onSubmit={createLead} style={{ display:'grid', gap:11 }}>
               <div className="al-grid-2" style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
@@ -890,15 +889,15 @@ export default function AdminLeadsPage() {
 
       {/* MODAL – New Invoice */}
       {showNewInvoice && selectedLead && (
-        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,.7)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
+        <div className="ov al-modal" style={{ position:'fixed', inset:0, background:'rgba(0,0,0,0.3)', backdropFilter:'blur(4px)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:200, padding:20 }}
           onClick={e => e.target===e.currentTarget && setShowNewInvoice(false)}>
-          <div className="mod al-modal-card" style={{ background:'#0f172a', border:'1px solid rgba(255,255,255,.1)', borderRadius:16, padding:24, width:'100%', maxWidth:580, maxHeight:'92vh', overflowY:'auto', boxShadow:'0 32px 80px rgba(0,0,0,.8)' }}>
+          <div className="mod al-modal-card" style={{ background:'#ffffff', border:'1px solid #e2e8f0', borderRadius:16, padding:24, width:'100%', maxWidth:580, maxHeight:'92vh', overflowY:'auto', boxShadow:'0 24px 64px rgba(0,0,0,0.12)' }}>
             <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:18 }}>
               <div>
-                <div style={{ fontSize:15, fontWeight:700, color:'#f1f5f9' }}>Create Invoice</div>
+                <div style={{ fontSize:15, fontWeight:700, color:'#0f172a' }}>Create Invoice</div>
                 <div style={{ fontSize:12, color:'#475569', marginTop:2 }}>For {selectedLead.name}</div>
               </div>
-              <button onClick={() => setShowNewInvoice(false)} className="icb" style={{ width:28, height:28, borderRadius:8, background:'rgba(255,255,255,.06)', color:'#64748b', padding:0 }}><X size={14}/></button>
+              <button onClick={() => setShowNewInvoice(false)} className="icb" style={{ width:28, height:28, borderRadius:8, background:'#f1f5f9', color:'#64748b', padding:0 }}><X size={14}/></button>
             </div>
 
             <div style={{ display:'grid', gap:13 }}>
@@ -939,18 +938,18 @@ export default function AdminLeadsPage() {
               {/* Line items */}
               <div>
                 <div style={{ fontSize:11, fontWeight:600, color:'#475569', letterSpacing:'.06em', textTransform:'uppercase', marginBottom:8 }}>Items</div>
-                <div className="al-item-wrap" style={{ border:'1px solid rgba(255,255,255,.08)', borderRadius:10, overflow:'hidden' }}>
-                  <div className="al-item-head" style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', background:'rgba(255,255,255,.04)', borderBottom:'1px solid rgba(255,255,255,.06)' }}>
+                <div className="al-item-wrap" style={{ border:'1px solid #e2e8f0', borderRadius:10, overflow:'hidden' }}>
+                  <div className="al-item-head" style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', background:'#f8fafc', borderBottom:'1px solid #e2e8f0' }}>
                     {['Description','HSN/SAC','Qty','Rate (₹)','GST %',''].map((h,i) => <div key={i} style={{ fontSize:11, fontWeight:600, color:'#475569', textAlign:i>1?'right':'left' }}>{h}</div>)}
                   </div>
                   {invF.lines.map((line,li) => (
-                    <div className="al-item-row" key={li} style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', borderBottom:li<invF.lines.length-1?'1px solid rgba(255,255,255,.05)':'none', alignItems:'center', gap:4 }}>
+                    <div className="al-item-row" key={li} style={{ display:'grid', gridTemplateColumns:'1fr 86px 72px 96px 72px 36px', padding:'8px 12px', borderBottom:li<invF.lines.length-1?'1px solid #f1f5f9':'none', alignItems:'center', gap:4 }}>
                       <input style={{ ...I, height:33, fontSize:13 }} placeholder="Item description" value={line.description} onChange={e => updateLine(li,'description',e.target.value)}/>
                       <input style={{ ...I, height:33, fontSize:13, marginLeft:6 }} placeholder="9983" value={line.hsn_sac || ''} onChange={e => updateLine(li,'hsn_sac',e.target.value)}/>
                       <input style={{ ...I, height:33, fontSize:13, textAlign:'right', marginLeft:6 }} type="number" min="1" value={line.qty} onChange={e => updateLine(li,'qty',Number(e.target.value||1))}/>
                       <input style={{ ...I, height:33, fontSize:13, textAlign:'right', marginLeft:6 }} type="number" min="0" placeholder="0" value={line.rate||''} onChange={e => updateLine(li,'rate',Number(e.target.value||0))}/>
                       <input style={{ ...I, height:33, fontSize:13, textAlign:'right', marginLeft:6 }} type="number" min="0" value={line.gst_percent||0} onChange={e => updateLine(li,'gst_percent',Number(e.target.value||0))}/>
-                      <button onClick={() => removeLine(li)} disabled={invF.lines.length===1} className="icb" style={{ width:26, height:26, borderRadius:7, background:'rgba(239,68,68,.08)', color:'#f87171', marginLeft:6, opacity:invF.lines.length===1?.3:1 }}>
+                      <button onClick={() => removeLine(li)} disabled={invF.lines.length===1} className="icb" style={{ width:26, height:26, borderRadius:7, background:'rgba(239,68,68,0.08)', color:'#f87171', marginLeft:6, opacity:invF.lines.length===1?.3:1 }}>
                         <X size={11}/>
                       </button>
                     </div>
@@ -967,7 +966,7 @@ export default function AdminLeadsPage() {
               <F label="Invoice Notes"><textarea style={{ ...I, minHeight:70, paddingTop:10, resize:'vertical', lineHeight:1.6 }} value={invF.notes} onChange={e => setInvF(p => ({ ...p, notes:e.target.value }))} placeholder="Additional notes for client" /></F>
 
               {/* Live total */}
-              <div style={{ background:'rgba(251,191,36,.05)', border:'1px solid rgba(251,191,36,.15)', borderRadius:10, padding:'12px 15px' }}>
+              <div style={{ background:'#fffbeb', border:'1px solid #fde68a', borderRadius:10, padding:'12px 15px' }}>
                 <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'#94a3b8', marginBottom:3 }}><span>Subtotal</span><span>{invF.currency} {invSubtotal.toLocaleString('en-IN',{minimumFractionDigits:2})}</span></div>
                 <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'#94a3b8', marginBottom:3 }}><span>Discount</span><span>{invF.currency} {Number(invF.discount_amount||0).toLocaleString('en-IN',{minimumFractionDigits:2})}</span></div>
                 <div style={{ display:'flex', justifyContent:'space-between', fontSize:12, color:'#94a3b8', marginBottom:3 }}><span>Shipping</span><span>{invF.currency} {Number(invF.shipping_amount||0).toLocaleString('en-IN',{minimumFractionDigits:2})}</span></div>
@@ -1002,6 +1001,6 @@ function F({ label, icon, children }: { label:string; icon?:React.ReactNode; chi
 }
 
 /* ── Shared style tokens ── */
-const I: CSSProperties = { width:'100%', background:'rgba(255,255,255,.05)', border:'1px solid rgba(255,255,255,.09)', borderRadius:8, color:'#e2e8f0', height:38, padding:'0 12px', fontFamily:'Inter,system-ui,sans-serif', fontSize:13, outline:'none' };
-const P: CSSProperties = { height:36, borderRadius:8, border:'none', background:'linear-gradient(135deg,#4f46e5,#7c3aed)', color:'#fff', display:'inline-flex', alignItems:'center', justifyContent:'center', gap:6, cursor:'pointer', padding:'0 14px', fontFamily:'Inter,system-ui,sans-serif', fontWeight:600, fontSize:13, flexShrink:0 };
-const G: CSSProperties = { height:36, borderRadius:8, border:'1px solid rgba(255,255,255,.1)', background:'rgba(255,255,255,.04)', color:'#94a3b8', display:'inline-flex', alignItems:'center', justifyContent:'center', gap:6, cursor:'pointer', padding:'0 12px', fontFamily:'Inter,system-ui,sans-serif', fontWeight:500, fontSize:13, flexShrink:0 };
+const I: CSSProperties = { width:'100%', background:'#ffffff', border:'1px solid #d1d5db', borderRadius:8, color:'#0f172a', height:38, padding:'0 12px', fontFamily:'Inter,system-ui,sans-serif', fontSize:13, outline:'none' };
+const P: CSSProperties = { height:36, borderRadius:8, border:'none', background:'linear-gradient(135deg,#6339ff,#4f46e5)', color:'#fff', display:'inline-flex', alignItems:'center', justifyContent:'center', gap:6, cursor:'pointer', padding:'0 14px', fontFamily:'Inter,system-ui,sans-serif', fontWeight:600, fontSize:13, flexShrink:0 };
+const G: CSSProperties = { height:36, borderRadius:8, border:'1px solid #e2e8f0', background:'#ffffff', color:'#64748b', display:'inline-flex', alignItems:'center', justifyContent:'center', gap:6, cursor:'pointer', padding:'0 12px', fontFamily:'Inter,system-ui,sans-serif', fontWeight:500, fontSize:13, flexShrink:0 };

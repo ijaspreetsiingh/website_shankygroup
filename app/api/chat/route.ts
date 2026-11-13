@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { CHATBOT_KNOWLEDGE, CHATBOT_DEFAULT_ANSWER } from '@/app/lib/chatbot-knowledge';
+import { checkRateLimit } from '@/app/lib/rate-limit';
 
 function buildSystemPrompt(hasPriorUserMessages: boolean): string {
   const knowledgeText = CHATBOT_KNOWLEDGE.map(
@@ -285,6 +286,13 @@ async function tryGemini(
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting: 15 requests per minute per IP
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || request.headers.get('x-real-ip') || 'unknown';
+    const { allowed } = checkRateLimit(`chat:${ip}`, 15, 60000);
+    if (!allowed) {
+      return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+    }
+
     const apiKey = (process.env.GEMINI_API_KEY || process.env.GOOGLE_AI_API_KEY)?.trim();
     const openRouterKey = process.env.OPENROUTER_API_KEY?.trim();
     const groqKey = process.env.GROQ_API_KEY?.trim();

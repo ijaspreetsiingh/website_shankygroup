@@ -1,8 +1,20 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+// CORS: restrict to own domain only
+$allowedOrigins = [
+    'https://shankygroup.com',
+    'https://www.shankygroup.com',
+    'http://localhost:3000',
+];
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $origin);
+}
 header("Access-Control-Allow-Methods: POST, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Headers: Content-Type, X-Requested-With");
 header("Content-Type: application/json");
+header("X-Content-Type-Options: nosniff");
+header("X-Frame-Options: DENY");
+header("Referrer-Policy: strict-origin-when-cross-origin");
 
 // Handle preflight request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -10,11 +22,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-// Database configuration
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "shankygroup"; // Replace with your actual database name
+// Rate limiting: max 30 requests per minute per IP
+$rateLimitFile = sys_get_temp_dir() . '/rate_' . md5($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+$rateData = [];
+if (file_exists($rateLimitFile)) {
+    $rateData = json_decode(file_get_contents($rateLimitFile), true) ?: [];
+}
+$now = time();
+$rateData = array_filter($rateData, fn($t) => $t > $now - 60);
+if (count($rateData) >= 30) {
+    http_response_code(429);
+    echo json_encode(["status" => "error", "message" => "Too many requests. Please try again later."]);
+    exit();
+}
+$rateData[] = $now;
+file_put_contents($rateLimitFile, json_encode($rateData));
+
+// Database configuration - use environment variables when available
+$servername = getenv('DB_HOST') ?: "localhost";
+$username = getenv('DB_USER') ?: "root";
+$password = getenv('DB_PASSWORD') ?: "";
+$dbname = getenv('DB_NAME') ?: "shankygroup";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -29,56 +57,39 @@ if ($conn->connect_error) {
 $json = file_get_contents('php://input');
 $data = json_decode($json, true);
 
-// Debug: Log received data
-error_log("Received JSON: " . $json);
-error_log("Decoded data: " . print_r($data, true));
-error_log("Inquiry type received: " . ($data['inquiryType'] ?? 'NOT SET'));
-
 // If data is not JSON, check $_POST
 if (is_null($data)) {
     $data = $_POST;
-    error_log("Using POST data instead: " . print_r($data, true));
 }
 
 // Handle different inquiry types and actions
 if (isset($data['action'])) {
-    error_log("=== ACTION RECEIVED: " . $data['action'] . " ===");
-    
     switch ($data['action']) {
         case 'get_blogs':
-            error_log("Processing get_blogs action");
             getBlogs($conn);
             break;
         case 'get_blog':
-            error_log("Processing get_blog action");
             getSingleBlog($conn, $data);
             break;
         case 'get_blog_by_slug':
-            error_log("Processing get_blog_by_slug action");
             getBlogBySlug($conn, $data);
             break;
         case 'get_related_blogs':
-            error_log("Processing get_related_blogs action");
             getRelatedBlogs($conn, $data);
             break;
         case 'get_blog_comments':
-            error_log("Processing get_blog_comments action");
             getBlogComments($conn, $data);
             break;
         case 'add_comment':
-            error_log("Processing add_comment action");
             addBlogComment($conn, $data);
             break;
         case 'increment_view':
-            error_log("Processing increment_view action");
             incrementBlogView($conn, $data);
             break;
         case 'track_visitor':
-            error_log("Processing track_visitor action");
             trackVisitor($conn);
             break;
         case 'visitor_analytics':
-            error_log("Processing visitor_analytics action");
             getVisitorAnalytics($conn);
             break;
         case 'submit_vendor_registration':
@@ -91,12 +102,10 @@ if (isset($data['action'])) {
             handleCareerApplicationSubmit($conn);
             exit();
         default:
-            error_log("ERROR: Invalid action - " . $data['action']);
             echo json_encode(["status" => "error", "message" => "Invalid action"]);
             break;
     }
-    error_log("=== ACTION PROCESSING COMPLETED ===");
-    exit(); // Important: exit after handling action
+    exit();
 }
 
 // Vendor form from website (vender.tsx) - has companyName, contactPerson, email, etc. (no firstName)
@@ -125,10 +134,6 @@ $source = 'website'; // Set source to website
 // SQL Insert Query with source
 $sql = "INSERT INTO contact_inquiries (first_name, last_name, state, phone, email, inquiry_type, message, exclusive_offers, source)
         VALUES ('$firstName', '$lastName', '$state', '$phone', '$email', '$inquiryType', '$message', $exclusiveOffers, '$source')";
-
-// Debug: Log the SQL query
-error_log("SQL Query: " . $sql);
-error_log("InquiryType being inserted: " . $inquiryType);
 
 // Handle inquiry types
 if (isset($data['inquiryType'])) {
@@ -349,29 +354,18 @@ function incrementBlogView($conn, $data) {
 
 // Function to track visitor
 function trackVisitor($conn) {
-    error_log("=== TRACK VISITOR FUNCTION CALLED ===");
-    
-    // Check both JSON input and $_POST
     $visitorData = null;
     
-    // First try to get from JSON input
     $json = file_get_contents('php://input');
     $data = json_decode($json, true);
     
     if ($data && isset($data['visitor_data'])) {
         $visitorData = $data['visitor_data'];
-        error_log("Visitor data from JSON: " . print_r($visitorData, true));
     } else {
-        // Try $_POST
         $visitorData = $_POST['visitor_data'] ?? null;
-        error_log("Visitor data from POST: " . print_r($visitorData, true));
     }
     
     if (!$visitorData) {
-        error_log("ERROR: No visitor data provided in JSON or POST");
-        error_log("Raw JSON received: " . $json);
-        error_log("Raw POST data: " . print_r($_POST, true));
-        
         echo json_encode([
             "status" => "error", 
             "message" => "No visitor data provided"
@@ -379,9 +373,7 @@ function trackVisitor($conn) {
         return;
     }
     
-    // Check database connection
     if ($conn->connect_error) {
-        error_log("ERROR: Database connection failed: " . $conn->connect_error);
         echo json_encode([
             "status" => "error", 
             "message" => "Database connection failed"
@@ -389,9 +381,6 @@ function trackVisitor($conn) {
         return;
     }
     
-    error_log("Database connection OK, creating visitors table...");
-    
-    // Create visitors table if it doesn't exist
     $createVisitorsTableQuery = "
         CREATE TABLE IF NOT EXISTS visitors (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -416,15 +405,12 @@ function trackVisitor($conn) {
     ";
     
     if (!$conn->query($createVisitorsTableQuery)) {
-        error_log("ERROR: Creating visitors table failed: " . $conn->error);
         echo json_encode([
             "status" => "error", 
-            "message" => "Error creating visitors table: " . $conn->error
+            "message" => "Error creating visitors table"
         ]);
         return;
     }
-    
-    error_log("Visitors table created/verified successfully");
     
     // Sanitize and prepare data
     $ip = $conn->real_escape_string($visitorData['ip'] ?? '');
@@ -441,9 +427,6 @@ function trackVisitor($conn) {
     $language = $conn->real_escape_string($visitorData['language'] ?? '');
     $referrer = $conn->real_escape_string($visitorData['referrer'] ?? '');
     
-    error_log("Sanitized data prepared, inserting into database...");
-    
-    // Insert visitor data
     $insertVisitorQuery = "
         INSERT INTO visitors 
         (ip, country, city, region, latitude, longitude, timezone, user_agent, browser, os, screen_resolution, language, referrer) 
@@ -452,10 +435,9 @@ function trackVisitor($conn) {
     
     $stmt = $conn->prepare($insertVisitorQuery);
     if (!$stmt) {
-        error_log("ERROR: Failed to prepare statement: " . $conn->error);
         echo json_encode([
             "status" => "error", 
-            "message" => "Failed to prepare statement: " . $conn->error
+            "message" => "Failed to prepare statement"
         ]);
         return;
     }
@@ -466,24 +448,20 @@ function trackVisitor($conn) {
     );
     
     if ($stmt->execute()) {
-        error_log("SUCCESS: Visitor data inserted successfully");
         echo json_encode([
             "status" => "success", 
             "message" => "Visitor tracked successfully"
         ]);
         
-        // Send visitor data to admin dashboard server
         sendVisitorDataToAdmin($conn);
     } else {
-        error_log("ERROR: Failed to insert visitor data: " . $stmt->error);
         echo json_encode([
             "status" => "error", 
-            "message" => "Error tracking visitor: " . $stmt->error
+            "message" => "Error tracking visitor"
         ]);
     }
     
     $stmt->close();
-    error_log("=== TRACK VISITOR FUNCTION ENDED ===");
 }
 
 // Function to get visitor analytics
@@ -580,9 +558,6 @@ function getVisitorAnalytics($conn) {
     $todayResult = $conn->query($todayQuery);
     $todayVisitors = $todayResult->fetch_assoc()['today_visitors'];
     
-    // Debug log
-    error_log("Visitor Analytics - Total: $totalVisitors, Today: $todayVisitors, Countries: " . count($visitorsByCountry));
-    
     echo json_encode([
         "status" => "success",
         "data" => [
@@ -598,23 +573,16 @@ function getVisitorAnalytics($conn) {
 
 // Function to send visitor data to admin dashboard
 function sendVisitorDataToAdmin($conn) {
-    // Get latest visitor data
     $query = "SELECT * FROM visitors ORDER BY visit_time DESC LIMIT 1";
     $result = $conn->query($query);
     
     if ($result && $result->num_rows > 0) {
         $visitor = $result->fetch_assoc();
         
-        error_log("=== SENDING VISITOR DATA TO ADMIN ===");
-        error_log("Visitor data from PHP DB: " . print_r($visitor, true));
-        
-        // Direct database connection to admin dashboard
         try {
-            // Connect to admin dashboard database
             $adminConn = new mysqli("localhost", "root", "", "shankygroup_admin");
             
             if ($adminConn->connect_error) {
-                error_log("Failed to connect to admin database: " . $adminConn->connect_error);
                 return;
             }
             
@@ -667,16 +635,14 @@ function sendVisitorDataToAdmin($conn) {
             );
             
             if ($stmt->execute()) {
-                error_log("Visitor data inserted into admin database successfully");
-            } else {
-                error_log("Error inserting visitor data: " . $stmt->error);
+                // silent success
             }
             
             $stmt->close();
             $adminConn->close();
             
         } catch (Exception $e) {
-            error_log("Error in sendVisitorDataToAdmin: " . $e->getMessage());
+            // silent fail for admin notification
         }
         
         // Also try cURL method as backup
@@ -694,9 +660,6 @@ function sendVisitorDataToAdmin($conn) {
         
         $response = curl_exec($ch);
         curl_close($ch);
-        
-        error_log("Visitor data sent to admin via cURL: " . $response);
-        error_log("=== VISITOR DATA SEND COMPLETED ===");
     }
 }
 
@@ -740,36 +703,21 @@ function getVendorEmailTemplate($conn) {
 // Function to send thank you email using Elastic Mail credentials from database
 // $useVendorTemplate: when true, use vendor registration template (company_settings / email_templates)
 function sendThankYouEmail($firstName, $email, $conn, $useVendorTemplate = false) {
-    // Debug: Check if connection is still alive
     if (!$conn->ping()) {
-        // Reconnect if connection is closed
         global $servername, $username, $password, $dbname;
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
-            error_log("Database reconnection failed: " . $conn->connect_error);
             return false;
         }
     }
     
-    // Get Elastic Mail credentials from database
     $smtpQuery = "SELECT * FROM smtp_configurations WHERE is_active = 1 ORDER BY created_at DESC LIMIT 1";
     $smtpResult = $conn->query($smtpQuery);
-    
-    // Debug: Log the query and result
-    error_log("SMTP Query: " . $smtpQuery);
-    error_log("SMTP Result Count: " . $smtpResult->num_rows);
     
     if ($smtpResult->num_rows > 0) {
         $smtpConfig = $smtpResult->fetch_assoc();
         
-        // Debug: Log SMTP config (without password)
-        error_log("SMTP Config Found - Host: " . $smtpConfig['host'] . ", User: " . $smtpConfig['username'] . ", From: " . $smtpConfig['from_email']);
-        error_log("Password Length: " . strlen($smtpConfig['password']) . " chars");
-        error_log("From Email: " . $smtpConfig['from_email']);
-        
-        // Validate required fields
         if (empty($smtpConfig['password']) || empty($smtpConfig['from_email'])) {
-            error_log("ERROR: Missing API key or from email in SMTP configuration");
             return sendEmailViaPHP($firstName, $email);
         }
         
@@ -777,10 +725,6 @@ function sendThankYouEmail($firstName, $email, $conn, $useVendorTemplate = false
         $overrideTemplate = $useVendorTemplate ? getVendorEmailTemplate($conn) : null;
         return sendEmailViaElasticMail($firstName, $email, $smtpConfig, $conn, $overrideTemplate);
     } else {
-        // Debug: No SMTP config found
-        error_log("No SMTP configuration found in database");
-        
-        // Fallback to PHP mail if no SMTP config found
         return sendEmailViaPHP($firstName, $email);
     }
 }
@@ -807,8 +751,6 @@ function sendEmailViaElasticMail($firstName, $email, $smtpConfig, $conn, $overri
             $emailBody = str_replace('{ticketId}', $ticketId, $emailBody);
             $subject = str_replace('{ticketId}', $ticketId, $subject);
         }
-        
-        error_log("Using custom email template: " . $emailTemplate['template_id']);
     } else {
         // Fallback to default template
         $subject = "Thank You for Contacting Us!";
@@ -860,25 +802,17 @@ function sendEmailViaElasticMail($firstName, $email, $smtpConfig, $conn, $overri
             </div>
         </body>
         </html>";
-        
-        error_log("Using default fallback template");
     }
     
     $fromEmail = $smtpConfig['from_email'];
     $fromName = $smtpConfig['from_name'];
     
-    error_log("Sending email via PHPMailer SMTP to: " . $email);
-    error_log("From: " . $fromEmail . " (" . $fromName . ")");
-    error_log("SMTP Host: " . $smtpConfig['host'] . ":" . $smtpConfig['port']);
-    
     // Validate email addresses
     if (!filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
-        error_log("ERROR: Invalid from email: " . $fromEmail);
         return sendEmailViaPHP($firstName, $email);
     }
     
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        error_log("ERROR: Invalid to email: " . $email);
         return false;
     }
     
@@ -907,16 +841,10 @@ function sendEmailViaElasticMail($firstName, $email, $smtpConfig, $conn, $overri
         $mail->Subject = $subject;
         $mail->Body = $emailBody;
         
-        error_log("Sending via PHPMailer SMTP...");
         $mail->send();
-        error_log("Email sent successfully via PHPMailer SMTP");
         return true;
         
     } catch (Exception $e) {
-        error_log("PHPMailer SMTP failed: " . $e->getMessage());
-        error_log("Trying Elastic Mail API as fallback...");
-        
-        // Fallback to Elastic Mail API
         return sendEmailViaElasticMailAPI($firstName, $email, $smtpConfig, $subject, $fromEmail, $fromName, $emailBody);
     }
 }
@@ -935,18 +863,12 @@ function sendEmailViaElasticMailAPI($firstName, $email, $smtpConfig, $subject, $
         'isTransactional' => true
     ];
     
-    error_log("Elastic Mail API Key exists: " . (!empty($smtpConfig['password']) ? 'YES' : 'NO'));
-    error_log("API Key Length: " . strlen($smtpConfig['password']) . " chars");
-    error_log("From Email: " . $fromEmail);
-    error_log("To Email: " . $email);
-    error_log("Sending to Elastic Mail API: " . $elasticMailUrl);
-    
     $ch = curl_init($elasticMailUrl);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_USERAGENT, 'Contact-API/1.0');
     
@@ -955,24 +877,14 @@ function sendEmailViaElasticMailAPI($firstName, $email, $smtpConfig, $subject, $
     $error = curl_error($ch);
     curl_close($ch);
     
-    error_log("Elastic Mail Response: " . $response);
-    error_log("HTTP Code: " . $httpCode);
-    error_log("Curl Error: " . $error);
-    
-    // Parse response for more details
     $responseData = json_decode($response, true);
-    if ($responseData && isset($responseData['success'])) {
-        if ($responseData['success'] === false) {
-            error_log("Elastic Mail API Error: " . ($responseData['error'] ?? 'Unknown error'));
-        }
+    if ($responseData && isset($responseData['success']) && $responseData['success'] === false) {
+        // Elastic Mail API returned error - silently fail
     }
     
     if ($httpCode == 200 && $responseData && $responseData['success']) {
-        error_log("Email sent successfully via Elastic Mail API");
         return true;
     } else {
-        error_log("Elastic Mail Error - HTTP Code: " . $httpCode . ", Error: " . $error);
-        error_log("Response: " . $response);
         return false;
     }
 }
@@ -1062,7 +974,6 @@ function getAdminNotificationEmail($conn) {
 function sendAdminNotificationEmail($conn, $type, $formData) {
     $toEmail = getAdminNotificationEmail($conn);
     if ($toEmail === '' || !filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
-        error_log("Admin notification skipped: no valid admin_notification_email in company_settings. Add it in Settings.");
         return;
     }
 
@@ -1070,7 +981,6 @@ function sendAdminNotificationEmail($conn, $type, $formData) {
         global $servername, $username, $password, $dbname;
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
-            error_log("Admin notification: DB reconnect failed: " . $conn->connect_error);
             return;
         }
     }
@@ -1078,14 +988,12 @@ function sendAdminNotificationEmail($conn, $type, $formData) {
     $smtpQuery = "SELECT * FROM smtp_configurations WHERE is_active = 1 ORDER BY created_at DESC LIMIT 1";
     $smtpResult = $conn->query($smtpQuery);
     if (!$smtpResult || $smtpResult->num_rows === 0) {
-        error_log("Admin notification: No SMTP config; cannot send notification email.");
         return;
     }
     $smtpConfig = $smtpResult->fetch_assoc();
     $fromEmail = $smtpConfig['from_email'] ?? '';
     $fromName = $smtpConfig['from_name'] ?? 'Website';
     if (!filter_var($fromEmail, FILTER_VALIDATE_EMAIL)) {
-        error_log("Admin notification: Invalid from_email in SMTP config.");
         return;
     }
 
@@ -1130,9 +1038,7 @@ function sendAdminNotificationEmail($conn, $type, $formData) {
         $mail->Subject = $subject;
         $mail->Body = $emailBody;
         $mail->send();
-        error_log("Admin notification email sent to: " . $toEmail);
     } catch (Exception $e) {
-        error_log("Admin notification PHPMailer failed: " . $e->getMessage());
         sendAdminNotificationViaElastic($toEmail, $subject, $emailBody, $smtpConfig);
     }
 }
@@ -1157,11 +1063,6 @@ function sendAdminNotificationViaElastic($toEmail, $subject, $emailBody, $smtpCo
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    if ($httpCode == 200) {
-        error_log("Admin notification sent via Elastic Mail API to: " . $toEmail);
-    } else {
-        error_log("Admin notification Elastic API failed. HTTP: " . $httpCode . ", Response: " . $response);
-    }
 }
 
 // Contact form handler functions
@@ -1536,10 +1437,14 @@ function addBlogComment($conn, $data) {
     
     $conn->query($createCommentsTableQuery);
     
-    $sql = "INSERT INTO blog_comments (blog_id, name, email, content, status) 
-            VALUES ($blogId, '$name', '$email', '$content', 'approved')";
+    $stmt = $conn->prepare("INSERT INTO blog_comments (blog_id, name, email, content, status) VALUES (?, ?, ?, ?, 'pending')");
+    if (!$stmt) {
+        echo json_encode(["status" => "error", "message" => "Error preparing comment query"]);
+        return;
+    }
+    $stmt->bind_param("isss", $blogId, $name, $email, $content);
     
-    if ($conn->query($sql)) {
+    if ($stmt->execute()) {
         echo json_encode([
             "status" => "success", 
             "message" => "Comment added successfully"
@@ -1547,8 +1452,9 @@ function addBlogComment($conn, $data) {
     } else {
         echo json_encode([
             "status" => "error", 
-            "message" => "Error adding comment: " . $conn->error
+            "message" => "Error adding comment"
         ]);
     }
+    $stmt->close();
 }
 ?>

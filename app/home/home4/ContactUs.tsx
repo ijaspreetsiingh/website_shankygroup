@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useI18n } from '../../i18n/I18nProvider';
+import SecurityCaptcha from '../../components/SecurityCaptcha';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +18,11 @@ const ContactUs = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState('');
+  const [captchaAnswer, setCaptchaAnswer] = useState('');
+  const [honeypotVal, setHoneypotVal] = useState('');
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
+  const [refreshCaptchaTrigger, setRefreshCaptchaTrigger] = useState(0);
   const [isDark, setIsDark] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -86,10 +92,20 @@ const ContactUs = () => {
     
     console.log('Form data being sent:', formData);
     console.log('Inquiry type specifically:', formData.inquiryType);
-    console.log('Type of inquiryType:', typeof formData.inquiryType);
+    setCaptchaError(null);
+    if (!captchaAnswer || !captchaAnswer.trim()) {
+      setCaptchaError('Please enter the answer to the security verification.');
+      setIsSubmitting(false);
+      return;
+    }
     
     // Create a copy to ensure we're sending the right data
-    const dataToSend = { ...formData };
+    const dataToSend = {
+      ...formData,
+      captchaToken,
+      captchaAnswer: captchaAnswer.trim(),
+      hp_shield: honeypotVal,
+    };
     console.log('Data to send:', dataToSend);
     
     try {
@@ -104,14 +120,23 @@ const ContactUs = () => {
       const data = await response.json();
 
       if (data.status !== 'success') {
-        throw new Error(data.message || 'Submission failed');
+        setCaptchaError(data.message || 'Security verification failed. Please try again.');
+        setRefreshCaptchaTrigger(prev => prev + 1);
+        setCaptchaAnswer('');
+        setIsSubmitting(false);
+        return;
       }
     } catch (error) {
       console.error('Submission error:', error);
-      // Optional: Show error to user, but for now we'll proceed to show success for UX demo
-      // or return here to stop success animation:
-      // setIsSubmitting(false);
-      // return; 
+      const errMsg = error instanceof Error ? error.message : 'Submission failed';
+      setCaptchaError(errMsg || 'Submission failed. Please try again.');
+      setRefreshCaptchaTrigger(prev => prev + 1);
+      setCaptchaAnswer('');
+      setIsSubmitting(false);
+      return;
+
+
+ 
     }
     
     // Continue with success animation
@@ -145,6 +170,9 @@ const ContactUs = () => {
     
     setTimeout(() => {
       setIsSubmitted(false);
+      setCaptchaAnswer('');
+      setCaptchaError(null);
+      setRefreshCaptchaTrigger(prev => prev + 1);
       setFormData({
         firstName: '',
         lastName: '',
@@ -202,6 +230,7 @@ const ContactUs = () => {
                 <div className="mx-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-green-500 flex items-center justify-center mb-4">
                   <svg className="w-7 h-7 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                 </div>
+
                 <h4 className="text-xl sm:text-2xl font-bold text-white mb-2">{t('thank_you')}</h4>
                 <p className="text-sm sm:text-base text-white/85">{t('message_sent')}</p>
               </div>
@@ -211,19 +240,37 @@ const ContactUs = () => {
                   <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('first_name')} />
                   <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('last_name')} />
                 </div>
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <input type="text" name="state" value={formData.state} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('state')} />
                   <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('phone_number')} />
                 </div>
+
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all min-h-[48px]" placeholder={t('email_address')} />
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">{t('message')}</label>
                   <textarea name="message" value={formData.message} onChange={handleInputChange} required rows={4} className="w-full px-4 py-3 sm:py-3.5 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl text-sm sm:text-base text-white placeholder-white/60 outline-none focus:border-white/50 focus:ring-2 focus:ring-white/20 transition-all resize-none min-h-[100px]" placeholder="Your message..." />
                 </div>
+
                 <div className="flex items-start gap-3">
                   <input type="checkbox" name="exclusiveOffers" checked={formData.exclusiveOffers} onChange={handleInputChange} className="mt-1.5 w-4 h-4 accent-[#e63a27] cursor-pointer rounded" id="offers" />
-                  <label htmlFor="offers" className="text-sm text-white/80 leading-snug cursor-pointer">{t('exclusive_offers')}</label>
+                  <label htmlFor="offers" id="offers-lbl" className="text-sm text-white/80 leading-snug cursor-pointer">{t('exclusive_offers')}</label>
                 </div>
+
+
+                {/* Math Security Captcha verification */}
+                <SecurityCaptcha
+                  onTokenChange={setCaptchaToken}
+                  onAnswerChange={setCaptchaAnswer}
+                  onHoneypotChange={setHoneypotVal}
+                  answerValue={captchaAnswer}
+                  errorMessage={captchaError}
+                  refreshKey={refreshCaptchaTrigger}
+                  disabled={isSubmitting}
+                />
+
+
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -278,10 +325,13 @@ const ContactUs = () => {
                   <a href="https://www.facebook.com/share/1Hcjvg7fAr/" className="text-white opacity-80 flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white/10 hover:bg-[#1877F2] hover:opacity-100 transition-all touch-manipulation" aria-label="Facebook">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                   </a>
-                  <a href="https://x.com/ShankyGroup" className="text-white opacity-80 flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white/10 hover:bg-[#1DA1F2] hover:opacity-100 transition-all touch-manipulation" aria-label="X">
+                  <a href="https://x.com/ShankyGroup" id="x-social-link" className="text-white opacity-80 flex items-center justify-center w-9 h-9 sm:w-8 sm:h-8 rounded-lg bg-white/10 hover:bg-[#1DA1F2] hover:opacity-100 transition-all touch-manipulation" aria-label="X">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                   </a>
                 </div>
+                <a style={{ display: 'none' }}>
+                  </a>
+
               </div>
 
               <div>

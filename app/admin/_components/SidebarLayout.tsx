@@ -45,39 +45,25 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         *, *::before, *::after { box-sizing: border-box; }
 
         .layout-root {
           min-height: 100vh;
           display: flex;
-          background: #080810;
-          font-family: 'DM Sans', sans-serif;
-          color: #e2e8f0;
+          background: #f5f5f7;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          color: #1d1d1f;
           overflow: hidden;
           position: relative;
-        }
-
-        .layout-bg {
-          position: fixed; inset: 0; pointer-events: none; z-index: 0;
-        }
-        .layout-bg::before {
-          content: '';
-          position: absolute; top: -20%; left: -10%; width: 50%; height: 50%;
-          background: radial-gradient(ellipse, rgba(99,57,255,0.1) 0%, transparent 65%);
-        }
-        .layout-bg::after {
-          content: '';
-          position: absolute; bottom: -10%; right: -5%; width: 40%; height: 40%;
-          background: radial-gradient(ellipse, rgba(20,184,166,0.07) 0%, transparent 65%);
         }
 
         /* SIDEBAR */
         .sidebar {
           position: fixed; top: 0; left: 0; bottom: 0;
-          width: 252px;
-          background: #0d0d1a;
-          border-right: 1px solid rgba(255,255,255,0.06);
+          width: 260px;
+          background: #ffffff;
+          border-right: 1px solid #e5e5e5;
           display: flex; flex-direction: column;
           z-index: 50;
           transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
@@ -91,114 +77,111 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
         .sidebar-header {
           height: 64px;
           display: flex; align-items: center; justify-content: space-between;
-          padding: 0 18px;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
+          padding: 0 20px;
+          border-bottom: 1px solid #f0f0f0;
           flex-shrink: 0;
         }
 
         .sidebar-brand { display: flex; align-items: center; gap: 10px; }
 
         .sidebar-logo {
-          width: 32px; height: 32px; border-radius: 8px;
-          background: linear-gradient(135deg, #6339ff, #14b8a6);
+          width: 34px; height: 34px; border-radius: 10px;
+          background: linear-gradient(135deg, #6339ff, #8b5cf6);
           display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+          box-shadow: 0 2px 8px rgba(99,57,255,0.25);
         }
 
         .sidebar-brand-name {
-          font-family: 'Syne', sans-serif;
-          font-weight: 800; font-size: 15px; color: #fff; letter-spacing: -0.2px;
+          font-weight: 700; font-size: 16px; color: #1d1d1f; letter-spacing: -0.3px;
         }
 
         .sidebar-close-btn {
-          background: none; border: none; color: rgba(255,255,255,0.3);
-          cursor: pointer; padding: 6px; border-radius: 7px;
+          background: none; border: none; color: #999;
+          cursor: pointer; padding: 6px; border-radius: 8px;
           display: flex; align-items: center;
-          transition: color 0.2s, background 0.2s;
+          transition: all 0.2s;
         }
-        .sidebar-close-btn:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .sidebar-close-btn:hover { color: #333; background: #f5f5f5; }
 
         .sidebar-nav {
           flex: 1; overflow-y: auto;
-          padding: 10px 8px;
-          display: flex; flex-direction: column; gap: 1px;
-          scrollbar-width: thin;
-          scrollbar-color: rgba(255,255,255,0.07) transparent;
+          padding: 12px 10px;
+          display: flex; flex-direction: column; gap: 2px;
         }
 
         .nav-section-label {
-          font-size: 10px; font-weight: 600;
-          letter-spacing: 1.5px; text-transform: uppercase;
-          color: rgba(255,255,255,0.18);
-          padding: 10px 10px 5px;
-          margin-top: 6px;
+          font-size: 11px; font-weight: 600;
+          letter-spacing: 0.8px; text-transform: uppercase;
+          color: #999;
+          padding: 12px 10px 6px;
+          margin-top: 4px;
         }
         .nav-section-label:first-child { margin-top: 0; }
 
         .nav-link {
           display: flex; align-items: center; gap: 10px;
-          padding: 9px 11px;
-          border-radius: 9px;
+          padding: 10px 12px;
+          border-radius: 10px;
           border: 1px solid transparent;
-          color: rgba(255,255,255,0.42);
-          font-size: 13.5px; font-weight: 500;
+          color: #666;
+          font-size: 14px; font-weight: 500;
           text-decoration: none;
-          transition: all 0.18s;
+          transition: all 0.2s;
         }
         .nav-link:hover {
-          color: rgba(255,255,255,0.82);
-          background: rgba(255,255,255,0.04);
-          border-color: rgba(255,255,255,0.05);
+          color: #1d1d1f;
+          background: #f5f5f5;
         }
         .nav-link.active {
-          color: #fff;
-          background: rgba(99,57,255,0.13);
-          border-color: rgba(99,57,255,0.28);
+          color: #6339ff;
+          background: rgba(99,57,255,0.06);
+          border-color: rgba(99,57,255,0.12);
+          font-weight: 600;
         }
-        .nav-icon { width: 16px; height: 16px; flex-shrink: 0; transition: color 0.18s; }
-        .nav-link.active .nav-icon { color: #a78bfa; }
-        .nav-link:hover .nav-icon { color: rgba(255,255,255,0.65); }
-        .nav-chevron { margin-left: auto; color: #a78bfa; opacity: 0.6; width: 13px; height: 13px; }
+        .nav-icon { width: 18px; height: 18px; flex-shrink: 0; transition: color 0.2s; }
+        .nav-link.active .nav-icon { color: #6339ff; }
+        .nav-link:hover .nav-icon { color: #333; }
+        .nav-chevron { margin-left: auto; color: #6339ff; opacity: 0.5; width: 14px; height: 14px; }
 
         /* Sidebar footer */
         .sidebar-footer {
-          padding: 12px 8px;
-          border-top: 1px solid rgba(255,255,255,0.06);
+          padding: 14px 10px;
+          border-top: 1px solid #f0f0f0;
           flex-shrink: 0;
         }
 
         .user-card {
-          display: flex; align-items: center; gap: 9px;
-          padding: 9px 11px;
-          border-radius: 9px;
-          border: 1px solid rgba(255,255,255,0.06);
-          background: rgba(255,255,255,0.03);
-          margin-bottom: 8px;
+          display: flex; align-items: center; gap: 10px;
+          padding: 10px 12px;
+          border-radius: 10px;
+          border: 1px solid #f0f0f0;
+          background: #fafafa;
+          margin-bottom: 10px;
         }
 
         .user-avatar {
-          width: 32px; height: 32px; border-radius: 8px;
-          background: rgba(99,57,255,0.2);
-          border: 1px solid rgba(99,57,255,0.3);
+          width: 34px; height: 34px; border-radius: 10px;
+          background: linear-gradient(135deg, #6339ff, #8b5cf6);
           display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0; color: rgba(255,255,255,0.55);
+          flex-shrink: 0; color: #fff;
         }
 
         .user-info { flex: 1; min-width: 0; }
-        .user-name { font-size: 13px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .user-role { font-size: 11px; color: rgba(255,255,255,0.28); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .user-name { font-size: 13px; font-weight: 600; color: #1d1d1f; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .user-role { font-size: 11px; color: #999; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .logout-btn {
-          width: 100%; height: 38px;
-          background: rgba(239,68,68,0.07);
-          border: 1px solid rgba(239,68,68,0.18);
-          border-radius: 9px;
-          color: #fca5a5; font-size: 13px; font-weight: 500;
-          font-family: 'DM Sans', sans-serif;
+          width: 100%; height: 40px;
+          background: #fff;
+          border: 1px solid #e5e5e5;
+          border-radius: 10px;
+          color: #666; font-size: 13px; font-weight: 500;
+          font-family: 'Inter', sans-serif;
           cursor: pointer;
           display: flex; align-items: center; justify-content: center; gap: 7px;
-          transition: background 0.2s, border-color 0.2s;
+          transition: all 0.2s;
         }
-        .logout-btn:hover { background: rgba(239,68,68,0.14); border-color: rgba(239,68,68,0.32); }
+        .logout-btn:hover { background: #fef2f2; border-color: #fecaca; color: #dc2626; }
 
         /* MAIN */
         .main-area {
@@ -209,69 +192,69 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
         .topbar {
           height: 64px;
           display: flex; align-items: center; justify-content: space-between;
-          padding: 0 20px 0 14px;
-          border-bottom: 1px solid rgba(255,255,255,0.06);
-          background: rgba(8,8,16,0.85);
-          backdrop-filter: blur(16px);
+          padding: 0 24px 0 16px;
+          border-bottom: 1px solid #e5e5e5;
+          background: rgba(255,255,255,0.85);
+          backdrop-filter: blur(20px);
           position: sticky; top: 0; z-index: 30; flex-shrink: 0;
         }
 
         .topbar-left { display: flex; align-items: center; gap: 10px; }
 
         .hamburger {
-          background: none; border: none; color: rgba(255,255,255,0.35);
-          cursor: pointer; padding: 7px; border-radius: 8px;
+          background: none; border: none; color: #666;
+          cursor: pointer; padding: 8px; border-radius: 8px;
           display: flex; align-items: center;
-          transition: color 0.2s, background 0.2s;
+          transition: all 0.2s;
         }
-        .hamburger:hover { color: #fff; background: rgba(255,255,255,0.06); }
+        .hamburger:hover { color: #1d1d1f; background: #f0f0f0; }
         @media (min-width: 1024px) { .hamburger { display: none; } }
 
         .topbar-breadcrumb {
-          font-size: 13px; color: rgba(255,255,255,0.28);
-          display: flex; align-items: center; gap: 5px;
+          font-size: 13px; color: #999;
+          display: flex; align-items: center; gap: 6px;
         }
         .topbar-breadcrumb .crumb-active {
-          color: rgba(255,255,255,0.72); font-weight: 500;
+          color: #1d1d1f; font-weight: 600;
         }
-        .topbar-separator { color: rgba(255,255,255,0.15); }
+        .topbar-separator { color: #ccc; }
 
         .topbar-right { display: flex; align-items: center; gap: 8px; }
 
         .status-pill {
           display: flex; align-items: center; gap: 6px;
-          padding: 5px 11px;
+          padding: 6px 12px;
           border-radius: 100px;
-          background: rgba(20,184,166,0.09);
-          border: 1px solid rgba(20,184,166,0.2);
-          font-size: 11.5px; font-weight: 500; color: #5eead4;
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          font-size: 12px; font-weight: 500; color: #16a34a;
         }
 
         .status-dot {
           width: 6px; height: 6px; border-radius: 50%;
-          background: #14b8a6;
-          box-shadow: 0 0 6px rgba(20,184,166,0.7);
+          background: #22c55e;
+          box-shadow: 0 0 6px rgba(34,197,94,0.5);
           animation: blink 2.2s ease-in-out infinite;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
         .topbar-badge {
           display: flex; align-items: center; gap: 6px;
-          padding: 5px 11px;
+          padding: 6px 12px;
           border-radius: 8px;
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.07);
-          font-size: 11.5px; color: rgba(255,255,255,0.35);
+          background: #f5f5f5;
+          border: 1px solid #e5e5e5;
+          font-size: 12px; color: #666;
         }
 
         .main-content {
-          flex: 1; padding: 28px 22px; overflow-x: hidden;
+          flex: 1; padding: 28px 24px; overflow-x: hidden;
         }
         .main-inner { max-width: 1280px; margin: 0 auto; }
 
         .mobile-overlay {
           position: fixed; inset: 0;
-          background: rgba(0,0,0,0.65);
+          background: rgba(0,0,0,0.3);
           backdrop-filter: blur(4px);
           z-index: 40;
         }
@@ -279,8 +262,6 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
       `}</style>
 
       <div className="layout-root">
-        <div className="layout-bg" />
-
         {sidebarOpen && (
           <div className="mobile-overlay" onClick={() => setSidebarOpen(false)} />
         )}
@@ -290,14 +271,14 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
           <div className="sidebar-header">
             <div className="sidebar-brand">
               <div className="sidebar-logo">
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
                   <path d="M10 2L17.32 6.5V15.5L10 20L2.68 15.5V6.5L10 2Z" fill="white" fillOpacity="0.9"/>
                 </svg>
               </div>
               <span className="sidebar-brand-name">Shanky Admin</span>
             </div>
             <button className="sidebar-close-btn" onClick={() => setSidebarOpen(false)} style={{ display: 'flex' }}>
-              <X size={15} />
+              <X size={16} />
             </button>
           </div>
 
@@ -360,7 +341,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
               </div>
             </div>
             <button className="logout-btn" onClick={handleLogout}>
-              <LogOut size={13} /> Sign Out
+              <LogOut size={14} /> Sign Out
             </button>
           </div>
         </aside>
@@ -370,7 +351,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
           <header className="topbar">
             <div className="topbar-left">
               <button className="hamburger" onClick={() => setSidebarOpen(true)}>
-                <Menu size={19} />
+                <Menu size={20} />
               </button>
               <div className="topbar-breadcrumb">
                 Admin <span className="topbar-separator">/</span>
@@ -383,7 +364,7 @@ export default function SidebarLayout({ children }: { children: React.ReactNode 
                 System Active
               </div>
               <div className="topbar-badge">
-                <Globe size={11} />
+                <Globe size={12} />
                 Admin Panel
               </div>
             </div>
